@@ -390,7 +390,7 @@ def session_members(owner):
     return [p for p in table.values() if p['session'] == owner['pid'] or p['pid'] in owned]
 
 
-def stop_reasoning(ctx, owner, update, cancel_check, guardian):
+def stop_reasoning(ctx, owner, update, cancel_check, guardian, progress_check=None):
     """Freeze the owned session, recheck progress, then terminate exact pidfds."""
     handles = {}; frozen = set(); committed = False
     try:
@@ -416,7 +416,7 @@ def stop_reasoning(ctx, owner, update, cancel_check, guardian):
                 break
         else:
             raise RuntimeError('Owned reasoning session did not stabilize')
-        if reasoning_progress(ctx):
+        if (progress_check or reasoning_progress)(ctx):
             raise RuntimeError('Reasoning progressed before frozen cleanup; leave the run intact')
         cancel_check()
         update('cleaning_reasoning', irreversible_started=True,
@@ -469,9 +469,13 @@ def gpu_idle(ctx):
     return not busy, busy
 
 
-def execute_handoff(ctx, plan, update, cancelled, gpu_check=gpu_idle, after_freeze=None):
+def execute_handoff(ctx, plan, update, cancelled, gpu_check=gpu_idle, after_freeze=None,
+                    decision_fn=None, children_fn=None, progress_fn=None):
+    decide = decision_fn or decision
+    children_at_boundary = children_fn or reasoning_children
+    unexpected_progress = progress_fn or reasoning_progress
     verify_hashes(ctx, plan)
-    outcome, why = decision(ctx, plan)
+    outcome, why = decide(ctx, plan)
     if outcome != 'ready':
         raise RuntimeError(why)
     old = plan['old_driver']
@@ -480,21 +484,21 @@ def execute_handoff(ctx, plan, update, cancelled, gpu_check=gpu_idle, after_free
         cancelled()
         if after_freeze:
             after_freeze()
-        outcome, why = decision(ctx, plan)
+        outcome, why = decide(ctx, plan)
         if outcome != 'ready':
             raise RuntimeError('Frozen recheck: ' + why)
         verify_hashes(ctx, plan)
-        children = reasoning_children(ctx, plan)
+        children = children_at_boundary(ctx, plan)
         update('children_verified', direct_children=children,
                state_child_pid=read(ctx.runtime / 'experiment_state.json', {}).get('child_pid'))
         for child in children:
-            stop_reasoning(ctx, child, update, cancelled, guardian)
+            stop_reasoning(ctx, child, update, cancelled, guardian, unexpected_progress)
         cancelled()
         # Driver cannot create a child between this enumeration and termination.
         # A zombie child is expected after cleanup and excluded by processes().
-        if reasoning_children(ctx, plan, cleaned=children):
+        if children_at_boundary(ctx, plan, cleaned=children):
             raise RuntimeError('Reasoning direct child remains alive after cleanup')
-        if reasoning_progress(ctx):
+        if unexpected_progress(ctx):
             raise RuntimeError('Reasoning progress appeared; do not launch a replacement')
         verify_hashes(ctx, plan)
         update('terminating_old_driver', irreversible_started=True)
@@ -520,7 +524,7 @@ def execute_handoff(ctx, plan, update, cancelled, gpu_check=gpu_idle, after_free
             raise RuntimeError('GPUs 3-6 remain busy; no processes were killed by GPU identity')
         time.sleep(.5)
     verify_hashes(ctx, plan)
-    if reasoning_progress(ctx):
+    if unexpected_progress(ctx):
         raise RuntimeError('Reasoning progress appeared before new launch')
     if not lock_free(ctx.driver_lock):
         raise RuntimeError('Another controller acquired the driver lock; no new launch')
@@ -553,7 +557,8 @@ def execute_handoff(ctx, plan, update, cancelled, gpu_check=gpu_idle, after_free
     raise RuntimeError('New controller state/flock confirmation timed out')
 
 
-def run(ctx):
+def run(ctx, *, decision_fn=None, children_fn=None, progress_fn=None):
+    decide = decision_fn or decision
     deadline = time.monotonic() + 5
     while True:
         try:
@@ -591,12 +596,14 @@ def run(ctx):
             update('watching')
             while True:
                 cancelled(); verify_hashes(ctx, plan)
-                outcome, reason = decision(ctx, plan)
+                outcome, reason = decide(ctx, plan)
                 update('watching', decision=outcome, reason=reason)
                 if outcome == 'abort':
                     update('aborted'); ctx.event('aborted', reason=reason); return
                 if outcome == 'ready':
-                    execute_handoff(ctx, plan, update, cancelled)
+                    execute_handoff(ctx, plan, update, cancelled,
+                                    decision_fn=decision_fn, children_fn=children_fn,
+                                    progress_fn=progress_fn)
                     ctx.event('complete', new_driver=state.get('new_driver')); return
                 for _ in range(20):
                     cancelled(); time.sleep(.25)

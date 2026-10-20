@@ -4,7 +4,7 @@
 
 ## 固定协议
 
-- 模型：未训练 Qwen3.5-4B baseline，以及 generalist / perception / reasoning 的 step 300 HF 导出。
+- 模型：未训练 Qwen3.5-4B baseline，以及 generalist / perception / reasoning 的 step 100 HF 导出。
 - thinking=True，temperature=0，top_p=1，seed=20261019，max_tokens=8192；无额外 force-answering pass。
 - 与训练统一：`finish_reason=length` 一律记零，即使截断前已有完整正确 final。答案抽取和惩罚前得分保留用于审计。
 - prompt 上限 2048，按当前 AutoProcessor 的模板及展开后的视觉 token 精确计数。只在制表阶段统一排除超长样本，不截断视觉占位符或末尾问题。循环选项组/配对样本一起保留或排除。
@@ -77,7 +77,7 @@ pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/baseline_final.py
 
 ```bash
 pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/run_checkpoint.py \
-  --model experiments/sharedexpert_c/runs/generalist/hf/global_step_300 \
+  --model experiments/sharedexpert_c/runs/generalist/hf/global_step_100 \
   --name generalist --gpu 3
 ```
 
@@ -93,7 +93,7 @@ pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/summarize.py
 
 ## 已执行的验证
 
-源码 CPU 编译检查；评分与断点续跑的 9 项 CPU 测试通过；v2 真实 4B 共 8 题、跨 6 个基准 smoke（包含 MMMU 多图）已完成，精确 prompt token 计数一致、最终无 API 错误，2 条 8192-token 截断按协议记错。最初单图服务拒绝的多图请求已在 8112 正确补跑。GPU 教师评测必须等待实际 step 300 模型导出。
+源码 CPU 编译检查；评分与断点续跑的 9 项 CPU 测试通过；v2 真实 4B 共 8 题、跨 6 个基准 smoke（包含 MMMU 多图）已完成，精确 prompt token 计数一致、最终无 API 错误，2 条 8192-token 截断按协议记错。最初单图服务拒绝的多图请求已在 8112 正确补跑。GPU 教师评测必须等待实际 step 100 模型导出。
 
 初版 image max262144 的短暂 smoke/core 记录已整体归档到 `old_protocol/image262144`。现行 v2 与训练统一为 max786432，禁止混入旧协议预测。
 

@@ -1,6 +1,6 @@
 # SharedExpert C: three-teacher RL data pipeline
 
-The current user-approved protocol uses **9,000 prompt exposures per teacher**, 30 prompts per optimizer step, 300 steps, and eight completions per prompt: 72,000 responses per teacher. Each prepared parquet retains its original 12,000 rows and checksum; training consumes the first 9,000 rows without reshuffling. This is a 25% exposure reduction from the original batch-40 protocol. Geometry3K has only 2,101 original training questions (2,100 after deduplication); repeated exposures are explicit and reported separately from unique examples. All three teachers share the same exposure budget.
+The current user-approved protocol uses **3,000 prompt exposures per teacher**, 30 prompts per optimizer step, 100 steps, and eight completions per prompt: 24,000 responses per teacher. Each prepared parquet retains its original 12,000 rows and checksum; training consumes the first 3,000 rows without reshuffling. All three teachers share the same exposure budget. The prefix audit in `../logs/budget100_validation.json` finds 3,000 unique record IDs per teacher; image uniqueness is not inferred.
 
 ## Retained 12,000-row prepared allocation
 
@@ -14,9 +14,23 @@ The current user-approved protocol uses **9,000 prompt exposures per teacher**, 
 | Generalist | TallyQA / CLEVR / RefCOCO | 960 / 960 / 480 |
 | Generalist | Content-correct JSON instruction following | 1,200 |
 
-This table describes the full retained prepared files, not the current 300-step exposure budget. Each 200-prompt block has the exact specified proportions. The trainer must set `shuffle=False`; source order inside each block is deterministically shuffled. At batch 30, each 600-row / 20-step interval covers three complete blocks with exact ratios. The run consumes the first 45 of 60 blocks, so full-run ratios remain exact; individual 30-row batches need not match every ratio. A shuffled deck is exhausted before a source record is reused.
+This table describes the full retained prepared files, not the current 100-step exposure budget. Each 200-prompt block has the exact specified proportions. The trainer must set `shuffle=False`; source order inside each block is deterministically shuffled. At batch 30, each 600-row / 20-step interval covers three complete blocks with exact ratios. The run consumes the first 15 of 60 blocks, so full-run ratios remain exact; individual 30-row batches need not match every ratio. A shuffled deck is exhausted before a source record is reused.
 
-## Actual batch-30 prefix allocation
+## Current 100-step prefix allocation
+
+| Teacher | Source | Exposures (all distinct record IDs within each teacher) |
+|---|---|---:|
+| Perception | TallyQA / CLEVR / RefCOCO | 1,200 / 1,200 / 600 |
+| Reasoning | Geometry3K / MMK12 / ViRL39K | 1,200 / 600 / 1,200 |
+| Generalist | VQAv2 | 1,200 |
+| Generalist | DocVQA / ChartQA | 150 / 150 |
+| Generalist | Geometry3K / MMK12 / ViRL39K | 240 / 120 / 240 |
+| Generalist | TallyQA / CLEVR / RefCOCO | 240 / 240 / 120 |
+| Generalist | IF | 300 |
+
+The following 9,000-row audit remains historical evidence for the superseded 300-step budget.
+
+## Historical 300-step batch-30 prefix allocation
 
 | Teacher | Source | Exposures | Unique record IDs |
 |---|---|---:|---:|

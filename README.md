@@ -21,13 +21,13 @@
 | 感知教师 | TallyQA : CLEVR : RefCOCO = 4 : 4 : 2 |
 | 推理教师 | Geometry3K train : MMK12 : ViRL39K = 4 : 2 : 4 |
 | 通用教师 | VQA : 文档图表 : 推理 : 感知 : IF = 40 : 10 : 20 : 20 : 10 |
-| 每教师预算 | 300 steps，prompt batch 30，group 8 |
+| 每教师预算 | 100 steps，prompt batch 30，group 8 |
 | 长度上限 | prompt 2048，response 8192 |
 | RL | GRPO，KL / entropy 关闭，LR 1e-6 |
 | 分布式 | 4 GPU，FSDP2，单序列 microbatch 1 |
 | checkpoint | 每 25 steps 保存，保留最近 2 个 |
 
-保留每个教师 12,000 行 prepared 数据，当前 batch 30 协议依顺序使用前 9,000 行，共 72,000 次响应采样。多序列 packing 尚未通过梯度等价性验证，正式训练不启用。完整、权威参数见 [common.json](experiments/sharedexpert_c/training/config/common.json) 和实验文档。
+保留每个教师 12,000 行 prepared 数据，当前 batch 30 协议依顺序使用前 3,000 行，共 24,000 次响应采样。多序列 packing 尚未通过梯度等价性验证，正式训练不启用。基础参数见 [common.json](experiments/sharedexpert_c/training/config/common.json) ；有效终点由 [execution_budget.json](experiments/sharedexpert_c/training/config/execution_budget.json) 覆盖为 100。正在运行的感知教师保留原配置，由后台 watcher 在完整 checkpoint 100 后接续导出，因此旧进度条仍可能显示 300。详见实验文档。
 
 ## 目录
 

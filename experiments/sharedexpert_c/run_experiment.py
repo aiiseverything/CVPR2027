@@ -86,6 +86,54 @@ def file_sha(path):
     return digest.hexdigest()
 
 
+def execution_budget():
+    """An explicit endpoint overlay preserves the frozen legacy validation chain."""
+    common=json.loads((HERE/'training/config/common.json').read_text())
+    path=HERE/'training/config/execution_budget.json'
+    if not path.exists():
+        return common
+    budget=json.loads(path.read_text())
+    if (budget.get('steps_per_teacher')!=100 or budget.get('evaluation_step')!=100
+            or budget.get('base_config_sha256')!=file_sha(HERE/'training/config/common.json')
+            or budget.get('legacy_launch_sha256')!=file_sha(HERE/'training/launch.py')
+            or budget.get('launch_100_sha256')!=file_sha(HERE/'training/launch_100.py')
+            or common['steps']!=300 or common['batch_size']!=30 or common['group_size']!=8):
+        raise RuntimeError('100-step execution overlay does not match the frozen base')
+    return dict(common,steps=100)
+
+
+def verify_execution_budget():
+    if execution_budget()['steps']==300:
+        return
+    receipt=json.loads((HERE/'logs/budget100_validation.json').read_text())
+    allowed={'trainer.total_training_steps':{'before':300,'after':100}}
+    if (receipt.get('passed') is not True
+            or set(receipt.get('effective_config_diffs',{}))!=set(ROLES)
+            or any(value!=allowed for value in receipt['effective_config_diffs'].values())
+            or receipt.get('constant_lr_with_unchanged_warmup') is not True):
+        raise RuntimeError('100-step budget has no narrowly scoped CPU validation')
+    required={'training/launch.py','training/launch_100.py',
+              'training/config/common.json','training/config/execution_budget.json'}
+    if not required.issubset(receipt.get('validated_artifacts',{})):
+        raise RuntimeError('100-step validation artifact manifest is incomplete')
+    for name,expected in receipt['validated_artifacts'].items():
+        path=(HERE/name).resolve()
+        if not path.is_relative_to(HERE) or file_sha(path)!=expected:
+            raise RuntimeError(f'100-step budget artifact changed: {name}')
+
+
+def checkpoint_is_complete(role,step):
+    run=HERE/'runs'/role
+    source=run/f'checkpoints/global_step_{step}/actor'
+    latest=run/'checkpoints/latest_checkpointed_iteration.txt'
+    if not latest.exists() or latest.read_text().strip()!=str(step):
+        return False
+    required=[source/'fsdp_config.json',source.parent/'data.pt']
+    required += [source/f'{kind}_world_size_4_rank_{rank}.pt'
+                 for kind in ('model','optim','extra_state') for rank in range(4)]
+    return all(path.is_file() and path.stat().st_size>0 for path in required)
+
+
 def verify_unused_topk_transition(batch_transition):
     """Accept only the separately validated removal of unused RL distillation work."""
     receipt=json.loads((HERE/'logs/unused_topk_transition_validation.json').read_text())
@@ -292,11 +340,22 @@ def run(wait_for_smoke=False):
                         'validating_smoke')
             write_state('validating_preparation',teacher=None,child_pid=None)
             verify_preparation()
+            verify_execution_budget()
+            steps=execution_budget()['steps']
+            launcher=HERE/'training'/('launch_100.py' if steps==100 else 'launch.py')
             for role in ROLES:
-                command([TRAIN_PY,HERE/'training/launch.py',role,'--gpus',GPUS,'--check'],'preflight',role)
+                command([TRAIN_PY,launcher,role,'--gpus',GPUS,'--check'],'preflight',role)
             suite=HERE/'evaluation/suite.jsonl'
             if not suite.exists(): raise RuntimeError('Final frozen evaluation suite is not ready')
             for role in ROLES:
+                if role=='perception' and steps==100:
+                    if not checkpoint_is_complete(role,steps):
+                        raise RuntimeError('Wait for the authorized perception checkpoint-100 handoff; do not reset its progress')
+                    # Its live legacy controller was deliberately stopped only
+                    # after checkpoint 100. Export directly, preserving the
+                    # original 300-step-config run metadata as historical fact.
+                    command([TRAIN_PY,launcher,role,'--gpus',GPUS,'--merge-only'],'training',role)
+                    continue
                 if role=='reasoning':
                     # Perception has finished and released its GPUs. Check the
                     # longer, multi-image R/G inputs once before either teacher.
@@ -304,9 +363,9 @@ def run(wait_for_smoke=False):
                     memory_check=HERE/'training/multimodal_memory_check.py'
                     command([TRAIN_PY,memory_check,'--supervise'],'preflight',role)
                     command([sys.executable,memory_check,'--verify'],'preflight',role)
-                command([TRAIN_PY,HERE/'training/launch.py',role,'--gpus',GPUS,'--execute'],'training',role)
+                command([TRAIN_PY,launcher,role,'--gpus',GPUS,'--execute'],'training',role)
             for role in ROLES:
-                export=HERE/f'runs/{role}/hf/global_step_300'
+                export=HERE/f'runs/{role}/hf/global_step_{steps}'
                 command([EVAL_PY,HERE/'evaluation/run_checkpoint.py','--model',export,
                          '--name',role,'--gpu','3','--suite',suite,'--concurrency','4'],'evaluation',role)
             # The completed baseline service can be temporarily suspended to
@@ -335,7 +394,7 @@ def run(wait_for_smoke=False):
 
 def status():
     result=json.loads(STATE.read_text()) if STATE.exists() else {'stage':'not_started'}
-    common=json.loads((HERE/'training/config/common.json').read_text())
+    common=execution_budget()
     result['training_budget']={'prompt_batch_size':common['batch_size'],'group_size':common['group_size'],
                               'steps_per_teacher':common['steps'],
                               'prompts_per_teacher':common['batch_size']*common['steps'],
@@ -369,6 +428,9 @@ def status():
     handoff=RUNTIME/'controller_handoff/status.json'
     if handoff.exists():
         result['controller_handoff']=json.loads(handoff.read_text())
+    budget_handoff=RUNTIME/'budget100_handoff/status.json'
+    if budget_handoff.exists():
+        result['budget100_handoff']=json.loads(budget_handoff.read_text())
     result['data_validation_complete']=(HERE/'data_pipeline/prepared/validation.json').exists()
     result['monitor']=monitor_health()
     driver=result.get('driver_pid')
@@ -383,8 +445,8 @@ def status():
         logged=[int(path.stem) for path in (HERE/f'runs/{role}/rollouts').glob('*.jsonl') if path.stem.isdigit()]
         result['teachers'][role]={'checkpoint_step':int(p.read_text()) if p.exists() else 0,
                                   'last_logged_step':max(logged,default=0),
-                                  'target_step':300,
-                                  'exported':(HERE/f'runs/{role}/hf/global_step_300/sharedexpert_export_complete.json').exists()}
+                                  'target_step':common['steps'],
+                                  'exported':(HERE/f'runs/{role}/hf/global_step_{common["steps"]}/sharedexpert_export_complete.json').exists()}
     print(json.dumps(result,ensure_ascii=False,indent=2))
 
 

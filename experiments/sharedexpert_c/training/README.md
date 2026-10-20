@@ -2,14 +2,14 @@
 
 This directory prepares the first stage of SharedExpert option C: three independent
 Qwen3.5-4B teachers, followed by common evaluation. It does not perform distillation.
-Every production teacher starts from `pre-lab/models/Qwen3.5-4B` and uses 300 optimizer
-steps, 30 prompts per step, 8 responses per prompt: **9,000 prompt exposures and
-72,000 sampled responses per teacher**. The original 12,000-row prepared files stay
-unchanged; `shuffle=False` consumes only the first 9,000 rows. This user-approved
-batch reduction is a 25% exposure-budget change from the old batch-40 protocol.
+Every production teacher starts from `pre-lab/models/Qwen3.5-4B` and uses 100 optimizer
+steps, 30 prompts per step, 8 responses per prompt: **3,000 prompt exposures and
+24,000 sampled responses per teacher**. The original 12,000-row prepared files stay
+unchanged; `shuffle=False` consumes only the first 3,000 rows. The current endpoint is set by
+`config/execution_budget.json`; the original base config remains frozen at 300.
 Repeated visits to a small dataset count as exposures, not new unique examples.
 
-**Current snapshot (2026-10-20 12:58:50 Asia/Shanghai): formal run restarted from
+**Historical snapshot (2026-10-20 12:58:50 Asia/Shanghai): formal run restarted from
 step 0 after independent fix validation.** Driver 1842956 is in preflight, monitor
 1809563 continues, and all three teachers are 0/300 in this snapshot. The launcher
 explicitly sets `actor_rollout_ref.actor.self_distillation.full_logit_distillation=false`
@@ -22,7 +22,7 @@ not added to this new run. Probe updates are also not formal training steps.
 `config/common.json` freezes the shared protocol. Source-specific files identify the
 prepared parquet and prescribed mixture. Source ratios are enforced by the data
 pipeline's ordered 200-row blocks; at batch 30, every 600 rows / 20 steps covers
-three complete blocks with exact ratios. The run consumes 45 blocks; an individual
+three complete blocks with exact ratios. The run consumes 15 blocks; an individual
 30-row batch need not have exact ratios. The dataloader must not reshuffle.
 Generalist: VQAv2 40%, document/chart 10%, reasoning 20%, perception 20%, IF-format 10%.
 The 40% category uses its VQA branch; there is no caption objective in this run.
@@ -68,14 +68,25 @@ Images/templates alone exceeding the actual processor-expanded prompt limit caus
 an explicit error. FP32 image transport remains unchanged; the BF16 transport probe
 was neither run nor enabled.
 
+## Current 100-step handoff
+
+The existing perception run is preserved through checkpoint 100; its displayed
+300-step total is historical. The background watcher was deployed at 17:59:11
+Asia/Shanghai on 2026-10-20. Root orchestration verifies the budget overlay and CPU
+receipt, exports perception 100, runs the existing multi-image memory check, and
+then trains reasoning/generalist with `total_training_steps=100`. The constant LR
+with 10-step warmup gives the same first 100-step schedule. See
+`../logs/budget100_validation.json` and the three experiment documents for evidence.
+The old GPU smoke and frozen launcher remain unchanged.
+
 ## Installation and checks
 
 Run from the workspace root:
 
 ```bash
 bash experiments/sharedexpert_c/training/setup_train_env.sh
-python3 experiments/sharedexpert_c/training/launch.py perception --gpus 3,4,5,6 --dry-run
-experiments/sharedexpert_c/.venv-train/bin/python experiments/sharedexpert_c/training/launch.py perception --gpus 3,4,5,6 --check
+python3 experiments/sharedexpert_c/training/launch_100.py perception --gpus 3,4,5,6 --dry-run
+experiments/sharedexpert_c/.venv-train/bin/python experiments/sharedexpert_c/training/launch_100.py perception --gpus 3,4,5,6 --check
 ```
 
 The dedicated `.venv-train` leaves the pre-existing inference environment untouched.
@@ -108,11 +119,11 @@ Only run after the selected GPU processes have been released by their owner:
 
 ```bash
 experiments/sharedexpert_c/.venv-train/bin/python experiments/sharedexpert_c/training/launch.py perception --gpus 3,4,5,6 --smoke
-experiments/sharedexpert_c/.venv-train/bin/python experiments/sharedexpert_c/training/launch.py perception --gpus 3,4,5,6 --execute
+python3 experiments/sharedexpert_c/run_experiment.py run
 ```
 
 Smoke uses four prompts and one step, retaining the exact 2048/8192/group-8 limits;
-its output is separate and is never resumed into the 300-step scientific run. An
+its output is separate and is never resumed into the 100-step scientific run. An
 optional `--smoke-data PATH` can use a small real, prepared training parquet.
 Production executes one teacher at a time. Select `reasoning` or `generalist` for
 the other teachers. The launcher refuses busy GPUs and never kills another process.
@@ -164,9 +175,13 @@ in `../logs/unused_topk_gate_validation.json`; actual restart identity is record
 `../runtime/unused_topk_fix_launch.json`.
 
 Checkpoints (weights, optimizer, RNG/extra and dataloader state) save every 25 steps
-and at step 300. The latest two are retained. Repeating `--execute` resumes the same
-run; a changed data/reward checksum or changed resolved config is rejected.
-Completed step-300 runs only export, and do not accidentally take step 301.
+and at step 100. The latest two are retained. New reasoning/generalist runs use
+`launch_100.py --execute`; unchanged run metadata are required for resume.
+The already-running perception process retains its original 300-step metadata:
+its detached `budget100_handoff.py` watcher stops the owned process tree only after
+a complete checkpoint and rollout 100, and the new root driver uses `--merge-only`.
+Do not run a second driver or re-launch perception with changed training metadata.
+Completed 100-step teachers are exported and evaluated at step 100.
 
 Outputs:
 
@@ -175,8 +190,8 @@ Outputs:
 - `runs/<teacher>/repository.patch`: the exact local fork changes, with its SHA256
   stored in the protocol. They honor disabled entropy and allow recomputing the
   actor's old log probabilities for rollout correction instead of reusing vLLM's.
-- `runs/<teacher>/checkpoints/global_step_300/actor/`: resumable final FSDP shards.
-- `runs/<teacher>/hf/global_step_300/`: merged HF checkpoint for the evaluation pipeline.
+- `runs/<teacher>/checkpoints/global_step_100/actor/`: resumable final FSDP shards.
+- `runs/<teacher>/hf/global_step_100/`: merged HF checkpoint for the evaluation pipeline.
 
 The merge runs on CPU in a fresh directory and leaves FSDP shards intact. An
 `sharedexpert_export_complete.json` marker is written only after checking the export.
