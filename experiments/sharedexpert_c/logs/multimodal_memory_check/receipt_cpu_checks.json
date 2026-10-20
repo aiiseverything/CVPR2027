@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "at": "2026-10-20T05:26:45.933276+00:00",
+  "gpu_started": false,
+  "scope": "Temporary synthetic CPU fixtures only; not a GPU receipt",
+  "cases": [
+    {
+      "case": "valid",
+      "passed": true,
+      "rejected": false
+    },
+    {
+      "case": "missing_manifest_rank",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "wrong_report_path",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "different_supervisor_attempt",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "missing_rank",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "duplicate_rank",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "failed_rank",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "rank_cpu_mismatch",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "rank_missing_update",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "nonfinite_metric",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "missing_warm_adam",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "missing_second_micro_gradients",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "adam_not_fp32_cuda",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "deterministic_kernel",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "supervisor_failed",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "host_oom",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "gpu_not_released",
+      "passed": true,
+      "rejected": true
+    },
+    {
+      "case": "artifact_changed",
+      "passed": true,
+      "rejected": true
+    }
+  ]
+}

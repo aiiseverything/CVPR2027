@@ -1,0 +1,62 @@
+{
+  "perception": {
+    "hydra_compose": "passed",
+    "prepared_rows": 12000,
+    "prompts": 9000,
+    "responses": 72000,
+    "responses_per_rank": 60
+  },
+  "reasoning": {
+    "hydra_compose": "passed",
+    "prepared_rows": 12000,
+    "prompts": 9000,
+    "responses": 72000,
+    "responses_per_rank": 60
+  },
+  "generalist": {
+    "hydra_compose": "passed",
+    "prepared_rows": 12000,
+    "prompts": 9000,
+    "responses": 72000,
+    "responses_per_rank": 60
+  },
+  "processor": {
+    "short_prompt_tokens": 790,
+    "truncated_prompt_tokens": 2041,
+    "image_tokens_preserved": 768,
+    "multi_image": {
+      "3": {
+        "prompt_tokens": 2041,
+        "image_tokens": 1482
+      },
+      "8": {
+        "prompt_tokens": 2041,
+        "image_tokens": 1536
+      }
+    }
+  },
+  "reward_manager": {
+    "complete_correct": 1.0,
+    "truncated_reasoning_only": 0.0
+  },
+  "logprob_contract": {
+    "worker_entropy_requested": false,
+    "entropy_tensor_returned": false,
+    "old_logprobs_recomputed": true,
+    "rollout_is": "token"
+  },
+  "fsdp2_transformers5_wrap_selector": {
+    "passed": true,
+    "wrapped": [
+      "Linear",
+      "Sequential"
+    ]
+  },
+  "independent_rollout_replica_seeds": [
+    20261019,
+    20261020,
+    20261021,
+    20261022
+  ],
+  "gpu_smoke": "not_performed_by_this_script"
+}

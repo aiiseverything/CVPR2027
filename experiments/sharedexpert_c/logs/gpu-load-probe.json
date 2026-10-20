@@ -1,0 +1,13 @@
+{
+  "seconds": 184.8490744670853,
+  "parameter_devices": [
+    "cuda:0"
+  ],
+  "parameter_dtypes": [
+    "torch.float32"
+  ],
+  "max_rss_gib": 10.287609100341797,
+  "gpu_peak_gib": 16.910110473632812,
+  "tied_weights": true,
+  "attention": "sdpa only for initial loading probe; actual training uses flash_attention_2"
+}

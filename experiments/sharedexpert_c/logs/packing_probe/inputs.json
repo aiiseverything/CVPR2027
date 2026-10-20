@@ -1,0 +1,58 @@
+{
+  "sources": [
+    {
+      "source": "vqav2",
+      "source_id": "233955000",
+      "record_id": "vqav2:233955000",
+      "image_paths": [
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/vqav2/e432fc1d45163a744a8ac333d7031c73053674669b51313c94e092bfd2ac9c64.img"
+      ],
+      "image_file_sha256": [
+        "e432fc1d45163a744a8ac333d7031c73053674669b51313c94e092bfd2ac9c64"
+      ],
+      "prompt_tokens": 293,
+      "response_tokens": 187,
+      "saved_rollout_response_tokens": 187,
+      "reconstructed_token_count_matches_saved": true,
+      "eos_token_id": 248046,
+      "eos_appended": true,
+      "response_retokenized_from_real_saved_text": true,
+      "response_text_sha256": "080485ba60bd6c66ffa0fad6daf1599d43441c61b8071f8b1bcdf95cbfcd2e64",
+      "prompt_truncated": 0
+    },
+    {
+      "source": "docvqa",
+      "source_id": "3574",
+      "record_id": "docvqa:3574",
+      "image_paths": [
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/docvqa/3221f5ac8ff091bf2ab1452985b8c034560872b04cb30c589e80b0ae451897c7.img"
+      ],
+      "image_file_sha256": [
+        "3221f5ac8ff091bf2ab1452985b8c034560872b04cb30c589e80b0ae451897c7"
+      ],
+      "prompt_tokens": 781,
+      "response_tokens": 250,
+      "saved_rollout_response_tokens": 249,
+      "reconstructed_token_count_matches_saved": false,
+      "eos_token_id": 248046,
+      "eos_appended": true,
+      "response_retokenized_from_real_saved_text": true,
+      "response_text_sha256": "dad8244dbfc33c20c428c63dce2a083770235f994b39dca49e96e409e1a3ec49",
+      "prompt_truncated": 0
+    }
+  ],
+  "config": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception_smoke/resolved_config.yaml",
+  "config_sha256": "47561506ce6047e5a0652187f964015921a329f16bb43ffa2f92f2dea51d68e3",
+  "data": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/smoke.parquet",
+  "data_sha256": "cfd46a6c0a9a3ba1930d4689f5539abef376c5a12b53bdc8626bfbaa7e16e3cc",
+  "rollouts": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception_smoke_reward_superseded_20261020_0000/rollouts/1.jsonl",
+  "rollouts_sha256": "15b20c7ce38c60e7198406bd1999ba539db7b4f98eebe7d7b960ffde81a842dc",
+  "probe_source_sha256": "3047aa3b99807b427f863040e3911df77cadd0642d5dbc16ca61fad42286414d",
+  "prompt_width": 781,
+  "response_width": 250,
+  "unpadded_tokens": 1511,
+  "padded_tokens": 2062,
+  "valid_response_tokens": 437,
+  "mutation": "AB reverses A non-EOS response tokens while fixing B; BA reverses B while fixing A. All lengths/layout/masks/images/positions preserved",
+  "construction": "Actual RLHFDataset._build_messages, SharedExpertSingleTurn.run, AgentLoopWorker MM/mRoPE methods"
+}

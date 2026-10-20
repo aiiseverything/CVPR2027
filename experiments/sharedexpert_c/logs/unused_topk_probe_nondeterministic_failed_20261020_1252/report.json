@@ -1,0 +1,558 @@
+{
+  "status": "running",
+  "effective_config_differences": [
+    {
+      "path": "actor_rollout_ref.actor.self_distillation.full_logit_distillation",
+      "old": true,
+      "new": false
+    },
+    {
+      "path": "actor_rollout_ref.actor.self_distillation.distillation_topk",
+      "old": 100,
+      "new": null
+    }
+  ],
+  "three_teacher_config_differences": {
+    "perception": [
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.full_logit_distillation",
+        "old": true,
+        "new": false
+      },
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.distillation_topk",
+        "old": 100,
+        "new": null
+      }
+    ],
+    "reasoning": [
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.full_logit_distillation",
+        "old": true,
+        "new": false
+      },
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.distillation_topk",
+        "old": 100,
+        "new": null
+      }
+    ],
+    "generalist": [
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.full_logit_distillation",
+        "old": true,
+        "new": false
+      },
+      {
+        "path": "actor_rollout_ref.actor.self_distillation.distillation_topk",
+        "old": 100,
+        "new": null
+      }
+    ]
+  },
+  "old_launch_sha256": "5dd82b3fe68dbb9f90cfb8b4ba35f5e150c8b2856c43d0face3716c8f86358bb",
+  "new_launch_sha256": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+  "old_protocol_sha256": "2f5c79e3f2aa8f95b5b6345042ab5261d1d20d0b07c4a45c24633b6a1fd52194",
+  "old_config_sha256": "e6a55316994f81ec8036a47f44ef4860bfeb4bc906b244fb50ca044f815dfa4e",
+  "new_config_sha256": "03037c6c06801d45bd4aebbe5242879f66f3df527055f929e75c49d8c755b662",
+  "inputs_sha256": "aefd2af4739c0e0f753abe2e1a21894166b5bbabbdefd4fb76a2c5f76f91f8ec",
+  "source_sha256": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/unused_topk_probe.py": "d262c7520e8ab03964e66a5e04d6ddf3beaa3cd0b1d8347b276851ef1fa950c5",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/launch.py": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/run.py": "b97c690c8baae33d9b722dd925125dcf9925f2cecc2793cfdb9e9a44640c4ada",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/agent_loop.py": "aa595b0828376ba5f4170fc7add351ab34f8fa2869050739223417c26715af4d",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/reward_manager.py": "4dec0479b1dafa31c3056dbdc4deb933d0c34757c16f62219a184f34abbe388b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/rewards.py": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/workers/actor/dp_actor.py": "462fcb4d94b2cd6a5392b3efea72705218ba84d1061d73e3161ad1630156dcc0",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/workers/fsdp_workers.py": "a57f9808fc91dc579c4c753b9249381c929b2dfb7ae3a9445aff22811fb73928",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/utils/fsdp_utils.py": "cc3ce1c4cd1534671c4b5f5271d9a4f3a611c33cca93a3738b241b0ceeeea831"
+  },
+  "short_input_source_sha256": "bb45c333a75e7d342d58cbc69f662aa48f64d8d7364badaf6e223d47891c5a86",
+  "short_provenance": {
+    "sources": [
+      {
+        "source": "vqav2",
+        "source_id": "233955000",
+        "record_id": "vqav2:233955000",
+        "image_paths": [
+          "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/vqav2/e432fc1d45163a744a8ac333d7031c73053674669b51313c94e092bfd2ac9c64.img"
+        ],
+        "image_file_sha256": [
+          "e432fc1d45163a744a8ac333d7031c73053674669b51313c94e092bfd2ac9c64"
+        ],
+        "prompt_tokens": 293,
+        "response_tokens": 187,
+        "saved_rollout_response_tokens": 187,
+        "reconstructed_token_count_matches_saved": true,
+        "eos_token_id": 248046,
+        "eos_appended": true,
+        "response_retokenized_from_real_saved_text": true,
+        "response_text_sha256": "080485ba60bd6c66ffa0fad6daf1599d43441c61b8071f8b1bcdf95cbfcd2e64",
+        "prompt_truncated": 0
+      },
+      {
+        "source": "docvqa",
+        "source_id": "3574",
+        "record_id": "docvqa:3574",
+        "image_paths": [
+          "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/docvqa/3221f5ac8ff091bf2ab1452985b8c034560872b04cb30c589e80b0ae451897c7.img"
+        ],
+        "image_file_sha256": [
+          "3221f5ac8ff091bf2ab1452985b8c034560872b04cb30c589e80b0ae451897c7"
+        ],
+        "prompt_tokens": 781,
+        "response_tokens": 250,
+        "saved_rollout_response_tokens": 249,
+        "reconstructed_token_count_matches_saved": false,
+        "eos_token_id": 248046,
+        "eos_appended": true,
+        "response_retokenized_from_real_saved_text": true,
+        "response_text_sha256": "dad8244dbfc33c20c428c63dce2a083770235f994b39dca49e96e409e1a3ec49",
+        "prompt_truncated": 0
+      }
+    ],
+    "config": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception_smoke/resolved_config.yaml",
+    "config_sha256": "47561506ce6047e5a0652187f964015921a329f16bb43ffa2f92f2dea51d68e3",
+    "data": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/smoke.parquet",
+    "data_sha256": "cfd46a6c0a9a3ba1930d4689f5539abef376c5a12b53bdc8626bfbaa7e16e3cc",
+    "rollouts": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception_smoke_reward_superseded_20261020_0000/rollouts/1.jsonl",
+    "rollouts_sha256": "15b20c7ce38c60e7198406bd1999ba539db7b4f98eebe7d7b960ffde81a842dc",
+    "probe_source_sha256": "3047aa3b99807b427f863040e3911df77cadd0642d5dbc16ca61fad42286414d",
+    "prompt_width": 781,
+    "response_width": 250,
+    "unpadded_tokens": 1511,
+    "padded_tokens": 2062,
+    "valid_response_tokens": 437,
+    "mutation": "AB reverses A non-EOS response tokens while fixing B; BA reverses B while fixing A. All lengths/layout/masks/images/positions preserved",
+    "construction": "Actual RLHFDataset._build_messages, SharedExpertSingleTurn.run, AgentLoopWorker MM/mRoPE methods"
+  },
+  "long_provenance": {
+    "source": "tallyqa",
+    "source_id": "10152920",
+    "response_tokens": 8192,
+    "prompt_tokens": 432,
+    "response_text_sha256": "887112d2a6d5f332ebe4a0ad794a2923edc9865cc7822df71690325033c111f5",
+    "saved_rollout_sha256": "c3ea354fee3706428aa9799d24c8dfd45298e1cafed1796df66391d240182123",
+    "response_retokenized_from_saved_text": true,
+    "retokenized_length_exact": true,
+    "image_sha256": {
+      "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/tallyqa/1f02619e94bfcc2dfdf59028e063c31c8a8ab7cfa1ad0596334eef38dfcaa5d7.img": "1f02619e94bfcc2dfdf59028e063c31c8a8ab7cfa1ad0596334eef38dfcaa5d7"
+    },
+    "construction": "Actual dataset messages, SharedExpertSingleTurn and AgentLoopWorker multimodal/mRoPE methods"
+  },
+  "new_rollout_generated": false,
+  "scientific_parameters_changed": false,
+  "short_input_provenance_note": "Reconstructed controlled same-input comparison only. DocVQA includes appended EOS (250 tokens versus saved 249); historical source predates the final reward revision. Reward is not evaluated or validated by this probe.",
+  "passed": false,
+  "world_size": 4,
+  "short_comparison": {
+    "default_top100": [
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 4.41563209798187,
+        "gradient": {
+          "full": {
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.826582805610087,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.0,
+            "relative_l2": 0.0,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.53062076494793,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      },
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 4.110831718891859,
+        "gradient": {
+          "full": {
+            "max_abs": 0.01592421531677246,
+            "relative_l2": 0.02867448865362185,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.750321808272968,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.01592421531677246,
+            "relative_l2": 0.03813566541116169,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.427248870455095,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      },
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 3.986360389739275,
+        "gradient": {
+          "full": {
+            "max_abs": 0.008274435997009277,
+            "relative_l2": 0.015459575194220046,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.84368459873699,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.008274435997009277,
+            "relative_l2": 0.02010598994742107,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.550207245997594,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      }
+    ],
+    "disabled": [
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 3.9712959909811616,
+        "gradient": {
+          "full": {
+            "max_abs": 0.022484540939331055,
+            "relative_l2": 0.036859263782659704,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.757462835208884,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.022484540939331055,
+            "relative_l2": 0.04916598378798446,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.436822554050709,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      },
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 3.9641103981994092,
+        "gradient": {
+          "full": {
+            "max_abs": 0.01723426580429077,
+            "relative_l2": 0.03028567254538913,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.75650888682172,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.01723426580429077,
+            "relative_l2": 0.04031301019755254,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.43206405133344,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      },
+      {
+        "losses": [
+          -1.0,
+          1.0
+        ],
+        "metrics": [
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.3607109785079956,
+            "rollout_corr/training_log_ppl": 0.3080073595046997,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.3607109785079956,
+            "rollout_corr/rollout_log_ppl": 0.3080073595046997,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          },
+          {
+            "actor/pg_clipfrac": 0.0,
+            "actor/ppo_kl": 0.0,
+            "actor/pg_clipfrac_lower": 0.0,
+            "rollout_corr/training_ppl": 1.1652175188064575,
+            "rollout_corr/training_log_ppl": 0.1529078334569931,
+            "rollout_corr/kl": 0.0,
+            "rollout_corr/k3_kl": 0.0,
+            "rollout_corr/rollout_ppl": 1.1652175188064575,
+            "rollout_corr/rollout_log_ppl": 0.1529078334569931,
+            "rollout_corr/log_ppl_diff": 0.0,
+            "rollout_corr/log_ppl_abs_diff": 0.0,
+            "rollout_corr/log_ppl_diff_max": 0.0,
+            "rollout_corr/log_ppl_diff_min": 0.0,
+            "rollout_corr/ppl_ratio": 1.0,
+            "rollout_corr/chi2_token": 0.0,
+            "rollout_corr/chi2_seq": 0.0
+          }
+        ],
+        "seconds": 4.1504425927996635,
+        "gradient": {
+          "full": {
+            "max_abs": 0.00699162483215332,
+            "relative_l2": 0.016380960822341924,
+            "reference_l2": 20.826582805610087,
+            "actual_l2": 20.823440687827425,
+            "finite": true
+          },
+          "vision": {
+            "max_abs": 0.00699162483215332,
+            "relative_l2": 0.021384352006161542,
+            "reference_l2": 15.53062076494793,
+            "actual_l2": 15.523435423565209,
+            "finite": true
+          },
+          "missing_parameter_gradients": []
+        },
+        "logprob_vs_reference": {
+          "max_abs": 0.0,
+          "rms": 0.0
+        }
+      }
+    ]
+  },
+  "long_updates": [],
+  "limits": [
+    "Controlled saved inputs; no new rollouts or scientific training steps",
+    "Single-sequence microbatch 1 only; four ranks replicate inputs for equivalence",
+    "Long probe mini 2 tests Adam and accumulated gradients, not full 30-prompt Ray aggregation",
+    "Does not initialize rollout engines; final formal long-run stability remains separately monitored"
+  ],
+  "reference_gradient_bytes_per_rank": 4539265536
+}

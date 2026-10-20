@@ -1,0 +1,17 @@
+{
+  "purpose": "processor-only diagnostic; max_tokens=1; excluded from all scoring and generation caches",
+  "id": "MMMU_DEV_VAL:10719",
+  "expected_prompt_tokens": 1545,
+  "server_prompt_tokens": 1545,
+  "image_size": {
+    "longest_edge": 314572,
+    "shortest_edge": 4096
+  },
+  "usage": {
+    "prompt_tokens": 1545,
+    "total_tokens": 1546,
+    "completion_tokens": 1,
+    "prompt_tokens_details": null,
+    "completion_tokens_details": null
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "geometry3k": {
+    "rows": 2101,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "structured_reference_count": 0,
+    "single_variable_root_lists": 0,
+    "ordered_plain_lists": 0
+  },
+  "mmk12": {
+    "rows": 8000,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "structured_reference_count": 30,
+    "single_variable_root_lists": 1,
+    "ordered_plain_lists": 35
+  },
+  "virl39k": {
+    "rows": 9480,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "structured_reference_count": 34,
+    "single_variable_root_lists": 0,
+    "ordered_plain_lists": 42
+  },
+  "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2"
+}

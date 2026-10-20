@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "at": "2026-10-20T03:56:08.483469+00:00",
+  "checks": {
+    "actual_batch30_transition_accepted": true,
+    "unapproved_learning_rate_rejected": {
+      "rejected": true,
+      "reason": "Training hyperparameters changed outside the authorized batch30 transition"
+    },
+    "missing_smoke_execution_equivalence_rejected": {
+      "rejected": true,
+      "reason": "Batch30 configuration transition has no matching validated receipt"
+    },
+    "changed_gpu_numeric_code_rejected": {
+      "rejected": true,
+      "reason": "Training code changed after GPU smoke: run.py"
+    }
+  },
+  "files_mutated_by_negative_checks": false
+}

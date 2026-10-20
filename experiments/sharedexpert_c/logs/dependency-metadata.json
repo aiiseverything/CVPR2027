@@ -1,0 +1,10 @@
+{
+  "pip_check_exit_code": 1,
+  "output": [
+    "vllm 0.18.0 has requirement transformers<5,>=4.56.0, but you have transformers 5.5.0."
+  ],
+  "stderr": "",
+  "known_metadata_exception": true,
+  "unexpected_conflicts": [],
+  "runtime_compatibility_verified": false
+}

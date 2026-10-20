@@ -1,0 +1,5 @@
+{
+  "teacher": "reasoning",
+  "data_file": "experiments/sharedexpert_c/data_pipeline/prepared/reasoning.parquet",
+  "source_weights": {"geometry3k": 0.4, "mmk12": 0.2, "virl39k": 0.4}
+}

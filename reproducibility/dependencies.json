@@ -1,0 +1,20 @@
+{
+  "dependencies": [
+    {
+      "name": "vision_opd",
+      "path": "pre-lab/repo",
+      "url": "https://github.com/VisionOPD/Vision-OPD.git",
+      "commit": "06860e69b5ed9dc24e96ca5c855f3a4ef25976aa",
+      "patch": "reproducibility/patches/vision_opd.patch",
+      "patch_sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585"
+    },
+    {
+      "name": "vlmevalkit",
+      "path": "pre-lab/vlmevalkit",
+      "url": "https://github.com/open-compass/VLMEvalKit.git",
+      "commit": "54a063c5bf75245c35599daab9826d0a5b8e2671",
+      "patch": "reproducibility/patches/vlmevalkit.patch",
+      "patch_sha256": "c46e18d8db82db7fd1e6c6cb1e6134103da1bfe7b7bbf5caab9e55a45d05d9af"
+    }
+  ]
+}

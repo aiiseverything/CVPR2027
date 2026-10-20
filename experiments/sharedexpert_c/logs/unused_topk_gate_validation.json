@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": {
+    "real_preparation_gate": "passed",
+    "missing_accumulated_gradient_evidence": "rejected_as_expected",
+    "extra_learning_rate_change": "rejected_as_expected",
+    "gpu_rank_failed": "rejected_as_expected",
+    "gpu_report_failed": "rejected_as_expected"
+  },
+  "driver_sha256": "377a74b1ef4e8626efc13e1c639bf7d4421435377da8f308928912a2217347d9"
+}

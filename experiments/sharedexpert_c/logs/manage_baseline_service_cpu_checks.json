@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-20T03:02:42.142373+00:00",
+  "passed": true,
+  "real_servers_started": 0,
+  "suspension_state_unchanged": true,
+  "script_sha256": "a28297d4b20a8614683f49a9b453e394999a55eb705a48cbc57f105def982f13",
+  "checks": [
+    {
+      "case": "busy_gpu_compute_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "busy_gpu_memory_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "busy_port_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "original_parent_live_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "original_engine_live_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "healthy_or_loading_saved_process_reused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "wrong_gpu_record_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "wrong_port_record_refused",
+      "passed": true,
+      "popen_calls": 0
+    },
+    {
+      "case": "mock_spawn_persists_exact_command_gpu_new_pid_ticks_before_wait",
+      "passed": true,
+      "real_processes_started": 0
+    },
+    {
+      "case": "release_idempotent_does_not_resignal_or_overwrite_memory_evidence",
+      "passed": true
+    }
+  ]
+}

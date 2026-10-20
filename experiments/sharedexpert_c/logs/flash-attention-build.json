@@ -1,0 +1,24 @@
+{
+  "archive": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/build_sources/flash_attn-2.8.3.tar.gz",
+  "archive_sha256": "1e71dd64a9e0280e0447b8a0c2541bad4bf6ac65bdeaa2f90e51a9e57de0370d",
+  "source_url": "https://files.pythonhosted.org/packages/3b/b2/8d76c41ad7974ee264754709c22963447f7f8134613fd9ce80984ed0dab7/flash_attn-2.8.3.tar.gz",
+  "source": "/tmp/pip-install-ejum6c9_/flash-attn_8e2ee4e5ed9f49b69bfd7cddeab28581",
+  "version": "2.8.3",
+  "feature_disable_macros": [
+    "FLASHATTENTION_DISABLE_DROPOUT",
+    "FLASHATTENTION_DISABLE_ALIBI",
+    "FLASHATTENTION_DISABLE_SOFTCAP",
+    "FLASHATTENTION_DISABLE_UNEVEN_K",
+    "FLASHATTENTION_DISABLE_LOCAL"
+  ],
+  "backward_enabled": true,
+  "cuda_archs": "80",
+  "max_jobs": 2,
+  "qwen_heads_only": true,
+  "setup_original_sha256": "d089d876c34366979708a87abe051bf3e30f81ee4ee685e4bb446c11f0940a73",
+  "setup_build_sha256": "237982b15395286aee70de4efeaca488749b99646427e32626159cf0432aa7fa",
+  "allowed_model": "Qwen3.5-4B: attention head dimensions 64/256, dropout 0, no ALiBi/softcap/local attention",
+  "patch_sha256": "9f3d9b10761380faa0436dac17b0f1b9743f7294f2659de55fb5c5e2f41e8c6c",
+  "wheel": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/build_sources/wheels/flash_attn-2.8.3-cp310-cp310-linux_x86_64.whl",
+  "wheel_sha256": "0c53be067de6fd4e5a38efd07f388b4cfd3c58cc1ced790c2da677394cc0ec9f"
+}

@@ -1,0 +1,23 @@
+--- setup.py.upstream
++++ setup.py.qwen-restricted
+@@ -210,14 +210,14 @@
+     # "--ptxas-options=-O2",
+     # "-lineinfo",
+     # "-DFLASHATTENTION_DISABLE_BACKWARD",
+-    # "-DFLASHATTENTION_DISABLE_DROPOUT",
+-    # "-DFLASHATTENTION_DISABLE_ALIBI",
+-    # "-DFLASHATTENTION_DISABLE_SOFTCAP",
+-    # "-DFLASHATTENTION_DISABLE_UNEVEN_K",
+-    # "-DFLASHATTENTION_DISABLE_LOCAL",
++    "-DFLASHATTENTION_DISABLE_DROPOUT",
++    "-DFLASHATTENTION_DISABLE_ALIBI",
++    "-DFLASHATTENTION_DISABLE_SOFTCAP",
++    "-DFLASHATTENTION_DISABLE_UNEVEN_K",
++    "-DFLASHATTENTION_DISABLE_LOCAL",
+     ]
+ 
+-    compiler_c17_flag=["-O3", "-std=c++17"]
++    compiler_c17_flag=["-O3", "-std=c++17"] + ['-DFLASHATTENTION_DISABLE_DROPOUT', '-DFLASHATTENTION_DISABLE_ALIBI', '-DFLASHATTENTION_DISABLE_SOFTCAP', '-DFLASHATTENTION_DISABLE_UNEVEN_K', '-DFLASHATTENTION_DISABLE_LOCAL']
+     # Add Windows-specific flags
+     if sys.platform == "win32" and os.getenv('DISTUTILS_USE_SDK') == '1':
+         nvcc_flags.extend(["-Xcompiler", "/Zc:__cplusplus"])

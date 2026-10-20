@@ -1,0 +1,2 @@
+- name: sharedexpert_single_turn
+  _target_: experiments.sharedexpert_c.training.agent_loop.SharedExpertSingleTurn

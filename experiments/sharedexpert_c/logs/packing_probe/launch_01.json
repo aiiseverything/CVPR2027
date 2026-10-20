@@ -1,0 +1,28 @@
+{
+  "pid": 1761603,
+  "start_utc": "2026-10-19T16:32:37.634673+00:00",
+  "argv": [
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/.venv-train/bin/python",
+    "-m",
+    "torch.distributed.run",
+    "--standalone",
+    "--nproc-per-node=4",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/packing_probe.py",
+    "--execute",
+    "--segmented-linear-control"
+  ],
+  "cwd": "/home/ml-user/workdir/CVPR2027",
+  "explicit_environment": {
+    "CUDA_VISIBLE_DEVICES": "3,4,5,6",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "TOKENIZERS_PARALLELISM": "false",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "log": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/packing_probe/run_01.log",
+  "process_start_ticks": "339650943"
+}

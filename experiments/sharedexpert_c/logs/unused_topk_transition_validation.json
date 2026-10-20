@@ -1,0 +1,106 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T12:57:38.511168+08:00",
+  "old_launch_sha256": "5dd82b3fe68dbb9f90cfb8b4ba35f5e150c8b2856c43d0face3716c8f86358bb",
+  "new_launch_sha256": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+  "common_sha256": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa",
+  "effective_config_diffs": {
+    "perception": {
+      "actor_rollout_ref.actor.self_distillation.full_logit_distillation": {
+        "before": true,
+        "after": false
+      },
+      "actor_rollout_ref.actor.self_distillation.distillation_topk": {
+        "before": 100,
+        "after": null
+      }
+    },
+    "reasoning": {
+      "actor_rollout_ref.actor.self_distillation.full_logit_distillation": {
+        "before": true,
+        "after": false
+      },
+      "actor_rollout_ref.actor.self_distillation.distillation_topk": {
+        "before": 100,
+        "after": null
+      }
+    },
+    "generalist": {
+      "actor_rollout_ref.actor.self_distillation.full_logit_distillation": {
+        "before": true,
+        "after": false
+      },
+      "actor_rollout_ref.actor.self_distillation.distillation_topk": {
+        "before": 100,
+        "after": null
+      }
+    }
+  },
+  "checks": {
+    "vanilla_loss_and_rollout_correction_unchanged": true,
+    "real_log_probs_and_all_parameter_gradients_validated": true,
+    "repeat_noise_baseline_measured": true,
+    "warm_adam_second_update_completed": true,
+    "second_update_second_micro_has_adam_and_accumulated_gradients": true,
+    "real_response_8192_tokens": true,
+    "no_probe_cuda_or_host_oom": true
+  },
+  "validated_artifacts": {
+    "training/launch.py": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+    "training/validate_cpu.py": "453b3b09bea7387bf4a7021be3cd0885775595d7c7ac24fdfb5b06774c7535e0",
+    "training/unused_topk_probe.py": "5e03a50a05a77ceab83878abc660bcfa2a7539f4f95537778e4f254af75eb5bf",
+    "training/config/common.json": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa",
+    "logs/memory_fix_cpu_validation.log": "41dd9c37e80efff05ea22fa3e299dc3bcd7a10e6f6900a10476f2bf86d46558c",
+    "logs/unused_topk_probe/report.json": "74ea7bbe4f49547c9f4edbabb1ef24901bcd8e2c4222ce4e70b7ff850804f87a",
+    "logs/unused_topk_probe/supervisor.json": "3f03d199361468542a204b96492354ad17512f4491a6eaa29f122280ea01ca49",
+    "logs/unused_topk_probe/cpu_report.json": "5ac086bf5585eaeaf37b00f9a592c6d4ec54b823245480bcec5f5f97fdbd89e0",
+    "logs/unused_topk_probe/gpu_probe.log": "3c0ce2ede360ba6b74b445389d2a99aaa59b1e2dd6f4069b17a0f5fbf413e1c9",
+    "logs/unused_topk_probe/inputs.pt": "aefd2af4739c0e0f753abe2e1a21894166b5bbabbdefd4fb76a2c5f76f91f8ec",
+    "logs/unused_topk_probe/launch_before.py": "5dd82b3fe68dbb9f90cfb8b4ba35f5e150c8b2856c43d0face3716c8f86358bb",
+    "logs/unused_topk_probe/resolved_before.yaml": "e6a55316994f81ec8036a47f44ef4860bfeb4bc906b244fb50ca044f815dfa4e",
+    "logs/unused_topk_probe/resolved_after.yaml": "03037c6c06801d45bd4aebbe5242879f66f3df527055f929e75c49d8c755b662",
+    "logs/unused_topk_probe/resolved_after_perception.yaml": "03037c6c06801d45bd4aebbe5242879f66f3df527055f929e75c49d8c755b662",
+    "logs/unused_topk_probe/resolved_after_reasoning.yaml": "76c40074537f7567f200a113272f98c1cec2676d29f813f54a033cf477fc0be9",
+    "logs/unused_topk_probe/resolved_after_generalist.yaml": "9f6963eb75d63f6ff47807dd7c59c1cc4649828f390112e1af100ce1bdcc2c90"
+  },
+  "numerical_evidence": {
+    "short_inputs": "Controlled reconstruction of prior saved responses; not a new reward or rollout test",
+    "short_fa2_deterministic": true,
+    "short_repeats_per_mode": 3,
+    "logprob_loss_and_gradient_differences": 0,
+    "long_fa2_deterministic": false,
+    "long_prompt_tokens": 432,
+    "long_response_tokens": 8192,
+    "updates": 2,
+    "microbatches_per_update_per_rank": 2,
+    "microbatch_size": 1,
+    "second_update_adam_bytes_per_rank": 9078531072,
+    "second_update_second_micro_gradient_bytes_per_rank": 4539265536,
+    "second_update_gradient_norm": 4.606711387634277
+  },
+  "sampled_resources": {
+    "interval_seconds": 0.5,
+    "gpu_peak_used_bytes": {
+      "3": 43827003392,
+      "4": 43839586304,
+      "5": 43860557824,
+      "6": 43858460672
+    },
+    "peak_working_set_bytes": 25109495808,
+    "memory_events_delta": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0
+    }
+  },
+  "limitations": [
+    "Controlled saved inputs; no new rollouts or scientific training steps",
+    "Single-sequence microbatch 1 only; four ranks replicate inputs for equivalence",
+    "Long probe mini 2 tests Adam and accumulated gradients, not full 30-prompt Ray aggregation",
+    "Does not initialize rollout engines; final formal long-run stability remains separately monitored"
+  ],
+  "previous_failed_probe": "logs/unused_topk_probe_nondeterministic_failed_20261020_1252",
+  "previous_failed_formal_attempt": "runs/archive_batch30_step2_cuda_oom_20261020_1234"
+}

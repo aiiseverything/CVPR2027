@@ -1,0 +1,49 @@
+{
+  "cases": [
+    {
+      "head_dimension": 64,
+      "causal": false,
+      "max_forward_error": 0.003974437713623047,
+      "max_gradient_error": 0.006339073181152344,
+      "variable_length_backward_finite": true
+    },
+    {
+      "head_dimension": 64,
+      "causal": true,
+      "max_forward_error": 0.008988142013549805,
+      "max_gradient_error": 0.014677047729492188,
+      "variable_length_backward_finite": true
+    },
+    {
+      "head_dimension": 64,
+      "split_kv_max_forward_error": 0.0021662116050720215
+    },
+    {
+      "head_dimension": 256,
+      "causal": false,
+      "max_forward_error": 0.007003068923950195,
+      "max_gradient_error": 0.011466741561889648,
+      "variable_length_backward_finite": true
+    },
+    {
+      "head_dimension": 256,
+      "causal": true,
+      "max_forward_error": 0.0077342987060546875,
+      "max_gradient_error": 0.017093658447265625,
+      "variable_length_backward_finite": true
+    },
+    {
+      "head_dimension": 256,
+      "split_kv_max_forward_error": 0.0021506547927856445
+    }
+  ],
+  "unsupported_rejected": [
+    "fp16",
+    "head128",
+    "dropout",
+    "local_attention",
+    "softcap",
+    "alibi"
+  ],
+  "passed": true
+}

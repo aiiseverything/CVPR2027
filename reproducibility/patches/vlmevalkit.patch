@@ -1,0 +1,66 @@
+diff --git a/vlmeval/config.py b/vlmeval/config.py
+index f2a74de..18057f0 100644
+--- a/vlmeval/config.py
++++ b/vlmeval/config.py
+@@ -2660,3 +2660,42 @@ model_groups.append(nanovlm_series)
+ 
+ for grp in model_groups:
+     supported_VLM.update(grp)
++
++
++# ============================================================================
++# 本地 Qwen3.5-4B / 9B（本项目添加）
++# 参数完全照抄上面 qwen3_5_series 里官方本地版的设定：
++#   use_vllm=True, temperature=1.0, top_p=0.95, top_k=20,
++#   presence_penalty=1.5, max_new_tokens=32768
++# 未传 enable_thinking，按 Qwen3.5 chat template 默认行为 = thinking 开启。
++# ============================================================================
++import os as _os
++
++_PROJ = _os.environ.get("QWEN35_PROJ", "/home/ml-user/workdir/CVPR2027/pre-lab")
++
++qwen35_local_series = {
++    "Qwen3.5-4B": partial(
++        vlm.Qwen3VLChat,
++        model_path=_os.path.join(_PROJ, "models", "Qwen3.5-4B"),
++        use_custom_prompt=False,
++        use_vllm=True,
++        temperature=1.0,
++        top_p=0.95,
++        top_k=20,
++        presence_penalty=1.5,
++        max_new_tokens=32768,
++    ),
++    "Qwen3.5-9B": partial(
++        vlm.Qwen3VLChat,
++        model_path=_os.path.join(_PROJ, "models", "Qwen3.5-9B"),
++        use_custom_prompt=False,
++        use_vllm=True,
++        temperature=1.0,
++        top_p=0.95,
++        top_k=20,
++        presence_penalty=1.5,
++        max_new_tokens=32768,
++    ),
++}
++
++supported_VLM.update(qwen35_local_series)
+diff --git a/vlmeval/dataset/image_vqa.py b/vlmeval/dataset/image_vqa.py
+index 9dec191..340783c 100644
+--- a/vlmeval/dataset/image_vqa.py
++++ b/vlmeval/dataset/image_vqa.py
+@@ -746,9 +746,14 @@ class MathVerse(ImageBaseDataset):
+         'https://opencompass.openxlab.space/utils/benchmarks/MathVerse/MathVerse_MINITLite.tsv',  # noqa
+         'MathVerse_MINI_Text_Dominant':
+         'https://opencompass.openxlab.space/utils/benchmarks/MathVerse/MathVerse_MINITDom.tsv',  # noqa
++        # 本地子集：MathVerse_MINI 的前 1000 行（= 200 题 × 5 个 problem_version，分布均衡）。
++        # TSV 已预置在 $LMUData 下且 MD5 匹配，故不会触发下载；URL 仅为占位。
++        'MathVerse_MINI_1K':
++        'https://opencompass.openxlab.space/utils/benchmarks/MathVerse/MathVerse_MINIV.tsv',  # noqa
+     }
+     DATASET_MD5 = {
+         'MathVerse_MINI': '5017caca32b7fa110c350a1bea861b65',
++        'MathVerse_MINI_1K': '44e050b46085b864a4c5abde2053f444',
+         'MathVerse_MINI_Vision_Only': '68a11d4680014ac881fa37adeadea3a4',
+         'MathVerse_MINI_Vision_Only_cot': '68a11d4680014ac881fa37adeadea3a4',
+         'MathVerse_MINI_Vision_Dominant': 'b8fb63852d261ab2aaefba29cc2414d3',

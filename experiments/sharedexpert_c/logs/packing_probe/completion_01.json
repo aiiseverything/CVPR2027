@@ -1,0 +1,8 @@
+{
+  "observed_utc": "2026-10-19T16:36:09.239580+00:00",
+  "status": "complete",
+  "torchrun_pid": 1761603,
+  "torchrun_process_state": "absent",
+  "gpu_state": "0, 39527 MiB, 0 %\n1, 40983 MiB, 0 %\n2, 39837 MiB, 100 %\n3, 0 MiB, 0 %\n4, 0 MiB, 0 %\n5, 0 MiB, 0 %\n6, 0 MiB, 0 %\n",
+  "completion_marker_in_log": true
+}

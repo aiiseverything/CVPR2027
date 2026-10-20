@@ -1,0 +1,79 @@
+{
+  "perception": {
+    "rows": 12000,
+    "source_counts": {
+      "tallyqa": 4800,
+      "clevr": 4800,
+      "refcoco": 2400
+    },
+    "unique_ids": 12000,
+    "unique_records_by_source": {
+      "tallyqa": 4800,
+      "clevr": 4800,
+      "refcoco": 2400
+    },
+    "known_virl_original_test_leakage": 0,
+    "eval_image_overlap": 0,
+    "max_images": 1,
+    "sha256": "7326a82df9c5a65ae3d6fe681710385f354a81697de4d6e25ccb8d7da9cb446b"
+  },
+  "reasoning": {
+    "rows": 12000,
+    "source_counts": {
+      "geometry3k": 4800,
+      "virl39k": 4800,
+      "mmk12": 2400
+    },
+    "unique_ids": 9300,
+    "unique_records_by_source": {
+      "geometry3k": 2100,
+      "virl39k": 4800,
+      "mmk12": 2400
+    },
+    "known_virl_original_test_leakage": 0,
+    "eval_image_overlap": 0,
+    "max_images": 8,
+    "sha256": "4fd2cf803f0773af253c9ee3152693ca33752d777a3678d83ed7eb9e1123fec5"
+  },
+  "generalist": {
+    "rows": 12000,
+    "source_counts": {
+      "chartqa": 600,
+      "mmk12": 480,
+      "vqav2": 4800,
+      "geometry3k": 960,
+      "docvqa": 600,
+      "tallyqa": 960,
+      "clevr": 960,
+      "refcoco": 480,
+      "virl39k": 960,
+      "if_format": 1200
+    },
+    "unique_ids": 12000,
+    "unique_records_by_source": {
+      "chartqa": 600,
+      "mmk12": 480,
+      "vqav2": 4800,
+      "geometry3k": 960,
+      "docvqa": 600,
+      "tallyqa": 960,
+      "clevr": 960,
+      "refcoco": 480,
+      "virl39k": 960,
+      "if_format": 1200
+    },
+    "known_virl_original_test_leakage": 0,
+    "eval_image_overlap": 0,
+    "max_images": 8,
+    "sha256": "19d0a02941abe834261d3edba0b10a5e818efb6218f426b8c1425365b9a758dc"
+  },
+  "images": {
+    "distinct_paths": 24949,
+    "hashes_recomputed": 24949,
+    "all_exist": true
+  },
+  "eval_manifests": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/evaluation/suite.jsonl": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100"
+  },
+  "if_image_overlap_with_other_generalist_sources": 0
+}

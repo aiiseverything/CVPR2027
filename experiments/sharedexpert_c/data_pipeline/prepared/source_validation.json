@@ -1,0 +1,267 @@
+{
+  "pinned_lfs_files_verified": 31,
+  "files": [
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/refcoco/data/test-00000-of-00001-82af0c1b600890ac.parquet",
+      "repo": "jxu124/refcoco",
+      "revision": "9fba8200c5326e996f789191f095bd464ef1d09e",
+      "bytes": 1621290,
+      "sha256": "d7d13f7b67b783d345b016f49e81d0499cab1039870e3e65c870f4457745df99",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/refcoco/data/testB-00000-of-00001-60990e4598892dc1.parquet",
+      "repo": "jxu124/refcoco",
+      "revision": "9fba8200c5326e996f789191f095bd464ef1d09e",
+      "bytes": 1305815,
+      "sha256": "d208cd210463ca7c50f12fdeeed315b8c726c079c22d164edd3bcc7041a35968",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/refcoco/data/validation-00000-of-00001-bfeafdc84ca37aa2.parquet",
+      "repo": "jxu124/refcoco",
+      "revision": "9fba8200c5326e996f789191f095bd464ef1d09e",
+      "bytes": 2998472,
+      "sha256": "df03b1b16873f92727f3df010afb3c7260e8396a86592d3c4fee053daca08c05",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/refcoco/data/train-00000-of-00001-94431d5f4bd5b93f.parquet",
+      "repo": "jxu124/refcoco",
+      "revision": "9fba8200c5326e996f789191f095bd464ef1d09e",
+      "bytes": 32969552,
+      "sha256": "66ff9a728b7ee45b8a2d72061d244685a75ba4c90956e0640b0165e71cd5afaa",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/vqav2/data/train-00001-of-00136.parquet",
+      "repo": "lmms-lab/VQAv2",
+      "revision": "32665d35052eb4a6d4414851c3c829a72754915a",
+      "bytes": 103655573,
+      "sha256": "d107f8b248c974617a8d0dbeef466117a04a9be35c6655dcd05b1611cb1a048a",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/vqav2/data/train-00003-of-00136.parquet",
+      "repo": "lmms-lab/VQAv2",
+      "revision": "32665d35052eb4a6d4414851c3c829a72754915a",
+      "bytes": 98468175,
+      "sha256": "a279d78678c789a542d82d968d32bff4069f8461c5f626648d681d7a0fc9de24",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/vqav2/data/train-00000-of-00136.parquet",
+      "repo": "lmms-lab/VQAv2",
+      "revision": "32665d35052eb4a6d4414851c3c829a72754915a",
+      "bytes": 105420131,
+      "sha256": "5d985d08ee4538e6800856c27173fa98486ac6f6e5599b6553b53d3d91cda836",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/vqav2/data/train-00002-of-00136.parquet",
+      "repo": "lmms-lab/VQAv2",
+      "revision": "32665d35052eb4a6d4414851c3c829a72754915a",
+      "bytes": 105860316,
+      "sha256": "f60de15c38a972959a331db429638fbd832e40ac5f91120f0071ad86ec0a3d3a",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/docvqa/DocVQA/train-00001-of-00012.parquet",
+      "repo": "lmms-lab/DocVQA",
+      "revision": "539088ef8a8ada01ac8e2e6d4e372586748a265e",
+      "bytes": 94630890,
+      "sha256": "99b528d5a28d3496eb198e21ef10377d4fc94dcc0c5d4e9de03f816074933414",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/docvqa/DocVQA/train-00000-of-00012.parquet",
+      "repo": "lmms-lab/DocVQA",
+      "revision": "539088ef8a8ada01ac8e2e6d4e372586748a265e",
+      "bytes": 616602754,
+      "sha256": "37bde9b3f93add0cf47c980897eee7971cbf6b661b632a168359e35ff3c136f4",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/chartqa/data/train-00001-of-00003-7302bae5e425bbc7.parquet",
+      "repo": "HuggingFaceM4/ChartQA",
+      "revision": "b605b6e08b57faf4359aeb2fe6a3ca595f99b6c5",
+      "bytes": 310674206,
+      "sha256": "a8819291729c807f163b93dcb2dc1fe60044d56412a0c0626cb7312df7392140",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/chartqa/data/train-00000-of-00003-49492f364babfa44.parquet",
+      "repo": "HuggingFaceM4/ChartQA",
+      "revision": "b605b6e08b57faf4359aeb2fe6a3ca595f99b6c5",
+      "bytes": 219024215,
+      "sha256": "169979f8a8c64ba93ac1be22916bf9b49c9c2e4c57f5c0104e6f671f2aacd83a",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/chartqa/data/train-00002-of-00003-194c9400785577a2.parquet",
+      "repo": "HuggingFaceM4/ChartQA",
+      "revision": "b605b6e08b57faf4359aeb2fe6a3ca595f99b6c5",
+      "bytes": 315273201,
+      "sha256": "528133aec54c7e948f40b8af56b083b98f9b7d1fdcdd1cd9e375f3df984f7ae4",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/39Krelease.parquet",
+      "repo": "TIGER-Lab/ViRL39K",
+      "revision": "812ec617dea4bc8a4e751663b88e4ebb7de4d00e",
+      "bytes": 6869454,
+      "sha256": "ea1655368fd3774d37baf54c65aef345b0766f4c80d6aeac91a311fa7e4fba92",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/project-2/data/raw/rlvr/geometry3k/data/train-00000-of-00001.parquet",
+      "repo": "hiyouga/geometry3k",
+      "revision": "fd21e533e1e50d0662a2bf7b223e60511bd5f8b7",
+      "bytes": 41542768,
+      "sha256": "83f540e29dea49f6a7ef4e6e09cb79b79d3c0f975dfd742c669f863038045de9",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/project-2/data/raw/rlvr/mmk12/data/train-00000-of-00003.parquet",
+      "repo": "FanqingM/MMK12",
+      "revision": "372a609268ea79b5e78d90ab173e02c37b486163",
+      "bytes": 443736759,
+      "sha256": "913a78a22df4532571c8955bf7fb46a397ed7854ca47f04cc60ea9b1e7dd2ed3",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/project-2/data/raw/rlvr/mmk12/data/train-00001-of-00003.parquet",
+      "repo": "FanqingM/MMK12",
+      "revision": "372a609268ea79b5e78d90ab173e02c37b486163",
+      "bytes": 435323350,
+      "sha256": "6767548adbd337a97fdfaf932079e66d28750e9c5de1b7f0ca21f8f4cef3ecf1",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/project-2/data/raw/rlvr/mmk12/data/train-00002-of-00003.parquet",
+      "repo": "FanqingM/MMK12",
+      "revision": "372a609268ea79b5e78d90ab173e02c37b486163",
+      "bytes": 428418456,
+      "sha256": "53980c9fffd9826b2dab26818586e53c9b2e4b35940b721adb9dbc473cbddcd8",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00000-of-00009-e0b7d3ce56af002d.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 419736178,
+      "sha256": "db29da923deb73537cb9185979307c80b9690d4f299297b91d05b06608b90150",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00001-of-00009-55b2e0d778642a36.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 399594948,
+      "sha256": "47aa907fc593cc4e4cfa1480954bb5f260714550969f6369e911ea81f8242389",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00002-of-00009-bf24d9812115ab99.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 409128225,
+      "sha256": "cff23c1effd28b49c92fcb46959efb6b7ee9c16e2ae2d4df079c2d605c1565b7",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00003-of-00009-e3ffffa22676988c.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 578039418,
+      "sha256": "a355671d39dbcb1a56baba1955d7cd47ffbf55bb21d82d74ec1220b28c8873d1",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00004-of-00009-a2d7d206353e9fc5.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 580031214,
+      "sha256": "27be8c98c35dba4544addf315d41fb08ec41fcc8ce33e63e409328cf61e96434",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00005-of-00009-0c0c59b0a0d43ef3.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 554310157,
+      "sha256": "73c21305893fa3db16faefc06b9ad16fec193b1d3433f58169e691eafea050ee",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00006-of-00009-199312763e99f258.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 591978561,
+      "sha256": "9fd1aacec1da38e3392c07be7f1571e5063058344e751187c77159f6221122b4",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00007-of-00009-f53c8b592332cdbc.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 586268362,
+      "sha256": "790dc4a068f8da327c83a6a8fbc9a39329ea207e6f7f18168b404b292eeb59d5",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/tallyqa/train-00008-of-00009-984ced66203554f5.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 543158089,
+      "sha256": "32fe4bd0c6b949a3b2e78ffac10d0fd1878a6af3eb4369606e8cd2e982a75f31",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/clevr/train-00001-of-00024-8711717f841a0ad7.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 553041711,
+      "sha256": "2f1f717b08f8bff9a19feb494cc87b1cbba12a7f01aa78e62927ada95c425c6a",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/clevr/train-00014-of-00024-6ff949aec9343112.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 553704020,
+      "sha256": "92391092e75fb8b7ae488f8ef46145233098cf9326eeff98f2c43802065da61c",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/cauldron/clevr/train-00021-of-00024-911403b3f4a7ad9f.parquet",
+      "repo": "HuggingFaceM4/the_cauldron",
+      "revision": "847a98a779b1652d65111daf20c972dfcd333605",
+      "bytes": 552535592,
+      "sha256": "7953953db8ba80e1ce8469ae669e46a609312ee38b2764bd7d2b31fbccff85cb",
+      "upstream_sha256_match": true
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images.zip",
+      "repo": "TIGER-Lab/ViRL39K",
+      "revision": "812ec617dea4bc8a4e751663b88e4ebb7de4d00e",
+      "bytes": 1774062662,
+      "sha256": "49e6485a02815430fe4a468a25c03c3514adf8c2b68135068fc36c7656d8ad27",
+      "upstream_sha256_match": true
+    }
+  ],
+  "official_annotation_archives": [
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/tallyqa_annotations.zip",
+      "bytes": 5691198,
+      "sha256": "e805199fa25c91d2f9df964920c6c36ce8d6cb941c970176f38a92f971bab5ea",
+      "upstream_checksum_available": false
+    },
+    {
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/clevr_no_images.zip",
+      "bytes": 89363837,
+      "sha256": "d4435dceab30022b64f7d34b3ec217162bfc1c2950c79999784750ced22674c4",
+      "upstream_checksum_available": false
+    }
+  ]
+}

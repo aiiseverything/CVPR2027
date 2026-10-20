@@ -1,0 +1,27 @@
+{
+  "captured_at": "2026-10-20T08:54:05.951385+00:00",
+  "scope": "Training is ongoing; this is a historical snapshot, not final teacher performance. Resource recovery plot is the earlier snapshot timestamp visible in the image.",
+  "stage": "training",
+  "teacher": "perception",
+  "completed_steps": {
+    "perception": 15,
+    "reasoning": null,
+    "generalist": null
+  },
+  "oom_counters": {
+    "low": 0,
+    "high": 0,
+    "max": 28594212,
+    "oom": 19,
+    "oom_kill": 12
+  },
+  "monitor_errors": 0,
+  "metrics_rendered_at": "2026-10-20T08:53:39.972161+00:00",
+  "sha256": {
+    "baseline_summary.json": "e798cf5682f61d6fa546a8f9ac29e556391ab00a924dae6f08fc017e837a3546",
+    "baseline_summary.md": "d9584b2e824db2b6c2c88d720700b092f84f92e27e680ec3ad427d4df5dd32e1",
+    "resource_recovery.png": "4dfe15addbc8fccbf18095cd5acda06728b4519d52c339de1d944ec2fc6d1d2e",
+    "training_metrics.csv": "86ac14c02761cacb0ca7be80798ea525ae9889b9195528d1810032008929c2bd",
+    "training_metrics.png": "1a602ad9522d0176340d5656b6a23cdb298e6db3b1161b77b980135d6cb643cf"
+  }
+}

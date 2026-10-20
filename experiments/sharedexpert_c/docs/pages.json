@@ -1,0 +1,17 @@
+{
+  "training": {
+    "page_id": "page_d5e5056159348191a82958aacb4d9b4e",
+    "url": "https://chatgpt.com/space/page_d5e5056159348191a82958aacb4d9b4e",
+    "local_file": "训练配置与可验证奖励.md"
+  },
+  "evaluation": {
+    "page_id": "page_4ac752e156e08191b7c28180d0aaa935",
+    "url": "https://chatgpt.com/space/page_4ac752e156e08191b7c28180d0aaa935",
+    "local_file": "评测配置与问题记录.md"
+  },
+  "setup": {
+    "page_id": "page_e30cccb2f98081919c61cbb3ad86762a",
+    "url": "https://chatgpt.com/space/page_e30cccb2f98081919c61cbb3ad86762a",
+    "local_file": "搭建问题复盘.md"
+  }
+}

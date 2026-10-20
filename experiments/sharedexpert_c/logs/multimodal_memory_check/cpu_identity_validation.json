@@ -1,0 +1,136 @@
+{
+  "status": "cpu_prepared",
+  "gpu_started": false,
+  "cases": [
+    {
+      "case": "eight_images",
+      "record_id": "virl39k:Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05",
+      "prepared_locations": [
+        {
+          "teacher": "reasoning",
+          "row_1based": 7585,
+          "step_1based": 253
+        },
+        {
+          "teacher": "generalist",
+          "row_1based": 4585,
+          "step_1based": 153
+        }
+      ],
+      "images": 8,
+      "image_file_sha256": {
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-0.jpg": "4f9f64ae3700208fe14608dd4035f2d7e3af984fb35ed3ecaa86c02d06a8f93b",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-1.jpg": "6fe600af9a860172789c4366ed66dcbce059282532c02f00cdc29cc638ac153b",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-2.jpg": "22ad3856da248f010e4ee3dc33e80de4796cf6da0415898aa45b92439087d0c3",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-3.jpg": "425a2989d2f9e29270bfc0a0c0d191858dd5817d1ccd86b07a4386e988de298a",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-4.jpg": "7a789e8b30466a472ae537a8303c01dbd7e1bd32e97194c330668464365a8f16",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-5.jpg": "10593abce89b71981fd1e176201d3466b201e8ad59812f3dda583e5cec6d93ef",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-6.jpg": "a1982eb6ecb8ca7a8df5ad61d3500f1296cc3e827c5778301aa23991f8bdf346",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-7.jpg": "075a1722d6097109d66de8475fbe7040b8372538d2c840e5d5828b6c2809aabb"
+      },
+      "actual_prompt_tokens": 799,
+      "stress_prompt_tokens": 2048,
+      "response_tokens": 8192,
+      "visual_tokens": 617,
+      "image_grid_thw": [
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          12,
+          26
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ]
+      ],
+      "pixel_values_shape": [
+        2468,
+        1536
+      ],
+      "pixel_values_dtype": "torch.float32",
+      "pixel_values_bytes": 15163392,
+      "added_ordinary_text_repetitions": 1243,
+      "original_blocks_preserved": true,
+      "actual_and_pressure_image_tensors_equal": true,
+      "prompt_truncated": false
+    },
+    {
+      "case": "three_images_max_visual",
+      "record_id": "virl39k:Processed-4c784a40-cd45-4968-a9de-a5bfe696888c",
+      "prepared_locations": [
+        {
+          "teacher": "reasoning",
+          "row_1based": 2467,
+          "step_1based": 83
+        }
+      ],
+      "images": 3,
+      "image_file_sha256": {
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-0.jpg": "92bfd15ed9abaa3538fb32b6f3958bff163146b7460016962db7fb98c9185726",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-1.jpg": "0098fdbefcc92a7a058c253e78ca4c03b046e7d8809495dd92406307fb77bf6a"
+      },
+      "actual_prompt_tokens": 1208,
+      "stress_prompt_tokens": 2048,
+      "response_tokens": 8192,
+      "visual_tokens": 1008,
+      "image_grid_thw": [
+        [
+          1,
+          28,
+          48
+        ],
+        [
+          1,
+          28,
+          48
+        ],
+        [
+          1,
+          28,
+          48
+        ]
+      ],
+      "pixel_values_shape": [
+        4032,
+        1536
+      ],
+      "pixel_values_dtype": "torch.float32",
+      "pixel_values_bytes": 24772608,
+      "added_ordinary_text_repetitions": 834,
+      "original_blocks_preserved": true,
+      "actual_and_pressure_image_tensors_equal": true,
+      "prompt_truncated": false
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "geometry3k": {
+    "rows": 2101,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "exact_only_structured_reference": 0
+  },
+  "mmk12": {
+    "rows": 8000,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "exact_only_structured_reference": 30
+  },
+  "virl39k": {
+    "rows": 9480,
+    "reference_final_answer_failures": [],
+    "failure_count": 0,
+    "exact_only_structured_reference": 34
+  },
+  "reward_sha256": "ef9eaba3f4d79646897a7b93d80062bc962eb9c8c731ffabf5c98696e6e6cc2c"
+}

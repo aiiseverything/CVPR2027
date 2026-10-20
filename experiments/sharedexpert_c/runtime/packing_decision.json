@@ -1,0 +1,13 @@
+{
+  "decided_at": "2026-10-19T16:38:10.840325+00:00",
+  "configuration": "existing verified single-sequence FSDP2 microbatches, remove_padding=True, dynamic batching=False",
+  "production_configuration_changed": false,
+  "native_packing_accepted": false,
+  "padded_b2_accepted": false,
+  "segmented_linear_packing_accepted": false,
+  "reason": "Native packed Qwen3.5 exhibits measured cross-example dependence. Padded and segmented controls did not establish gradient equivalence. Retain fully validated RL configuration for the controlled three-teacher run.",
+  "probe_sha256": "67964ab9a17a1b82e3306a5a15fd0f70e0429249ea58c4f9dc43e11a44f17e02",
+  "probe_report": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/packing_probe/report.json",
+  "smoke_validation": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/smoke_validation.json",
+  "scope": "No claim that FSDP intrinsically cannot batch/pack; results apply to this installed Qwen3.5/verl/FLA stack."
+}

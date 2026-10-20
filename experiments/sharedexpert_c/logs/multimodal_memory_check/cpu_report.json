@@ -1,0 +1,243 @@
+{
+  "status": "cpu_prepared",
+  "created_at": "2026-10-20T05:17:57.764655+00:00",
+  "gpu_started": false,
+  "torch_cuda_initialized": false,
+  "shared_teachers": [
+    "reasoning",
+    "generalist"
+  ],
+  "cases": [
+    {
+      "case": "eight_images",
+      "record_id": "virl39k:Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05",
+      "prepared_locations": [
+        {
+          "teacher": "reasoning",
+          "row_1based": 7585,
+          "step_1based": 253
+        },
+        {
+          "teacher": "generalist",
+          "row_1based": 4585,
+          "step_1based": 153
+        }
+      ],
+      "images": 8,
+      "image_file_sha256": {
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-0.jpg": "4f9f64ae3700208fe14608dd4035f2d7e3af984fb35ed3ecaa86c02d06a8f93b",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-1.jpg": "6fe600af9a860172789c4366ed66dcbce059282532c02f00cdc29cc638ac153b",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-2.jpg": "22ad3856da248f010e4ee3dc33e80de4796cf6da0415898aa45b92439087d0c3",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-3.jpg": "425a2989d2f9e29270bfc0a0c0d191858dd5817d1ccd86b07a4386e988de298a",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-4.jpg": "7a789e8b30466a472ae537a8303c01dbd7e1bd32e97194c330668464365a8f16",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-5.jpg": "10593abce89b71981fd1e176201d3466b201e8ad59812f3dda583e5cec6d93ef",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-6.jpg": "a1982eb6ecb8ca7a8df5ad61d3500f1296cc3e827c5778301aa23991f8bdf346",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-7.jpg": "075a1722d6097109d66de8475fbe7040b8372538d2c840e5d5828b6c2809aabb"
+      },
+      "actual_prompt_tokens": 799,
+      "stress_prompt_tokens": 2048,
+      "response_tokens": 8192,
+      "visual_tokens": 617,
+      "image_grid_thw": [
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          12,
+          26
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ],
+        [
+          1,
+          14,
+          22
+        ]
+      ],
+      "pixel_values_shape": [
+        2468,
+        1536
+      ],
+      "pixel_values_dtype": "torch.float32",
+      "pixel_values_bytes": 15163392,
+      "added_ordinary_text_repetitions": 1243,
+      "original_blocks_preserved": true,
+      "actual_and_pressure_image_tensors_equal": true,
+      "prompt_truncated": false
+    },
+    {
+      "case": "three_images_max_visual",
+      "record_id": "virl39k:Processed-4c784a40-cd45-4968-a9de-a5bfe696888c",
+      "prepared_locations": [
+        {
+          "teacher": "reasoning",
+          "row_1based": 2467,
+          "step_1based": 83
+        }
+      ],
+      "images": 3,
+      "image_file_sha256": {
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-0.jpg": "92bfd15ed9abaa3538fb32b6f3958bff163146b7460016962db7fb98c9185726",
+        "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-1.jpg": "0098fdbefcc92a7a058c253e78ca4c03b046e7d8809495dd92406307fb77bf6a"
+      },
+      "actual_prompt_tokens": 1208,
+      "stress_prompt_tokens": 2048,
+      "response_tokens": 8192,
+      "visual_tokens": 1008,
+      "image_grid_thw": [
+        [
+          1,
+          28,
+          48
+        ],
+        [
+          1,
+          28,
+          48
+        ],
+        [
+          1,
+          28,
+          48
+        ]
+      ],
+      "pixel_values_shape": [
+        4032,
+        1536
+      ],
+      "pixel_values_dtype": "torch.float32",
+      "pixel_values_bytes": 24772608,
+      "added_ordinary_text_repetitions": 834,
+      "original_blocks_preserved": true,
+      "actual_and_pressure_image_tensors_equal": true,
+      "prompt_truncated": false
+    }
+  ],
+  "inputs_sha256": "4db62c3051b88b2970dd126de13555846d3a56e059fff5cefdb78822790fbf00",
+  "resolved_config_sha256": "76c40074537f7567f200a113272f98c1cec2676d29f813f54a033cf477fc0be9",
+  "source_sha256": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/generalist.parquet": "19d0a02941abe834261d3edba0b10a5e818efb6218f426b8c1425365b9a758dc",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/reasoning.parquet": "4fd2cf803f0773af253c9ee3152693ca33752d777a3678d83ed7eb9e1123fec5",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-0.jpg": "92bfd15ed9abaa3538fb32b6f3958bff163146b7460016962db7fb98c9185726",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-4c784a40-cd45-4968-a9de-a5bfe696888c-1.jpg": "0098fdbefcc92a7a058c253e78ca4c03b046e7d8809495dd92406307fb77bf6a",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-0.jpg": "4f9f64ae3700208fe14608dd4035f2d7e3af984fb35ed3ecaa86c02d06a8f93b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-1.jpg": "6fe600af9a860172789c4366ed66dcbce059282532c02f00cdc29cc638ac153b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-2.jpg": "22ad3856da248f010e4ee3dc33e80de4796cf6da0415898aa45b92439087d0c3",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-3.jpg": "425a2989d2f9e29270bfc0a0c0d191858dd5817d1ccd86b07a4386e988de298a",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-4.jpg": "7a789e8b30466a472ae537a8303c01dbd7e1bd32e97194c330668464365a8f16",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-5.jpg": "10593abce89b71981fd1e176201d3466b201e8ad59812f3dda583e5cec6d93ef",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-6.jpg": "a1982eb6ecb8ca7a8df5ad61d3500f1296cc3e827c5778301aa23991f8bdf346",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/raw/virl39k/images/Processed-b497da3d-cb40-443b-a9d6-1fea88faaf05-7.jpg": "075a1722d6097109d66de8475fbe7040b8372538d2c840e5d5828b6c2809aabb",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe/inputs.pt": "aefd2af4739c0e0f753abe2e1a21894166b5bbabbdefd4fb76a2c5f76f91f8ec",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe/report.json": "74ea7bbe4f49547c9f4edbabb1ef24901bcd8e2c4222ce4e70b7ff850804f87a",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe/resolved_after_generalist.yaml": "9f6963eb75d63f6ff47807dd7c59c1cc4649828f390112e1af100ce1bdcc2c90",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe/resolved_after_reasoning.yaml": "76c40074537f7567f200a113272f98c1cec2676d29f813f54a033cf477fc0be9",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe/supervisor.json": "3f03d199361468542a204b96492354ad17512f4491a6eaa29f122280ea01ca49",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_transition_validation.json": "ed850665409c51d01ee7ad5b191229f0b3edcdc0c06086f25bec8ef320adcf9c",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/visual_batch30_budget_audit.json": "04b714f4242ec475f84e00ebc3153a585d2f81a28b5c05e8badc446b372950b0",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/rewards.py": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/agent_loop.py": "aa595b0828376ba5f4170fc7add351ab34f8fa2869050739223417c26715af4d",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/config/common.json": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/config/generalist.json": "cd93a983565b8d10f4a06ccbd0650b64c11d096d54d1b585d1d45cbaaa5028ff",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/config/reasoning.json": "9729baf33bbb32e70e70af2faff8e1da688744aabde7af0c4911e6ede7ed1ab0",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/launch.py": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/multimodal_memory_check.py": "fb9f69492d73a61892b2c1be3e6a9a06ea9f7d5e5a382a5d05b43ea0df88dd30",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/reward_manager.py": "4dec0479b1dafa31c3056dbdc4deb933d0c34757c16f62219a184f34abbe388b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/run.py": "b97c690c8baae33d9b722dd925125dcf9925f2cecc2793cfdb9e9a44640c4ada",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/unused_topk_probe.py": "5e03a50a05a77ceab83878abc660bcfa2a7539f4f95537778e4f254af75eb5bf",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/experimental/agent_loop/agent_loop.py": "2d91dacb0fffa6de5f6e878f9e3e6dae46c471283161e3b15ad5ad2bcb5c49a1",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/models/transformers/monkey_patch.py": "cb92b6a58f260b481446a7eb1dd7bb95de23c2325e76b1a08bded58b31deb15a",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/models/transformers/qwen3_5.py": "47bd9dc0fab8684fac8bea10563cfd3454d0bfecbc8b65e3b75813c057ce4133",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/trainer/ppo/core_algos.py": "59a38b03fcb0ec37fc9a340f39fafe0a55ed32af4bc103bf55e56b907729608e",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/utils/fsdp_utils.py": "cc3ce1c4cd1534671c4b5f5271d9a4f3a611c33cca93a3738b241b0ceeeea831",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/workers/actor/dp_actor.py": "462fcb4d94b2cd6a5392b3efea72705218ba84d1061d73e3161ad1630156dcc0",
+    "/home/ml-user/workdir/CVPR2027/pre-lab/repo/verl/workers/fsdp_workers.py": "a57f9808fc91dc579c4c753b9249381c929b2dfb7ae3a9445aff22811fb73928"
+  },
+  "model_path": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B",
+  "model_weight_metadata": {
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/model.safetensors-00001-of-00002.safetensors": {
+      "size": 5329398688,
+      "mtime_ns": 1791042081341794881,
+      "inode": 9103956283348719
+    },
+    "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B/model.safetensors-00002-of-00002.safetensors": {
+      "size": 3990429408,
+      "mtime_ns": 1791042611781201198,
+      "inode": 9103956283348718
+    }
+  },
+  "model_weight_identity_scope": "File size, mtime_ns and inode; weight bytes not rehashed during live training",
+  "response_provenance": {
+    "source": "tallyqa",
+    "source_id": "10152920",
+    "response_tokens": 8192,
+    "prompt_tokens": 432,
+    "response_text_sha256": "887112d2a6d5f332ebe4a0ad794a2923edc9865cc7822df71690325033c111f5",
+    "saved_rollout_sha256": "c3ea354fee3706428aa9799d24c8dfd45298e1cafed1796df66391d240182123",
+    "response_retokenized_from_saved_text": true,
+    "retokenized_length_exact": true,
+    "image_sha256": {
+      "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/data_pipeline/images/tallyqa/1f02619e94bfcc2dfdf59028e063c31c8a8ab7cfa1ad0596334eef38dfcaa5d7.img": "1f02619e94bfcc2dfdf59028e063c31c8a8ab7cfa1ad0596334eef38dfcaa5d7"
+    },
+    "construction": "Actual dataset messages, SharedExpertSingleTurn and AgentLoopWorker multimodal/mRoPE methods"
+  },
+  "pressure_scope": "Synthetic ordinary-text additions and transplanted saved 8192 response; not correctness/reward or new-rollout evidence",
+  "gpu_plan": {
+    "gpus": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "updates": 2,
+    "mini_per_rank": 2,
+    "micro_per_rank": 1,
+    "sample_order": [
+      "eight_images",
+      "three_images_max_visual"
+    ],
+    "flash_attention_deterministic": false,
+    "first_learning_rate": 0.0,
+    "second_learning_rate": 1e-07
+  },
+  "source_identity_refreshes": [
+    {
+      "at": "2026-10-20T05:27:06.197613+00:00",
+      "path": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/multimodal_memory_check.py",
+      "old_sha256": "aa82a728f74adba17c22d29493d66a8b2cb16848963822081a8b378963909cd2",
+      "new_sha256": "fb9f69492d73a61892b2c1be3e6a9a06ea9f7d5e5a382a5d05b43ea0df88dd30",
+      "reason": "Strengthen receipt completeness and four-rank warm-Adam semantic verification; 18 CPU fixture checks passed; inputs unchanged"
+    }
+  ]
+}

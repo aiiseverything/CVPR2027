@@ -1,0 +1,25 @@
+--- launch.py (original validated batch40)
++++ launch.py (authorized batch30)
+@@ -259,7 +259,8 @@
+     if len(gpus) != 4 or len(set(gpus)) != 4 or not all(g.isdigit() for g in gpus):
+         parser.error("This frozen protocol requires four distinct GPU indices")
+     steps, batch = (1, 4) if args.smoke else (p["steps"], p["batch_size"])
+-    assert (p["steps"], p["batch_size"], p["group_size"]) == (300, 40, 8)
++    assert (p["steps"], p["batch_size"], p["group_size"]) == (300, 30, 8)
++    assert batch * p["group_size"] % len(gpus) == 0
+     run_dir = EXPERIMENT / "runs" / (args.teacher + ("_smoke" if args.smoke else ""))
+     overrides = make_overrides(p, t, len(gpus), run_dir, steps, batch)
+     if args.dry_run:
+@@ -288,7 +289,11 @@
+         ["git", "-C", str(WORKSPACE / p["repository"]), "diff", "HEAD", "--"], text=True
+     )
+     report["repository_diff_sha256"] = hashlib.sha256(repository_diff.encode()).hexdigest()
+-    report["dataset"] = check_dataset(WORKSPACE / t["data_file"], None if args.smoke else p["steps"] * p["batch_size"])
++    # Preserve the audited 12,000-row parquet. With shuffle=False, the user's
++    # revised 300 x 30 protocol consumes its first 9,000 rows without rewriting it.
++    report["dataset"] = check_dataset(WORKSPACE / t["data_file"], None if args.smoke else 12000)
++    if not args.smoke and report["dataset"].get("rows", 0) < steps * batch:
++        report["dataset"]["errors"].append("Prepared dataset is shorter than the intended training exposures")
+     if args.smoke and report["dataset"].get("rows", 0) < batch:
+         report["dataset"]["errors"].append(f"Smoke dataset needs at least {batch} rows")
+     if report["errors"] or report["dataset"]["errors"]:

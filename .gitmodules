@@ -1,0 +1,9 @@
+[submodule "vision_opd"]
+	path = pre-lab/repo
+	url = https://github.com/VisionOPD/Vision-OPD.git
+	ignore = dirty
+
+[submodule "vlmevalkit"]
+	path = pre-lab/vlmevalkit
+	url = https://github.com/open-compass/VLMEvalKit.git
+	ignore = dirty

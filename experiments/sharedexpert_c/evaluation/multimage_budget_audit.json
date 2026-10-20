@@ -1,0 +1,716 @@
+{
+  "total_rows": 3423,
+  "image_count_distribution": {
+    "1": 3403,
+    "2": 9,
+    "5": 4,
+    "4": 4,
+    "3": 3
+  },
+  "affected_rows": [
+    {
+      "id": "MMMU_DEV_VAL:10719",
+      "n": 5,
+      "sizes": [
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ]
+      ],
+      "cap": 314572,
+      "old_image_tokens": [
+        320,
+        320,
+        320,
+        320,
+        320
+      ],
+      "new_image_tokens": [
+        285,
+        285,
+        285,
+        285,
+        285
+      ],
+      "prompt_old": 1720,
+      "prompt_new": 1545,
+      "changed": true
+    }
+  ],
+  "multi_image_rows": [
+    {
+      "id": "MMMU_DEV_VAL:10710",
+      "n": 2,
+      "sizes": [
+        [
+          1354,
+          860
+        ],
+        [
+          1434,
+          980
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        748,
+        726
+      ],
+      "new_image_tokens": [
+        748,
+        726
+      ],
+      "prompt_old": 1762,
+      "prompt_new": 1762,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:10719",
+      "n": 5,
+      "sizes": [
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ],
+        [
+          636,
+          496
+        ]
+      ],
+      "cap": 314572,
+      "old_image_tokens": [
+        320,
+        320,
+        320,
+        320,
+        320
+      ],
+      "new_image_tokens": [
+        285,
+        285,
+        285,
+        285,
+        285
+      ],
+      "prompt_old": 1720,
+      "prompt_new": 1545,
+      "changed": true
+    },
+    {
+      "id": "MMMU_DEV_VAL:1317",
+      "n": 2,
+      "sizes": [
+        [
+          723,
+          249
+        ],
+        [
+          693,
+          109
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        184,
+        66
+      ],
+      "new_image_tokens": [
+        184,
+        66
+      ],
+      "prompt_old": 499,
+      "prompt_new": 499,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:2034",
+      "n": 2,
+      "sizes": [
+        [
+          878,
+          608
+        ],
+        [
+          864,
+          588
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        513,
+        486
+      ],
+      "new_image_tokens": [
+        513,
+        486
+      ],
+      "prompt_old": 1072,
+      "prompt_new": 1072,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:2039",
+      "n": 2,
+      "sizes": [
+        [
+          878,
+          608
+        ],
+        [
+          864,
+          588
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        513,
+        486
+      ],
+      "new_image_tokens": [
+        513,
+        486
+      ],
+      "prompt_old": 1076,
+      "prompt_new": 1076,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:2793",
+      "n": 5,
+      "sizes": [
+        [
+          774,
+          320
+        ],
+        [
+          766,
+          316
+        ],
+        [
+          696,
+          414
+        ],
+        [
+          614,
+          330
+        ],
+        [
+          614,
+          326
+        ]
+      ],
+      "cap": 314572,
+      "old_image_tokens": [
+        240,
+        240,
+        286,
+        190,
+        190
+      ],
+      "new_image_tokens": [
+        240,
+        240,
+        286,
+        190,
+        190
+      ],
+      "prompt_old": 1251,
+      "prompt_new": 1251,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:3414",
+      "n": 5,
+      "sizes": [
+        [
+          133,
+          151
+        ],
+        [
+          160,
+          153
+        ],
+        [
+          172,
+          156
+        ],
+        [
+          162,
+          151
+        ],
+        [
+          166,
+          153
+        ]
+      ],
+      "cap": 314572,
+      "old_image_tokens": [
+        20,
+        25,
+        25,
+        25,
+        25
+      ],
+      "new_image_tokens": [
+        20,
+        25,
+        25,
+        25,
+        25
+      ],
+      "prompt_old": 226,
+      "prompt_new": 226,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:3431",
+      "n": 4,
+      "sizes": [
+        [
+          199,
+          64
+        ],
+        [
+          189,
+          64
+        ],
+        [
+          175,
+          69
+        ],
+        [
+          172,
+          66
+        ]
+      ],
+      "cap": 393216,
+      "old_image_tokens": [
+        12,
+        12,
+        10,
+        10
+      ],
+      "new_image_tokens": [
+        12,
+        12,
+        10,
+        10
+      ],
+      "prompt_old": 135,
+      "prompt_new": 135,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:3775",
+      "n": 3,
+      "sizes": [
+        [
+          590,
+          590
+        ],
+        [
+          598,
+          590
+        ],
+        [
+          578,
+          572
+        ]
+      ],
+      "cap": 524288,
+      "old_image_tokens": [
+        324,
+        342,
+        324
+      ],
+      "new_image_tokens": [
+        324,
+        342,
+        324
+      ],
+      "prompt_old": 1104,
+      "prompt_new": 1104,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:4179",
+      "n": 4,
+      "sizes": [
+        [
+          148,
+          97
+        ],
+        [
+          163,
+          94
+        ],
+        [
+          128,
+          96
+        ],
+        [
+          147,
+          93
+        ]
+      ],
+      "cap": 393216,
+      "old_image_tokens": [
+        15,
+        15,
+        12,
+        15
+      ],
+      "new_image_tokens": [
+        15,
+        15,
+        12,
+        15
+      ],
+      "prompt_old": 157,
+      "prompt_new": 157,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:4885",
+      "n": 2,
+      "sizes": [
+        [
+          517,
+          142
+        ],
+        [
+          365,
+          233
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        64,
+        77
+      ],
+      "new_image_tokens": [
+        64,
+        77
+      ],
+      "prompt_old": 300,
+      "prompt_new": 300,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:4896",
+      "n": 2,
+      "sizes": [
+        [
+          517,
+          142
+        ],
+        [
+          365,
+          233
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        64,
+        77
+      ],
+      "new_image_tokens": [
+        64,
+        77
+      ],
+      "prompt_old": 308,
+      "prompt_new": 308,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:6947",
+      "n": 2,
+      "sizes": [
+        [
+          690,
+          862
+        ],
+        [
+          894,
+          738
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        594,
+        644
+      ],
+      "new_image_tokens": [
+        594,
+        644
+      ],
+      "prompt_old": 1344,
+      "prompt_new": 1344,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:7084",
+      "n": 4,
+      "sizes": [
+        [
+          450,
+          650
+        ],
+        [
+          420,
+          672
+        ],
+        [
+          428,
+          698
+        ],
+        [
+          412,
+          628
+        ]
+      ],
+      "cap": 393216,
+      "old_image_tokens": [
+        280,
+        273,
+        286,
+        260
+      ],
+      "new_image_tokens": [
+        280,
+        273,
+        286,
+        260
+      ],
+      "prompt_old": 1188,
+      "prompt_new": 1188,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:8078",
+      "n": 4,
+      "sizes": [
+        [
+          364,
+          331
+        ],
+        [
+          382,
+          334
+        ],
+        [
+          372,
+          361
+        ],
+        [
+          384,
+          343
+        ]
+      ],
+      "cap": 393216,
+      "old_image_tokens": [
+        110,
+        120,
+        132,
+        132
+      ],
+      "new_image_tokens": [
+        110,
+        120,
+        132,
+        132
+      ],
+      "prompt_old": 618,
+      "prompt_new": 618,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:8611",
+      "n": 3,
+      "sizes": [
+        [
+          406,
+          399
+        ],
+        [
+          406,
+          414
+        ],
+        [
+          411,
+          406
+        ]
+      ],
+      "cap": 524288,
+      "old_image_tokens": [
+        156,
+        169,
+        169
+      ],
+      "new_image_tokens": [
+        156,
+        169,
+        169
+      ],
+      "prompt_old": 570,
+      "prompt_new": 570,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:9442",
+      "n": 5,
+      "sizes": [
+        [
+          124,
+          184
+        ],
+        [
+          422,
+          212
+        ],
+        [
+          386,
+          244
+        ],
+        [
+          398,
+          260
+        ],
+        [
+          474,
+          256
+        ]
+      ],
+      "cap": 314572,
+      "old_image_tokens": [
+        24,
+        91,
+        96,
+        96,
+        120
+      ],
+      "new_image_tokens": [
+        24,
+        91,
+        96,
+        96,
+        120
+      ],
+      "prompt_old": 527,
+      "prompt_new": 527,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:9462",
+      "n": 2,
+      "sizes": [
+        [
+          1557,
+          2057
+        ],
+        [
+          1586,
+          1530
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        744,
+        756
+      ],
+      "new_image_tokens": [
+        744,
+        756
+      ],
+      "prompt_old": 1600,
+      "prompt_new": 1600,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:9464",
+      "n": 2,
+      "sizes": [
+        [
+          1651,
+          187
+        ],
+        [
+          1506,
+          620
+        ]
+      ],
+      "cap": 786432,
+      "old_image_tokens": [
+        312,
+        731
+      ],
+      "new_image_tokens": [
+        312,
+        731
+      ],
+      "prompt_old": 1112,
+      "prompt_new": 1112,
+      "changed": false
+    },
+    {
+      "id": "MMMU_DEV_VAL:9924",
+      "n": 3,
+      "sizes": [
+        [
+          394,
+          402
+        ],
+        [
+          342,
+          342
+        ],
+        [
+          370,
+          338
+        ]
+      ],
+      "cap": 524288,
+      "old_image_tokens": [
+        156,
+        121,
+        132
+      ],
+      "new_image_tokens": [
+        156,
+        121,
+        132
+      ],
+      "prompt_old": 504,
+      "prompt_new": 504,
+      "changed": false
+    }
+  ]
+}

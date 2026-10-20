@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "status": "completed_scan_aggregate_preserved_from_captured_stdout",
+  "audit_date_asia_shanghai": "2026-10-20",
+  "saved_at_utc": "2026-10-20T03:45:52.577470+00:00",
+  "provenance": {
+    "execution": "Read-only system Python stdin scan; exec session 94010 exited 0.",
+    "historical_scan_elapsed_seconds": 92.72638066485524,
+    "max_process_rss_mib": 115.43359375,
+    "rss_scope": "CPU RSS of audit process; not GPU memory, training RSS, cgroup peak, or GPU 0 usage.",
+    "gpu_used": false,
+    "images_decoded": 0,
+    "torch_or_transformers_imported": false,
+    "unique_image_headers": 24949,
+    "rows_inspected": 36000,
+    "batches_inspected": 900,
+    "rows_per_batch": 40,
+    "teachers": 3,
+    "batch_count_per_teacher": 300,
+    "artifact_written_without_rescanning": true,
+    "retention": "Full scan completed. This file preserves captured aggregate statistics; the original 900 individual batch rows were not persisted. No absent batch measurements are fabricated.",
+    "rerun_script": "experiments/sharedexpert_c/scripts/audit_visual_batch_budget.py",
+    "rerun_command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 /opt/venv/main/bin/python3 -B experiments/sharedexpert_c/scripts/audit_visual_batch_budget.py",
+    "rerun_default_output": "experiments/sharedexpert_c/logs/visual_batch_budget_audit_recomputed.json",
+    "rerun_note": "Future rerun scans headers again and also retains all 900 batch rows; it does not overwrite this historical artifact by default."
+  },
+  "inputs": {
+    "prepared_directory": "experiments/sharedexpert_c/data_pipeline/prepared",
+    "files": [
+      "perception.parquet",
+      "reasoning.parquet",
+      "generalist.parquet"
+    ],
+    "model_processor": "pre-lab/models/Qwen3.5-4B/preprocessor_config.json",
+    "training_configuration": "experiments/sharedexpert_c/training/config/common.json",
+    "batch_order": "Parquet row order, contiguous groups of 40; production data.shuffle=False; step numbers are 1-based.",
+    "ratio_mixing": "Source exposure ratios are guaranteed per aligned 200-row block, not necessarily each 40-row batch.",
+    "prior_validation": "prepared/validation.json validates 24,949 distinct images; logs/cpu-validation.json contains selected/synthetic processor checks, not all-row image_grid materialization."
+  },
+  "method": {
+    "io": "pyarrow.ParquetFile.iter_batches(batch_size=40, columns=[images, extra_info], use_threads=False); PIL.Image.open(path).size, then close. No load/convert/resize of image pixels.",
+    "function_loading": "AST-extract installed pure smart_resize/helper functions; do not import their torch/Transformers modules.",
+    "first_function": "experiments/sharedexpert_c/.venv-train/lib/python3.10/site-packages/qwen_vl_utils/vision_process.py::smart_resize",
+    "first_resize": "Apply true header height,width with factor=32, row.min_pixels=4096, row.max_pixels=min(786432,1572864//n_images).",
+    "second_function": "experiments/sharedexpert_c/.venv-train/lib/python3.10/site-packages/transformers/models/qwen2_vl/image_processing_qwen2_vl.py::smart_resize",
+    "second_resize": "Apply first-stage dimensions with factor=32, HF processor shortest_edge=65536 and longest_edge=16777216.",
+    "patch_size": 16,
+    "merge_size": 2,
+    "temporal_patch_size": 2,
+    "channels": 3,
+    "image_grid_thw_formula": "[1, final_height//16, final_width//16]",
+    "vision_tokens_formula": "sum(final_height*final_width)//1024",
+    "fp32_pixel_values_bytes_formula": "sum(final_height*final_width) * 3 channels * 2 temporal frames * 4 bytes = processed_pixels*24",
+    "group8_gib_formula": "processed_pixels * 24 * 8 / 2**30",
+    "comparison_denominator": {
+      "teacher": "perception",
+      "step_1based": 1,
+      "processed_pixels": 8507392,
+      "vision_tokens": 8308
+    },
+    "quantiles": "Sort 300 batches by processed pixels; median is upper order statistic index 150 (0-based), P95 is nearest-rank index 284."
+  },
+  "findings": {
+    "all_pixel_caps_match": true,
+    "generalist_first_ratio": 1.5241935483870968,
+    "generalist_max_ratio": 1.6136254212806933,
+    "generalist_max_extra_group8_fp32_gib_per_copy": 0.9334716796875,
+    "risk": "Generalist first and maximum batches require 1.524x and 1.614x the estimated processed vision pixels of perception first batch. A passing perception first step does not establish all-teacher memory safety."
+  },
+  "limitations": [
+    "Header-derived image grids/processed pixels; no full-data processor tensors or actual training peaks measured.",
+    "One materialized FP32 pixel_values copy only. Runtime copy count, Ray serialization, allocator retention, CPU decoding peaks and GPU activations are not inferred.",
+    "Do not multiply overall cgroup or training peak RSS by these visual ratios.",
+    "Maximum raw image size is header-observed. Maximum raw-pixel batch across all batches was not retained in the historical stdout summary.",
+    "HF minimum-size upscaling is included. This audit does not independently validate every processor/vLLM path or prove their token equivalence.",
+    "Frozen training, evaluation, prepared data and runtime services were not modified by the audit."
+  ],
+  "teachers": {
+    "perception": {
+      "rows": 12000,
+      "batch_count": 300,
+      "cap_mismatches": 0,
+      "images_per_prompt_histogram": {
+        "1": 12000
+      },
+      "max_images_per_prompt": 1,
+      "multi_image_prompts": 0,
+      "images_per_batch": {
+        "minimum": 40,
+        "median": 40,
+        "p95": 40,
+        "maximum": 40
+      },
+      "hf_upscaled_images_including_repeated_rows": 4,
+      "first": {
+        "step_1based": 1,
+        "processed_pixels": 8507392,
+        "vision_tokens": 8308,
+        "ratio_to_perception_first": 1.0,
+        "fp32_pixel_values_group8_gib": 1.521240234375,
+        "images": 40,
+        "raw_pixels": 8495640,
+        "sources": {
+          "tallyqa": 15,
+          "clevr": 18,
+          "refcoco": 7
+        }
+      },
+      "minimum": {
+        "step_1based": 56,
+        "processed_pixels": 7573504,
+        "vision_tokens": 7396,
+        "ratio_to_perception_first": 0.8902262879152624,
+        "fp32_pixel_values_group8_gib": 1.354248046875,
+        "images": 40,
+        "raw_pixels": 7593140
+      },
+      "median_upper_order_statistic": {
+        "step_1based": 260,
+        "processed_pixels": 8755200,
+        "vision_tokens": 8550,
+        "ratio_to_perception_first": 1.029128550794415,
+        "fp32_pixel_values_group8_gib": 1.5655517578125,
+        "images": 40,
+        "raw_pixels": 8754364
+      },
+      "p95_nearest_rank": {
+        "step_1based": 23,
+        "processed_pixels": 9540608,
+        "vision_tokens": 9317,
+        "ratio_to_perception_first": 1.1214492055849783,
+        "fp32_pixel_values_group8_gib": 1.70599365234375,
+        "images": 40,
+        "raw_pixels": 9616792
+      },
+      "maximum": {
+        "step_1based": 198,
+        "processed_pixels": 10068992,
+        "vision_tokens": 9833,
+        "ratio_to_perception_first": 1.183558016369764,
+        "fp32_pixel_values_group8_gib": 1.80047607421875,
+        "images": 40,
+        "raw_pixels": 10135470,
+        "sources": {
+          "tallyqa": 17,
+          "clevr": 11,
+          "refcoco": 12
+        }
+      },
+      "raw_max_image": {
+        "pixels": 786432,
+        "width": 1024,
+        "height": 768,
+        "record_id": "tallyqa:30093265"
+      }
+    },
+    "reasoning": {
+      "rows": 12000,
+      "batch_count": 300,
+      "cap_mismatches": 0,
+      "images_per_prompt_histogram": {
+        "1": 11603,
+        "2": 231,
+        "3": 63,
+        "4": 59,
+        "5": 42,
+        "7": 1,
+        "8": 1
+      },
+      "max_images_per_prompt": 8,
+      "multi_image_prompts": 397,
+      "images_per_batch": {
+        "minimum": 40,
+        "median": 42,
+        "p95": 47,
+        "maximum": 52
+      },
+      "hf_upscaled_images_including_repeated_rows": 4928,
+      "first": {
+        "step_1based": 1,
+        "processed_pixels": 7708672,
+        "vision_tokens": 7528,
+        "ratio_to_perception_first": 0.9061145883485797,
+        "fp32_pixel_values_group8_gib": 1.37841796875,
+        "images": 40,
+        "raw_pixels": 11471121,
+        "sources": {
+          "geometry3k": 20,
+          "virl39k": 15,
+          "mmk12": 5
+        }
+      },
+      "minimum": {
+        "step_1based": 166,
+        "processed_pixels": 4641792,
+        "vision_tokens": 4533,
+        "ratio_to_perception_first": 0.5456186807896004,
+        "fp32_pixel_values_group8_gib": 0.83001708984375,
+        "images": 40,
+        "raw_pixels": 3799791
+      },
+      "median_upper_order_statistic": {
+        "step_1based": 29,
+        "processed_pixels": 7146496,
+        "vision_tokens": 6979,
+        "ratio_to_perception_first": 0.8400337024554646,
+        "fp32_pixel_values_group8_gib": 1.27789306640625,
+        "images": 46,
+        "raw_pixels": 7992209
+      },
+      "p95_nearest_rank": {
+        "step_1based": 64,
+        "processed_pixels": 9001984,
+        "vision_tokens": 8791,
+        "ratio_to_perception_first": 1.0581367356764564,
+        "fp32_pixel_values_group8_gib": 1.60968017578125,
+        "images": 41,
+        "raw_pixels": 9861898
+      },
+      "maximum": {
+        "step_1based": 62,
+        "processed_pixels": 11128832,
+        "vision_tokens": 10868,
+        "ratio_to_perception_first": 1.3081367356764564,
+        "fp32_pixel_values_group8_gib": 1.989990234375,
+        "images": 45,
+        "raw_pixels": 14542813,
+        "sources": {
+          "mmk12": 8,
+          "geometry3k": 18,
+          "virl39k": 14
+        }
+      },
+      "raw_max_image": {
+        "pixels": 5020032,
+        "width": 2176,
+        "height": 2307,
+        "record_id": "virl39k:MMMath-1281"
+      }
+    },
+    "generalist": {
+      "rows": 12000,
+      "batch_count": 300,
+      "cap_mismatches": 0,
+      "images_per_prompt_histogram": {
+        "1": 11916,
+        "2": 49,
+        "3": 13,
+        "4": 13,
+        "5": 8,
+        "8": 1
+      },
+      "max_images_per_prompt": 8,
+      "multi_image_prompts": 84,
+      "images_per_batch": {
+        "minimum": 40,
+        "median": 40,
+        "p95": 43,
+        "maximum": 47
+      },
+      "hf_upscaled_images_including_repeated_rows": 999,
+      "first": {
+        "step_1based": 1,
+        "processed_pixels": 12966912,
+        "vision_tokens": 12663,
+        "ratio_to_perception_first": 1.5241935483870968,
+        "fp32_pixel_values_group8_gib": 2.31866455078125,
+        "images": 40,
+        "raw_pixels": 21995751,
+        "sources": {
+          "chartqa": 7,
+          "mmk12": 1,
+          "vqav2": 12,
+          "geometry3k": 3,
+          "docvqa": 3,
+          "tallyqa": 4,
+          "clevr": 3,
+          "refcoco": 2,
+          "virl39k": 3,
+          "if_format": 2
+        }
+      },
+      "minimum": {
+        "step_1based": 244,
+        "processed_pixels": 8798208,
+        "vision_tokens": 8592,
+        "ratio_to_perception_first": 1.034183919114107,
+        "fp32_pixel_values_group8_gib": 1.5732421875,
+        "images": 40,
+        "raw_pixels": 11335744
+      },
+      "median_upper_order_statistic": {
+        "step_1based": 39,
+        "processed_pixels": 11074560,
+        "vision_tokens": 10815,
+        "ratio_to_perception_first": 1.3017573423206548,
+        "fp32_pixel_values_group8_gib": 1.98028564453125,
+        "images": 46,
+        "raw_pixels": 19933185
+      },
+      "p95_nearest_rank": {
+        "step_1based": 177,
+        "processed_pixels": 12654592,
+        "vision_tokens": 12358,
+        "ratio_to_perception_first": 1.487481945113144,
+        "fp32_pixel_values_group8_gib": 2.2628173828125,
+        "images": 40,
+        "raw_pixels": 25740920
+      },
+      "maximum": {
+        "step_1based": 277,
+        "processed_pixels": 13727744,
+        "vision_tokens": 13406,
+        "ratio_to_perception_first": 1.6136254212806933,
+        "fp32_pixel_values_group8_gib": 2.4547119140625,
+        "images": 40,
+        "raw_pixels": 27281456,
+        "sources": {
+          "geometry3k": 4,
+          "chartqa": 2,
+          "docvqa": 4,
+          "vqav2": 10,
+          "clevr": 4,
+          "virl39k": 4,
+          "if_format": 5,
+          "refcoco": 3,
+          "mmk12": 2,
+          "tallyqa": 2
+        }
+      },
+      "raw_max_image": {
+        "pixels": 6782630,
+        "width": 2330,
+        "height": 2911,
+        "record_id": "docvqa:2229"
+      }
+    }
+  }
+}

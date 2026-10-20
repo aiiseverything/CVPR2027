@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "created_at": "2026-10-20T05:21:32.059005+00:00",
+  "driver_sha256": "ada3844acddb9b7a45b07bc2df3fd9d30e576a754acf14d21b30b833437ace06",
+  "existing_preparation_gate_passed": true,
+  "cases": [
+    {
+      "case": "P_export_then_check_verify_then_R_G",
+      "passed": true,
+      "command_count": 13,
+      "gpu_started": false
+    },
+    {
+      "case": "failed_memory_check_blocks_R_and_G",
+      "passed": true,
+      "command_count": 5,
+      "gpu_started": false
+    }
+  ],
+  "scope": "CPU controller ordering/failure-path validation; no multimodal GPU success claimed",
+  "status_path_checked": "runtime/controller_handoff/status.json"
+}

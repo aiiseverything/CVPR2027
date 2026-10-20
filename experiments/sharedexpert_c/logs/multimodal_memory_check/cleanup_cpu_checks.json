@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "at": "2026-10-20T05:27:07.891772+00:00",
+  "cases": [
+    {
+      "case": "forwarded_term",
+      "passed": true,
+      "gpu_used": false
+    },
+    {
+      "case": "parent_death_sigkill",
+      "passed": true,
+      "gpu_used": false
+    }
+  ]
+}

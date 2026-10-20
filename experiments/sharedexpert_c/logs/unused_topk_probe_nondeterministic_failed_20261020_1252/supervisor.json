@@ -1,0 +1,60 @@
+{
+  "status": "failed",
+  "command": [
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/.venv-train/bin/torchrun",
+    "--standalone",
+    "--nproc-per-node=4",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/unused_topk_probe.py",
+    "--execute",
+    "--output",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/unused_topk_probe"
+  ],
+  "gpu_ids": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "host_before": {
+    "current_bytes": 11408502784,
+    "working_set_bytes": 10798665728,
+    "anon_bytes": 7938461696,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 28594212,
+      "oom": 19,
+      "oom_kill": 12
+    }
+  },
+  "peak_working_set_bytes": 24996966400,
+  "peak_current_bytes": 30754029568,
+  "gpu_peak_used_bytes": {
+    "3": 28524085248,
+    "4": 28517793792,
+    "5": 28538765312,
+    "6": 28534571008
+  },
+  "guard_limit_gib": 54,
+  "torchrun_pid": 1841617,
+  "returncode": 1,
+  "host_after": {
+    "current_bytes": 11394408448,
+    "working_set_bytes": 10784448512,
+    "anon_bytes": 7926226944,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 28594212,
+      "oom": 19,
+      "oom_kill": 12
+    }
+  },
+  "memory_events_delta": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0
+  }
+}

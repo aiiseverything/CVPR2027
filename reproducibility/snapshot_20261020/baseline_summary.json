@@ -1,0 +1,236 @@
+{
+  "suite": {
+    "protocol": {
+      "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+      "enable_thinking": true,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "seed": 20261019,
+      "max_tokens": 8192,
+      "max_prompt_tokens": 2048,
+      "max_model_len": 10240,
+      "max_images": 8,
+      "image_size": {
+        "longest_edge": 786432,
+        "shortest_edge": 4096
+      },
+      "max_total_image_pixels": 1572864,
+      "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+      "force_answering": false,
+      "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+      "max_token_policy": "no extra answer pass; final answer must be present in original response"
+    },
+    "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+    "suite_sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100",
+    "processor": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-4B",
+    "processor_config_sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "source_sha256": {
+      "MathVista_MINI": "876bc02fce10e4d2a13c1cf4fc02226daf8c039599f85725c05c5ef4996dc455",
+      "MathVision_MINI": "b8ae07d465d1b8fa15190de5248b9a76d72dd4f6a4f79ff9a3e5caf60a87da8f",
+      "MMMU_DEV_VAL": "cae0445a60c2a22f29cb9df43d2d97671baa8d5921df5d8667f4f3b1f643a478",
+      "MME": "3b6c914445710ce582ffb51ef8c6c410783ea52e8c517b0a33dbdc26c64ed680",
+      "MMStar": "5b581d485fcfbb0f4c8fc0440fc4ecea17fb4ba1750c6446fd20833070552e95",
+      "MMBench_DEV_EN_V11": "27a54ae2e8f54502361cc5a41ed5fc35f4253af74734b5593d7b1de545eb5656",
+      "RefCOCO_heldout": "9b3ea4f48ed65d29bc2418f3c86f14d02db780a084be6011704fc49c39efde63"
+    },
+    "counts": {
+      "MMBench_DEV_EN_V11": 930,
+      "MME_perception": 240,
+      "MMMU_DEV_VAL": 449,
+      "MMStar": 500,
+      "MathVision_MINI": 304,
+      "MathVista_MINI": 500,
+      "RefCOCO_heldout": 500
+    },
+    "excluded": [
+      {
+        "id": "MMMU_DEV_VAL:6635",
+        "reason": "prompt_budget_or_paired_with_excluded_row",
+        "prompt_tokens": 2526
+      }
+    ],
+    "grounding_included": true,
+    "image_hash_format": "sha256(struct.pack('>II', width, height) + RGB pixel bytes)",
+    "limitations": [
+      "Strict local extraction scores, not official LLM-judge scores",
+      "Subsets selected before training; preserve circular MMBench groups",
+      "Hash exclusion catches exact pixels only, not all re-encoded or cropped derivatives"
+    ],
+    "scoring_protocol": {
+      "version": "strict-local-v2-length-zero",
+      "zero_on_length_termination": true,
+      "length_finish_reason": "length",
+      "preserve_extraction_and_pre_penalty_score_for_audit": true,
+      "recompute_from_raw_response": true
+    },
+    "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+    "image_budget_migration": {
+      "previous_suite_sha256": "e3b3b0b3ba43c7a672b24e4b4fde4fef96f2be94f687c0028f3603894a303031",
+      "audit_file": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/evaluation/multimage_budget_audit.json",
+      "changed_row_ids": [
+        "MMMU_DEV_VAL:10719"
+      ],
+      "cache_policy": "Only unchanged effective image grids and identical row hashes can migrate; errors retried"
+    }
+  },
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+  "status": {
+    "baseline": {
+      "status": "complete",
+      "n_expected": 3423,
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 531,
+      "length_terminated": 530,
+      "mean_completion_tokens": 2188.2158924919663
+    },
+    "generalist": {
+      "status": "not_started",
+      "n_expected": 3423,
+      "missing": 3423
+    },
+    "perception": {
+      "status": "not_started",
+      "n_expected": 3423,
+      "missing": 3423
+    },
+    "reasoning": {
+      "status": "not_started",
+      "n_expected": 3423,
+      "missing": 3423
+    }
+  },
+  "benchmarks": {
+    "MMBench_DEV_EN_V11": {
+      "baseline": {
+        "score": 0.852,
+        "ci95": [
+          0.808,
+          0.896
+        ],
+        "n_rows": 930,
+        "n_clusters": 250,
+        "metric": "circular_group_accuracy"
+      }
+    },
+    "MME_perception": {
+      "baseline": {
+        "score": 0.9291666666666667,
+        "ci95": [
+          0.8943029144274494,
+          0.9615384615384616
+        ],
+        "n_rows": 240,
+        "n_clusters": 110,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMMU_DEV_VAL": {
+      "baseline": {
+        "score": 0.5701559020044543,
+        "ci95": [
+          0.5233853006681515,
+          0.6146993318485523
+        ],
+        "n_rows": 449,
+        "n_clusters": 449,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMStar": {
+      "baseline": {
+        "score": 0.676,
+        "ci95": [
+          0.636,
+          0.718
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MathVision_MINI": {
+      "baseline": {
+        "score": 0.35855263157894735,
+        "ci95": [
+          0.3059210526315789,
+          0.4144736842105263
+        ],
+        "n_rows": 304,
+        "n_clusters": 304,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MathVista_MINI": {
+      "baseline": {
+        "score": 0.716,
+        "ci95": [
+          0.68,
+          0.754
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      }
+    },
+    "RefCOCO_heldout": {
+      "baseline": {
+        "score": 0.918,
+        "ci95": [
+          0.8932199564925691,
+          0.9415204678362573
+        ],
+        "n_rows": 500,
+        "n_clusters": 439,
+        "metric": "accuracy_at_iou_0.5"
+      }
+    }
+  },
+  "paired_delta_vs_baseline": {
+    "MMBench_DEV_EN_V11": {},
+    "MME_perception": {},
+    "MMMU_DEV_VAL": {},
+    "MMStar": {},
+    "MathVision_MINI": {},
+    "MathVista_MINI": {},
+    "RefCOCO_heldout": {}
+  },
+  "dimension_macro": {
+    "reasoning": {
+      "benchmarks": [
+        "MMMU_DEV_VAL",
+        "MathVision_MINI",
+        "MathVista_MINI"
+      ],
+      "models": {
+        "baseline": 0.5482361778611339
+      }
+    },
+    "perception": {
+      "benchmarks": [
+        "MME_perception",
+        "RefCOCO_heldout"
+      ],
+      "models": {
+        "baseline": 0.9235833333333334
+      }
+    },
+    "general": {
+      "benchmarks": [
+        "MMBench_DEV_EN_V11",
+        "MMStar"
+      ],
+      "models": {
+        "baseline": 0.764
+      }
+    }
+  },
+  "complementarity": {}
+}

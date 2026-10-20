@@ -1,0 +1,5 @@
+{
+  "teacher": "perception",
+  "data_file": "experiments/sharedexpert_c/data_pipeline/prepared/perception.parquet",
+  "source_weights": {"tallyqa": 0.4, "clevr": 0.4, "refcoco": 0.2}
+}

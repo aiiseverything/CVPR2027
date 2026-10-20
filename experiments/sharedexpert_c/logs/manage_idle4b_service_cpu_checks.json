@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20T03:31:53.767597+00:00",
+  "passed": true,
+  "checks": [
+    "default2_keeps_original_state_port_record",
+    "gpu0_state_port_record_image_limit_isolated",
+    "other_gpu_values_refused_without_selector_mutation",
+    "cli_rejects_gpu1_before_action",
+    "gpu0_released_state_idempotent_no_signal_or_rewrite",
+    "gpu0_saved_live_restore_reused_without_duplicate_spawn",
+    "gpu0_busy_compute_refused_without_spawn",
+    "gpu0_established_client_refused",
+    "gpu2_released_state_idempotent_no_signal_or_rewrite",
+    "gpu2_saved_live_restore_reused_without_duplicate_spawn",
+    "gpu2_busy_compute_refused_without_spawn",
+    "gpu2_established_client_refused"
+  ],
+  "count": 12,
+  "actual_server_starts": 0,
+  "signals_during_cpu_tests": 0,
+  "both_suspension_files_unchanged": true,
+  "script_sha256": "c38dbf9ea20b6047def581516c3769b0bef06dda8e1291a07a4705abae2b35f5"
+}
