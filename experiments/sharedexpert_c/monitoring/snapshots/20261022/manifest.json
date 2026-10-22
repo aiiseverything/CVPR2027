@@ -1,0 +1,209 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2332,
+      "sha256": "30f02470bbee5407b893406df92eb0d56f83d3b818541c589830a348cb44a8c6"
+    },
+    {
+      "path": "alerts.jsonl",
+      "bytes": 14401,
+      "sha256": "dae8c16d5b4394d1ad1dfe5b30ac836121c1d73dd9d978a527d0278692f7ccf4"
+    },
+    {
+      "path": "budget100/budget100_driver_validation.json",
+      "bytes": 378,
+      "sha256": "1ff022e252475d17b2c7c36d52ba433b47a1a2cf31027cf27bbc020a351ec780"
+    },
+    {
+      "path": "budget100/budget100_handoff_validation.json",
+      "bytes": 2299,
+      "sha256": "38e7c431c0ff0ef14ac2b92c598517035672e9164151025d62314b93a14eed67"
+    },
+    {
+      "path": "budget100/budget100_validation.json",
+      "bytes": 2528,
+      "sha256": "d4bf5f02f5cae2b64d641afb50d6ad052f5484de76dc3541ff2344687fa5e037"
+    },
+    {
+      "path": "budget100/execution_budget.json",
+      "bytes": 959,
+      "sha256": "7c555bae25d71d73ae1ad0aea62db29b5f9b53903d2491c40040fe627900c007"
+    },
+    {
+      "path": "capture.json",
+      "bytes": 878,
+      "sha256": "8915db288640c6c2e24ace2829ffd3799bf46bfb799ba837062859b71fe1f6e6"
+    },
+    {
+      "path": "driver/experiment.log",
+      "bytes": 470330,
+      "sha256": "5c271c13eced8dbd2c6193f1f5dae40c5d648593bce94857926be1755171202e"
+    },
+    {
+      "path": "driver/experiment_state.json",
+      "bytes": 554,
+      "sha256": "a804f1cdc02a4e3ca0829d40a024fba6105f00518de9d818fb28386f9ef86d0c"
+    },
+    {
+      "path": "errors.jsonl",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "metrics.csv",
+      "bytes": 4448659,
+      "sha256": "46e875193e3e773514defd538114aaa92abb1a9370d62c14037dcd293e6a9f87"
+    },
+    {
+      "path": "monitor.log",
+      "bytes": 3335,
+      "sha256": "d8dd5ecb87f70d3cd63565a7cf8497ab1ddb79fbae7f2f2860f91cfd0d21771d"
+    },
+    {
+      "path": "render_status.json",
+      "bytes": 2503,
+      "sha256": "576ca7cbaf32616be33e0163a94068171f23f3fbb1d549771dd28e400d5992fe"
+    },
+    {
+      "path": "resource_recovery.png",
+      "bytes": 471495,
+      "sha256": "4dfe15addbc8fccbf18095cd5acda06728b4519d52c339de1d944ec2fc6d1d2e"
+    },
+    {
+      "path": "runs/generalist/preflight.json",
+      "bytes": 1555,
+      "sha256": "d38b888f4a203a0a5aa4633de441c14b8165da44f0549fa8009dbbe74f03e4c7"
+    },
+    {
+      "path": "runs/generalist/protocol.json",
+      "bytes": 2844,
+      "sha256": "2b1031dea3e9ebf1fac3067481a30c3430cc10cd22663d9ee9a801ee85bbd002"
+    },
+    {
+      "path": "runs/generalist/repository.patch",
+      "bytes": 7527,
+      "sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585"
+    },
+    {
+      "path": "runs/generalist/resolved_config.yaml",
+      "bytes": 20564,
+      "sha256": "af121a6c7b6c96447b2537182be30d58c73e1cf64d80bb468ba8cb208f5ed8c8"
+    },
+    {
+      "path": "runs/generalist/tensorboard/events.out.tfevents.1792654223.dev-1789611011167419-instance-0-0.2673885.0",
+      "bytes": 92600,
+      "sha256": "ea6f1aca8aca39a94eee36e451abae54d040605752aa3c9a01f1b30b4f8350f4"
+    },
+    {
+      "path": "runs/generalist/training.log",
+      "bytes": 177461,
+      "sha256": "22665118bad2550dbffd8022aa36df843d345058c2dd5faf22d8cf5a4c08e4d6"
+    },
+    {
+      "path": "runs/perception/exports/global_step_100/sharedexpert_export_complete.json",
+      "bytes": 134,
+      "sha256": "5eb9e20630dbbf080e063fe6c889a1481b7cb83756e80a00da67b12edc497b31"
+    },
+    {
+      "path": "runs/perception/latest_checkpointed_iteration.txt",
+      "bytes": 3,
+      "sha256": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306"
+    },
+    {
+      "path": "runs/perception/preflight.json",
+      "bytes": 1205,
+      "sha256": "48fc88393648201727313729a1ed7f17eab8403eae2a224fd71bbd1e2d25bad6"
+    },
+    {
+      "path": "runs/perception/protocol.json",
+      "bytes": 2469,
+      "sha256": "bd4a0a925ea2eb6301291532ba8f395f90a74691d9003527539431b0204eb831"
+    },
+    {
+      "path": "runs/perception/repository.patch",
+      "bytes": 7527,
+      "sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585"
+    },
+    {
+      "path": "runs/perception/resolved_config.yaml",
+      "bytes": 20564,
+      "sha256": "03037c6c06801d45bd4aebbe5242879f66f3df527055f929e75c49d8c755b662"
+    },
+    {
+      "path": "runs/perception/tensorboard/events.out.tfevents.1792472868.dev-1789611011167419-instance-0-0.1845693.0",
+      "bytes": 661136,
+      "sha256": "be409c6e7a44fa3cd73788a2db987d08280404bdc0b69d111c679c814b9fea1c"
+    },
+    {
+      "path": "runs/perception/training.log",
+      "bytes": 617106,
+      "sha256": "c832a3340fc01bf08e02d84691fe1b17ae4e974c99715db78d403750ee4002eb"
+    },
+    {
+      "path": "runs/reasoning/exports/global_step_100/sharedexpert_export_complete.json",
+      "bytes": 133,
+      "sha256": "de1586858e8aa500f9e9a2b5651be0028ce4847ed9a28a9be26cc66912c40484"
+    },
+    {
+      "path": "runs/reasoning/latest_checkpointed_iteration.txt",
+      "bytes": 3,
+      "sha256": "ad57366865126e55649ecb23ae1d48887544976efea46a48eb5d85a6eeb4d306"
+    },
+    {
+      "path": "runs/reasoning/preflight.json",
+      "bytes": 779,
+      "sha256": "f24bee71a603ce8b749cc7aae27198581d3785dc5e08f0b3491065c140ca981e"
+    },
+    {
+      "path": "runs/reasoning/protocol.json",
+      "bytes": 2559,
+      "sha256": "e40f83668c5a9a8afbfce338c58f7f4d441cbe1f2bba4ff31a80af27599f7891"
+    },
+    {
+      "path": "runs/reasoning/repository.patch",
+      "bytes": 7527,
+      "sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585"
+    },
+    {
+      "path": "runs/reasoning/resolved_config.yaml",
+      "bytes": 20560,
+      "sha256": "895f3ae4b5ee9133079d6a51237903be4cde188fb03c051cf78cd39bd5a754f7"
+    },
+    {
+      "path": "runs/reasoning/tensorboard/events.out.tfevents.1792524017.dev-1789611011167419-instance-0-0.2078045.0",
+      "bytes": 661136,
+      "sha256": "4241a696d79d6a08dd7a879d8e9c58c6fcf7f493823a957b8e3b3a2c70e5573d"
+    },
+    {
+      "path": "runs/reasoning/training.log",
+      "bytes": 654455,
+      "sha256": "a5e8a8b370fedfe35c3fa7613173f572093f8fee4d5b36bd4a05c5f5c61d7f9f"
+    },
+    {
+      "path": "samples.jsonl.gz",
+      "bytes": 14620023,
+      "sha256": "3a3c207cea442720bbf5b458ae499b078807c4152aab6a8abce121f55a0154b8"
+    },
+    {
+      "path": "scalar_inventory.json",
+      "bytes": 11475,
+      "sha256": "4781641cf5819a5be1b71ef0c886075bd765f82cfdd40fd79343b5e8a1ea41f3"
+    },
+    {
+      "path": "state.json",
+      "bytes": 11927,
+      "sha256": "fd59b0e75ec94d1ba7b2e156f9dd98de6fcf14c697b8468da36305885dbe4b49"
+    },
+    {
+      "path": "status.md",
+      "bytes": 1620,
+      "sha256": "85c386750e06b120125894335efedf9b283b2199ced64a12521e2ea5324be8a9"
+    },
+    {
+      "path": "training_metrics.png",
+      "bytes": 640782,
+      "sha256": "c0852f1588faf1f5a9bd99f0287daea9f0a24141133b5b5827adddd35452f2ec"
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "created_at": "2026-10-19T16:38:11.156085+00:00",
+  "historical_shared_container_reference": {
+    "oom": 19,
+    "oom_kill": 12
+  },
+  "log_cursors": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runtime/experiment.log": {
+      "identity": [
+        3145903,
+        9068771910845901
+      ],
+      "offset": 470330,
+      "generation": 0,
+      "context": [
+        "  File \"/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/run_experiment.py\", line 308, in command",
+        "    raise MemoryError('Cgroup working set exceeded 94% of its actual memory limit; '",
+        "MemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment child group"
+      ]
+    },
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception/training.log": {
+      "identity": [
+        3145903,
+        9135842120535269
+      ],
+      "offset": 617106,
+      "generation": 2,
+      "context": [
+        "*** SIGTERM received at time=1792523240 on cpu 12 ***",
+        "PC: @     0x7f4fe2748eae  (unknown)  epoll_wait",
+        "    @     0x7f4fe2665520       5120  (unknown)"
+      ]
+    },
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/reasoning/training.log": {
+      "identity": [
+        3145903,
+        9026990469340042
+      ],
+      "offset": 654455,
+      "generation": 0,
+      "context": [
+        "aborted/clip_ratio:0.1666666716337204 - response/aborted_ratio:0.0 - prompt_length/mean:282.6000061035156 - prompt_length/max:945.0 - prompt_length/min:104.0 - prompt_length/clip_ratio:0.0 - critic/score/mean:0.7916666865348816 - critic/score/max:1.0 - critic/score/min:0.0 - critic/rewards/mean:0.7916666865348816 - critic/rewards/max:1.0 - critic/rewards/min:0.0 - num_turns/min:np.int32(2) - num_turns/max:np.int32(2) - num_turns/mean:np.float64(2.0) - critic/advantages/mean:-0.08583918958902359 - critic/advantages/max:2.4748666286468506 - critic/advantages/min:-2.4748666286468506 - critic/returns/mean:-0.08583918958902359 - critic/returns/max:2.4748666286468506 - critic/returns/min:-2.4748666286468506 - timing_s/start_profile:0.0001916731707751751 - timing_s/agent_loop/generate_sequences/min:np.float64(34.35299073671922) - timing_s/agent_loop/generate_sequences/max:np.float64(757.111900897231) - timing_s/agent_loop/generate_sequences/mean:np.float64(299.0332318151273) - timing_s/agent_loop/tool_calls/min:np.float64(0.0) - timing_s/agent_loop/tool_calls/max:np.float64(0.0) - timing_s/agent_loop/tool_calls/mean:np.float64(0.0) - timing_s/agent_loop/slowest/generate_sequences:np.float64(757.111900897231) - timing_s/agent_loop/slowest/tool_calls:np.float64(0.0) - timing_s/agent_loop/slowest/prompt_length:428 - timing_s/agent_loop/slowest/response_length:8192 - timing_s/gen:772.5900566810742 - timing_s/reward:0.37988310726359487 - timing_s/old_log_prob:63.4088259418495 - timing_s/adv:0.16828341409564018 - timing_s/update_actor:212.69008270092309 - timing_s/dump_rollout_generations:0.5173109648749232 - timing_s/step:1049.865136325825 - timing_s/save_checkpoint:32.54003992397338 - timing_s/stop_profile:0.00018460024148225784 - timing_per_token_ms/update_actor:0.2596238424422662 - timing_per_token_ms/gen:1.028200767475478 - timing_per_token_ms/adv:0.0002054180713646575 - perf/total_num_tokens:819224 - perf/time_per_step:1049.865136325825 - perf/throughput:195.07838951272555",
+        "(TaskRunner pid=2078045) 'Final validation metrics: None'",
+        "(TaskRunner pid=2078045) \rTraining Progress: 100%|██████████| 100/100 [30:05:06<00:00, 974.32s/it]\rTraining Progress: 100%|██████████| 100/100 [30:05:06<00:00, 1083.06s/it]"
+      ]
+    },
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/generalist/training.log": {
+      "identity": [
+        3145903,
+        9111652866187431
+      ],
+      "offset": 177461,
+      "generation": 1,
+      "context": [
+        "[2026-10-22 19:25:08,209 E 2671577 2671577] logging.cc:474: PC: @     0x7f04cee8a117  (unknown)  (unknown)",
+        "[2026-10-22 19:25:08,209 E 2671577 2671577] logging.cc:474:     @     0x7f04cee3b520  (unknown)  (unknown)",
+        "[2026-10-22 19:25:08,209 E 2671577 2671577] logging.cc:474:     @ ... and at least 1 more frames"
+      ]
+    }
+  },
+  "alert_count": 17,
+  "error_count": 0,
+  "pid": 1809563,
+  "start_ticks": 343454343,
+  "status": "running",
+  "instance_started_at": "2026-10-20T03:06:31.759747+00:00",
+  "python_executable": "/opt/venv/main/bin/python3",
+  "test_mode": false,
+  "run_dirs": {
+    "perception": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/perception",
+    "reasoning": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/reasoning",
+    "generalist": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runs/generalist"
+  },
+  "environment": {
+    "tensorboard": "2.14.0",
+    "matplotlib": "3.7.5",
+    "numpy": "1.26.4"
+  },
+  "instance_baseline_events": {
+    "low": 0,
+    "high": 0,
+    "max": 28594212,
+    "oom": 19,
+    "oom_kill": 12
+  },
+  "heartbeat_at": "2026-10-22T14:11:12.218204+00:00",
+  "heartbeat_epoch": 1792678272.2182376,
+  "baseline_events": {
+    "low": 0,
+    "high": 0,
+    "max": 28579648,
+    "oom": 19,
+    "oom_kill": 12
+  },
+  "baseline_observed_at": "2026-10-19T16:38:11.191234+00:00",
+  "last_events": {
+    "low": 0,
+    "high": 0,
+    "max": 28621881,
+    "oom": 19,
+    "oom_kill": 12
+  },
+  "cgroup": {
+    "scope": "whole shared container; not teacher attribution",
+    "limit_bytes": 68719476736,
+    "current_bytes": 10506088448,
+    "inactive_file_bytes": 841646080,
+    "working_set_bytes": 9664442368,
+    "memory_stat": {
+      "anon": 7348092928,
+      "file": 2356232192,
+      "kernel_stack": 14696448,
+      "pagetables": 42201088,
+      "percpu": 0,
+      "sock": 8192,
+      "shmem": 176537600,
+      "file_mapped": 617754624,
+      "file_dirty": 319488,
+      "file_writeback": 0,
+      "swapcached": 0,
+      "anon_thp": 33554432,
+      "file_thp": 0,
+      "shmem_thp": 0,
+      "inactive_anon": 7524241408,
+      "active_anon": 352256,
+      "inactive_file": 841646080,
+      "active_file": 1338085376,
+      "unevictable": 0,
+      "slab_reclaimable": 720374712,
+      "slab_unreclaimable": 14195664,
+      "slab": 734570376,
+      "workingset_refault_anon": 0,
+      "workingset_refault_file": 1359723370,
+      "workingset_activate_anon": 0,
+      "workingset_activate_file": 176569851,
+      "workingset_restore_anon": 0,
+      "workingset_restore_file": 37207937,
+      "workingset_nodereclaim": 0,
+      "pgfault": 14259288302,
+      "pgmajfault": 3024771,
+      "pgrefill": 230762863,
+      "pgscan": 2458924948,
+      "pgsteal": 1366800247,
+      "pgactivate": 240358431,
+      "pgdeactivate": 201432365,
+      "pglazyfree": 77953,
+      "pglazyfreed": 3028,
+      "thp_fault_alloc": 226185,
+      "thp_collapse_alloc": 4779
+    },
+    "anon_bytes": 7348092928,
+    "file_bytes": 2356232192,
+    "active_file_bytes": 1338085376,
+    "shmem_bytes": 176537600,
+    "slab_unreclaimable_bytes": 14195664,
+    "memory_pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=5110962178\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=4572675635",
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 28621881,
+      "oom": 19,
+      "oom_kill": 12
+    },
+    "cpu_max": "800000 100000",
+    "delta_since_previous_sample": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0
+    },
+    "delta_since_monitor_first_start": {
+      "low": 0,
+      "high": 0,
+      "max": 42233,
+      "oom": 0,
+      "oom_kill": 0
+    },
+    "counter_reset_keys": []
+  },
+  "experiment_stage": "failed",
+  "progress": {
+    "perception": {
+      "checkpoint_step": 100,
+      "exported": false
+    },
+    "reasoning": {
+      "checkpoint_step": 100,
+      "exported": false
+    },
+    "generalist": {
+      "checkpoint_step": 0,
+      "exported": false
+    }
+  },
+  "last_sample_at": "2026-10-22T14:11:12.066773+00:00",
+  "last_render_at": "2026-10-22T14:10:59.569027+00:00",
+  "last_render_epoch": 1792678259.569039,
+  "render_reason": "periodic",
+  "render_status": "stopped",
+  "metrics_rows": 22478,
+  "metric_groups_present": {
+    "reward": [
+      "generalist:critic/rewards/mean",
+      "generalist:critic/score/mean",
+      "perception:critic/rewards/mean",
+      "perception:critic/score/mean",
+      "reasoning:critic/rewards/mean",
+      "reasoning:critic/score/mean"
+    ],
+    "accuracy": [],
+    "response_length": [
+      "generalist:response_length/max",
+      "generalist:response_length/mean",
+      "perception:response_length/max",
+      "perception:response_length/mean",
+      "reasoning:response_length/max",
+      "reasoning:response_length/mean"
+    ],
+    "pg_loss": [
+      "generalist:actor/pg_loss",
+      "perception:actor/pg_loss",
+      "reasoning:actor/pg_loss"
+    ],
+    "grad_norm": [
+      "generalist:actor/grad_norm",
+      "perception:actor/grad_norm",
+      "reasoning:actor/grad_norm"
+    ],
+    "kl_diagnostic": [
+      "generalist:actor/kl_loss",
+      "generalist:actor/ppo_kl",
+      "generalist:rollout_corr/k3_kl",
+      "generalist:rollout_corr/kl",
+      "perception:actor/kl_loss",
+      "perception:actor/ppo_kl",
+      "perception:rollout_corr/k3_kl",
+      "perception:rollout_corr/kl",
+      "reasoning:actor/kl_loss",
+      "reasoning:actor/ppo_kl",
+      "reasoning:rollout_corr/k3_kl",
+      "reasoning:rollout_corr/kl"
+    ],
+    "importance_sampling": [
+      "generalist:rollout_corr/rollout_is_eff_sample_size",
+      "generalist:rollout_corr/rollout_is_max",
+      "generalist:rollout_corr/rollout_is_mean",
+      "perception:rollout_corr/rollout_is_eff_sample_size",
+      "perception:rollout_corr/rollout_is_max",
+      "perception:rollout_corr/rollout_is_mean",
+      "reasoning:rollout_corr/rollout_is_eff_sample_size",
+      "reasoning:rollout_corr/rollout_is_max",
+      "reasoning:rollout_corr/rollout_is_mean"
+    ],
+    "step_time": [
+      "generalist:perf/time_per_step",
+      "generalist:timing_s/step",
+      "perception:perf/time_per_step",
+      "perception:timing_s/step",
+      "reasoning:perf/time_per_step",
+      "reasoning:timing_s/step"
+    ]
+  },
+  "latest_metric_steps": {
+    "perception": 100,
+    "reasoning": 100,
+    "generalist": 14
+  },
+  "last_alert": {
+    "id": "bf2f835f87db42898233d1975e5626ab4f6e7c93228d2682e5c92ea8c359fc61",
+    "observed_at": "2026-10-22T11:25:11.630837+00:00",
+    "kind": "training_stopped",
+    "test_mode": false,
+    "source": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/runtime/experiment_state.json",
+    "experiment_stage": "failed",
+    "teacher": "generalist",
+    "driver_pid": 2671251,
+    "driver_start_ticks": 362238149,
+    "state_updated_at": "2026-10-22T19:25:09.800228+08:00",
+    "reason": "MemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment child group",
+    "attribution": "driver state/process identity evidence; does not imply OOM"
+  },
+  "stopped_at": "2026-10-20T03:06:31.303011+00:00",
+  "driver_identity": {
+    "pid": 2671251,
+    "start_ticks": 362238149
+  },
+  "experiment_teacher": "generalist",
+  "experiment_error": "MemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment child group",
+  "driver_health": "not_running",
+  "display_status": "STOPPED",
+  "experiment_signature": [
+    "failed",
+    "generalist",
+    "STOPPED",
+    "MemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment child group"
+  ],
+  "plot_banner": "STOPPED | stage=failed | teacher=generalist\nMemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment\nchild group",
+  "empty_panel_label": "STOPPED"
+}

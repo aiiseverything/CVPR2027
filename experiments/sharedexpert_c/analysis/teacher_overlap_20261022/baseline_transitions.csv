@@ -1,0 +1,7 @@
+﻿dimension,teacher,evaluation_units,baseline_wrong_now_correct,baseline_correct_now_wrong,net_correct_gain
+perception,P,740,21,15,6
+perception,R,740,8,2,6
+reasoning,P,1253,134,47,87
+reasoning,R,1253,165,27,138
+general,P,750,57,32,25
+general,R,750,60,21,39

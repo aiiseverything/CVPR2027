@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "requested_at": "2026-10-20T09:48:22.554674+00:00",
+  "steps_per_teacher": 100,
+  "previous_steps_per_teacher": 300,
+  "prompt_batch_size": 30,
+  "group_size": 8,
+  "prompts_per_teacher": 3000,
+  "responses_per_teacher": 24000,
+  "roles": [
+    "perception",
+    "reasoning",
+    "generalist"
+  ],
+  "base_config": "common.json",
+  "base_config_sha256": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa",
+  "legacy_launch_sha256": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+  "launch_100_sha256": "b947370756c2a64caeb1754493c81a1cd19e7858177d53eaca92ae1f14602b6f",
+  "perception_transition": "Preserve the running 300-step-config process through completed checkpoint and rollout 100, then stop its controller, export checkpoint 100, and start the remaining teachers with total_training_steps=100.",
+  "learning_rate_schedule": "constant after unchanged 10-step warmup",
+  "evaluation_step": 100
+}

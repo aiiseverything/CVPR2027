@@ -1,0 +1,133 @@
+diff --git a/verl/trainer/ppo/ray_trainer.py b/verl/trainer/ppo/ray_trainer.py
+index 1a0bd33..a199c8d 100644
+--- a/verl/trainer/ppo/ray_trainer.py
++++ b/verl/trainer/ppo/ray_trainer.py
+@@ -206,6 +206,8 @@ def should_reuse_rollout_log_probs_as_old_log_probs(config, batch: DataProto) ->
+         return False
+ 
+     actor_cfg = config.actor_rollout_ref.actor
++    if not config.trainer.get("reuse_rollout_log_probs", True):
++        return False
+     if actor_cfg.ppo_epochs != 1:
+         return False
+ 
+@@ -2471,21 +2473,19 @@ class RayPPOTrainer:
+                     else:  # Recompute old_log_probs
+                         with marked_timer("old_log_prob", timing_raw, color="blue"):
+                             old_log_prob, old_log_prob_mfu = self._compute_old_log_prob(batch)
+-                            entropys = old_log_prob.batch["entropys"]
+-                            response_masks = batch.batch["response_mask"]
+-                            actor_config = self.config.actor_rollout_ref.actor
+-                            entropy_agg = agg_loss(
+-                                loss_mat=entropys,
+-                                loss_mask=response_masks,
+-                                loss_agg_mode=actor_config.loss_agg_mode,
+-                                loss_scale_factor=actor_config.loss_scale_factor,
+-                            )
+                             old_log_prob_metrics = {
+-                                "actor/entropy": entropy_agg.detach().item(),
+                                 "perf/mfu/actor_infer": old_log_prob_mfu,
+                             }
++                            if "entropys" in old_log_prob.batch:
++                                actor_config = self.config.actor_rollout_ref.actor
++                                entropy_agg = agg_loss(
++                                    loss_mat=old_log_prob.batch.pop("entropys"),
++                                    loss_mask=batch.batch["response_mask"],
++                                    loss_agg_mode=actor_config.loss_agg_mode,
++                                    loss_scale_factor=actor_config.loss_scale_factor,
++                                )
++                                old_log_prob_metrics["actor/entropy"] = entropy_agg.detach().item()
+                             metrics.update(old_log_prob_metrics)
+-                            old_log_prob.batch.pop("entropys")
+                             batch = batch.union(old_log_prob)
+                             if "rollout_log_probs" in batch.batch.keys():
+                                 # TODO: we may want to add diff of probs too.
+diff --git a/verl/utils/fsdp_utils.py b/verl/utils/fsdp_utils.py
+index 071ae24..b066e94 100644
+--- a/verl/utils/fsdp_utils.py
++++ b/verl/utils/fsdp_utils.py
+@@ -551,6 +551,9 @@ def apply_fsdp2(model, fsdp_kwargs, config):
+ 
+     if isinstance(fsdp_transformer_layer_cls_to_wrap, str):
+         fsdp_transformer_layer_cls_to_wrap = [fsdp_transformer_layer_cls_to_wrap]
++    elif isinstance(fsdp_transformer_layer_cls_to_wrap, (set, frozenset)):
++        # Transformers 5 normalizes the model's no-split collection to a set.
++        fsdp_transformer_layer_cls_to_wrap = sorted(fsdp_transformer_layer_cls_to_wrap)
+ 
+     assert len(fsdp_transformer_layer_cls_to_wrap) > 0 and fsdp_transformer_layer_cls_to_wrap[0] is not None
+ 
+diff --git a/verl/workers/config/engine.py b/verl/workers/config/engine.py
+index e7ac6a5..7555415 100644
+--- a/verl/workers/config/engine.py
++++ b/verl/workers/config/engine.py
+@@ -150,6 +150,7 @@ class FSDPEngineConfig(EngineConfig):
+         fsdp_size (int): FSDP group size. -1 means use all available GPUs.
+         forward_prefetch (bool): Whether to prefetch parameters for next forward pass, default False
+         model_dtype (str): Model data type used to initialize the transformers model. default "fp32"
++        load_tied_weights_on_gpu (bool): Stream tied-model initial weights to each rank's GPU before FSDP2.
+         use_orig_params (bool): Whether to use original parameters when initialize FSDP1, default False
+         seed (int): Random seed for reproducibility.
+         full_determinism (bool): If true, enable_full_determinism is called to ensure reproducible results
+@@ -169,6 +170,7 @@ class FSDPEngineConfig(EngineConfig):
+     fsdp_size: int = -1
+     forward_prefetch: bool = False
+     model_dtype: str = "fp32"
++    load_tied_weights_on_gpu: bool = False
+     use_orig_params: bool = False
+     mixed_precision: Optional[dict[str, Any]] = None
+     ulysses_sequence_parallel_size: int = 1
+diff --git a/verl/workers/fsdp_workers.py b/verl/workers/fsdp_workers.py
+index 2be5314..8c93471 100644
+--- a/verl/workers/fsdp_workers.py
++++ b/verl/workers/fsdp_workers.py
+@@ -371,6 +371,19 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
+         init_context = get_init_weight_context_manager(
+             use_meta_tensor=not actor_model_config.tie_word_embeddings, mesh=self.device_mesh
+         )
++        # Tied models cannot use this repository's rank>0 meta initialization.
++        # Loading four full fp32 CPU replicas exceeds a 64 GiB container before
++        # sharding. Stream checkpoint tensors directly to each rank's GPU; FSDP2
++        # then shards the same fp32 master parameters with bf16 forward compute.
++        load_kwargs = {}
++        if (
++            fsdp_config.get("load_tied_weights_on_gpu", False)
++            and actor_model_config.tie_word_embeddings
++            and self.config.actor.strategy == "fsdp2"
++        ):
++            load_device = torch.device(get_device_name(), get_device_id())
++            init_context = lambda: load_device
++            load_kwargs["device_map"] = {"": load_device}
+ 
+         with init_context(), warnings.catch_warnings():
+             warnings.simplefilter("ignore")
+@@ -406,6 +419,7 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
+                 config=actor_model_config,
+                 trust_remote_code=trust_remote_code,
+                 attn_implementation=attn_implementation,
++                **load_kwargs,
+             )
+ 
+             # Apply Liger kernel to the model if use_liger is set to True
+@@ -1071,7 +1085,7 @@ class ActorRolloutRefWorker(Worker, DistProfilerExtension):
+         data.meta_info["temperature"] = self.config.rollout.temperature
+         data.meta_info.setdefault("pad_token_id", self.tokenizer.pad_token_id)
+         # perform recompute log_prob
+-        calculate_entropy = not is_lora
++        calculate_entropy = not is_lora and self.config.actor.get("calculate_entropy", True)
+         with self.ulysses_sharding_manager:
+             with adapter_ctx:
+                 outputs = self.actor.compute_log_prob(data=data, calculate_entropy=calculate_entropy)
+diff --git a/verl/workers/rollout/vllm_rollout/vllm_async_server.py b/verl/workers/rollout/vllm_rollout/vllm_async_server.py
+index f6860e8..b26ce01 100644
+--- a/verl/workers/rollout/vllm_rollout/vllm_async_server.py
++++ b/verl/workers/rollout/vllm_rollout/vllm_async_server.py
+@@ -323,6 +323,9 @@ class vLLMHttpServer:
+             "scheduling_policy": self.config.scheduling_policy,
+             **engine_kwargs,
+         }
++        # Replicas sample independently while preserving a reproducible base seed.
++        # Apply this after engine_kwargs so an explicit seed cannot erase the offset.
++        args["seed"] = int(args["seed"]) + self.replica_rank
+ 
+         if self.config.prometheus.enable:
+             if self.config.prometheus.served_model_name:

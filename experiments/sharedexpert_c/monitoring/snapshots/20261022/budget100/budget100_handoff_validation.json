@@ -1,0 +1,72 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T09:58:00.872572+00:00",
+  "cpu_only": true,
+  "actual_training_signalled": false,
+  "actual_gpu_queried": false,
+  "budget_boundary_test_methods": 5,
+  "legacy_lifecycle_checks": 11,
+  "budget_boundary_tests_log": ".../usr/lib/python3.10/subprocess.py:1072: ResourceWarning: subprocess 1931036 is still running\n  _warn(\"subprocess %s is still running\" % self.pid,\nResourceWarning: Enable tracemalloc to get the object allocation traceback\n..\n----------------------------------------------------------------------\nRan 5 tests in 3.782s\n\nOK\n",
+  "source_sha256": {
+    "budget100_handoff.py": "e71904e5b82739937bde900c8976e1e458a17d03db3ea9dfaad611739616e7b1",
+    "controller_handoff.py": "df9a604617adea929f9c9474e8e51e9fda0cbc51a9d27a01dd5f25ae31a98ef0",
+    "tests/test_budget100_handoff.py": "72ee649d31d25991c8cc325db2f3b21e65d31a7f30a76c15e3804f962db3e844"
+  },
+  "legacy_checks": [
+    {
+      "name": "identity_export_and_terminal_state_refusal",
+      "passed": true,
+      "seconds": 0.209
+    },
+    {
+      "name": "reasoning_any_step_refuses_without_signals",
+      "passed": true,
+      "seconds": 1.419
+    },
+    {
+      "name": "wait_perception_child_and_hash_changed_or_dead_refusal",
+      "passed": true,
+      "seconds": 0.544
+    },
+    {
+      "name": "preexisting_driver_stop_is_never_resumed",
+      "passed": true,
+      "seconds": 0.312
+    },
+    {
+      "name": "cancel_restores_our_stops_preserves_user_stops",
+      "passed": true,
+      "seconds": 0.508
+    },
+    {
+      "name": "unexpected_direct_child_is_untouched",
+      "passed": true,
+      "seconds": 0.314
+    },
+    {
+      "name": "normal_handoff_tree_cleanup_foreign_untouched_once_only",
+      "passed": true,
+      "seconds": 0.852
+    },
+    {
+      "name": "popen_before_state_child_pid_is_found_and_cleaned",
+      "passed": true,
+      "seconds": 0.85
+    },
+    {
+      "name": "pre_popen_empty_child_boundary_is_safe",
+      "passed": true,
+      "seconds": 0.52
+    },
+    {
+      "name": "watcher_sigkill_pipe_guardian_restores_driver_and_descendants",
+      "passed": true,
+      "seconds": 0.472
+    },
+    {
+      "name": "detached_watcher_cli_lock_duplicate_status_cancel",
+      "passed": true,
+      "seconds": 1.615
+    }
+  ]
+}
