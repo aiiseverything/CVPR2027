@@ -1,0 +1,76 @@
+{
+  "protocol": {
+    "model": "pre-lab/models/Qwen3.5-4B",
+    "repository": "pre-lab/repo",
+    "repository_commit": "06860e69b5ed9dc24e96ca5c855f3a4ef25976aa",
+    "steps": 300,
+    "batch_size": 30,
+    "group_size": 8,
+    "prompt_length": 2048,
+    "response_length": 8192,
+    "learning_rate": 1e-06,
+    "warmup_steps": 10,
+    "clip_ratio_low": 0.2,
+    "clip_ratio_high": 0.2,
+    "dual_clip": 3.0,
+    "grad_clip": 1.0,
+    "weight_decay": 0.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "seed": 20261019,
+    "thinking": true,
+    "force_answering": false,
+    "filter_uniform_groups": false,
+    "kl_loss": false,
+    "kl_reward": false,
+    "entropy_coefficient": 0.0,
+    "calculate_entropy": false,
+    "strategy": "fsdp2",
+    "rollout_tensor_parallel": 1,
+    "rollout_memory_utilization": 0.4,
+    "rollout_max_num_seqs": 16,
+    "microbatch_max_tokens": 10240,
+    "save_every": 25,
+    "keep_checkpoints": 2,
+    "min_image_pixels": 4096,
+    "max_image_pixels": 786432,
+    "max_total_image_pixels": 1572864
+  },
+  "teacher": {
+    "teacher": "perception",
+    "data_file": "experiments/sharedexpert_c/data_pipeline/prepared/perception.parquet",
+    "source_weights": {
+      "tallyqa": 0.4,
+      "clevr": 0.4,
+      "refcoco": 0.2
+    }
+  },
+  "gpus": [
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "smoke": false,
+  "rollout_replica_seeds": {
+    "0": 20261019,
+    "1": 20261020,
+    "2": 20261021,
+    "3": 20261022
+  },
+  "data_sha256": "7326a82df9c5a65ae3d6fe681710385f354a81697de4d6e25ccb8d7da9cb446b",
+  "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2",
+  "repository_diff_sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585",
+  "training_code_sha256": {
+    "launch.py": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+    "run.py": "b97c690c8baae33d9b722dd925125dcf9925f2cecc2793cfdb9e9a44640c4ada",
+    "agent_loop.py": "aa595b0828376ba5f4170fc7add351ab34f8fa2869050739223417c26715af4d",
+    "reward_manager.py": "4dec0479b1dafa31c3056dbdc4deb933d0c34757c16f62219a184f34abbe388b"
+  },
+  "training_environment_sha256": {
+    "training-environment.freeze.txt": "26230dc2714d36dd5d3bc46c08fbae4ef854963ae8c5ab1c8bc3553c6edca566",
+    "flash-attention-build.json": "e3c4a18b1a14cd217f55624afffd82c07b742f9db5c5ac12dcb3f3dbd94732c0",
+    "flash-attention-validation.json": "b21c885dd6e2554bbfd110e38049e6b34ea71ee3e566bf1acdce61ddb8a984af"
+  }
+}

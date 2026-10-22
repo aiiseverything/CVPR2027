@@ -83,9 +83,13 @@
   "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
   "status": {
     "baseline": {
-      "status": "not_started",
+      "status": "complete",
       "n_expected": 3423,
-      "missing": 3423
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 531,
+      "length_terminated": 530,
+      "mean_completion_tokens": 2188.2158924919663
     },
     "generalist": {
       "status": "not_started",
@@ -123,6 +127,16 @@
   },
   "benchmarks": {
     "MMBench_DEV_EN_V11": {
+      "baseline": {
+        "score": 0.852,
+        "ci95": [
+          0.808,
+          0.896
+        ],
+        "n_rows": 930,
+        "n_clusters": 250,
+        "metric": "circular_group_accuracy"
+      },
       "perception-step100": {
         "score": 0.872,
         "ci95": [
@@ -145,6 +159,16 @@
       }
     },
     "MME_perception": {
+      "baseline": {
+        "score": 0.9291666666666667,
+        "ci95": [
+          0.8943029144274494,
+          0.9615384615384616
+        ],
+        "n_rows": 240,
+        "n_clusters": 110,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.95,
         "ci95": [
@@ -167,6 +191,16 @@
       }
     },
     "MMMU_DEV_VAL": {
+      "baseline": {
+        "score": 0.5701559020044543,
+        "ci95": [
+          0.5233853006681515,
+          0.6146993318485523
+        ],
+        "n_rows": 449,
+        "n_clusters": 449,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.6347438752783965,
         "ci95": [
@@ -189,6 +223,16 @@
       }
     },
     "MMStar": {
+      "baseline": {
+        "score": 0.676,
+        "ci95": [
+          0.636,
+          0.718
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.716,
         "ci95": [
@@ -211,6 +255,16 @@
       }
     },
     "MathVision_MINI": {
+      "baseline": {
+        "score": 0.35855263157894735,
+        "ci95": [
+          0.3059210526315789,
+          0.4144736842105263
+        ],
+        "n_rows": 304,
+        "n_clusters": 304,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.4440789473684211,
         "ci95": [
@@ -233,6 +287,16 @@
       }
     },
     "MathVista_MINI": {
+      "baseline": {
+        "score": 0.716,
+        "ci95": [
+          0.68,
+          0.754
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.78,
         "ci95": [
@@ -255,6 +319,16 @@
       }
     },
     "RefCOCO_heldout": {
+      "baseline": {
+        "score": 0.918,
+        "ci95": [
+          0.8932199564925691,
+          0.9415204678362573
+        ],
+        "n_rows": 500,
+        "n_clusters": 439,
+        "metric": "accuracy_at_iou_0.5"
+      },
       "perception-step100": {
         "score": 0.92,
         "ci95": [
@@ -278,13 +352,118 @@
     }
   },
   "paired_delta_vs_baseline": {
-    "MMBench_DEV_EN_V11": {},
-    "MME_perception": {},
-    "MMMU_DEV_VAL": {},
-    "MMStar": {},
-    "MathVision_MINI": {},
-    "MathVista_MINI": {},
-    "RefCOCO_heldout": {}
+    "MMBench_DEV_EN_V11": {
+      "perception-step100": {
+        "delta": 0.020000000000000018,
+        "ci95": [
+          -0.016000000000000014,
+          0.05599999999999994
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.03200000000000003,
+        "ci95": [
+          0.0,
+          0.06399999999999995
+        ]
+      }
+    },
+    "MME_perception": {
+      "perception-step100": {
+        "delta": 0.02083333333333326,
+        "ci95": [
+          -0.008474576271186418,
+          0.050420168067226934
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.02083333333333326,
+        "ci95": [
+          0.0,
+          0.04435483870967738
+        ]
+      }
+    },
+    "MMMU_DEV_VAL": {
+      "perception-step100": {
+        "delta": 0.06458797327394217,
+        "ci95": [
+          0.031180400890868598,
+          0.10022271714922049
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.11358574610244987,
+        "ci95": [
+          0.0801781737193763,
+          0.14699331848552344
+        ]
+      }
+    },
+    "MMStar": {
+      "perception-step100": {
+        "delta": 0.039999999999999925,
+        "ci95": [
+          0.006000000000000005,
+          0.07199999999999995
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.061999999999999944,
+        "ci95": [
+          0.03200000000000003,
+          0.09399999999999997
+        ]
+      }
+    },
+    "MathVision_MINI": {
+      "perception-step100": {
+        "delta": 0.08552631578947373,
+        "ci95": [
+          0.03947368421052633,
+          0.12837171052631538
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.12828947368421056,
+        "ci95": [
+          0.08552631578947373,
+          0.17434210526315785
+        ]
+      }
+    },
+    "MathVista_MINI": {
+      "perception-step100": {
+        "delta": 0.06400000000000006,
+        "ci95": [
+          0.03200000000000003,
+          0.09600000000000009
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.09600000000000009,
+        "ci95": [
+          0.06600000000000006,
+          0.126
+        ]
+      }
+    },
+    "RefCOCO_heldout": {
+      "perception-step100": {
+        "delta": 0.0020000000000000018,
+        "ci95": [
+          -0.015968063872255467,
+          0.02020509977827051
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.0020000000000000018,
+        "ci95": [
+          -0.004065247628036436,
+          0.008147055156074666
+        ]
+      }
+    }
   },
   "dimension_macro": {
     "reasoning": {
@@ -294,6 +473,7 @@
         "MathVista_MINI"
       ],
       "models": {
+        "baseline": 0.5482361778611339,
         "perception-step100": 0.6196076075489392,
         "reasoning-step100": 0.660861251123354
       }
@@ -304,6 +484,7 @@
         "RefCOCO_heldout"
       ],
       "models": {
+        "baseline": 0.9235833333333334,
         "perception-step100": 0.935,
         "reasoning-step100": 0.935
       }
@@ -314,6 +495,7 @@
         "MMStar"
       ],
       "models": {
+        "baseline": 0.764,
         "perception-step100": 0.794,
         "reasoning-step100": 0.8109999999999999
       }

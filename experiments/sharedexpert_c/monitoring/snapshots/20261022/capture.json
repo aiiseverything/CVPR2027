@@ -1,0 +1,18 @@
+{
+  "capture_started_at_utc": "2026-10-22T14:11:15.172601+00:00",
+  "capture_finished_at_utc": "2026-10-22T14:11:28.210819+00:00",
+  "source_worktree": "/home/ml-user/workdir/CVPR2027",
+  "source_commit": "1b1cb733befa7c8d2132b3c17d6c2901a42f6f57",
+  "remote_results_commit": "23eed8bdadc9498b5b9e3cb3640cb03863dc6e32",
+  "samples": {
+    "file": "samples.jsonl.gz",
+    "source_size_at_capture": 923983419,
+    "uncompressed_bytes": 923983419,
+    "uncompressed_sha256": "c82f735ae030a4176a6db3f2bb51b500b950f0c86ccf95dbbdda6787e5e4af67",
+    "records": 50073,
+    "first_sample_at": "2026-10-19T16:38:11.191234+00:00",
+    "last_sample_at": "2026-10-22T14:11:12.066773+00:00",
+    "policy": "Complete JSONL records within source size captured at start; monitor remains read-only and running."
+  },
+  "training_action": "No training start, restart, or resume was performed."
+}
