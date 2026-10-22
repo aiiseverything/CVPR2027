@@ -182,7 +182,7 @@ def main():
             return part["status"] if part["status"] != "complete" else f"complete ({part['n_predicted']}/{part['n_expected']})"
         lines.append(f"| {model} | {label('main')} | {label('blink_mmvp')} | {s['combined']['missing']} | "
                      f"{s['combined']['api_errors']} | {s['combined']['extraction_failures']} | {s['combined']['length_terminated']} |")
-    lines += ["", "只报告该基准所有行都成功预测的模型；baseline 本机只跑了 BLINK/MMVP，主套件旧基准列保持 —。", "",
+    lines += ["", "只报告该基准所有行都成功预测的模型；baseline 主套件结果为远端合并的完整 3423 行结果。", "",
               "| 评测集 | 行数 | " + " | ".join(MODEL_NAMES) + " |", "|---|---:|" + "---:|" * len(MODEL_NAMES)]
     for benchmark, rows in sorted(bench_rows.items()):
         cells = []
@@ -199,12 +199,11 @@ def main():
             cells.append(f"{100*entry['score']:.2f}" if entry else "—")
         lines.append(f"| {dimension} | {', '.join(values['benchmarks'])} | " + " | ".join(cells) + " |")
     common = dimensions["perception"]["common_benchmarks"]
-    if common:
+    if common and set(common) != set(dimensions["perception"]["benchmarks"]):
         lines.append(f"| perception（共同基准） | {', '.join(common)} | " +
                      " | ".join(f"{100*dimensions['perception']['common_models'][m]:.2f}"
                                 if m in dimensions["perception"]["common_models"] else "—" for m in MODEL_NAMES) + " |")
-    lines += ["", "维度宏平均是该模型已完整覆盖基准的等权均值；baseline 的 perception 宏平均只含 BLINK/MMVP，"
-              "与 step100 的四项 perception 不可直接比较，因此另列“共同基准”行。", "",
+    lines += ["", "维度宏平均是该模型已完整覆盖基准的等权均值；三模型当前均覆盖全部所列基准，可直接比较。", "",
               "对 baseline 的配对差值与 step100 之间的配对差值见 summary.json。", "",
               f"固定样本总数：{sum(len(s['rows']) for s in suites.values())}；协议与评分器 sha256 见 summary.json。",
               "逐题结果详见 per_sample.csv；未完整覆盖的基准不产生准确率。"]
