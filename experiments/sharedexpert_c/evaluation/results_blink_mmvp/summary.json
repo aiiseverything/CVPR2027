@@ -1,0 +1,244 @@
+{
+  "suite": {
+    "protocol": {
+      "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+      "enable_thinking": true,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "seed": 20261019,
+      "max_tokens": 8192,
+      "max_prompt_tokens": 2048,
+      "max_model_len": 10240,
+      "max_images": 8,
+      "image_size": {
+        "longest_edge": 786432,
+        "shortest_edge": 4096
+      },
+      "max_total_image_pixels": 1572864,
+      "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+      "force_answering": false,
+      "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+      "max_token_policy": "no extra answer pass; final answer must be present in original response"
+    },
+    "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+    "suite_sha256": "13f7810c339d7966e4268709a10b74ae1683c4078ff5924ae972bf881d1c226a",
+    "scoring_protocol": {
+      "version": "strict-local-v2-length-zero",
+      "zero_on_length_termination": true,
+      "length_finish_reason": "length",
+      "preserve_extraction_and_pre_penalty_score_for_audit": true,
+      "recompute_from_raw_response": true
+    },
+    "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+    "processor": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/models/Qwen3.5-4B",
+    "processor_config_sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "source_sha256": {
+      "BLINK_val": "fa2190bcb4e80d25af9ff778caae60ee02ae37b9d0f40bdbc3483cfdf328107c",
+      "MMVP": "225204bbb168fc963c59dca4fdd916d63ebe22471ab803a84aa96fdd7e57162c"
+    },
+    "source_md5_expected": {
+      "BLINK_val": "d5e8af148b10ac69f535ff7b23f3f989",
+      "MMVP": "8cb732b141a0cba5b42159df2839e557"
+    },
+    "counts": {
+      "BLINK_val": 1901,
+      "MMVP": 300
+    },
+    "excluded": [],
+    "grounding_included": false,
+    "image_hash_format": "sha256(struct.pack('>II', width, height) + RGB pixel bytes)",
+    "limitations": [
+      "Strict local extraction scores, not official LLM-judge scores",
+      "BLINK val uses VLMEvalKit TSV rows; MMVP uses all 300 rows in its TSV",
+      "Hash exclusion catches exact pixels only, not all re-encoded derivatives"
+    ]
+  },
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+  "status": {
+    "baseline": {
+      "status": "complete",
+      "n_expected": 2201,
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 454,
+      "length_terminated": 455,
+      "mean_completion_tokens": 2904.5247614720583
+    },
+    "generalist": {
+      "status": "not_started",
+      "n_expected": 2201,
+      "missing": 2201
+    },
+    "perception": {
+      "status": "not_started",
+      "n_expected": 2201,
+      "missing": 2201
+    },
+    "reasoning": {
+      "status": "not_started",
+      "n_expected": 2201,
+      "missing": 2201
+    },
+    "perception-step100": {
+      "status": "complete",
+      "n_expected": 2201,
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 187,
+      "length_terminated": 187,
+      "mean_completion_tokens": 1288.032258064516
+    },
+    "reasoning-step100": {
+      "status": "complete",
+      "n_expected": 2201,
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 105,
+      "length_terminated": 105,
+      "mean_completion_tokens": 1410.6778736937756
+    }
+  },
+  "benchmarks": {
+    "BLINK_val": {
+      "baseline": {
+        "score": 0.5917937927406628,
+        "ci95": [
+          0.569700157811678,
+          0.6139005786428194
+        ],
+        "n_rows": 1901,
+        "n_clusters": 1901,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.6685954760652288,
+        "ci95": [
+          0.6480668069437139,
+          0.6901762230405049
+        ],
+        "n_rows": 1901,
+        "n_clusters": 1901,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.6754339821146765,
+        "ci95": [
+          0.6533403471856918,
+          0.6959495002630195
+        ],
+        "n_rows": 1901,
+        "n_clusters": 1901,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMVP": {
+      "baseline": {
+        "score": 0.79,
+        "ci95": [
+          0.74,
+          0.8366666666666667
+        ],
+        "n_rows": 300,
+        "n_clusters": 300,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.8133333333333334,
+        "ci95": [
+          0.7666666666666667,
+          0.8566666666666667
+        ],
+        "n_rows": 300,
+        "n_clusters": 300,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.8033333333333333,
+        "ci95": [
+          0.7566666666666667,
+          0.8467499999999996
+        ],
+        "n_rows": 300,
+        "n_clusters": 300,
+        "metric": "strict_accuracy"
+      }
+    }
+  },
+  "paired_delta_vs_baseline": {
+    "BLINK_val": {
+      "perception-step100": {
+        "delta": 0.07680168332456605,
+        "ci95": [
+          0.05785113098369276,
+          0.09679116254602838
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.08364018937401374,
+        "ci95": [
+          0.06575486586007362,
+          0.10206470278800632
+        ]
+      }
+    },
+    "MMVP": {
+      "perception-step100": {
+        "delta": 0.023333333333333317,
+        "ci95": [
+          -0.010000000000000009,
+          0.05666666666666664
+        ]
+      },
+      "reasoning-step100": {
+        "delta": 0.013333333333333308,
+        "ci95": [
+          -0.016666666666666607,
+          0.043333333333333335
+        ]
+      }
+    }
+  },
+  "dimension_macro": {
+    "reasoning": {
+      "benchmarks": [],
+      "models": {
+        "baseline": NaN,
+        "generalist": NaN,
+        "perception": NaN,
+        "reasoning": NaN,
+        "perception-step100": NaN,
+        "reasoning-step100": NaN
+      }
+    },
+    "perception": {
+      "benchmarks": [
+        "BLINK_val",
+        "MMVP"
+      ],
+      "models": {
+        "baseline": 0.6908968963703315,
+        "perception-step100": 0.7409644046992812,
+        "reasoning-step100": 0.7393836577240049
+      }
+    },
+    "general": {
+      "benchmarks": [],
+      "models": {
+        "baseline": NaN,
+        "generalist": NaN,
+        "perception": NaN,
+        "reasoning": NaN,
+        "perception-step100": NaN,
+        "reasoning-step100": NaN
+      }
+    }
+  },
+  "complementarity": {}
+}

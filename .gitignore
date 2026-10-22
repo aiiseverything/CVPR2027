@@ -65,7 +65,10 @@ __pycache__/
 !/experiments/sharedexpert_c/runtime/batch30_first_step_validation.json
 !/experiments/sharedexpert_c/runtime/unused_topk_formal_validation.json
 /experiments/sharedexpert_c/evaluation/assets/
+/experiments/sharedexpert_c/evaluation/assets_blink_mmvp/
 /experiments/sharedexpert_c/evaluation/results/
+/experiments/sharedexpert_c/evaluation/results_blink_mmvp/
+/experiments/sharedexpert_c/evaluation/new_bench_raw/
 /experiments/sharedexpert_c/evaluation/core_results/
 /experiments/sharedexpert_c/evaluation/old_protocol/
 /experiments/sharedexpert_c/evaluation/restored_*.json
