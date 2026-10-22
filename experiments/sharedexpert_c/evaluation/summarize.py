@@ -10,9 +10,9 @@ from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
-from common import HERE, SCORING_PROTOCOL, digest, file_sha, load_suite, read_jsonl, score_prediction
+from common import HERE, SCORING_PROTOCOL, MODEL_NAMES, digest, file_sha, load_suite, read_jsonl, score_prediction
 
-MODELS = ["baseline", "generalist", "perception", "reasoning"]
+MODELS = MODEL_NAMES
 
 
 def units(rows, predictions):
@@ -130,14 +130,14 @@ def main():
     for model in MODELS:
         s = status[model]
         lines.append(f"| {model} | {s['status']} | {s.get('missing', 0)} | {s.get('api_errors', '—')} | {s.get('extraction_failures', '—')} | {s.get('length_terminated', '—')} |")
-    lines += ["", "只报告完整模型的成绩；准确率单位为百分比，括号为按图像／循环选项组 bootstrap 的 95% 区间。", "", "| 评测集 | 实际行数 | baseline | generalist | perception | reasoning |", "|---|---:|---:|---:|---:|---:|"]
+    lines += ["", "只报告完整模型的成绩；准确率单位为百分比，括号为按图像／循环选项组 bootstrap 的 95% 区间。", "", "| 评测集 | 实际行数 | " + " | ".join(MODELS) + " |", "|---|---:|" + "---:|" * len(MODELS)]
     for bench, samples in sorted(by_bench.items()):
         cells = []
         for model in MODELS:
             r = results[bench].get(model)
             cells.append(f"{100*r['score']:.2f} ({100*r['ci95'][0]:.2f}–{100*r['ci95'][1]:.2f})" if r else "—")
         lines.append(f"| {bench} | {len(samples)} | " + " | ".join(cells) + " |")
-    lines += ["", "MMBench 使用所选 base question 的全部循环选项版本，主指标为一组全对；其余是严格答案准确率，RefCOCO 为 IoU≥0.5。MME 仅 count/position/color/existence 子集，非完整 MME 总分。", "", "| 维度（各评测集等权） | baseline | generalist | perception | reasoning |", "|---|---:|---:|---:|---:|"]
+    lines += ["", "MMBench 使用所选 base question 的全部循环选项版本，主指标为一组全对；其余是严格答案准确率，RefCOCO 为 IoU≥0.5。MME 仅 count/position/color/existence 子集，非完整 MME 总分。", "", "| 维度（各评测集等权） | " + " | ".join(MODELS) + " |", "|---|" + "---:|" * len(MODELS)]
     for dim, values in dimensions.items():
         lines.append(f"| {dim} | " + " | ".join(f"{100*values['models'][m]:.2f}" if m in values["models"] else "—" for m in MODELS) + " |")
     lines += ["", f"固定样本总数：{len(rows)}；预先排除条目：{len(meta['excluded'])}；grounding 包含状态：{meta['grounding_included']}。", "", "逐题结果与配对差值详见 summary.json / per_sample.csv；未完成的任务不产生最终准确率。"]

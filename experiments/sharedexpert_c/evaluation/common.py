@@ -11,6 +11,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
+# Frozen four-model comparison plus named intermediate checkpoints evaluated
+# under the same protocol (e.g. the step-100 perception/reasoning exports).
+MODEL_NAMES = ["baseline", "generalist", "perception", "reasoning", "perception-step100", "reasoning-step100"]
 PROTOCOL = {
     "version": "sharedexpert-teacher-eval-v3-total-image-budget",
     "enable_thinking": True,
