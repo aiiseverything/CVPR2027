@@ -1,0 +1,26 @@
+{
+  "path": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-9B",
+  "config_sha256": "d0883072e01861ed0b2d47be3c16c36a8e81c224c7ffaa310c6558fb3f932b05",
+  "weight_files": [
+    {
+      "name": "model.safetensors-00001-of-00004.safetensors",
+      "size": 5276436216,
+      "mtime_ns": 1791045182424412010
+    },
+    {
+      "name": "model.safetensors-00002-of-00004.safetensors",
+      "size": 5335161512,
+      "mtime_ns": 1791045119348773633
+    },
+    {
+      "name": "model.safetensors-00003-of-00004.safetensors",
+      "size": 5368717440,
+      "mtime_ns": 1791045117643751737
+    },
+    {
+      "name": "model.safetensors-00004-of-00004.safetensors",
+      "size": 3325995712,
+      "mtime_ns": 1791044303462479766
+    }
+  ]
+}

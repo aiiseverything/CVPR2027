@@ -91,6 +91,15 @@
       "length_terminated": 530,
       "mean_completion_tokens": 2188.2158924919663
     },
+    "baseline-9b": {
+      "status": "complete",
+      "n_expected": 3423,
+      "missing": 0,
+      "api_errors": 0,
+      "extraction_failures": 461,
+      "length_terminated": 466,
+      "mean_completion_tokens": 2038.9164475606194
+    },
     "generalist": {
       "status": "not_started",
       "n_expected": 3423,
@@ -137,6 +146,16 @@
         "n_clusters": 250,
         "metric": "circular_group_accuracy"
       },
+      "baseline-9b": {
+        "score": 0.88,
+        "ci95": [
+          0.836,
+          0.92
+        ],
+        "n_rows": 930,
+        "n_clusters": 250,
+        "metric": "circular_group_accuracy"
+      },
       "perception-step100": {
         "score": 0.872,
         "ci95": [
@@ -164,6 +183,16 @@
         "ci95": [
           0.8943029144274494,
           0.9615384615384616
+        ],
+        "n_rows": 240,
+        "n_clusters": 110,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.9458333333333333,
+        "ci95": [
+          0.913381759614759,
+          0.9750051652892562
         ],
         "n_rows": 240,
         "n_clusters": 110,
@@ -201,6 +230,16 @@
         "n_clusters": 449,
         "metric": "strict_accuracy"
       },
+      "baseline-9b": {
+        "score": 0.623608017817372,
+        "ci95": [
+          0.576837416481069,
+          0.6681514476614699
+        ],
+        "n_rows": 449,
+        "n_clusters": 449,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.6347438752783965,
         "ci95": [
@@ -228,6 +267,16 @@
         "ci95": [
           0.636,
           0.718
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.682,
+        "ci95": [
+          0.64,
+          0.724
         ],
         "n_rows": 500,
         "n_clusters": 500,
@@ -265,6 +314,16 @@
         "n_clusters": 304,
         "metric": "strict_accuracy"
       },
+      "baseline-9b": {
+        "score": 0.40131578947368424,
+        "ci95": [
+          0.34539473684210525,
+          0.45723684210526316
+        ],
+        "n_rows": 304,
+        "n_clusters": 304,
+        "metric": "strict_accuracy"
+      },
       "perception-step100": {
         "score": 0.4440789473684211,
         "ci95": [
@@ -292,6 +351,16 @@
         "ci95": [
           0.68,
           0.754
+        ],
+        "n_rows": 500,
+        "n_clusters": 500,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.746,
+        "ci95": [
+          0.708,
+          0.784
         ],
         "n_rows": 500,
         "n_clusters": 500,
@@ -329,6 +398,16 @@
         "n_clusters": 439,
         "metric": "accuracy_at_iou_0.5"
       },
+      "baseline-9b": {
+        "score": 0.916,
+        "ci95": [
+          0.8909400459839056,
+          0.939880827546566
+        ],
+        "n_rows": 500,
+        "n_clusters": 439,
+        "metric": "accuracy_at_iou_0.5"
+      },
       "perception-step100": {
         "score": 0.92,
         "ci95": [
@@ -353,6 +432,13 @@
   },
   "paired_delta_vs_baseline": {
     "MMBench_DEV_EN_V11": {
+      "baseline-9b": {
+        "delta": 0.028000000000000025,
+        "ci95": [
+          -0.0040000000000000036,
+          0.06000000000000005
+        ]
+      },
       "perception-step100": {
         "delta": 0.020000000000000018,
         "ci95": [
@@ -369,6 +455,13 @@
       }
     },
     "MME_perception": {
+      "baseline-9b": {
+        "delta": 0.016666666666666607,
+        "ci95": [
+          -0.012396694214875992,
+          0.04622827944737217
+        ]
+      },
       "perception-step100": {
         "delta": 0.02083333333333326,
         "ci95": [
@@ -385,6 +478,13 @@
       }
     },
     "MMMU_DEV_VAL": {
+      "baseline-9b": {
+        "delta": 0.053452115812917644,
+        "ci95": [
+          0.017817371937639215,
+          0.08691536748329592
+        ]
+      },
       "perception-step100": {
         "delta": 0.06458797327394217,
         "ci95": [
@@ -401,6 +501,13 @@
       }
     },
     "MMStar": {
+      "baseline-9b": {
+        "delta": 0.006000000000000005,
+        "ci95": [
+          -0.026000000000000023,
+          0.03799999999999992
+        ]
+      },
       "perception-step100": {
         "delta": 0.039999999999999925,
         "ci95": [
@@ -417,6 +524,13 @@
       }
     },
     "MathVision_MINI": {
+      "baseline-9b": {
+        "delta": 0.04276315789473689,
+        "ci95": [
+          0.0,
+          0.08552631578947367
+        ]
+      },
       "perception-step100": {
         "delta": 0.08552631578947373,
         "ci95": [
@@ -433,6 +547,13 @@
       }
     },
     "MathVista_MINI": {
+      "baseline-9b": {
+        "delta": 0.030000000000000027,
+        "ci95": [
+          -0.0020000000000000018,
+          0.06004999999999978
+        ]
+      },
       "perception-step100": {
         "delta": 0.06400000000000006,
         "ci95": [
@@ -449,6 +570,13 @@
       }
     },
     "RefCOCO_heldout": {
+      "baseline-9b": {
+        "delta": -0.0020000000000000018,
+        "ci95": [
+          -0.019764806449589053,
+          0.01593705020238406
+        ]
+      },
       "perception-step100": {
         "delta": 0.0020000000000000018,
         "ci95": [
@@ -474,6 +602,7 @@
       ],
       "models": {
         "baseline": 0.5482361778611339,
+        "baseline-9b": 0.5903079357636855,
         "perception-step100": 0.6196076075489392,
         "reasoning-step100": 0.660861251123354
       }
@@ -485,6 +614,7 @@
       ],
       "models": {
         "baseline": 0.9235833333333334,
+        "baseline-9b": 0.9309166666666666,
         "perception-step100": 0.935,
         "reasoning-step100": 0.935
       }
@@ -496,6 +626,7 @@
       ],
       "models": {
         "baseline": 0.764,
+        "baseline-9b": 0.781,
         "perception-step100": 0.794,
         "reasoning-step100": 0.8109999999999999
       }
