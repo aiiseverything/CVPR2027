@@ -1,0 +1,17 @@
+{
+  "attempt": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/multimodal_memory_check/attempts/20261020T191214Z_37acbe80",
+  "supervisor": {
+    "pid": 2075515,
+    "start_ticks": 349248503,
+    "pgrp": 2075515,
+    "session": 2075515,
+    "state": "R"
+  },
+  "torchrun": {
+    "pid": 2075517,
+    "start_ticks": 349248591,
+    "pgrp": 2075517,
+    "session": 2075517,
+    "state": "R"
+  }
+}

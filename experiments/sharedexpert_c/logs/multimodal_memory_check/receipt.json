@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T19:14:05.623011+00:00",
+  "cpu_report_sha256": "528ada0e4c0589cf2c1bc2296313f6fd5bb2edb26d8e9957287c6a907ed63590",
+  "report": "attempts/20261020T191214Z_37acbe80/report.json",
+  "supervisor": "attempts/20261020T191214Z_37acbe80/supervisor.json",
+  "validated_artifacts": {
+    "attempts/20261020T191214Z_37acbe80/report.json": "f126436ab43659efae80e3507f2a2b3bf8cc9867c66a87182d23d4a211c774b5",
+    "attempts/20261020T191214Z_37acbe80/supervisor.json": "60742838e946d47108e1deeb819d38b772bf926d26a00af746209bba35740837",
+    "attempts/20261020T191214Z_37acbe80/gpu.log": "d262185956b083aa2a392f10204f9b4dc1090f3315a9a624d7b1cad5ce963c90",
+    "attempts/20261020T191214Z_37acbe80/resources.jsonl": "3956ee064124c332e60207315f1b8974e6448547841a233562a9427121b670af",
+    "attempts/20261020T191214Z_37acbe80/rank0.json": "b3983f044dba876036ef7d47650671557025fc923d7dc812ba3877ab814e87ed",
+    "attempts/20261020T191214Z_37acbe80/rank1.json": "9b5cd998d0cca92674f70c84fcd435b5cb2286c553c7cf3404c6ec8002eca17b",
+    "attempts/20261020T191214Z_37acbe80/rank2.json": "89274728797ef5b468dc30889d13c6a565ac6e8c9cfcb03694b7c67a12406d50",
+    "attempts/20261020T191214Z_37acbe80/rank3.json": "466d89ed662b62bf835b6aa078df784860bb90dbc8aa625c2c4ff3d0e7605ea2"
+  },
+  "shared_teachers": [
+    "reasoning",
+    "generalist"
+  ],
+  "limitations": [
+    "Synthetic text padding and transplanted real response; not reward/quality evidence",
+    "Two single-sequence microbatches per rank, not full 30-prompt Ray aggregation",
+    "No rollout engines or simultaneous vLLM/actor memory; formal monitoring remains required",
+    "Actual image layouts checked: 8 images and 3 images; total image tensor budget is recorded",
+    "Base model weight identity uses file metadata, not newly computed full-weight content hashes"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "status": "complete",
+  "passed": true,
+  "rank": 3,
+  "world_size": 4,
+  "cpu_report_sha256": "528ada0e4c0589cf2c1bc2296313f6fd5bb2edb26d8e9957287c6a907ed63590",
+  "updates": [
+    {
+      "update": 1,
+      "learning_rate": 0.0,
+      "metrics": {
+        "actor/pg_loss": -1.0,
+        "actor/kl_loss": 0.0,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 4.46121883392334
+      },
+      "seconds": 24.79140236787498,
+      "adam_before": {
+        "parameters": 0,
+        "bytes": 0,
+        "all_fp32_cuda": true,
+        "step_min": null,
+        "step_max": null
+      },
+      "adam_after": {
+        "parameters": 723,
+        "bytes": 9078531072,
+        "all_fp32_cuda": true,
+        "step_min": 1.0,
+        "step_max": 1.0
+      },
+      "forward_calls": [
+        {
+          "case": "eight_images",
+          "gradient_before": {
+            "parameters": 0,
+            "bytes": 0
+          },
+          "adam_before": {
+            "parameters": 0,
+            "bytes": 0,
+            "all_fp32_cuda": true,
+            "step_min": null,
+            "step_max": null
+          },
+          "full_logps": false,
+          "topk": null,
+          "entropy": false
+        },
+        {
+          "case": "three_images_max_visual",
+          "gradient_before": {
+            "parameters": 723,
+            "bytes": 4539265536
+          },
+          "adam_before": {
+            "parameters": 0,
+            "bytes": 0,
+            "all_fp32_cuda": true,
+            "step_min": null,
+            "step_max": null
+          },
+          "full_logps": false,
+          "topk": null,
+          "entropy": false
+        }
+      ]
+    },
+    {
+      "update": 2,
+      "learning_rate": 1e-07,
+      "metrics": {
+        "actor/pg_loss": -1.0,
+        "actor/kl_loss": 0.0,
+        "actor/pg_clipfrac": 0.0,
+        "actor/ppo_kl": 0.0,
+        "actor/pg_clipfrac_lower": 0.0,
+        "actor/grad_norm": 4.460816860198975
+      },
+      "seconds": 12.493667965754867,
+      "adam_before": {
+        "parameters": 723,
+        "bytes": 9078531072,
+        "all_fp32_cuda": true,
+        "step_min": 1.0,
+        "step_max": 1.0
+      },
+      "adam_after": {
+        "parameters": 723,
+        "bytes": 9078531072,
+        "all_fp32_cuda": true,
+        "step_min": 2.0,
+        "step_max": 2.0
+      },
+      "forward_calls": [
+        {
+          "case": "eight_images",
+          "gradient_before": {
+            "parameters": 0,
+            "bytes": 0
+          },
+          "adam_before": {
+            "parameters": 723,
+            "bytes": 9078531072,
+            "all_fp32_cuda": true,
+            "step_min": 1.0,
+            "step_max": 1.0
+          },
+          "full_logps": false,
+          "topk": null,
+          "entropy": false
+        },
+        {
+          "case": "three_images_max_visual",
+          "gradient_before": {
+            "parameters": 723,
+            "bytes": 4539265536
+          },
+          "adam_before": {
+            "parameters": 723,
+            "bytes": 9078531072,
+            "all_fp32_cuda": true,
+            "step_min": 1.0,
+            "step_max": 1.0
+          },
+          "full_logps": false,
+          "topk": null,
+          "entropy": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Synthetic text padding and transplanted real response; not reward/quality evidence",
+    "Two single-sequence microbatches per rank, not full 30-prompt Ray aggregation",
+    "No rollout engines or simultaneous vLLM/actor memory; formal monitoring remains required",
+    "Actual image layouts checked: 8 images and 3 images; total image tensor budget is recorded",
+    "Base model weight identity uses file metadata, not newly computed full-weight content hashes"
+  ],
+  "flash_attention_calls": {
+    "FlashAttnVarlenFunc:head64:causalFalse:deterministicFalse": 192,
+    "FlashAttnFunc:head256:causalTrue:deterministicFalse": 64
+  },
+  "peak_allocated_bytes": 40757700608,
+  "peak_reserved_bytes": 46554677248
+}

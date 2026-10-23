@@ -1,0 +1,73 @@
+{
+  "status": "complete",
+  "started_at": "2026-10-20T19:12:14.111501+00:00",
+  "command": [
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/.venv-train/bin/torchrun",
+    "--standalone",
+    "--nproc-per-node=4",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/multimodal_memory_check.py",
+    "--execute",
+    "--output",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/multimodal_memory_check",
+    "--attempt",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/logs/multimodal_memory_check/attempts/20261020T191214Z_37acbe80"
+  ],
+  "supervisor_identity": {
+    "pid": 2075515,
+    "start_ticks": 349248503,
+    "pgrp": 2075515,
+    "session": 2075515,
+    "state": "R"
+  },
+  "host_before": {
+    "current_bytes": 9272950784,
+    "working_set_bytes": 8605052928,
+    "anon_bytes": 6146154496,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 28594212,
+      "oom": 19,
+      "oom_kill": 12
+    }
+  },
+  "peak_working_set_bytes": 22305837056,
+  "peak_current_bytes": 27965243392,
+  "gpu_peak_used_bytes": {
+    "3": 47356510208,
+    "4": 47362801664,
+    "5": 47383773184,
+    "6": 47379578880
+  },
+  "guard_limit_gib": 54,
+  "cpu_report_sha256": "528ada0e4c0589cf2c1bc2296313f6fd5bb2edb26d8e9957287c6a907ed63590",
+  "torchrun_identity": {
+    "pid": 2075517,
+    "start_ticks": 349248591,
+    "pgrp": 2075517,
+    "session": 2075517,
+    "state": "R"
+  },
+  "finished_at": "2026-10-20T19:14:05.612913+00:00",
+  "returncode": 0,
+  "host_after": {
+    "current_bytes": 9276035072,
+    "working_set_bytes": 8608137216,
+    "anon_bytes": 6148931584,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 28594212,
+      "oom": 19,
+      "oom_kill": 12
+    }
+  },
+  "gpus_released": true,
+  "memory_events_delta": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0
+  }
+}
