@@ -83,6 +83,24 @@ pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/run_checkpoint.py 
 
 替换 name/path 为 perception、reasoning。launcher 自动选择本地端口，检查 GPU 无已有 compute process；仅退出自己启动的 vLLM 进程组。可加 `--dry-run` 查看命令而不启动 GPU。训练 shard 合并由训练流水线负责；该 launcher 要求完整 HF 模型目录，不修改 checkpoint。
 
+9B 参考模型使用同一冻结套件、相同 prompt 和评分协议（tokenizer、chat template 与图像 processor 已与 4B 逐项核对）：
+
+```bash
+pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/run_checkpoint.py \
+  --model pre-lab/models/Qwen3.5-9B --name baseline-9b --gpu 0 --concurrency 16
+```
+
+正式长跑前可加 `--limit 12` 做 smoke，输出写入 `results/smoke/baseline-9b`，不进入最终汇总。`summarize.py` 将 `baseline-9b` 作为单独一列，并给出与 4B baseline 的配对差值。
+
+需要多卡并行时，`run_multigpu.py` 为每张卡启动一个独立 vLLM，客户端按行哈希把请求稳定分发到各端点（失败时切换端点），判分仍在客户端 CPU：
+
+```bash
+pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/run_multigpu.py \
+  --model pre-lab/models/Qwen3.5-9B --name baseline-9b --gpus 0 1 2 3 4 5 6 --concurrency 84
+```
+
+服务顺序启动，避免多个 9B 同时加载超过容器 64 GiB memory cgroup 限制；推理阶段七卡并行。输出仍写入 `results/full/baseline-9b`，与单卡运行共享断点续跑缓存。
+
 ```bash
 pre-lab/venv/bin/python experiments/sharedexpert_c/evaluation/summarize.py
 ```

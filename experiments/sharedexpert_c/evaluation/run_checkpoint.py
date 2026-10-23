@@ -63,11 +63,12 @@ def completed_cache(out, rows, suite_meta, provenance, name, served_name):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--model", type=Path, required=True, help="Merged, complete HF model directory")
-    ap.add_argument("--name", required=True, choices=["baseline", "generalist", "perception", "reasoning"])
+    ap.add_argument("--name", required=True, choices=["baseline", "baseline-9b", "generalist", "perception", "reasoning"])
     ap.add_argument("--gpu", type=int, required=True)
     ap.add_argument("--suite", type=Path, default=HERE / "suite.jsonl")
     ap.add_argument("--output-root", type=Path, default=HERE / "results")
     ap.add_argument("--concurrency", type=int, default=4)
+    ap.add_argument("--limit", type=int, default=0, help="Smoke only: evaluate N representative samples into smoke/<name>")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     py = ROOT / "pre-lab/venv/bin/python"
@@ -82,6 +83,8 @@ def main():
                   "--mm-processor-kwargs", json.dumps({"size": PROTOCOL["image_size"]})]
     eval_cmd = [str(py), str(HERE / "run_api.py"), "--suite", str(args.suite), "--base-url", f"http://127.0.0.1:{port}/v1",
                 "--model", served_name, "--name", args.name, "--output-root", str(args.output_root), "--concurrency", str(args.concurrency)]
+    if args.limit:
+        eval_cmd += ["--limit", str(args.limit)]
     if args.dry_run:
         print(json.dumps({"CUDA_VISIBLE_DEVICES": str(args.gpu), "server": server_cmd, "evaluation": eval_cmd}, indent=2))
         return
@@ -90,10 +93,10 @@ def main():
     print(json.dumps({"export_metadata_loaded": metadata}), flush=True)
     if not list(args.model.glob("*.safetensors")):
         raise SystemExit("No exported safetensors; merge checkpoint first")
-    out = args.output_root / "full" / args.name
+    out = args.output_root / ("smoke" if args.limit else "full") / args.name
     provenance = {"path": str(args.model.resolve()), "config_sha256": file_sha(args.model / "config.json"),
                   "weight_files": [{"name": p.name, "size": p.stat().st_size, "mtime_ns": p.stat().st_mtime_ns} for p in sorted(args.model.glob("*.safetensors"))]}
-    if completed_cache(out, rows, suite_meta, provenance, args.name, served_name):
+    if not args.limit and completed_cache(out, rows, suite_meta, provenance, args.name, served_name):
         # Recompute current scoring from the raw generations without requiring a
         # free GPU; the user may already have restored their original services.
         subprocess.run([str(py), str(HERE / "summarize.py"), "--suite", str(args.suite),

@@ -6,6 +6,7 @@ import argparse
 import base64
 import concurrent.futures
 import fcntl
+import hashlib
 import json
 import mimetypes
 import time
@@ -40,9 +41,13 @@ def infer(row, args):
     }
     t0 = time.monotonic()
     error = None
+    # Stable row-to-endpoint assignment spreads work evenly; retries fail over
+    # to the next endpoint without changing the generation protocol.
+    start = int.from_bytes(hashlib.sha256(row["id"].encode()).digest()[:8], "big") % len(args.endpoints)
     for attempt in range(args.retries):
+        base_url = args.endpoints[(start + attempt) % len(args.endpoints)]
         try:
-            result = request_json(args.base_url.rstrip("/") + "/chat/completions", payload, args.timeout)
+            result = request_json(base_url.rstrip("/") + "/chat/completions", payload, args.timeout)
             choice = result["choices"][0]
             message = choice["message"]
             content = message.get("content") or ""
@@ -80,9 +85,11 @@ def infer(row, args):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--suite", type=Path, default=HERE / "suite.jsonl")
-    ap.add_argument("--base-url", required=True)
+    endpoints = ap.add_mutually_exclusive_group(required=True)
+    endpoints.add_argument("--base-url", help="Single local inference endpoint")
+    endpoints.add_argument("--base-urls", nargs="+", help="Multiple local inference endpoints; requests are spread deterministically")
     ap.add_argument("--model", required=True, help="Served model name, checked against /models")
-    ap.add_argument("--name", required=True, choices=["baseline", "generalist", "perception", "reasoning"])
+    ap.add_argument("--name", required=True, choices=["baseline", "baseline-9b", "generalist", "perception", "reasoning"])
     ap.add_argument("--output-root", type=Path, default=HERE / "results")
     ap.add_argument("--concurrency", type=int, default=4)
     ap.add_argument("--timeout", type=int, default=1800)
@@ -90,15 +97,18 @@ def main():
     ap.add_argument("--limit", type=int, default=0, help="Smoke only: writes to a separate smoke directory")
     ap.add_argument("--import-results", type=Path, help="Import only same-model/protocol cached rows that match this expanded suite")
     args = ap.parse_args()
-    url = urllib.parse.urlparse(args.base_url)
-    if url.scheme != "http" or url.hostname not in {"127.0.0.1", "localhost", "::1"}:
-        raise SystemExit("Only local HTTP inference endpoints are accepted; no external judge or service")
+    args.endpoints = args.base_urls if args.base_urls else [args.base_url]
+    for base in args.endpoints:
+        url = urllib.parse.urlparse(base)
+        if url.scheme != "http" or url.hostname not in {"127.0.0.1", "localhost", "::1"}:
+            raise SystemExit("Only local HTTP inference endpoints are accepted; no external judge or service")
     if args.concurrency < 1 or args.retries < 1:
         raise SystemExit("concurrency and retries must be positive")
     rows, suite_meta = load_suite(args.suite)
-    served = request_json(args.base_url.rstrip("/") + "/models")
-    if args.model not in {m["id"] for m in served["data"]}:
-        raise SystemExit(f"Expected model {args.model} is not served at endpoint")
+    for base in args.endpoints:
+        served = request_json(base.rstrip("/") + "/models")
+        if args.model not in {m["id"] for m in served["data"]}:
+            raise SystemExit(f"Expected model {args.model} is not served at endpoint {base}")
     if args.limit:
         # Cover multiple benchmarks and a multi-image example before a long run.
         representatives = {}
@@ -149,7 +159,7 @@ def main():
         if row["id"] in previous:
             previous[row["id"]] = score_prediction(row, previous[row["id"]])
     todo = [r for r in rows if r["id"] not in previous or previous[r["id"]].get("error")]
-    print(f"{args.name}: {len(rows)} samples, {len(todo)} pending, concurrency={args.concurrency}", flush=True)
+    print(f"{args.name}: {len(rows)} samples, {len(todo)} pending, concurrency={args.concurrency}, endpoints={len(args.endpoints)}", flush=True)
     # One synchronous sample validates the exact processor/chat-template protocol before parallel work.
     if todo:
         first = infer(todo[0], args)
