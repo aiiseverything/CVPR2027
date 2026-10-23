@@ -1,0 +1,75 @@
+{
+  "last_render_at": "2026-10-22T14:10:59.569027+00:00",
+  "render_reason": "periodic",
+  "render_status": "stopped",
+  "metrics_rows": 22478,
+  "latest_metric_steps": {
+    "perception": 100,
+    "reasoning": 100,
+    "generalist": 14
+  },
+  "metric_groups_present": {
+    "reward": [
+      "generalist:critic/rewards/mean",
+      "generalist:critic/score/mean",
+      "perception:critic/rewards/mean",
+      "perception:critic/score/mean",
+      "reasoning:critic/rewards/mean",
+      "reasoning:critic/score/mean"
+    ],
+    "accuracy": [],
+    "response_length": [
+      "generalist:response_length/max",
+      "generalist:response_length/mean",
+      "perception:response_length/max",
+      "perception:response_length/mean",
+      "reasoning:response_length/max",
+      "reasoning:response_length/mean"
+    ],
+    "pg_loss": [
+      "generalist:actor/pg_loss",
+      "perception:actor/pg_loss",
+      "reasoning:actor/pg_loss"
+    ],
+    "grad_norm": [
+      "generalist:actor/grad_norm",
+      "perception:actor/grad_norm",
+      "reasoning:actor/grad_norm"
+    ],
+    "kl_diagnostic": [
+      "generalist:actor/kl_loss",
+      "generalist:actor/ppo_kl",
+      "generalist:rollout_corr/k3_kl",
+      "generalist:rollout_corr/kl",
+      "perception:actor/kl_loss",
+      "perception:actor/ppo_kl",
+      "perception:rollout_corr/k3_kl",
+      "perception:rollout_corr/kl",
+      "reasoning:actor/kl_loss",
+      "reasoning:actor/ppo_kl",
+      "reasoning:rollout_corr/k3_kl",
+      "reasoning:rollout_corr/kl"
+    ],
+    "importance_sampling": [
+      "generalist:rollout_corr/rollout_is_eff_sample_size",
+      "generalist:rollout_corr/rollout_is_max",
+      "generalist:rollout_corr/rollout_is_mean",
+      "perception:rollout_corr/rollout_is_eff_sample_size",
+      "perception:rollout_corr/rollout_is_max",
+      "perception:rollout_corr/rollout_is_mean",
+      "reasoning:rollout_corr/rollout_is_eff_sample_size",
+      "reasoning:rollout_corr/rollout_is_max",
+      "reasoning:rollout_corr/rollout_is_mean"
+    ],
+    "step_time": [
+      "generalist:perf/time_per_step",
+      "generalist:timing_s/step",
+      "perception:perf/time_per_step",
+      "perception:timing_s/step",
+      "reasoning:perf/time_per_step",
+      "reasoning:timing_s/step"
+    ]
+  },
+  "plot_banner": "STOPPED | stage=failed | teacher=generalist\nMemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment\nchild group",
+  "empty_panel_label": "STOPPED"
+}

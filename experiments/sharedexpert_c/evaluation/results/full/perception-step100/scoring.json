@@ -1,0 +1,14 @@
+{
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+  "scorer_source_sha256": "228efb271324c901f8d60a137e61b4c6ac2ccd262d9a5e2ba9fe8679fdb028e1",
+  "n_scored": 3423,
+  "raw_source": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/results/full/perception-step100/predictions.jsonl",
+  "scored_file": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/results/full/perception-step100/predictions.scored.jsonl"
+}

@@ -1,0 +1,38 @@
+{
+  "suite_sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100",
+  "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+  "protocol": {
+    "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+    "enable_thinking": true,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": 20261019,
+    "max_tokens": 8192,
+    "max_prompt_tokens": 2048,
+    "max_model_len": 10240,
+    "max_images": 8,
+    "image_size": {
+      "longest_edge": 786432,
+      "shortest_edge": 4096
+    },
+    "max_total_image_pixels": 1572864,
+    "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+    "force_answering": false,
+    "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+    "max_token_policy": "no extra answer pass; final answer must be present in original response"
+  },
+  "name": "reasoning-step100",
+  "served_model": "sharedexpert-reasoning-step100",
+  "suite": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/suite.jsonl",
+  "n_requested": 3423,
+  "smoke": false,
+  "scorer_source_sha256": "228efb271324c901f8d60a137e61b4c6ac2ccd262d9a5e2ba9fe8679fdb028e1",
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506"
+}

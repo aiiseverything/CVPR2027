@@ -1,0 +1,11 @@
+{
+  "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/models/Qwen3.5-4B-reasoning-step100",
+  "config_sha256": "357a7aab66c5534d713577cf15e07ebc1ad415b38d8c62f98f6d33dc7b888606",
+  "weight_files": [
+    {
+      "name": "model.safetensors",
+      "size": 10350019328,
+      "mtime_ns": 1792658767668579083
+    }
+  ]
+}

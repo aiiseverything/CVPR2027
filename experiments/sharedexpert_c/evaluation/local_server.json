@@ -1,0 +1,9 @@
+{
+  "gpu_memory_utilization": 0.88,
+  "max_num_seqs": 16,
+  "dtype": "bfloat16",
+  "env": {
+    "VLLM_USE_FLASHINFER_SAMPLER": "0",
+    "OMP_NUM_THREADS": "8"
+  }
+}

@@ -14,6 +14,7 @@ import time
 from pathlib import Path
 
 from common import HERE, ROOT, PROTOCOL, digest, file_sha, load_suite, read_jsonl, local_lock_path
+from model_names import MODEL_NAMES
 from run_api import request_json
 
 
@@ -63,22 +64,32 @@ def completed_cache(out, rows, suite_meta, provenance, name, served_name):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--model", type=Path, required=True, help="Merged, complete HF model directory")
-    ap.add_argument("--name", required=True, choices=["baseline", "baseline-9b", "generalist", "perception", "reasoning"])
+    ap.add_argument("--name", required=True, choices=MODEL_NAMES)
     ap.add_argument("--gpu", type=int, required=True)
     ap.add_argument("--suite", type=Path, default=HERE / "suite.jsonl")
     ap.add_argument("--output-root", type=Path, default=HERE / "results")
     ap.add_argument("--concurrency", type=int, default=4)
     ap.add_argument("--limit", type=int, default=0, help="Smoke only: evaluate N representative samples into smoke/<name>")
+    ap.add_argument("--server-config", type=Path, default=HERE / "local_server.json",
+                    help="Environment-only vLLM knobs (GPU count/memory differ from the original host)")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
-    py = ROOT / "pre-lab/venv/bin/python"
+    # The original host had the evaluation virtualenv under pre-lab/venv. On
+    # the new host the evaluation environment lives in .venv-eval, so use the
+    # interpreter that launched this script instead of a hard-coded path.
+    py = Path(sys.executable)
+    server_config = {"gpu_memory_utilization": 0.88, "max_num_seqs": 16, "dtype": "bfloat16",
+                     "env": {"VLLM_USE_FLASHINFER_SAMPLER": "0", "OMP_NUM_THREADS": "8"}}
+    if args.server_config.is_file():
+        server_config.update(json.loads(args.server_config.read_text()))
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
     served_name = f"sharedexpert-{args.name}"
     server_cmd = [str(py), "-m", "vllm.entrypoints.openai.api_server", "--model", str(args.model.resolve()), "--served-model-name", served_name,
                   "--host", "127.0.0.1", "--port", str(port), "--max-model-len", str(PROTOCOL["max_model_len"]),
-                  "--gpu-memory-utilization", "0.88", "--max-num-seqs", "16", "--dtype", "bfloat16",
+                  "--gpu-memory-utilization", str(server_config["gpu_memory_utilization"]),
+                  "--max-num-seqs", str(server_config["max_num_seqs"]), "--dtype", str(server_config["dtype"]),
                   "--limit-mm-per-prompt", json.dumps({"image": PROTOCOL["max_images"]}),
                   "--mm-processor-kwargs", json.dumps({"size": PROTOCOL["image_size"]})]
     eval_cmd = [str(py), str(HERE / "run_api.py"), "--suite", str(args.suite), "--base-url", f"http://127.0.0.1:{port}/v1",
@@ -115,7 +126,8 @@ def main():
         if provenance_path.exists() and json.loads(provenance_path.read_text()) != provenance:
             raise SystemExit("Output belongs to another checkpoint; use a different --output-root")
         provenance_path.write_text(json.dumps(provenance, indent=2) + "\n")
-        env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(args.gpu), VLLM_USE_FLASHINFER_SAMPLER="0", OMP_NUM_THREADS="8", PYTHONUNBUFFERED="1")
+        env = dict(os.environ, CUDA_VISIBLE_DEVICES=str(args.gpu), PYTHONUNBUFFERED="1",
+                   **{str(k): str(v) for k, v in server_config.get("env", {}).items()})
         bundled_cuda = ROOT / "pre-lab/venv/lib/python3.10/site-packages/nvidia/cu13"
         if (bundled_cuda / "bin/nvcc").is_file():
             env["CUDA_HOME"] = str(bundled_cuda)

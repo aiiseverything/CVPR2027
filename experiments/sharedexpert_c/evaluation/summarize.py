@@ -11,8 +11,9 @@ from pathlib import Path
 
 import numpy as np
 from common import HERE, SCORING_PROTOCOL, digest, file_sha, load_suite, read_jsonl, score_prediction
+from model_names import MODEL_NAMES
 
-MODELS = ["baseline", "baseline-9b", "generalist", "perception", "reasoning"]
+MODELS = MODEL_NAMES
 
 
 def units(rows, predictions):

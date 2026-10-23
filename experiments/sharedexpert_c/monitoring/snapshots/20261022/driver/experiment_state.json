@@ -1,0 +1,16 @@
+{
+  "stage": "failed",
+  "updated_at": "2026-10-22T19:25:09.800228+08:00",
+  "driver_pid": 2671251,
+  "teacher": "generalist",
+  "child_pid": 2671519,
+  "command": [
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/.venv-train/bin/python",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/launch_100.py",
+    "generalist",
+    "--gpus",
+    "3,4,5,6",
+    "--execute"
+  ],
+  "error": "MemoryError: Cgroup working set exceeded 94% of its actual memory limit; sent SIGTERM only to the current experiment child group"
+}

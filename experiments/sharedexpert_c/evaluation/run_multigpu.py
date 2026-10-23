@@ -9,11 +9,13 @@ import os
 import signal
 import socket
 import subprocess
+import sys
 import time
 from contextlib import ExitStack
 from pathlib import Path
 
 from common import HERE, ROOT, PROTOCOL, digest, file_sha, load_suite, local_lock_path, read_jsonl
+from model_names import MODEL_NAMES
 from run_api import request_json
 from run_checkpoint import completed_cache, validate_hf_export_metadata
 
@@ -27,17 +29,23 @@ def free_port():
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--model", type=Path, required=True, help="Merged, complete HF model directory")
-    ap.add_argument("--name", required=True, choices=["baseline", "baseline-9b", "generalist", "perception", "reasoning"])
+    ap.add_argument("--name", required=True, choices=MODEL_NAMES)
     ap.add_argument("--gpus", type=int, nargs="+", required=True)
     ap.add_argument("--suite", type=Path, default=HERE / "suite.jsonl")
     ap.add_argument("--output-root", type=Path, default=HERE / "results")
     ap.add_argument("--concurrency", type=int, default=0, help="Total client concurrency; default 12 per GPU")
+    ap.add_argument("--server-config", type=Path, default=HERE / "local_server.json",
+                    help="Environment-only vLLM knobs (GPU count/memory differ from the original host)")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     if len(set(args.gpus)) != len(args.gpus):
         raise SystemExit("GPU list contains duplicates")
     concurrency = args.concurrency or 12 * len(args.gpus)
-    py = ROOT / "pre-lab/venv/bin/python"
+    py = Path(sys.executable)
+    server_config = {"gpu_memory_utilization": 0.88, "max_num_seqs": 16, "dtype": "bfloat16",
+                     "env": {"VLLM_USE_FLASHINFER_SAMPLER": "0", "OMP_NUM_THREADS": "8"}}
+    if args.server_config.is_file():
+        server_config.update(json.loads(args.server_config.read_text()))
     served_name = f"sharedexpert-{args.name}"
     plan = []
     for gpu in args.gpus:
@@ -47,8 +55,9 @@ def main():
             "port": port,
             "server": [str(py), "-m", "vllm.entrypoints.openai.api_server", "--model", str(args.model.resolve()),
                        "--served-model-name", served_name, "--host", "127.0.0.1", "--port", str(port),
-                       "--max-model-len", str(PROTOCOL["max_model_len"]), "--gpu-memory-utilization", "0.88",
-                       "--max-num-seqs", "16", "--dtype", "bfloat16",
+                       "--max-model-len", str(PROTOCOL["max_model_len"]),
+                       "--gpu-memory-utilization", str(server_config["gpu_memory_utilization"]),
+                       "--max-num-seqs", str(server_config["max_num_seqs"]), "--dtype", str(server_config["dtype"]),
                        "--limit-mm-per-prompt", json.dumps({"image": PROTOCOL["max_images"]}),
                        "--mm-processor-kwargs", json.dumps({"size": PROTOCOL["image_size"]})],
         })
@@ -94,8 +103,9 @@ def main():
         if provenance_path.exists() and json.loads(provenance_path.read_text()) != provenance:
             raise SystemExit("Output belongs to another checkpoint; use a different --output-root")
         provenance_path.write_text(json.dumps(provenance, indent=2) + "\n")
-        env_base = dict(os.environ, VLLM_USE_FLASHINFER_SAMPLER="0", OMP_NUM_THREADS="4", PYTHONUNBUFFERED="1")
-        bundled_cuda = ROOT / "pre-lab/venv/lib/python3.10/site-packages/nvidia/cu13"
+        env_base = dict(os.environ, PYTHONUNBUFFERED="1",
+                        **{str(k): str(v) for k, v in server_config.get("env", {}).items()})
+        bundled_cuda = py.resolve().parents[1] / "lib/python3.10/site-packages/nvidia/cu13"
         if (bundled_cuda / "bin/nvcc").is_file():
             env_base["CUDA_HOME"] = str(bundled_cuda)
             env_base["PATH"] = str(bundled_cuda / "bin") + os.pathsep + env_base.get("PATH", "")

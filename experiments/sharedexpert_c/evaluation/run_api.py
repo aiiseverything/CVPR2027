@@ -17,6 +17,7 @@ from collections import Counter
 from pathlib import Path
 
 from common import HERE, PROTOCOL, SCORING_PROTOCOL, digest, file_sha, load_suite, message_content, read_jsonl, score_prediction, image_size_for_count, local_lock_path
+from model_names import MODEL_NAMES
 
 
 def request_json(url, payload=None, timeout=60):
@@ -89,7 +90,7 @@ def main():
     endpoints.add_argument("--base-url", help="Single local inference endpoint")
     endpoints.add_argument("--base-urls", nargs="+", help="Multiple local inference endpoints; requests are spread deterministically")
     ap.add_argument("--model", required=True, help="Served model name, checked against /models")
-    ap.add_argument("--name", required=True, choices=["baseline", "baseline-9b", "generalist", "perception", "reasoning"])
+    ap.add_argument("--name", required=True, choices=MODEL_NAMES)
     ap.add_argument("--output-root", type=Path, default=HERE / "results")
     ap.add_argument("--concurrency", type=int, default=4)
     ap.add_argument("--timeout", type=int, default=1800)

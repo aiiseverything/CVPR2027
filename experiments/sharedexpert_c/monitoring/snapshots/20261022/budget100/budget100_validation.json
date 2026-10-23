@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "validated_at": "2026-10-20T09:53:51.397236+00:00",
+  "effective_config_diffs": {
+    "perception": {
+      "trainer.total_training_steps": {
+        "before": 300,
+        "after": 100
+      }
+    },
+    "reasoning": {
+      "trainer.total_training_steps": {
+        "before": 300,
+        "after": 100
+      }
+    },
+    "generalist": {
+      "trainer.total_training_steps": {
+        "before": 300,
+        "after": 100
+      }
+    }
+  },
+  "constant_lr_with_unchanged_warmup": true,
+  "data_audit": {
+    "perception": {
+      "rows_consumed": 3000,
+      "responses": 24000,
+      "source_counts": {
+        "tallyqa": 1200,
+        "clevr": 1200,
+        "refcoco": 600
+      },
+      "unique_records": 3000,
+      "prepared_file_sha256": "7326a82df9c5a65ae3d6fe681710385f354a81697de4d6e25ccb8d7da9cb446b"
+    },
+    "reasoning": {
+      "rows_consumed": 3000,
+      "responses": 24000,
+      "source_counts": {
+        "geometry3k": 1200,
+        "virl39k": 1200,
+        "mmk12": 600
+      },
+      "unique_records": 3000,
+      "prepared_file_sha256": "4fd2cf803f0773af253c9ee3152693ca33752d777a3678d83ed7eb9e1123fec5"
+    },
+    "generalist": {
+      "rows_consumed": 3000,
+      "responses": 24000,
+      "source_counts": {
+        "chartqa": 150,
+        "mmk12": 120,
+        "vqav2": 1200,
+        "geometry3k": 240,
+        "docvqa": 150,
+        "tallyqa": 240,
+        "clevr": 240,
+        "refcoco": 120,
+        "virl39k": 240,
+        "if_format": 300
+      },
+      "unique_records": 3000,
+      "prepared_file_sha256": "19d0a02941abe834261d3edba0b10a5e818efb6218f426b8c1425365b9a758dc"
+    }
+  },
+  "gpu_started": false,
+  "validated_artifacts": {
+    "logs/budget100/perception.yaml": "c02d9b66fcfdc562b8e9faf721790d87f3da04c9b7eb747968e696c8e06f8301",
+    "logs/budget100/reasoning.yaml": "895f3ae4b5ee9133079d6a51237903be4cde188fb03c051cf78cd39bd5a754f7",
+    "logs/budget100/generalist.yaml": "af121a6c7b6c96447b2537182be30d58c73e1cf64d80bb468ba8cb208f5ed8c8",
+    "training/launch.py": "94a6b409eff04ba9c771ad7fec3011599b59bb834eaf93f82b54660a8a0a22e6",
+    "training/launch_100.py": "b947370756c2a64caeb1754493c81a1cd19e7858177d53eaca92ae1f14602b6f",
+    "training/config/common.json": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa",
+    "training/config/execution_budget.json": "7c555bae25d71d73ae1ad0aea62db29b5f9b53903d2491c40040fe627900c007",
+    "scripts/validate_budget100.py": "8ac9ccd4b5fd18078931fb52a772b5b17856f4b698aecd64e9d7df3578db6fd5"
+  }
+}
