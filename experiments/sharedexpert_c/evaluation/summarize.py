@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit completeness and compare four models on identical frozen evaluation rows."""
+"""Audit completeness and compare named models on identical frozen evaluation rows."""
 from __future__ import annotations
 
 import argparse
@@ -10,8 +10,8 @@ from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
-from common import HERE, SCORING_PROTOCOL, digest, file_sha, load_suite, read_jsonl, score_prediction
-from model_names import MODEL_NAMES
+from common import HERE, SCORING_PROTOCOL, MODEL_NAMES, digest, file_sha, load_suite, read_jsonl, score_prediction
+from general_metrics import metric_name
 
 MODELS = MODEL_NAMES
 
@@ -82,7 +82,8 @@ def main():
         temporary.replace(scored_path)
         (directory / "scoring.json").write_text(json.dumps({
             "scoring_protocol": SCORING_PROTOCOL, "scoring_protocol_sha256": digest(SCORING_PROTOCOL),
-            "scorer_source_sha256": file_sha(HERE / "common.py"), "n_scored": len(pred),
+            "scorer_source_sha256": file_sha(HERE / "common.py"),
+            "general_scorer_source_sha256": file_sha(HERE / "general_metrics.py"), "n_scored": len(pred),
             "raw_source": str(directory / "predictions.jsonl"), "scored_file": str(scored_path),
         }, indent=2) + "\n")
         n_missing = sum(r["id"] not in pred for r in rows)
@@ -104,7 +105,7 @@ def main():
             array = units(samples, pred)
             accuracy, ci = estimate(array)
             results[bench][model] = {"score": accuracy, "ci95": ci, "n_rows": len(samples), "n_clusters": len(array),
-                                     "metric": "circular_group_accuracy" if bench == "MMBench_DEV_EN_V11" else "accuracy_at_iou_0.5" if bench == "RefCOCO_heldout" else "strict_accuracy"}
+                                     "metric": metric_name(samples[0])}
             if model != "baseline" and status["baseline"]["status"] == "complete":
                 delta, delta_ci = estimate(array, units(samples, predictions["baseline"]))
                 deltas[bench][model] = {"delta": delta, "ci95": delta_ci}
@@ -113,7 +114,7 @@ def main():
         benches = sorted({r["benchmark"] for r in rows if r["dimension"] == dimension})
         dimensions[dimension] = {"benchmarks": benches, "models": {}}
         for model in MODELS:
-            if all(model in results[b] for b in benches):
+            if benches and all(model in results[b] for b in benches):
                 dimensions[dimension]["models"][model] = float(np.mean([results[b][model]["score"] for b in benches]))
     complementarity = {}
     if all(status[m]["status"] == "complete" for m in ["generalist", "perception", "reasoning"]):
@@ -125,27 +126,30 @@ def main():
         complementarity["warning"] = "Descriptive final-answer oracle only; not an estimate of C-router prefix continuation gains. Evaluation answers must not train the router."
     report = {"suite": meta, "scoring_protocol": SCORING_PROTOCOL, "scoring_protocol_sha256": digest(SCORING_PROTOCOL),
               "status": status, "benchmarks": results, "paired_delta_vs_baseline": deltas, "dimension_macro": dimensions, "complementarity": complementarity}
+    from general_metrics import aggregate_general
+    report['general_details'] = aggregate_general(rows, predictions)
+    report['general_scorer_source_sha256'] = file_sha(HERE / "general_metrics.py")
     args.output_root.mkdir(parents=True, exist_ok=True)
     (args.output_root / "summary.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     lines = ["# SharedExpert 统一评测", "", "固定协议：thinking=True，temperature=0，response≤8192；实际多模态 prompt≤2048。超过 prompt 预算的样本对所有模型统一排除。finish_reason=length 一律记零，即使截断前已有完整正确 final；所有模型统一。", "", "本表为本地严格抽取及匹配协议，与既有 32768-token / DeepSeek judge 的历史成绩不能直接比较。", "", "| 模型 | 状态 | 缺失 | API 错误 | 抽取失败 | 长度截断 |", "|---|---|---:|---:|---:|---:|"]
     for model in MODELS:
         s = status[model]
         lines.append(f"| {model} | {s['status']} | {s.get('missing', 0)} | {s.get('api_errors', '—')} | {s.get('extraction_failures', '—')} | {s.get('length_terminated', '—')} |")
-    lines += ["", "只报告完整模型的成绩；准确率单位为百分比，括号为按图像／循环选项组 bootstrap 的 95% 区间。", "",
-              "| 评测集 | 实际行数 | " + " | ".join(MODELS) + " |",
-              "|---|---:|" + "---:|" * len(MODELS)]
+    lines += ["", "只报告完整模型的成绩；准确率单位为百分比，括号为按图像／循环选项组 bootstrap 的 95% 区间。", "", "| 评测集 | 实际行数 | " + " | ".join(MODELS) + " |", "|---|---:|" + "---:|" * len(MODELS)]
     for bench, samples in sorted(by_bench.items()):
         cells = []
         for model in MODELS:
             r = results[bench].get(model)
             cells.append(f"{100*r['score']:.2f} ({100*r['ci95'][0]:.2f}–{100*r['ci95'][1]:.2f})" if r else "—")
         lines.append(f"| {bench} | {len(samples)} | " + " | ".join(cells) + " |")
-    lines += ["", "MMBench 使用所选 base question 的全部循环选项版本，主指标为一组全对；其余是严格答案准确率，RefCOCO 为 IoU≥0.5。MME 仅 count/position/color/existence 子集，非完整 MME 总分。", "",
-              "| 维度（各评测集等权） | " + " | ".join(MODELS) + " |",
-              "|---|" + "---:|" * len(MODELS)]
+    lines += ["", "MMBench 使用所选 base question 的全部循环选项版本，主指标为一组全对；其余是严格答案准确率，RefCOCO 为 IoU≥0.5。MME 仅 count/position/color/existence 子集，非完整 MME 总分。", "", "| 维度（各评测集等权） | " + " | ".join(MODELS) + " |", "|---|" + "---:|" * len(MODELS)]
     for dim, values in dimensions.items():
         lines.append(f"| {dim} | " + " | ".join(f"{100*values['models'][m]:.2f}" if m in values["models"] else "—" for m in MODELS) + " |")
-    lines += ["", f"固定样本总数：{len(rows)}；预先排除条目：{len(meta['excluded'])}；grounding 包含状态：{meta['grounding_included']}。", "", "逐题结果与配对差值详见 summary.json / per_sample.csv；未完成的任务不产生最终准确率。"]
+    if any(r['task'] == 'ifeval' for r in rows):
+        lines += ["", "IFEval 评分可重复性修订：按冻结题目逐题固定 Python 随机种子，strict/loose 使用相同种子。",
+                  "官方检查器对 IFEval:1122 的 # 和 IFEval:1129 的 ! 会随机替换为英文字母；本修订固定其回退，未修正这两题的标点语义。",
+                  "完整 541 题分数仍包含这两题；两题最多影响 0.37 个百分点，另见 results_expanded/ifeval_sensitivity.json 的 539 题敏感性分析。"]
+    lines += ["", f"固定样本总数：{len(rows)}；预先排除条目：{len(meta['excluded'])}；grounding 包含状态：{meta.get('grounding_included', any(r['task'] == 'grounding' for r in rows))}。", "", "逐题结果与配对差值详见 summary.json / per_sample.csv；未完成的任务不产生最终准确率。"]
     (args.output_root / "summary.md").write_text("\n".join(lines) + "\n")
     with (args.output_root / "per_sample.csv").open("w") as f:
         writer = csv.DictWriter(f, fieldnames=["id", "benchmark", "dimension", "category", "group"] + MODELS)

@@ -1,0 +1,52 @@
+{
+  "verified_at": "2026-10-23T19:16:31.535690+08:00",
+  "new_suite": {
+    "rows": 1538,
+    "counts": {
+      "IFEval_strict": 541,
+      "OCRBench_heldout": 997
+    },
+    "sha256": "48493e6cf9e20d5fbe4f0870a5f43d8a8e64cffaf1c4783d5bd20d4eaff23aef",
+    "exclusions": [
+      {
+        "id": "OCRBench:519",
+        "reason": "existing_evaluation_image"
+      },
+      {
+        "id": "OCRBench:601",
+        "reason": "existing_evaluation_image"
+      },
+      {
+        "id": "OCRBench:606",
+        "reason": "existing_evaluation_image"
+      }
+    ]
+  },
+  "existing_suites": {
+    "suite": {
+      "rows": 3423,
+      "sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100",
+      "frozen_hash_valid": true
+    },
+    "suite_blink_mmvp": {
+      "rows": 2201,
+      "sha256": "13f7810c339d7966e4268709a10b74ae1683c4078ff5924ae972bf881d1c226a",
+      "frozen_hash_valid": true
+    }
+  },
+  "scoring_tests": {
+    "existing": 9,
+    "new": 5,
+    "failures": 0
+  },
+  "ifeval_checker_execution": {
+    "checked_prompts": 541,
+    "errors": 0,
+    "response": "fixed synthetic probe, not model evaluation"
+  },
+  "gpu_inference_started": false,
+  "limitations": [
+    "Unrelated export-metadata test discovery interrupted during slow environment import; focused scorer/request tests passed."
+  ],
+  "summary_render_without_predictions": true
+}

@@ -1,0 +1,87 @@
+{
+  "snapshot_at_utc": "2026-10-25T19:20:36.621740+00:00",
+  "source_repository_head": "adb88882cd2cf94717cebff2e56342a226215091",
+  "files": [
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_expanded/summary.json",
+      "source_sha256": "cfedb33393645e5d3d117df9139887c8fd1e77ef26b325d24051758d2ff5e53e",
+      "published": "reproducibility/evaluation_20261026/completed/summary.json",
+      "published_sha256": "cfedb33393645e5d3d117df9139887c8fd1e77ef26b325d24051758d2ff5e53e",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_expanded/ifeval_sensitivity.json",
+      "source_sha256": "cd71375c855d9c762b90aef1c42a459f4e1db370598af28aa7e307940d3af5a7",
+      "published": "reproducibility/evaluation_20261026/completed/ifeval_sensitivity.json",
+      "published_sha256": "cd71375c855d9c762b90aef1c42a459f4e1db370598af28aa7e307940d3af5a7",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_expanded/all_model_scores.csv",
+      "source_sha256": "a65580c745a73a7ecccc9ab06dcdc02329550c26a49ea4d3f1f2672a9635cf6f",
+      "published": "reproducibility/evaluation_20261026/completed/all_model_scores.csv",
+      "published_sha256": "a65580c745a73a7ecccc9ab06dcdc02329550c26a49ea4d3f1f2672a9635cf6f",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/analysis/reasoning_perception_diagnostic_20261025/analysis.json",
+      "source_sha256": "a4e186eb471b5b29c028be512c0e3be28cf9bab4251973e6ec9d5aa01325e96e",
+      "published": "reproducibility/evaluation_20261026/diagnostic/analysis.json",
+      "published_sha256": "a9af5e08b480efa27027fd0495a148f2cf2c20f6f39536904e411e2ae106186e",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/analysis/reasoning_perception_diagnostic_20261025/comparison.csv",
+      "source_sha256": "60cba93b79517423a352505c5e97e6ef0366e69df12aed8157c484071ac5ffc3",
+      "published": "reproducibility/evaluation_20261026/diagnostic/comparison.csv",
+      "published_sha256": "60cba93b79517423a352505c5e97e6ef0366e69df12aed8157c484071ac5ffc3",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/analysis/reasoning_perception_diagnostic_20261025/training_audit.json",
+      "source_sha256": "757c601ff6d57806ac1260b0305c5ce9744102fd4d9bcb989e1fafc76cfff87f",
+      "published": "reproducibility/evaluation_20261026/diagnostic/training_audit.json",
+      "published_sha256": "3f43080deb0f391c429d1255e6a0d9a828850fca26144b0591c42ca21562097e",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/analysis/reasoning_perception_diagnostic_20261025/exact_overlap_audit.json",
+      "source_sha256": "c0a90e8f931ed3b85c1d888ad299379788b770cbaa2e65ad93df93278cc22436",
+      "published": "reproducibility/evaluation_20261026/diagnostic/exact_overlap_audit.json",
+      "published_sha256": "c0a90e8f931ed3b85c1d888ad299379788b770cbaa2e65ad93df93278cc22436",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/analysis/reasoning_perception_diagnostic_20261025/analyze.py",
+      "source_sha256": "f9a43fa0bd2b1f60a59c3cf444006b1236c5ce41669ac01fb30b01bb47c0a9eb",
+      "published": "reproducibility/evaluation_20261026/diagnostic/analyze.py",
+      "published_sha256": "e421121043b8f2b1afacee3df476378d5f78d26af0a13d6714d178f56bc8f125",
+      "transformation": "diagnostic_script"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1/source_manifest.json",
+      "source_sha256": "f9ef729d32b03d3aaf6ddd08d7a41eaae8fa16f19f25ac468433634bf67fb94a",
+      "published": "reproducibility/evaluation_20261026/highres/source_manifest.json",
+      "published_sha256": "f9ef729d32b03d3aaf6ddd08d7a41eaae8fa16f19f25ac468433634bf67fb94a",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1/selection.json",
+      "source_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+      "published": "reproducibility/evaluation_20261026/highres/selection.json",
+      "published_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1/zoom_selection_audit.json",
+      "source_sha256": "0ac3492c3ef7dcfd2485ed7a560c1f4fb87ab629e7b41886ef508f9f7028641c",
+      "transformation": "derived text-free review summary"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1/annotation_issues_audit.json",
+      "source_sha256": "15d09dad1665ab86ecc3f5e3b6bce88033d0868e4aba3628a964968a0cf650c0",
+      "transformation": "derived text-free review summary"
+    }
+  ],
+  "excluded": "Weights, environments, dataset images/Parquet/SQLite, full evaluation questions, new raw model responses, proxy credentials and live process logs are not added to this publication snapshot."
+}

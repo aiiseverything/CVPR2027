@@ -1,0 +1,189 @@
+{
+  "schema_version": "highres-annotation-issues-audit-v1",
+  "created_at": "2026-10-25T18:58:22.370056+00:00",
+  "selection_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+  "source_manifest_sha256": "f9ef729d32b03d3aaf6ddd08d7a41eaae8fa16f19f25ac468433634bf67fb94a",
+  "matcher_sha256": "10d6aadf05b76055911c62cd50c9028c3a3bea7c46553d72111d2db81bcc1fa5",
+  "selected_counts": {
+    "vstar": 115,
+    "zoom": 807,
+    "hrbench_4k": 400,
+    "hrbench_8k": 400,
+    "mme_rw_en": 19129,
+    "mme_rw_cn": 3610
+  },
+  "selected_total": 24461,
+  "issue_count": 11,
+  "missing_gold_count": 10,
+  "unknown_anomalies": [],
+  "policy": "Retain every selected source row and all original text, labels and gold. Primary score includes all 24461 rows; a separate sensitivity excludes these exact 11 rows. No Chinese label is mapped to A.",
+  "original_audit_sha256": "15d09dad1665ab86ecc3f5e3b6bce88033d0868e4aba3628a964968a0cf650c0",
+  "publication_note": "Derived summary; full question/options/gold retained only in exact exception code fixtures and server audit.",
+  "issues": [
+    {
+      "id": "zoom:000477",
+      "benchmark": "zoom",
+      "original_id": "2e0304061d079575c689b86916217248",
+      "issue_type": "missing_gold_label",
+      "missing_gold": true,
+      "source": {
+        "repo": "inclusionAI/ZoomBench",
+        "revision": "b788097e57d30510c6877824833234a73bf80d25",
+        "path": "data/test.parquet",
+        "sha256": "d44ebda2eda485cba055181f4e6dc50c42f81b5d0f7e936bf427fa01502a391a",
+        "row_index": 477
+      },
+      "source_text_sha256": "952529193e938b026a1d013d02aacd1c84856bf44873095559d90ab27345f010"
+    },
+    {
+      "id": "mme_rw_en:019452",
+      "benchmark": "mme_rw_en",
+      "original_id": 12906,
+      "issue_type": "duplicate_option_label",
+      "missing_gold": false,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+        "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+        "path": "data/train-00057-of-00070.parquet",
+        "sha256": "17083eb2f0dbcb1cf825ef7bf49db89fab8aaeb9eea7a838e2a56cccfefd1f2c",
+        "row_index": 224
+      },
+      "source_text_sha256": "a97ac3413640f7e172a08ba26025683a5402d019c613549e3621363f97c9d489"
+    },
+    {
+      "id": "mme_rw_en:019625",
+      "benchmark": "mme_rw_en",
+      "original_id": 13080,
+      "issue_type": "missing_gold_duplicate_label",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+        "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+        "path": "data/train-00058-of-00070.parquet",
+        "sha256": "49a6d4d786d01ba057a0dc861e13e5f79ed3a358f9dd4709f83af60c022f9765",
+        "row_index": 60
+      },
+      "source_text_sha256": "db5022ae029379a315c8cd44d6cb7ba0367cf4c974a2e880ac40f8e11bf82bdd"
+    },
+    {
+      "id": "mme_rw_cn:005119",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5121,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 112
+      },
+      "source_text_sha256": "1bad22bed791228bd42a4a6775a337ec8d594742c1d72da89c887f503934c9bd"
+    },
+    {
+      "id": "mme_rw_cn:005126",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5126,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 119
+      },
+      "source_text_sha256": "4e9f18d876f634008c66a1f6ad8aadacce38e5dfe44d1638dd8262de5a672c6c"
+    },
+    {
+      "id": "mme_rw_cn:005133",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5134,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 126
+      },
+      "source_text_sha256": "51a143449d225fb3e24167592c07529b6173058c78ff32e920a30ed6d668ab93"
+    },
+    {
+      "id": "mme_rw_cn:005149",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5148,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 142
+      },
+      "source_text_sha256": "51a143449d225fb3e24167592c07529b6173058c78ff32e920a30ed6d668ab93"
+    },
+    {
+      "id": "mme_rw_cn:005206",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5207,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 199
+      },
+      "source_text_sha256": "3516ffa7656898a55ba61cb98f0b6abe942e65860ed583f3fba6d92f7be34ceb"
+    },
+    {
+      "id": "mme_rw_cn:005207",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5209,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 200
+      },
+      "source_text_sha256": "dc6ae30e76f3d84bf4279d2446204ad4d107b5b5177fe1d3cf5c7cfb8d84a780"
+    },
+    {
+      "id": "mme_rw_cn:005211",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5211,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 204
+      },
+      "source_text_sha256": "dc6ae30e76f3d84bf4279d2446204ad4d107b5b5177fe1d3cf5c7cfb8d84a780"
+    },
+    {
+      "id": "mme_rw_cn:005217",
+      "benchmark": "mme_rw_cn",
+      "original_id": 5215,
+      "issue_type": "non_latin_label_missing_gold",
+      "missing_gold": true,
+      "source": {
+        "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+        "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+        "path": "data/train-00011-of-00013.parquet",
+        "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+        "row_index": 210
+      },
+      "source_text_sha256": "65dc3ade66794b7c7b58dd909debe5858a206ea8129102ccd25c5da8d35fce3c"
+    }
+  ]
+}

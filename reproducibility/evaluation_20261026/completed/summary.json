@@ -1,0 +1,1983 @@
+{
+  "suites": {
+    "main": {
+      "suite_sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100",
+      "counts": {
+        "MMBench_DEV_EN_V11": 930,
+        "MME_perception": 240,
+        "MMMU_DEV_VAL": 449,
+        "MMStar": 500,
+        "MathVision_MINI": 304,
+        "MathVista_MINI": 500,
+        "RefCOCO_heldout": 500
+      },
+      "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6"
+    },
+    "blink_mmvp": {
+      "suite_sha256": "13f7810c339d7966e4268709a10b74ae1683c4078ff5924ae972bf881d1c226a",
+      "counts": {
+        "BLINK_val": 1901,
+        "MMVP": 300
+      },
+      "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6"
+    },
+    "general": {
+      "suite_sha256": "48493e6cf9e20d5fbe4f0870a5f43d8a8e64cffaf1c4783d5bd20d4eaff23aef",
+      "counts": {
+        "IFEval_strict": 541,
+        "OCRBench_heldout": 997
+      },
+      "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6"
+    }
+  },
+  "status": {
+    "baseline": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 531,
+        "length_terminated": 530
+      },
+      "blink_mmvp": {
+        "status": "complete",
+        "n_expected": 2201,
+        "n_predicted": 2201,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 454,
+        "length_terminated": 455
+      },
+      "general": {
+        "status": "complete",
+        "n_expected": 1538,
+        "n_predicted": 1538,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 351,
+        "length_terminated": 354
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 7162,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 1336,
+        "length_terminated": 1339
+      }
+    },
+    "baseline-9b": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 461,
+        "length_terminated": 466
+      },
+      "blink_mmvp": {
+        "status": "not_started",
+        "n_expected": 2201,
+        "n_predicted": 0,
+        "missing": 2201
+      },
+      "general": {
+        "status": "not_started",
+        "n_expected": 1538,
+        "n_predicted": 0,
+        "missing": 1538
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 3423,
+        "missing": 3739,
+        "api_errors": 0,
+        "extraction_failures": 461,
+        "length_terminated": 466
+      }
+    },
+    "generalist": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 275,
+        "length_terminated": 277
+      },
+      "blink_mmvp": {
+        "status": "complete",
+        "n_expected": 2201,
+        "n_predicted": 2201,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 143,
+        "length_terminated": 143
+      },
+      "general": {
+        "status": "complete",
+        "n_expected": 1538,
+        "n_predicted": 1538,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 183,
+        "length_terminated": 186
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 7162,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 601,
+        "length_terminated": 606
+      }
+    },
+    "perception": {
+      "main": {
+        "status": "not_started",
+        "n_expected": 3423,
+        "n_predicted": 0,
+        "missing": 3423
+      },
+      "blink_mmvp": {
+        "status": "not_started",
+        "n_expected": 2201,
+        "n_predicted": 0,
+        "missing": 2201
+      },
+      "general": {
+        "status": "not_started",
+        "n_expected": 1538,
+        "n_predicted": 0,
+        "missing": 1538
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 0,
+        "missing": 7162,
+        "api_errors": 0,
+        "extraction_failures": 0,
+        "length_terminated": 0
+      }
+    },
+    "reasoning": {
+      "main": {
+        "status": "not_started",
+        "n_expected": 3423,
+        "n_predicted": 0,
+        "missing": 3423
+      },
+      "blink_mmvp": {
+        "status": "not_started",
+        "n_expected": 2201,
+        "n_predicted": 0,
+        "missing": 2201
+      },
+      "general": {
+        "status": "not_started",
+        "n_expected": 1538,
+        "n_predicted": 0,
+        "missing": 1538
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 0,
+        "missing": 7162,
+        "api_errors": 0,
+        "extraction_failures": 0,
+        "length_terminated": 0
+      }
+    },
+    "perception-step100": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 302,
+        "length_terminated": 302
+      },
+      "blink_mmvp": {
+        "status": "complete",
+        "n_expected": 2201,
+        "n_predicted": 2201,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 187,
+        "length_terminated": 187
+      },
+      "general": {
+        "status": "complete",
+        "n_expected": 1538,
+        "n_predicted": 1538,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 226,
+        "length_terminated": 231
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 7162,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 715,
+        "length_terminated": 720
+      }
+    },
+    "reasoning-step100": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 225,
+        "length_terminated": 229
+      },
+      "blink_mmvp": {
+        "status": "complete",
+        "n_expected": 2201,
+        "n_predicted": 2201,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 105,
+        "length_terminated": 105
+      },
+      "general": {
+        "status": "complete",
+        "n_expected": 1538,
+        "n_predicted": 1538,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 155,
+        "length_terminated": 160
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 7162,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 485,
+        "length_terminated": 494
+      }
+    },
+    "perception-v2-step100": {
+      "main": {
+        "status": "complete",
+        "n_expected": 3423,
+        "n_predicted": 3423,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 426,
+        "length_terminated": 431
+      },
+      "blink_mmvp": {
+        "status": "complete",
+        "n_expected": 2201,
+        "n_predicted": 2201,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 306,
+        "length_terminated": 306
+      },
+      "general": {
+        "status": "complete",
+        "n_expected": 1538,
+        "n_predicted": 1538,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 252,
+        "length_terminated": 259
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 7162,
+        "missing": 0,
+        "api_errors": 0,
+        "extraction_failures": 984,
+        "length_terminated": 996
+      }
+    },
+    "domain-opd": {
+      "main": {
+        "status": "not_started",
+        "n_expected": 3423,
+        "n_predicted": 0,
+        "missing": 3423
+      },
+      "blink_mmvp": {
+        "status": "not_started",
+        "n_expected": 2201,
+        "n_predicted": 0,
+        "missing": 2201
+      },
+      "general": {
+        "status": "not_started",
+        "n_expected": 1538,
+        "n_predicted": 0,
+        "missing": 1538
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 0,
+        "missing": 7162,
+        "api_errors": 0,
+        "extraction_failures": 0,
+        "length_terminated": 0
+      }
+    },
+    "mix-rl": {
+      "main": {
+        "status": "not_started",
+        "n_expected": 3423,
+        "n_predicted": 0,
+        "missing": 3423
+      },
+      "blink_mmvp": {
+        "status": "not_started",
+        "n_expected": 2201,
+        "n_predicted": 0,
+        "missing": 2201
+      },
+      "general": {
+        "status": "not_started",
+        "n_expected": 1538,
+        "n_predicted": 0,
+        "missing": 1538
+      },
+      "combined": {
+        "n_expected": 7162,
+        "n_predicted": 0,
+        "missing": 7162,
+        "api_errors": 0,
+        "extraction_failures": 0,
+        "length_terminated": 0
+      }
+    }
+  },
+  "benchmarks": {
+    "BLINK_val": {
+      "baseline": {
+        "score": 0.5917937927406628,
+        "ci95": [
+          0.569700157811678,
+          0.6139005786428194
+        ],
+        "n_rows": 1901,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.6717517096265123,
+        "ci95": [
+          0.6496580746975276,
+          0.6927932667017359
+        ],
+        "n_rows": 1901,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.6685954760652288,
+        "ci95": [
+          0.6480668069437139,
+          0.6901762230405049
+        ],
+        "n_rows": 1901,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.6754339821146765,
+        "ci95": [
+          0.6533403471856918,
+          0.6959495002630195
+        ],
+        "n_rows": 1901,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.62493424513414,
+        "ci95": [
+          0.6033666491320357,
+          0.6459758022093635
+        ],
+        "n_rows": 1901,
+        "metric": "strict_accuracy"
+      }
+    },
+    "IFEval_strict": {
+      "baseline": {
+        "score": 0.39186691312384475,
+        "ci95": [
+          0.34935304990757854,
+          0.4343807763401109
+        ],
+        "n_rows": 541,
+        "metric": "ifeval_strict_prompt_accuracy"
+      },
+      "generalist": {
+        "score": 0.6414048059149723,
+        "ci95": [
+          0.600739371534196,
+          0.6820702402957486
+        ],
+        "n_rows": 541,
+        "metric": "ifeval_strict_prompt_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.5600739371534196,
+        "ci95": [
+          0.5194085027726433,
+          0.600739371534196
+        ],
+        "n_rows": 541,
+        "metric": "ifeval_strict_prompt_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.6617375231053605,
+        "ci95": [
+          0.6210720887245841,
+          0.698752310536044
+        ],
+        "n_rows": 541,
+        "metric": "ifeval_strict_prompt_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.5378927911275416,
+        "ci95": [
+          0.49722735674676527,
+          0.5785582255083179
+        ],
+        "n_rows": 541,
+        "metric": "ifeval_strict_prompt_accuracy"
+      }
+    },
+    "MMBench_DEV_EN_V11": {
+      "baseline": {
+        "score": 0.852,
+        "ci95": [
+          0.808,
+          0.896
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.88,
+        "ci95": [
+          0.836,
+          0.92
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      },
+      "generalist": {
+        "score": 0.88,
+        "ci95": [
+          0.836,
+          0.916
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.872,
+        "ci95": [
+          0.828,
+          0.912
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.884,
+        "ci95": [
+          0.844,
+          0.924
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.864,
+        "ci95": [
+          0.82,
+          0.9040999999999995
+        ],
+        "n_rows": 930,
+        "metric": "circular_group_accuracy"
+      }
+    },
+    "MME_perception": {
+      "baseline": {
+        "score": 0.9291666666666667,
+        "ci95": [
+          0.8943029144274494,
+          0.9615384615384616
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.9458333333333333,
+        "ci95": [
+          0.913381759614759,
+          0.9750051652892562
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.9541666666666667,
+        "ci95": [
+          0.9208333333333333,
+          0.9833333333333333
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.95,
+        "ci95": [
+          0.9152410984101957,
+          0.9830544082039596
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.95,
+        "ci95": [
+          0.9159140379674564,
+          0.9789915966386554
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.95,
+        "ci95": [
+          0.9117528462998102,
+          0.9831967787114845
+        ],
+        "n_rows": 240,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMMU_DEV_VAL": {
+      "baseline": {
+        "score": 0.5701559020044543,
+        "ci95": [
+          0.5233853006681515,
+          0.6146993318485523
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.623608017817372,
+        "ci95": [
+          0.576837416481069,
+          0.6681514476614699
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.6726057906458798,
+        "ci95": [
+          0.6280623608017817,
+          0.7171492204899778
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.6347438752783965,
+        "ci95": [
+          0.5901447661469933,
+          0.6792873051224945
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.6837416481069042,
+        "ci95": [
+          0.6391982182628062,
+          0.7282850779510023
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.6013363028953229,
+        "ci95": [
+          0.5567928730512249,
+          0.6458797327394209
+        ],
+        "n_rows": 449,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMStar": {
+      "baseline": {
+        "score": 0.676,
+        "ci95": [
+          0.636,
+          0.718
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.682,
+        "ci95": [
+          0.64,
+          0.724
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.724,
+        "ci95": [
+          0.686,
+          0.764
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.716,
+        "ci95": [
+          0.674,
+          0.754
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.738,
+        "ci95": [
+          0.7,
+          0.776
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.688,
+        "ci95": [
+          0.648,
+          0.728
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MMVP": {
+      "baseline": {
+        "score": 0.79,
+        "ci95": [
+          0.74,
+          0.8366666666666667
+        ],
+        "n_rows": 300,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.8166666666666667,
+        "ci95": [
+          0.77,
+          0.86
+        ],
+        "n_rows": 300,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.8133333333333334,
+        "ci95": [
+          0.7666666666666667,
+          0.8566666666666667
+        ],
+        "n_rows": 300,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.8033333333333333,
+        "ci95": [
+          0.7566666666666667,
+          0.8467499999999996
+        ],
+        "n_rows": 300,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.82,
+        "ci95": [
+          0.7766666666666666,
+          0.8633333333333333
+        ],
+        "n_rows": 300,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MathVision_MINI": {
+      "baseline": {
+        "score": 0.35855263157894735,
+        "ci95": [
+          0.3059210526315789,
+          0.4144736842105263
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.40131578947368424,
+        "ci95": [
+          0.34539473684210525,
+          0.45723684210526316
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.4506578947368421,
+        "ci95": [
+          0.39473684210526316,
+          0.506578947368421
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.4440789473684211,
+        "ci95": [
+          0.3881578947368421,
+          0.5
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.4868421052631579,
+        "ci95": [
+          0.4276315789473684,
+          0.5427631578947368
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.35526315789473684,
+        "ci95": [
+          0.3026315789473684,
+          0.40789473684210525
+        ],
+        "n_rows": 304,
+        "metric": "strict_accuracy"
+      }
+    },
+    "MathVista_MINI": {
+      "baseline": {
+        "score": 0.716,
+        "ci95": [
+          0.68,
+          0.754
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "baseline-9b": {
+        "score": 0.746,
+        "ci95": [
+          0.708,
+          0.784
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "generalist": {
+        "score": 0.796,
+        "ci95": [
+          0.762,
+          0.83
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.78,
+        "ci95": [
+          0.744,
+          0.814
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.812,
+        "ci95": [
+          0.778,
+          0.848
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.754,
+        "ci95": [
+          0.716,
+          0.79
+        ],
+        "n_rows": 500,
+        "metric": "strict_accuracy"
+      }
+    },
+    "OCRBench_heldout": {
+      "baseline": {
+        "score": 0.8154463390170511,
+        "ci95": [
+          0.7895243915123777,
+          0.8403286137285264
+        ],
+        "n_rows": 997,
+        "metric": "ocrbench_normalized_substring_accuracy"
+      },
+      "generalist": {
+        "score": 0.8294884653961886,
+        "ci95": [
+          0.8055520728853227,
+          0.8529196138275809
+        ],
+        "n_rows": 997,
+        "metric": "ocrbench_normalized_substring_accuracy"
+      },
+      "perception-step100": {
+        "score": 0.8375125376128385,
+        "ci95": [
+          0.8128594909116479,
+          0.8614774137670659
+        ],
+        "n_rows": 997,
+        "metric": "ocrbench_normalized_substring_accuracy"
+      },
+      "reasoning-step100": {
+        "score": 0.835506519558676,
+        "ci95": [
+          0.8098519582098774,
+          0.8585326929550485
+        ],
+        "n_rows": 997,
+        "metric": "ocrbench_normalized_substring_accuracy"
+      },
+      "perception-v2-step100": {
+        "score": 0.8324974924774323,
+        "ci95": [
+          0.8083821929130816,
+          0.8547611373746532
+        ],
+        "n_rows": 997,
+        "metric": "ocrbench_normalized_substring_accuracy"
+      }
+    },
+    "RefCOCO_heldout": {
+      "baseline": {
+        "score": 0.918,
+        "ci95": [
+          0.8932199564925691,
+          0.9415204678362573
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      },
+      "baseline-9b": {
+        "score": 0.916,
+        "ci95": [
+          0.8909400459839056,
+          0.939880827546566
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      },
+      "generalist": {
+        "score": 0.912,
+        "ci95": [
+          0.8870605529337833,
+          0.9368635437881874
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      },
+      "perception-step100": {
+        "score": 0.92,
+        "ci95": [
+          0.8955823293172691,
+          0.9446667602185996
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      },
+      "reasoning-step100": {
+        "score": 0.92,
+        "ci95": [
+          0.8960764705882354,
+          0.9433235867446393
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      },
+      "perception-v2-step100": {
+        "score": 0.93,
+        "ci95": [
+          0.9082026376933633,
+          0.9515151515151515
+        ],
+        "n_rows": 500,
+        "metric": "accuracy_at_iou_0.5"
+      }
+    }
+  },
+  "dimension_macro": {
+    "reasoning": {
+      "benchmarks": [
+        "MMMU_DEV_VAL",
+        "MathVision_MINI",
+        "MathVista_MINI"
+      ],
+      "models": {
+        "baseline": {
+          "score": 0.5482361778611339,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        },
+        "baseline-9b": {
+          "score": 0.5903079357636855,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        },
+        "generalist": {
+          "score": 0.6397545617942406,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        },
+        "perception-step100": {
+          "score": 0.6196076075489392,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        },
+        "reasoning-step100": {
+          "score": 0.660861251123354,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        },
+        "perception-v2-step100": {
+          "score": 0.5701998202633533,
+          "benchmarks": [
+            "MMMU_DEV_VAL",
+            "MathVision_MINI",
+            "MathVista_MINI"
+          ]
+        }
+      },
+      "common_benchmarks": [
+        "MMMU_DEV_VAL",
+        "MathVision_MINI",
+        "MathVista_MINI"
+      ],
+      "common_models": {
+        "baseline": 0.5482361778611339,
+        "perception-step100": 0.6196076075489392,
+        "reasoning-step100": 0.660861251123354
+      }
+    },
+    "perception": {
+      "benchmarks": [
+        "BLINK_val",
+        "MME_perception",
+        "MMVP",
+        "RefCOCO_heldout"
+      ],
+      "models": {
+        "baseline": {
+          "score": 0.8072401148518324,
+          "benchmarks": [
+            "BLINK_val",
+            "MME_perception",
+            "MMVP",
+            "RefCOCO_heldout"
+          ]
+        },
+        "baseline-9b": {
+          "score": 0.9309166666666666,
+          "benchmarks": [
+            "MME_perception",
+            "RefCOCO_heldout"
+          ]
+        },
+        "generalist": {
+          "score": 0.8386462607399614,
+          "benchmarks": [
+            "BLINK_val",
+            "MME_perception",
+            "MMVP",
+            "RefCOCO_heldout"
+          ]
+        },
+        "perception-step100": {
+          "score": 0.8379822023496405,
+          "benchmarks": [
+            "BLINK_val",
+            "MME_perception",
+            "MMVP",
+            "RefCOCO_heldout"
+          ]
+        },
+        "reasoning-step100": {
+          "score": 0.8371918288620024,
+          "benchmarks": [
+            "BLINK_val",
+            "MME_perception",
+            "MMVP",
+            "RefCOCO_heldout"
+          ]
+        },
+        "perception-v2-step100": {
+          "score": 0.831233561283535,
+          "benchmarks": [
+            "BLINK_val",
+            "MME_perception",
+            "MMVP",
+            "RefCOCO_heldout"
+          ]
+        }
+      },
+      "common_benchmarks": [
+        "BLINK_val",
+        "MME_perception",
+        "MMVP",
+        "RefCOCO_heldout"
+      ],
+      "common_models": {
+        "baseline": 0.8072401148518324,
+        "perception-step100": 0.8379822023496405,
+        "reasoning-step100": 0.8371918288620024
+      }
+    },
+    "general": {
+      "benchmarks": [
+        "IFEval_strict",
+        "MMBench_DEV_EN_V11",
+        "MMStar",
+        "OCRBench_heldout"
+      ],
+      "models": {
+        "baseline": {
+          "score": 0.683828313035224,
+          "benchmarks": [
+            "IFEval_strict",
+            "MMBench_DEV_EN_V11",
+            "MMStar",
+            "OCRBench_heldout"
+          ]
+        },
+        "baseline-9b": {
+          "score": 0.781,
+          "benchmarks": [
+            "MMBench_DEV_EN_V11",
+            "MMStar"
+          ]
+        },
+        "generalist": {
+          "score": 0.7687233178277902,
+          "benchmarks": [
+            "IFEval_strict",
+            "MMBench_DEV_EN_V11",
+            "MMStar",
+            "OCRBench_heldout"
+          ]
+        },
+        "perception-step100": {
+          "score": 0.7463966186915646,
+          "benchmarks": [
+            "IFEval_strict",
+            "MMBench_DEV_EN_V11",
+            "MMStar",
+            "OCRBench_heldout"
+          ]
+        },
+        "reasoning-step100": {
+          "score": 0.7798110106660091,
+          "benchmarks": [
+            "IFEval_strict",
+            "MMBench_DEV_EN_V11",
+            "MMStar",
+            "OCRBench_heldout"
+          ]
+        },
+        "perception-v2-step100": {
+          "score": 0.7305975709012434,
+          "benchmarks": [
+            "IFEval_strict",
+            "MMBench_DEV_EN_V11",
+            "MMStar",
+            "OCRBench_heldout"
+          ]
+        }
+      },
+      "common_benchmarks": [
+        "IFEval_strict",
+        "MMBench_DEV_EN_V11",
+        "MMStar",
+        "OCRBench_heldout"
+      ],
+      "common_models": {
+        "baseline": 0.683828313035224,
+        "perception-step100": 0.7463966186915646,
+        "reasoning-step100": 0.7798110106660091
+      }
+    }
+  },
+  "paired_delta_vs_baseline": {
+    "BLINK_val": {
+      "generalist": {
+        "delta_vs_baseline": 0.07995791688584952,
+        "ci95": [
+          0.06049447659126783,
+          0.09838243029984212
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.07680168332456605,
+        "ci95": [
+          0.05785113098369276,
+          0.09679116254602838
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.08364018937401374,
+        "ci95": [
+          0.06575486586007362,
+          0.10206470278800632
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.03314045239347718,
+        "ci95": [
+          0.014715938979484417,
+          0.05207785376117835
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.00683850604944769,
+        "ci95": [
+          -0.0247238295633877,
+          0.012098895318253589
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.00683850604944769,
+        "ci95": [
+          -0.012098895318253589,
+          0.0247238295633877
+        ]
+      }
+    },
+    "IFEval_strict": {
+      "generalist": {
+        "delta_vs_baseline": 0.24953789279112754,
+        "ci95": [
+          0.20517560073937158,
+          0.29390018484288355
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.16820702402957483,
+        "ci95": [
+          0.12384473197781887,
+          0.21256931608133084
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.26987060998151574,
+        "ci95": [
+          0.22550831792975973,
+          0.31423290203327175
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.14602587800369687,
+        "ci95": [
+          0.10351201478743072,
+          0.1922365988909427
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.10166358595194092,
+        "ci95": [
+          -0.14232902033271722,
+          -0.060998151571164505
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.10166358595194092,
+        "ci95": [
+          0.060998151571164505,
+          0.14232902033271722
+        ]
+      }
+    },
+    "MMBench_DEV_EN_V11": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.028000000000000025,
+        "ci95": [
+          -0.0040000000000000036,
+          0.06000000000000005
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.028000000000000025,
+        "ci95": [
+          0.0,
+          0.05999999999999994
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.020000000000000018,
+        "ci95": [
+          -0.016000000000000014,
+          0.05599999999999994
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.03200000000000003,
+        "ci95": [
+          0.0,
+          0.06399999999999995
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.01200000000000001,
+        "ci95": [
+          -0.016000000000000014,
+          0.040000000000000036
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.01200000000000001,
+        "ci95": [
+          -0.040000000000000036,
+          0.016000000000000014
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.01200000000000001,
+        "ci95": [
+          -0.016000000000000014,
+          0.040000000000000036
+        ]
+      }
+    },
+    "MME_perception": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.016666666666666607,
+        "ci95": [
+          -0.012396694214875992,
+          0.04622827944737217
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.025000000000000022,
+        "ci95": [
+          -0.004002459016393445,
+          0.05327868852459017
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.02083333333333326,
+        "ci95": [
+          -0.008474576271186418,
+          0.050420168067226934
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.02083333333333326,
+        "ci95": [
+          0.0,
+          0.04435483870967738
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.02083333333333326,
+        "ci95": [
+          -0.012295081967213073,
+          0.05310187871753948
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": 0.0,
+        "ci95": [
+          -0.02399999999999991,
+          0.0243952419032387
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.0,
+        "ci95": [
+          -0.024395241903238725,
+          0.02399999999999991
+        ]
+      }
+    },
+    "MMMU_DEV_VAL": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.053452115812917644,
+        "ci95": [
+          0.017817371937639215,
+          0.08691536748329592
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.10244988864142546,
+        "ci95": [
+          0.06904231625835189,
+          0.13808463251670378
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.06458797327394217,
+        "ci95": [
+          0.031180400890868598,
+          0.10022271714922049
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.11358574610244987,
+        "ci95": [
+          0.0801781737193763,
+          0.14699331848552344
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.031180400890868598,
+        "ci95": [
+          0.00222717149220486,
+          0.062360801781737196
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.0489977728285077,
+        "ci95": [
+          -0.08463251670378613,
+          -0.013363028953229383
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.0489977728285077,
+        "ci95": [
+          0.013363028953229383,
+          0.08463251670378613
+        ]
+      }
+    },
+    "MMStar": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.006000000000000005,
+        "ci95": [
+          -0.026000000000000023,
+          0.03799999999999992
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.04799999999999993,
+        "ci95": [
+          0.014000000000000012,
+          0.08199999999999996
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.039999999999999925,
+        "ci95": [
+          0.006000000000000005,
+          0.07199999999999995
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.061999999999999944,
+        "ci95": [
+          0.03200000000000003,
+          0.09399999999999997
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.0119999999999999,
+        "ci95": [
+          -0.020000000000000018,
+          0.04399999999999993
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.02200000000000002,
+        "ci95": [
+          -0.051999999999999935,
+          0.006000000000000005
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.02200000000000002,
+        "ci95": [
+          -0.006000000000000005,
+          0.051999999999999935
+        ]
+      }
+    },
+    "MMVP": {
+      "generalist": {
+        "delta_vs_baseline": 0.026666666666666616,
+        "ci95": [
+          -0.00666666666666671,
+          0.06000000000000005
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.023333333333333317,
+        "ci95": [
+          -0.010000000000000009,
+          0.05666666666666664
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.013333333333333308,
+        "ci95": [
+          -0.016666666666666607,
+          0.043333333333333335
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.029999999999999916,
+        "ci95": [
+          -0.0033333333333332993,
+          0.06333333333333335
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": 0.010000000000000009,
+        "ci95": [
+          -0.020000000000000018,
+          0.040083333333332916
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": -0.010000000000000009,
+        "ci95": [
+          -0.04008333333333337,
+          0.020000000000000018
+        ]
+      }
+    },
+    "MathVision_MINI": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.04276315789473689,
+        "ci95": [
+          0.0,
+          0.08552631578947367
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.09210526315789475,
+        "ci95": [
+          0.04934210526315791,
+          0.1381578947368421
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.08552631578947373,
+        "ci95": [
+          0.03947368421052633,
+          0.12837171052631538
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.12828947368421056,
+        "ci95": [
+          0.08552631578947373,
+          0.17434210526315785
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": -0.003289473684210509,
+        "ci95": [
+          -0.046052631578947345,
+          0.03947368421052627
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.042763157894736836,
+        "ci95": [
+          -0.0921052631578948,
+          0.006578947368421018
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.042763157894736836,
+        "ci95": [
+          -0.006578947368421018,
+          0.0921052631578948
+        ]
+      }
+    },
+    "MathVista_MINI": {
+      "baseline-9b": {
+        "delta_vs_baseline": 0.030000000000000027,
+        "ci95": [
+          -0.0020000000000000018,
+          0.06004999999999978
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": 0.08000000000000007,
+        "ci95": [
+          0.052000000000000046,
+          0.10999999999999999
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.06400000000000006,
+        "ci95": [
+          0.03200000000000003,
+          0.09600000000000009
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.09600000000000009,
+        "ci95": [
+          0.06600000000000006,
+          0.126
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.038000000000000034,
+        "ci95": [
+          0.008000000000000007,
+          0.06800000000000006
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": -0.03200000000000003,
+        "ci95": [
+          -0.061999999999999944,
+          -0.003950000000000168
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.03200000000000003,
+        "ci95": [
+          0.003949999999999898,
+          0.061999999999999944
+        ]
+      }
+    },
+    "OCRBench_heldout": {
+      "generalist": {
+        "delta_vs_baseline": 0.014042126379137487,
+        "ci95": [
+          0.0,
+          0.029383457022510905
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.0220661985957874,
+        "ci95": [
+          0.006048387096774241,
+          0.0377738675201091
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.02006018054162495,
+        "ci95": [
+          0.0051525480437464525,
+          0.034930139720558806
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.01705115346038122,
+        "ci95": [
+          0.004024043760047749,
+          0.030959984288157685
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": 0.0020060180541624506,
+        "ci95": [
+          -0.012636099633641044,
+          0.017034068136272507
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": -0.0020060180541624506,
+        "ci95": [
+          -0.017034068136272507,
+          0.01263609963364103
+        ]
+      }
+    },
+    "RefCOCO_heldout": {
+      "baseline-9b": {
+        "delta_vs_baseline": -0.0020000000000000018,
+        "ci95": [
+          -0.019764806449589053,
+          0.01593705020238406
+        ]
+      },
+      "generalist": {
+        "delta_vs_baseline": -0.006000000000000005,
+        "ci95": [
+          -0.02449424931262824,
+          0.013565891472868134
+        ]
+      },
+      "perception-step100": {
+        "delta_vs_baseline": 0.0020000000000000018,
+        "ci95": [
+          -0.015968063872255467,
+          0.02020509977827051
+        ]
+      },
+      "reasoning-step100": {
+        "delta_vs_baseline": 0.0020000000000000018,
+        "ci95": [
+          -0.004065247628036436,
+          0.008147055156074666
+        ]
+      },
+      "perception-v2-step100": {
+        "delta_vs_baseline": 0.01200000000000001,
+        "ci95": [
+          -0.0040322580645161255,
+          0.02870230562745652
+        ]
+      },
+      "perception-step100_vs_reasoning-step100": {
+        "delta": 0.0,
+        "ci95": [
+          -0.018331813127085036,
+          0.019607843137254836
+        ]
+      },
+      "reasoning-step100_vs_perception-step100": {
+        "delta": 0.0,
+        "ci95": [
+          -0.019607843137254836,
+          0.018331813127085025
+        ]
+      }
+    }
+  },
+  "scoring_protocol": {
+    "version": "strict-local-v3-length-zero-ifeval-deterministic",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true,
+    "ifeval_randomness": {
+      "base_seed": 20261019,
+      "identity": "frozen row['ifeval']; independent of model, response and evaluation order",
+      "seed_derivation": "int.from_bytes(SHA256(canonical_json({'base_seed': base_seed, 'ifeval': row['ifeval']})), 'big')",
+      "canonical_json": {
+        "ensure_ascii": false,
+        "sort_keys": true,
+        "separators": [
+          ",",
+          ":"
+        ],
+        "encoding": "utf-8"
+      },
+      "strict_loose_share_seed": true,
+      "restore_python_random_state": true,
+      "synchronization": "threading.RLock around state save, both checks and state restore",
+      "known_upstream_fallback_ids": [
+        "IFEval:1122",
+        "IFEval:1129"
+      ],
+      "upstream_fallback_limitation": "Pinned checker replaces nonalphabetic '#' / '!' with an ASCII letter; deterministic seeding preserves this fallback, not the prompt's symbol-count semantics."
+    }
+  },
+  "scoring_protocol_sha256": "223d18e9e2ca11128f0a76e7dd8a6d8dcc8b16c19c50d18b44234a4ec11ce388",
+  "general_details": {
+    "baseline": {
+      "ifeval": {
+        "n_prompts": 541,
+        "strict_instruction_accuracy": 0.3824940047961631,
+        "strict_prompt_accuracy": 0.39186691312384475,
+        "loose_instruction_accuracy": 0.3932853717026379,
+        "loose_prompt_accuracy": 0.4048059149722736
+      },
+      "ocr_categories": {
+        "Artistic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.92
+        },
+        "Digit String Recognition": {
+          "n": 50,
+          "accuracy": 0.66
+        },
+        "Doc-oriented VQA": {
+          "n": 197,
+          "accuracy": 0.8883248730964467
+        },
+        "Handwriting Recognition": {
+          "n": 50,
+          "accuracy": 0.62
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "n": 100,
+          "accuracy": 0.38
+        },
+        "Irregular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.88
+        },
+        "Key Information Extraction": {
+          "n": 200,
+          "accuracy": 0.86
+        },
+        "Non-Semantic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.96
+        },
+        "Regular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.96
+        },
+        "Scene Text-centric VQA": {
+          "n": 200,
+          "accuracy": 0.89
+        }
+      }
+    },
+    "generalist": {
+      "ifeval": {
+        "n_prompts": 541,
+        "strict_instruction_accuracy": 0.6594724220623501,
+        "strict_prompt_accuracy": 0.6414048059149723,
+        "loose_instruction_accuracy": 0.6690647482014388,
+        "loose_prompt_accuracy": 0.6543438077634011
+      },
+      "ocr_categories": {
+        "Artistic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.92
+        },
+        "Digit String Recognition": {
+          "n": 50,
+          "accuracy": 0.6
+        },
+        "Doc-oriented VQA": {
+          "n": 197,
+          "accuracy": 0.883248730964467
+        },
+        "Handwriting Recognition": {
+          "n": 50,
+          "accuracy": 0.7
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "n": 100,
+          "accuracy": 0.47
+        },
+        "Irregular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.88
+        },
+        "Key Information Extraction": {
+          "n": 200,
+          "accuracy": 0.865
+        },
+        "Non-Semantic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.94
+        },
+        "Regular Text Recognition": {
+          "n": 50,
+          "accuracy": 1.0
+        },
+        "Scene Text-centric VQA": {
+          "n": 200,
+          "accuracy": 0.905
+        }
+      }
+    },
+    "perception-step100": {
+      "ifeval": {
+        "n_prompts": 541,
+        "strict_instruction_accuracy": 0.564748201438849,
+        "strict_prompt_accuracy": 0.5600739371534196,
+        "loose_instruction_accuracy": 0.5779376498800959,
+        "loose_prompt_accuracy": 0.5767097966728281
+      },
+      "ocr_categories": {
+        "Artistic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.9
+        },
+        "Digit String Recognition": {
+          "n": 50,
+          "accuracy": 0.7
+        },
+        "Doc-oriented VQA": {
+          "n": 197,
+          "accuracy": 0.8934010152284264
+        },
+        "Handwriting Recognition": {
+          "n": 50,
+          "accuracy": 0.72
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "n": 100,
+          "accuracy": 0.54
+        },
+        "Irregular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.9
+        },
+        "Key Information Extraction": {
+          "n": 200,
+          "accuracy": 0.85
+        },
+        "Non-Semantic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.94
+        },
+        "Regular Text Recognition": {
+          "n": 50,
+          "accuracy": 1.0
+        },
+        "Scene Text-centric VQA": {
+          "n": 200,
+          "accuracy": 0.885
+        }
+      }
+    },
+    "reasoning-step100": {
+      "ifeval": {
+        "n_prompts": 541,
+        "strict_instruction_accuracy": 0.670263788968825,
+        "strict_prompt_accuracy": 0.6617375231053605,
+        "loose_instruction_accuracy": 0.684652278177458,
+        "loose_prompt_accuracy": 0.6820702402957486
+      },
+      "ocr_categories": {
+        "Artistic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.92
+        },
+        "Digit String Recognition": {
+          "n": 50,
+          "accuracy": 0.68
+        },
+        "Doc-oriented VQA": {
+          "n": 197,
+          "accuracy": 0.8934010152284264
+        },
+        "Handwriting Recognition": {
+          "n": 50,
+          "accuracy": 0.66
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "n": 100,
+          "accuracy": 0.51
+        },
+        "Irregular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.88
+        },
+        "Key Information Extraction": {
+          "n": 200,
+          "accuracy": 0.855
+        },
+        "Non-Semantic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.94
+        },
+        "Regular Text Recognition": {
+          "n": 50,
+          "accuracy": 1.0
+        },
+        "Scene Text-centric VQA": {
+          "n": 200,
+          "accuracy": 0.905
+        }
+      }
+    },
+    "perception-v2-step100": {
+      "ifeval": {
+        "n_prompts": 541,
+        "strict_instruction_accuracy": 0.511990407673861,
+        "strict_prompt_accuracy": 0.5378927911275416,
+        "loose_instruction_accuracy": 0.5239808153477218,
+        "loose_prompt_accuracy": 0.5526802218114603
+      },
+      "ocr_categories": {
+        "Artistic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.94
+        },
+        "Digit String Recognition": {
+          "n": 50,
+          "accuracy": 0.68
+        },
+        "Doc-oriented VQA": {
+          "n": 197,
+          "accuracy": 0.8730964467005076
+        },
+        "Handwriting Recognition": {
+          "n": 50,
+          "accuracy": 0.74
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "n": 100,
+          "accuracy": 0.46
+        },
+        "Irregular Text Recognition": {
+          "n": 50,
+          "accuracy": 0.9
+        },
+        "Key Information Extraction": {
+          "n": 200,
+          "accuracy": 0.86
+        },
+        "Non-Semantic Text Recognition": {
+          "n": 50,
+          "accuracy": 0.96
+        },
+        "Regular Text Recognition": {
+          "n": 50,
+          "accuracy": 1.0
+        },
+        "Scene Text-centric VQA": {
+          "n": 200,
+          "accuracy": 0.895
+        }
+      }
+    }
+  },
+  "general_scorer_source_sha256": "c9cfc5bf2aa3434b5609ae84e8d3ad9f396eb29552c3bb624d6530c86602f3e9"
+}

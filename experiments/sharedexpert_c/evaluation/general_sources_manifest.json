@@ -1,0 +1,25 @@
+{
+  "repository": "https://github.com/google-research/google-research",
+  "commit": "e6890f85757dd84e27ca6df2dd30651dafad28e0",
+  "files": {
+    "instructions.py": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+    "instructions_util.py": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+    "instructions_registry.py": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+    "evaluation_lib.py": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+    "data/input_data.jsonl": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49"
+  },
+  "ocrbench": {
+    "repository": "echo840/OCRBench",
+    "revision": "92a54bd1384387c178d5a07140a2d85e0a3d12e1",
+    "files": [
+      "data/test-00000-of-00001.parquet"
+    ],
+    "sha256": {
+      "data/test-00000-of-00001.parquet": "d9cc9f488e5310143d8d89956c19d0bdfd71e7089025da5202643f73720df7f5"
+    }
+  },
+  "nltk_data": {
+    "url": "https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip",
+    "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106"
+  }
+}

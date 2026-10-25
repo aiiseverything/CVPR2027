@@ -1,0 +1,922 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-25T15:09:22.676300+00:00",
+  "benchmarks": {
+    "vstar": {
+      "repo": "lmms-lab-encoder/vstar-bench",
+      "revision": "b44023b4dca749ed8a76b85eb576627d05a1c174",
+      "paths": [
+        "data/test-00000-of-00001.parquet"
+      ],
+      "expected_questions": 191
+    },
+    "zoom": {
+      "repo": "inclusionAI/ZoomBench",
+      "revision": "b788097e57d30510c6877824833234a73bf80d25",
+      "paths": [
+        "data/test.parquet"
+      ],
+      "expected_questions": 845
+    },
+    "hrbench_4k": {
+      "repo": "DreamMr/HR-Bench",
+      "revision": "83b9013d6293b85dc507e87199ca52517536939c",
+      "paths": [
+        "hr_bench_4k.parquet"
+      ],
+      "expected_questions": 800
+    },
+    "hrbench_8k": {
+      "repo": "DreamMr/HR-Bench",
+      "revision": "83b9013d6293b85dc507e87199ca52517536939c",
+      "paths": [
+        "hr_bench_8k.parquet"
+      ],
+      "expected_questions": 800
+    },
+    "mme_rw_en": {
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "paths": [
+        "data/train-00000-of-00070.parquet",
+        "data/train-00001-of-00070.parquet",
+        "data/train-00002-of-00070.parquet",
+        "data/train-00003-of-00070.parquet",
+        "data/train-00004-of-00070.parquet",
+        "data/train-00005-of-00070.parquet",
+        "data/train-00006-of-00070.parquet",
+        "data/train-00007-of-00070.parquet",
+        "data/train-00008-of-00070.parquet",
+        "data/train-00009-of-00070.parquet",
+        "data/train-00010-of-00070.parquet",
+        "data/train-00011-of-00070.parquet",
+        "data/train-00012-of-00070.parquet",
+        "data/train-00013-of-00070.parquet",
+        "data/train-00014-of-00070.parquet",
+        "data/train-00015-of-00070.parquet",
+        "data/train-00016-of-00070.parquet",
+        "data/train-00017-of-00070.parquet",
+        "data/train-00018-of-00070.parquet",
+        "data/train-00019-of-00070.parquet",
+        "data/train-00020-of-00070.parquet",
+        "data/train-00021-of-00070.parquet",
+        "data/train-00022-of-00070.parquet",
+        "data/train-00023-of-00070.parquet",
+        "data/train-00024-of-00070.parquet",
+        "data/train-00025-of-00070.parquet",
+        "data/train-00026-of-00070.parquet",
+        "data/train-00027-of-00070.parquet",
+        "data/train-00028-of-00070.parquet",
+        "data/train-00029-of-00070.parquet",
+        "data/train-00030-of-00070.parquet",
+        "data/train-00031-of-00070.parquet",
+        "data/train-00032-of-00070.parquet",
+        "data/train-00033-of-00070.parquet",
+        "data/train-00034-of-00070.parquet",
+        "data/train-00035-of-00070.parquet",
+        "data/train-00036-of-00070.parquet",
+        "data/train-00037-of-00070.parquet",
+        "data/train-00038-of-00070.parquet",
+        "data/train-00039-of-00070.parquet",
+        "data/train-00040-of-00070.parquet",
+        "data/train-00041-of-00070.parquet",
+        "data/train-00042-of-00070.parquet",
+        "data/train-00043-of-00070.parquet",
+        "data/train-00044-of-00070.parquet",
+        "data/train-00045-of-00070.parquet",
+        "data/train-00046-of-00070.parquet",
+        "data/train-00047-of-00070.parquet",
+        "data/train-00048-of-00070.parquet",
+        "data/train-00049-of-00070.parquet",
+        "data/train-00050-of-00070.parquet",
+        "data/train-00051-of-00070.parquet",
+        "data/train-00052-of-00070.parquet",
+        "data/train-00053-of-00070.parquet",
+        "data/train-00054-of-00070.parquet",
+        "data/train-00055-of-00070.parquet",
+        "data/train-00056-of-00070.parquet",
+        "data/train-00057-of-00070.parquet",
+        "data/train-00058-of-00070.parquet",
+        "data/train-00059-of-00070.parquet",
+        "data/train-00060-of-00070.parquet",
+        "data/train-00061-of-00070.parquet",
+        "data/train-00062-of-00070.parquet",
+        "data/train-00063-of-00070.parquet",
+        "data/train-00064-of-00070.parquet",
+        "data/train-00065-of-00070.parquet",
+        "data/train-00066-of-00070.parquet",
+        "data/train-00067-of-00070.parquet",
+        "data/train-00068-of-00070.parquet",
+        "data/train-00069-of-00070.parquet"
+      ],
+      "expected_questions": 23609
+    },
+    "mme_rw_cn": {
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "paths": [
+        "data/train-00000-of-00013.parquet",
+        "data/train-00001-of-00013.parquet",
+        "data/train-00002-of-00013.parquet",
+        "data/train-00003-of-00013.parquet",
+        "data/train-00004-of-00013.parquet",
+        "data/train-00005-of-00013.parquet",
+        "data/train-00006-of-00013.parquet",
+        "data/train-00007-of-00013.parquet",
+        "data/train-00008-of-00013.parquet",
+        "data/train-00009-of-00013.parquet",
+        "data/train-00010-of-00013.parquet",
+        "data/train-00011-of-00013.parquet",
+        "data/train-00012-of-00013.parquet"
+      ],
+      "expected_questions": 5917
+    }
+  },
+  "file_count": 87,
+  "total_bytes": 43371773310,
+  "files": [
+    {
+      "benchmark": "vstar",
+      "repo": "lmms-lab-encoder/vstar-bench",
+      "revision": "b44023b4dca749ed8a76b85eb576627d05a1c174",
+      "path": "data/test-00000-of-00001.parquet",
+      "size": 281191274,
+      "sha256": "6f9a089e93e75931350157544f8e74713d9d108c5f73585609ca262c33528a27",
+      "local_path": "sources/vstar/data/test-00000-of-00001.parquet"
+    },
+    {
+      "benchmark": "zoom",
+      "repo": "inclusionAI/ZoomBench",
+      "revision": "b788097e57d30510c6877824833234a73bf80d25",
+      "path": "data/test.parquet",
+      "size": 4028326668,
+      "sha256": "d44ebda2eda485cba055181f4e6dc50c42f81b5d0f7e936bf427fa01502a391a",
+      "local_path": "sources/zoom/data/test.parquet"
+    },
+    {
+      "benchmark": "hrbench_4k",
+      "repo": "DreamMr/HR-Bench",
+      "revision": "83b9013d6293b85dc507e87199ca52517536939c",
+      "path": "hr_bench_4k.parquet",
+      "size": 430116871,
+      "sha256": "6c00e2f95ce560fe5f78070b863100730b1ef09c713f8c1372cfff2a6d41bdef",
+      "local_path": "sources/hrbench_4k/hr_bench_4k.parquet"
+    },
+    {
+      "benchmark": "hrbench_8k",
+      "repo": "DreamMr/HR-Bench",
+      "revision": "83b9013d6293b85dc507e87199ca52517536939c",
+      "path": "hr_bench_8k.parquet",
+      "size": 2826567123,
+      "sha256": "d4f41878a0d93afcf2673f547cecb0f23bb07230a0d07ef286bfa2277d9b63e2",
+      "local_path": "sources/hrbench_8k/hr_bench_8k.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00000-of-00070.parquet",
+      "size": 2255293468,
+      "sha256": "7e7396e3bd25ddba8a689913650bd97a1329db9aa8ec0e4f1f63c212ebea1259",
+      "local_path": "sources/mme_rw_en/data/train-00000-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00001-of-00070.parquet",
+      "size": 1935459507,
+      "sha256": "985301b8b12603e51fcd61d0e967084b2d09eb27f7dcdff65c3dcc0624c10ce4",
+      "local_path": "sources/mme_rw_en/data/train-00001-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00002-of-00070.parquet",
+      "size": 60217378,
+      "sha256": "20bec091a7a6f88778079102ed61dc7e4166a7f3ffc4b4541bc602bf4384b1c5",
+      "local_path": "sources/mme_rw_en/data/train-00002-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00003-of-00070.parquet",
+      "size": 55254471,
+      "sha256": "77ff1cb1035346c039f1f36d48340ae7d78a0358cab3b469de40a627eb4f70da",
+      "local_path": "sources/mme_rw_en/data/train-00003-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00004-of-00070.parquet",
+      "size": 66278116,
+      "sha256": "0b87c25505fa93fb73cab2fe5f3b1546292443ee619fe9fad17ba5d3f1bf8837",
+      "local_path": "sources/mme_rw_en/data/train-00004-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00005-of-00070.parquet",
+      "size": 143003299,
+      "sha256": "05e677814b1908ecb50dc6346e8ff6171b13706ed4ecd61959da338a82feda34",
+      "local_path": "sources/mme_rw_en/data/train-00005-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00006-of-00070.parquet",
+      "size": 46348601,
+      "sha256": "9f721ad238ad7cab98ea5e17346b195e71ae4e8c4ea8c39278b5c05c75036120",
+      "local_path": "sources/mme_rw_en/data/train-00006-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00007-of-00070.parquet",
+      "size": 51520764,
+      "sha256": "c2cc67daf113ab825b371525f02f2cadd4e4d1fba4c710e940a8741a8cd6e5e6",
+      "local_path": "sources/mme_rw_en/data/train-00007-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00008-of-00070.parquet",
+      "size": 206730246,
+      "sha256": "738ddcacd1e17ef4e39f25a48aeae541cd9bab7eca39c4b240db60ac8e7913f0",
+      "local_path": "sources/mme_rw_en/data/train-00008-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00009-of-00070.parquet",
+      "size": 59747264,
+      "sha256": "94341ac8b762ac68c0718c9f5352a8327c06681b01d3343daecc6c92abc950c4",
+      "local_path": "sources/mme_rw_en/data/train-00009-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00010-of-00070.parquet",
+      "size": 38144278,
+      "sha256": "ff4adab8f8262bf3a9ff7a7ad536079b1aea33b8bb78c731b7d52e9fb23ff426",
+      "local_path": "sources/mme_rw_en/data/train-00010-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00011-of-00070.parquet",
+      "size": 54891456,
+      "sha256": "20a8fee26c43f81f20636bedea92d2b72a7b681927a18b0c310967258b2e18eb",
+      "local_path": "sources/mme_rw_en/data/train-00011-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00012-of-00070.parquet",
+      "size": 67241531,
+      "sha256": "784829e560660747e78b7445c877124e6d3b429641a9fa438e2108236bd9cb4d",
+      "local_path": "sources/mme_rw_en/data/train-00012-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00013-of-00070.parquet",
+      "size": 62173168,
+      "sha256": "537367faf199c721b9daab42884a62343a612d2c4a24cd80025ec263ad1a0671",
+      "local_path": "sources/mme_rw_en/data/train-00013-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00014-of-00070.parquet",
+      "size": 46346620,
+      "sha256": "663d37be528f076785eacac8358caf68036e4587314bd1f90ca52583f32ee0c5",
+      "local_path": "sources/mme_rw_en/data/train-00014-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00015-of-00070.parquet",
+      "size": 115049437,
+      "sha256": "f9db60c7ca95adeababff6461f34c9328c36f4ef7d2a27db9008983a6ebcd989",
+      "local_path": "sources/mme_rw_en/data/train-00015-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00016-of-00070.parquet",
+      "size": 150024749,
+      "sha256": "eff0e3d7cfabea7dcde89abd1dde926b80fe152c19e5ba1b73d964f57679af73",
+      "local_path": "sources/mme_rw_en/data/train-00016-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00017-of-00070.parquet",
+      "size": 46173627,
+      "sha256": "adeb949f5d9e2608adbddc380bf3c6bbd30f2199200f6e89db85afc620998934",
+      "local_path": "sources/mme_rw_en/data/train-00017-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00018-of-00070.parquet",
+      "size": 52287925,
+      "sha256": "5ba80a8bec04f15ccb4159564cffbe2585d21ffc1206d6ed2ac4237a7e6da075",
+      "local_path": "sources/mme_rw_en/data/train-00018-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00019-of-00070.parquet",
+      "size": 56155643,
+      "sha256": "09ca18f53b23cb34fbaa897093216fd0ab0c0fc718fd9633b6d68bf67b87264b",
+      "local_path": "sources/mme_rw_en/data/train-00019-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00020-of-00070.parquet",
+      "size": 48053251,
+      "sha256": "a68ce728defd70bc85d3d7fc667f38a2a17c83ba4d01eae346c6f0ddbcb640be",
+      "local_path": "sources/mme_rw_en/data/train-00020-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00021-of-00070.parquet",
+      "size": 36129026,
+      "sha256": "5fb63328a4500d0facfd738e6ab53b43741e81bfb00a79e516e26c324382d631",
+      "local_path": "sources/mme_rw_en/data/train-00021-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00022-of-00070.parquet",
+      "size": 40188236,
+      "sha256": "2499f6c8cd5597abb63233f589fd2a45fff0037b98536be2ff71f6caf01300b3",
+      "local_path": "sources/mme_rw_en/data/train-00022-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00023-of-00070.parquet",
+      "size": 31569024,
+      "sha256": "8f21e627b43357a8806ab1499d9ed3abb7ff0829cc0c4b97c8a2d14ef037507a",
+      "local_path": "sources/mme_rw_en/data/train-00023-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00024-of-00070.parquet",
+      "size": 39752878,
+      "sha256": "e8246fc8be5ec2d7016be40e1dff2e6d8e9757456ae857b6ee9876859b55c806",
+      "local_path": "sources/mme_rw_en/data/train-00024-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00025-of-00070.parquet",
+      "size": 93525146,
+      "sha256": "53b8cbc1167aa9c2ed57a37e4cb57da1a9fdd2a7f995bb2ba62ebe4283788307",
+      "local_path": "sources/mme_rw_en/data/train-00025-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00026-of-00070.parquet",
+      "size": 45209847,
+      "sha256": "bee417cd193f71da01caf0a52184137c68bb3b1b5e85f88d6edaa527ec35b45f",
+      "local_path": "sources/mme_rw_en/data/train-00026-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00027-of-00070.parquet",
+      "size": 42030636,
+      "sha256": "4dfd3fbe067e3d5af354cce9b626475990b21bd12afc844f35696cb60e310f07",
+      "local_path": "sources/mme_rw_en/data/train-00027-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00028-of-00070.parquet",
+      "size": 54339492,
+      "sha256": "db708e3fd120a5b564ca9770b06e5f58af4036507414c152748e37ce3597bee8",
+      "local_path": "sources/mme_rw_en/data/train-00028-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00029-of-00070.parquet",
+      "size": 43832622,
+      "sha256": "5ef205e41f4e5b03dcc2e8a793e24331d32b9573d6fc50d7e446ce1298c27441",
+      "local_path": "sources/mme_rw_en/data/train-00029-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00030-of-00070.parquet",
+      "size": 41855325,
+      "sha256": "18b1a5288a7573316c585b46db26dd64fc2c0158f9748d611e46d0ab0082e7a4",
+      "local_path": "sources/mme_rw_en/data/train-00030-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00031-of-00070.parquet",
+      "size": 37860684,
+      "sha256": "a09a8a17c5e9c655d21c39c0db10fd6d8eb53057a0fd666fd3e05e7d40e2f200",
+      "local_path": "sources/mme_rw_en/data/train-00031-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00032-of-00070.parquet",
+      "size": 59478831,
+      "sha256": "5cef4acb1edc9a495b88d20da6e7551299a35adcc1799c70cff7c7e361fdd8a8",
+      "local_path": "sources/mme_rw_en/data/train-00032-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00033-of-00070.parquet",
+      "size": 95104546,
+      "sha256": "094b4380c8404d75f56bf3c8caf31f7ff1736d9b0a767a1c23eb08aa84f72e4e",
+      "local_path": "sources/mme_rw_en/data/train-00033-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00034-of-00070.parquet",
+      "size": 203459772,
+      "sha256": "4e4a3d1aee55d6a8d23923fd0afd66957e5b90f94c89c144f172a6c3cc396a3b",
+      "local_path": "sources/mme_rw_en/data/train-00034-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00035-of-00070.parquet",
+      "size": 206783735,
+      "sha256": "89507472390fc2c1a5323aa575d842d2e7955068276ee84ec11addef93412547",
+      "local_path": "sources/mme_rw_en/data/train-00035-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00036-of-00070.parquet",
+      "size": 147929888,
+      "sha256": "06322bc5641e6ae20184afcbde835f25434d9dc6f5ddd0a596bc297a6d809fa5",
+      "local_path": "sources/mme_rw_en/data/train-00036-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00037-of-00070.parquet",
+      "size": 138856618,
+      "sha256": "a9b990f3ba5a795fea77ccc5e907afbd01bf7b302e504a4da4f8ac804e865d09",
+      "local_path": "sources/mme_rw_en/data/train-00037-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00038-of-00070.parquet",
+      "size": 116715430,
+      "sha256": "340e8da6bc973b6bb80d36fc1059852e7b26df3489e73b12500b42154444c94e",
+      "local_path": "sources/mme_rw_en/data/train-00038-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00039-of-00070.parquet",
+      "size": 1441333790,
+      "sha256": "a36ad200023ad38fdeb99f684b8379e2ecc9c606ca061524dfde14810da56e4b",
+      "local_path": "sources/mme_rw_en/data/train-00039-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00040-of-00070.parquet",
+      "size": 2192804436,
+      "sha256": "374e58052223c591ac1e11878bc475813c66345688f3454064391e9c56f4b8fe",
+      "local_path": "sources/mme_rw_en/data/train-00040-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00041-of-00070.parquet",
+      "size": 766576267,
+      "sha256": "4eb802c1274df04747f049e2b24257e3f6d70e5af576055034b5ffa04dd411d5",
+      "local_path": "sources/mme_rw_en/data/train-00041-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00042-of-00070.parquet",
+      "size": 201634048,
+      "sha256": "8393b73a8dcfc353243bf3393796e0ba7fd65c1cd53e32b2181338e3432e01cd",
+      "local_path": "sources/mme_rw_en/data/train-00042-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00043-of-00070.parquet",
+      "size": 216915480,
+      "sha256": "0a6a6b81e132999f9eba83e4535b155342d6b529688f7cb45212ec3d21ce4287",
+      "local_path": "sources/mme_rw_en/data/train-00043-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00044-of-00070.parquet",
+      "size": 231812638,
+      "sha256": "05fcfc876f9224b359dacbddec7e49a8ba679dec62f388509ca1215dce803bec",
+      "local_path": "sources/mme_rw_en/data/train-00044-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00045-of-00070.parquet",
+      "size": 263535425,
+      "sha256": "cd68179cead81d13a301bf6be262328f20b3f9939d0f2414f3e42dad11a9bb91",
+      "local_path": "sources/mme_rw_en/data/train-00045-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00046-of-00070.parquet",
+      "size": 185524616,
+      "sha256": "3e836317c88a542f837845bd4a8088ab2627b8f07a64b4ccd101ee23413dcce9",
+      "local_path": "sources/mme_rw_en/data/train-00046-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00047-of-00070.parquet",
+      "size": 170471865,
+      "sha256": "140a5e1e855a9dd24ab3b19e3069f82b7b64d677ac5894b78c96c240c5759c8f",
+      "local_path": "sources/mme_rw_en/data/train-00047-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00048-of-00070.parquet",
+      "size": 205231431,
+      "sha256": "fe9ec3cf41b0161f9b2a275fd9e6eb9f95297867f2f76199c0431395e1ec321b",
+      "local_path": "sources/mme_rw_en/data/train-00048-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00049-of-00070.parquet",
+      "size": 1077564437,
+      "sha256": "38bdc7d917617980213dcd8deb8440bb24b3ed40455b28389b04ba0251052d0d",
+      "local_path": "sources/mme_rw_en/data/train-00049-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00050-of-00070.parquet",
+      "size": 1960677242,
+      "sha256": "247491d7d642469a5187b5bfe7dc7bd85a4b849fd50a65e9efd202b1f4c13887",
+      "local_path": "sources/mme_rw_en/data/train-00050-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00051-of-00070.parquet",
+      "size": 1904257574,
+      "sha256": "f734f0ef0294bda0ab119d9b9793c655efd7416ef228113ef6d4217e0abef073",
+      "local_path": "sources/mme_rw_en/data/train-00051-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00052-of-00070.parquet",
+      "size": 1778582090,
+      "sha256": "4e60d12cc6f46a3fdbe9262cd3dcddc0f545faba5113592aa95e50b06daa5725",
+      "local_path": "sources/mme_rw_en/data/train-00052-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00053-of-00070.parquet",
+      "size": 2244026012,
+      "sha256": "59f6a2ab4ddb18d6282bfac36c98c7eaabcb7944f77cd85ea533b92754e3e24c",
+      "local_path": "sources/mme_rw_en/data/train-00053-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00054-of-00070.parquet",
+      "size": 2300582789,
+      "sha256": "96dff4ca28fcf2b765ca3a17bf703cb4e6b9499bf9ca78fe4fe2da0af2128cd3",
+      "local_path": "sources/mme_rw_en/data/train-00054-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00055-of-00070.parquet",
+      "size": 2340837099,
+      "sha256": "0ba95ac60b17025e6a72e08da7b37a72a9fdba2d7c577955d03f6bc4a76300a1",
+      "local_path": "sources/mme_rw_en/data/train-00055-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00056-of-00070.parquet",
+      "size": 1498966191,
+      "sha256": "f57c44f62fbf34b73804b5ae3ebf59916b0d17b7c8e793fc4312eff67a2b455e",
+      "local_path": "sources/mme_rw_en/data/train-00056-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00057-of-00070.parquet",
+      "size": 226664972,
+      "sha256": "17083eb2f0dbcb1cf825ef7bf49db89fab8aaeb9eea7a838e2a56cccfefd1f2c",
+      "local_path": "sources/mme_rw_en/data/train-00057-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00058-of-00070.parquet",
+      "size": 201115532,
+      "sha256": "49a6d4d786d01ba057a0dc861e13e5f79ed3a358f9dd4709f83af60c022f9765",
+      "local_path": "sources/mme_rw_en/data/train-00058-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00059-of-00070.parquet",
+      "size": 194766315,
+      "sha256": "621047cb02ea62deea754320d64c5d229ab8ec3845046b4e65ba78742e4978cf",
+      "local_path": "sources/mme_rw_en/data/train-00059-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00060-of-00070.parquet",
+      "size": 183453673,
+      "sha256": "f5c4bdd6c9c6dfde9c391ee6824e4b8803661e28ba54940e53e7aaae9e830ff0",
+      "local_path": "sources/mme_rw_en/data/train-00060-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00061-of-00070.parquet",
+      "size": 514726237,
+      "sha256": "162bdbb937b73d28d10515a31ec201a81a5d99fd0918407303352172f8fd5265",
+      "local_path": "sources/mme_rw_en/data/train-00061-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00062-of-00070.parquet",
+      "size": 171757940,
+      "sha256": "cb67869b4e20ffe8f2e521574120a55f5c5c4709f8bfaa491f5282a70fa61bf4",
+      "local_path": "sources/mme_rw_en/data/train-00062-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00063-of-00070.parquet",
+      "size": 125382338,
+      "sha256": "24294319088d88e05a217d514492d9d19f363af6540bce9eff62e9549ce6e86f",
+      "local_path": "sources/mme_rw_en/data/train-00063-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00064-of-00070.parquet",
+      "size": 116181146,
+      "sha256": "70832998bd1c81f34f988a9160505c7d438a77efb55dd41d5c622b89ede040e1",
+      "local_path": "sources/mme_rw_en/data/train-00064-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00065-of-00070.parquet",
+      "size": 126466771,
+      "sha256": "0556fb8f3c3dcac9d5cc4370fbe9f5e6bcbe676e34a3bf6660b5e0c683f62619",
+      "local_path": "sources/mme_rw_en/data/train-00065-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00066-of-00070.parquet",
+      "size": 127503170,
+      "sha256": "57e2def1ab18ae9f8f01af2507f64f6f25940a0710744cc96192b0101d00632a",
+      "local_path": "sources/mme_rw_en/data/train-00066-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00067-of-00070.parquet",
+      "size": 117661469,
+      "sha256": "b44b9dc69d87e140f9b83ce4a66778a1476c80f64a73ea75f1cc7542ed175173",
+      "local_path": "sources/mme_rw_en/data/train-00067-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00068-of-00070.parquet",
+      "size": 123015968,
+      "sha256": "705b7f68d4c17f246b662e9f5c8043385448c84be98b1d0ff61e26308d390559",
+      "local_path": "sources/mme_rw_en/data/train-00068-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_en",
+      "repo": "yifanzhang114/MME-RealWorld-Lmms-eval",
+      "revision": "f157390129e8d2b60757eb68d340aade9446b52b",
+      "path": "data/train-00069-of-00070.parquet",
+      "size": 586327867,
+      "sha256": "c28c073ba395ab9f5a507f08ace2412373fcfa2d68b01415fa5eac79bfd6cd56",
+      "local_path": "sources/mme_rw_en/data/train-00069-of-00070.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00000-of-00013.parquet",
+      "size": 142526825,
+      "sha256": "841a647267826c61296e2860d5724e08db0f2b74883fe95308b01801d0ad0394",
+      "local_path": "sources/mme_rw_cn/data/train-00000-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00001-of-00013.parquet",
+      "size": 174366898,
+      "sha256": "ad0bf9330ee51e65d1c2154b348fb0cfab1bccf3bb9f11848dc5f256f4252dbe",
+      "local_path": "sources/mme_rw_cn/data/train-00001-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00002-of-00013.parquet",
+      "size": 402843835,
+      "sha256": "3de193f641f4d8f4e87fd4dbad6be05ec662139b875066f468040be4bd16907c",
+      "local_path": "sources/mme_rw_cn/data/train-00002-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00003-of-00013.parquet",
+      "size": 205035208,
+      "sha256": "1a82e0b29dff718505f5c8d2aa61b892f50839fdb4cca9129183527a334ac05a",
+      "local_path": "sources/mme_rw_cn/data/train-00003-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00004-of-00013.parquet",
+      "size": 292383438,
+      "sha256": "959b51edf3d6408a084b9bf08eacedea8a033ecfec2f24bd7c090ff399773e19",
+      "local_path": "sources/mme_rw_cn/data/train-00004-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00005-of-00013.parquet",
+      "size": 241881495,
+      "sha256": "c0e4373503ccaaa92b6c8c07f28697972441d801bd0499d95fdde356cb38720c",
+      "local_path": "sources/mme_rw_cn/data/train-00005-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00006-of-00013.parquet",
+      "size": 282134677,
+      "sha256": "8089fc3a9dc3f0854e3c846bd73d2cff42353f2384116fa59f827752e92d9351",
+      "local_path": "sources/mme_rw_cn/data/train-00006-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00007-of-00013.parquet",
+      "size": 173555261,
+      "sha256": "ede6c648535e26d687074b7c7913a00d0ce87fefe216b52c265299980054127d",
+      "local_path": "sources/mme_rw_cn/data/train-00007-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00008-of-00013.parquet",
+      "size": 156337609,
+      "sha256": "305513da59f60aabc6f5e4a4f6d77b02706b2f5336eee5b225587ff6f1d6aa39",
+      "local_path": "sources/mme_rw_cn/data/train-00008-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00009-of-00013.parquet",
+      "size": 86747394,
+      "sha256": "8473a5e927f200c31e2ccedf14729356e97827f4efd4dc24de8820d20dc57d39",
+      "local_path": "sources/mme_rw_cn/data/train-00009-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00010-of-00013.parquet",
+      "size": 279349880,
+      "sha256": "705d31f870e736ace11d0f0c63e68dac68b1f4afd16d1539905d7ba68c4f395f",
+      "local_path": "sources/mme_rw_cn/data/train-00010-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00011-of-00013.parquet",
+      "size": 166246040,
+      "sha256": "dcd19ed6a94c00089ea6ea10781fd8a7fcdff78626f768f96700d19cd06d9184",
+      "local_path": "sources/mme_rw_cn/data/train-00011-of-00013.parquet"
+    },
+    {
+      "benchmark": "mme_rw_cn",
+      "repo": "yifanzhang114/MME-RealWorld-CN-Lmms-eval",
+      "revision": "37ac6f4e57ef211b37d1ee04a8f1268f1411b3e0",
+      "path": "data/train-00012-of-00013.parquet",
+      "size": 2314789451,
+      "sha256": "633948210a2ce5be20a7198b5a1999f68c264a1ce1f6f961a5ee1957d6fd33eb",
+      "local_path": "sources/mme_rw_cn/data/train-00012-of-00013.parquet"
+    }
+  ]
+}

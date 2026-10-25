@@ -1,0 +1,4 @@
+absl-py==2.5.1
+langdetect==1.0.9
+nltk==3.10.4
+immutabledict==4.3.1

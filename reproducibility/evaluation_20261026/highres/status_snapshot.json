@@ -1,0 +1,73 @@
+{
+  "snapshot_at_utc": "2026-10-25T19:20:36.621740+00:00",
+  "static_snapshot": true,
+  "queue_stage": "preparing",
+  "queue_error": null,
+  "models": [
+    "baseline",
+    "reasoning-step100",
+    "perception-step100",
+    "perception-v2-step100"
+  ],
+  "scheduling_policy": {
+    "version": "profiled-kv-admission-v1",
+    "max_inflight": 64,
+    "max_num_seqs": 64,
+    "max_num_batched_tokens": 32768,
+    "gpu_memory_utilization": 0.95,
+    "kv_fraction": 0.9,
+    "max_output_tokens": 8192,
+    "per_request_overhead_tokens": 4096,
+    "fallback_inflight": 32,
+    "max_prompt_tokens_per_row": 40960,
+    "max_visual_tokens_per_row": 32768,
+    "profiles": [
+      {
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 32768,
+        "gpu_memory_utilization": 0.95
+      },
+      {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 16384,
+        "gpu_memory_utilization": 0.95
+      },
+      {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 16384,
+        "gpu_memory_utilization": 0.92
+      }
+    ],
+    "profile_transition": "next profile only after confirmed owned-server OOM"
+  },
+  "selection_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+  "preparation": {
+    "status": "preparing",
+    "completed_shards": 78,
+    "counts": {
+      "vstar": 115,
+      "zoom": 807,
+      "hrbench_4k": 400,
+      "hrbench_8k": 400,
+      "mme_rw_en": 19129,
+      "mme_rw_cn": 1615
+    },
+    "source_counts": {
+      "vstar": 191,
+      "zoom": 845,
+      "hrbench_4k": 800,
+      "hrbench_8k": 800,
+      "mme_rw_en": 23609,
+      "mme_rw_cn": 1822
+    },
+    "updated_at": "2026-10-25T19:19:04.177394+00:00",
+    "error": null
+  },
+  "freeze": null,
+  "model_jobs": {},
+  "score_status": "not_available",
+  "source_files": 87,
+  "source_bytes": 43371773310,
+  "runtime_data_directory": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1",
+  "runtime_results_directory": "experiments/sharedexpert_c/evaluation/results_highres_perception_v1"
+}

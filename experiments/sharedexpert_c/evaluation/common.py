@@ -11,9 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
-# Frozen four-model comparison plus named intermediate checkpoints evaluated
-# under the same protocol (e.g. the step-100 perception/reasoning exports).
-MODEL_NAMES = ["baseline", "generalist", "perception", "reasoning", "perception-step100", "reasoning-step100"]
+from model_names import MODEL_NAMES
+
 PROTOCOL = {
     "version": "sharedexpert-teacher-eval-v3-total-image-budget",
     "enable_thinking": True,
@@ -33,11 +32,22 @@ PROTOCOL = {
 }
 # Scoring revisions never change the frozen prompts or generation-cache identity.
 SCORING_PROTOCOL = {
-    "version": "strict-local-v2-length-zero",
+    "version": "strict-local-v3-length-zero-ifeval-deterministic",
     "zero_on_length_termination": True,
     "length_finish_reason": "length",
     "preserve_extraction_and_pre_penalty_score_for_audit": True,
     "recompute_from_raw_response": True,
+    "ifeval_randomness": {
+        "base_seed": 20261019,
+        "identity": "frozen row['ifeval']; independent of model, response and evaluation order",
+        "seed_derivation": "int.from_bytes(SHA256(canonical_json({'base_seed': base_seed, 'ifeval': row['ifeval']})), 'big')",
+        "canonical_json": {"ensure_ascii": False, "sort_keys": True, "separators": [",", ":"], "encoding": "utf-8"},
+        "strict_loose_share_seed": True,
+        "restore_python_random_state": True,
+        "synchronization": "threading.RLock around state save, both checks and state restore",
+        "known_upstream_fallback_ids": ["IFEval:1122", "IFEval:1129"],
+        "upstream_fallback_limitation": "Pinned checker replaces nonalphabetic '#' / '!' with an ASCII letter; deterministic seeding preserves this fallback, not the prompt's symbol-count semantics.",
+    },
 }
 
 
@@ -174,6 +184,9 @@ def number(text):
 
 
 def score(row, response):
+    if row["task"] in {"ocrbench", "ifeval"}:
+        from general_metrics import score_general
+        return score_general(row, response)
     answer, extraction = final_answer(response)
     result = {"extracted": answer, "extraction": extraction, "correct": False, "parse_success": bool(answer)}
     if not answer:
@@ -229,6 +242,10 @@ def score_prediction(row, record):
     assessed["length_terminated"] = record.get("finish_reason") == "length"
     if assessed["length_terminated"]:
         assessed["correct"] = False
+        if row["task"] == "ifeval":
+            assessed["loose_correct"] = False
+            assessed["strict_instructions"] = [False] * len(assessed.get("strict_instructions", []))
+            assessed["loose_instructions"] = [False] * len(assessed.get("loose_instructions", []))
         if "iou" in assessed:
             assessed["iou_before_length_penalty"] = assessed["iou"]
             assessed["iou"] = 0.0

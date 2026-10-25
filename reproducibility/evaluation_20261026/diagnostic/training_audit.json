@@ -1,0 +1,143 @@
+{
+  "created_at": "2026-10-25T15:12:34.412221+00:00",
+  "method": "CPU-only: first 3000 rows of current restored prepared parquet; join normalized/virl39k.jsonl by extra_info.record_id; aggregate training steps 1..100 metrics. No training or evaluation changes.",
+  "provenance_limit": "Imported reasoning/perception checkpoint protocols pin original-server parquet SHA256. Current restored parquet files have different SHA256 and relocated image paths. Original/current audit source weights, pool sizes, counts and deterministic build seed agree; category counts below directly characterize the current reconstructed prefix, not a fresh byte-level equivalence proof against the unavailable original parquet.",
+  "models": {
+    "reasoning": {
+      "parquet": "experiments/sharedexpert_c/data_pipeline/prepared/reasoning.parquet",
+      "parquet_sha256": "91ccd1f385253c40bc595b42b1f2bbb05fefc3db0fdc32ab6bfefc2caf7e0f0c",
+      "prompt_exposures_at_step100": 3000,
+      "rollout_responses_at_group_size8": 24000,
+      "source_counts": {
+        "geometry3k": 1200,
+        "virl39k": 1200,
+        "mmk12": 600
+      },
+      "unique_records": 3000,
+      "virl_category_counts": {
+        "(GradeSchool) Non-Geo Math": 497,
+        "Tables/Diagrams/Charts": 217,
+        "(GradeSchool) Geometric": 264,
+        "Broader STEM Topics": 32,
+        "(GradeSchool) Science": 95,
+        "Spatial Reasoning": 66,
+        "Social Science": 26,
+        "Commonsense": 3
+      },
+      "virl_original_source_counts": {
+        "MMMath": 136,
+        "Processed": 500,
+        "dvqa": 45,
+        "MMK12": 204,
+        "DeepScaleR": 57,
+        "geoqa_plus": 36,
+        "geoqa_plusConverted": 19,
+        "ai2d": 28,
+        "ScienceQA": 45,
+        "R1OneVisionConverted": 7,
+        "M3CoT": 57,
+        "R1OneVision": 39,
+        "K12": 16,
+        "M3CoTConverted": 4,
+        "chartqa": 6,
+        "ScienceQAConverted": 1
+      },
+      "category_example_lines": {
+        "(GradeSchool) Non-Geo Math": 1501,
+        "Tables/Diagrams/Charts": 3318,
+        "(GradeSchool) Geometric": 7249,
+        "Broader STEM Topics": 3065,
+        "(GradeSchool) Science": 1996,
+        "Spatial Reasoning": 5762,
+        "Social Science": 540,
+        "Commonsense": 6657
+      },
+      "training_metric_means_steps1_100": {
+        "critic/rewards/mean": {
+          "mean": 0.7420000016689301,
+          "steps": 100
+        },
+        "response_length/clip_ratio": {
+          "mean": 0.15445833361707628,
+          "steps": 100
+        }
+      }
+    },
+    "perception": {
+      "parquet": "experiments/sharedexpert_c/data_pipeline/prepared/perception.parquet",
+      "parquet_sha256": "b2d77541e65d3ddeba20fe2c03e99be1d91023aa75b2fe576b3a3366eb8a4826",
+      "prompt_exposures_at_step100": 3000,
+      "rollout_responses_at_group_size8": 24000,
+      "source_counts": {
+        "tallyqa": 1200,
+        "clevr": 1200,
+        "refcoco": 600
+      },
+      "unique_records": 3000,
+      "training_metric_means_steps1_100": {
+        "critic/rewards/mean": {
+          "mean": 0.8061209791898727,
+          "steps": 100
+        },
+        "response_length/clip_ratio": {
+          "mean": 0.03129166663624346,
+          "steps": 100
+        }
+      }
+    },
+    "generalist": {
+      "parquet": "experiments/sharedexpert_c/data_pipeline/prepared/generalist.parquet",
+      "parquet_sha256": "73d6b7528f6d06fe9d7bdf2d49346878f24e7777b2f775e7a63adf12416a19b5",
+      "prompt_exposures_at_step100": 3000,
+      "rollout_responses_at_group_size8": 24000,
+      "source_counts": {
+        "chartqa": 150,
+        "mmk12": 120,
+        "vqav2": 1200,
+        "geometry3k": 240,
+        "docvqa": 150,
+        "tallyqa": 240,
+        "clevr": 240,
+        "refcoco": 120,
+        "virl39k": 240,
+        "if_format": 300
+      },
+      "unique_records": 3000,
+      "training_metric_means_steps1_100": {
+        "critic/rewards/mean": {
+          "mean": 0.7582342714071274,
+          "steps": 100
+        },
+        "response_length/clip_ratio": {
+          "mean": 0.06900000060442835,
+          "steps": 100
+        }
+      }
+    },
+    "perception_v2": {
+      "prompt_exposures_at_step100": 3000,
+      "rollout_responses_at_group_size8": 24000,
+      "category_counts": {
+        "object_attribute": 600,
+        "grounding": 600,
+        "ocr_document": 600,
+        "spatial_detail": 450,
+        "existence_confusion": 450,
+        "general_vqa_replay": 300
+      },
+      "unique_records": 3000,
+      "reference": "experiments/sharedexpert_c/data_pipeline/prepared/perception_v2.audit.json",
+      "training_metric_means_steps1_100": {
+        "critic/rewards/mean": {
+          "mean": 0.8803195589780808,
+          "steps": 100
+        },
+        "response_length/clip_ratio": {
+          "mean": 0.008958333684131504,
+          "steps": 100
+        }
+      }
+    }
+  },
+  "effective_learning_signal_limit": "No reward-group standard deviation or uniform/nonuniform group fraction appears in combined_metrics.csv. Mean reward differs by reward task and cannot establish which teacher had more nonzero GRPO advantage groups."
+}

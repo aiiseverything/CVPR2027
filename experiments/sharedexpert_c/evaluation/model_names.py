@@ -1,5 +1,3 @@
-"""Evaluation row labels, extended here so common.py (scorer source) stays frozen."""
-from common import MODEL_NAMES as _FROZEN_MODELS
+"""Canonical model labels shared by evaluation runners and reports."""
 
-# Insert the 9B scale reference directly after the 4B baseline.
-MODEL_NAMES = ["baseline", "baseline-9b"] + [m for m in _FROZEN_MODELS if m != "baseline"]
+MODEL_NAMES = ['baseline', 'baseline-9b', 'generalist', 'perception', 'reasoning', 'perception-step100', 'reasoning-step100', 'perception-v2-step100', 'domain-opd', 'mix-rl']

@@ -74,6 +74,8 @@ def prompt_tokens(processor, prompt, sizes):
     messages = [{"role": "user", "content": message_content(prompt, [{"type": "image"} for _ in sizes])}]
     text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=True)
     text_n = len(processor.tokenizer.encode(text, add_special_tokens=False))
+    if not sizes:
+        return text_n
     # Installed transformers' count helper accepts min/max_pixels but ignores size.
     # Actual preprocessing/API requests use the equivalent public size dictionary.
     size = image_size_for_count(len(sizes))

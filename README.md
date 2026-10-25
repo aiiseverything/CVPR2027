@@ -1,6 +1,13 @@
 # SharedExpert / CVPR2027
 
-围绕 SharedExpert 与多教师 on-policy distillation（MOPD）的论文设计和多模态训练实验。当前阶段是用 Qwen3.5-4B 分别训练感知、推理、通用三个教师，再统一评测；C 方案的学生蒸馏及 MOPD 对比尚未开始。
+围绕 SharedExpert 与多教师 on-policy distillation（MOPD）的论文设计和多模态训练实验。截至 2026-10-26，基座、感知 v1、推理、通用及感知 v2 五个 4B 模型均已完成三套评测，每模型 7,162 题。新的六项高分辨率感知子集评测单独运行，使用不同的图像预算，成绩不与旧套件混合。
+
+## 最新评测资料
+
+- [五模型结果与诊断快照](reproducibility/evaluation_20261026/README.md)：完整成绩、IFEval 敏感性分析，以及推理教师感知能力诊断。
+- [高分辨率感知评测](experiments/sharedexpert_c/evaluation/highres/README.md)：四模型、六项感知子集、每模型 24,461 题；原图上限 33,554,432 像素。
+- [高分辨率运行状态快照](reproducibility/evaluation_20261026/highres/status_snapshot.json)：带时间戳的静态进度，不是实时监控或已完成成绩。
+- [项目执行约定](AGENTS.md)：新训练先做 CPU 配置、数据、依赖和资源检查，然后直接启动已授权的正式训练；不默认安排独立 GPU smoke。
 
 ## 项目入口
 
@@ -13,7 +20,7 @@
 - [搭建问题复盘](experiments/sharedexpert_c/docs/搭建问题复盘.md)
 - [评测配置与问题记录](experiments/sharedexpert_c/docs/评测配置与问题记录.md)
 
-## 当前训练协议
+## 三教师训练配置记录
 
 | 项目 | 设置 |
 |---|---|
@@ -27,7 +34,7 @@
 | 分布式 | 4 GPU，FSDP2，单序列 microbatch 1 |
 | checkpoint | 每 25 steps 保存，保留最近 2 个 |
 
-保留每个教师 12,000 行 prepared 数据，当前 batch 30 协议依顺序使用前 3,000 行，共 24,000 次响应采样。多序列 packing 尚未通过梯度等价性验证，正式训练不启用。基础参数见 [common.json](experiments/sharedexpert_c/training/config/common.json) ；有效终点由 [execution_budget.json](experiments/sharedexpert_c/training/config/execution_budget.json) 覆盖为 100。正在运行的感知教师保留原配置，由后台 watcher 在完整 checkpoint 100 后接续导出，因此旧进度条仍可能显示 300。详见实验文档。
+每个教师原 prepared 数据为 12,000 行，batch 30 协议依顺序使用前 3,000 行，共 24,000 次响应采样。基础参数见 [common.json](experiments/sharedexpert_c/training/config/common.json)；有效终点由 [execution_budget.json](experiments/sharedexpert_c/training/config/execution_budget.json) 覆盖为 100。上表保留原三教师配置，实际服务器续跑配置以各次运行记录为准；新增感知 v2 不应套用 v1 的数据配比。此次评测使用最终 step100 HF 导出。
 
 ## 目录
 
@@ -69,11 +76,11 @@ python3 reproducibility/restore_dependencies.py --check
 3. [评测入口](experiments/sharedexpert_c/evaluation/README.md)：固定套件与严格评分规则。
 4. [监控入口](experiments/sharedexpert_c/monitoring/README.md)：独立后台监控、OOM 告警、TensorBoard 指标和图表。
 
-原实验工作区为 `/home/ml-user/workdir/CVPR2027`。部分脚本、配置和审计凭据记录了该绝对路径以及服务器 GPU/端口布局；换机器时须按文档重新配置、生成数据及执行 smoke/完整性检查。历史成功凭据不能充当新机器的验证结果。这里不提供跳过训练门禁的一键启动命令。
+原实验工作区为 `/home/ml-user/workdir/CVPR2027`，当前运行工作区位于挂载盘。部分历史脚本和凭据包含旧绝对路径、GPU 与端口布局，换机器时须核对环境、模型路径和数据完整性。新训练遵循 [AGENTS.md](AGENTS.md) 的 CPU 检查与直接正式运行流程；历史成功凭据不能代替新机器的检查。
 
 ## 数据与运行产物
 
-Git 跟踪项目代码、论文、配置、数据准备与评测脚本、小型审计记录以及历史结果快照。以下保留在训练服务器，由 `.gitignore` 排除：
+本次新增资料包含代码、配置、小型审计摘要和结果快照；已有历史提交中的预测记录继续保留。以下大体积产物不新增到 Git，由 `.gitignore` 排除：
 
 - 模型权重、checkpoint、优化器状态和虚拟环境；
 - 下载数据、图片、parquet / TSV、评测题目与逐样本生成内容；
@@ -81,6 +88,6 @@ Git 跟踪项目代码、论文、配置、数据准备与评测脚本、小型�
 
 数据和模型请通过项目脚本从原始来源获取，并遵循各自使用条款。第三方源码遵循对应子模块中的许可；本仓库未额外指定项目许可证。
 
-[2026-10-20 历史快照](reproducibility/snapshot_20261020/snapshot.json) 包含已完成步数、指标文件哈希、训练曲线和 baseline 汇总；它不是实时状态，也不是训练完成声明。当前教师训练尚未结束，不能把早期 reward 或 baseline 成绩写成最终教师结果。旧故障和未通过的尝试仍保留在复盘文档。
+[2026-10-20 历史快照](reproducibility/snapshot_20261020/snapshot.json) 保留当时的训练步数、指标哈希、曲线和 baseline 汇总。已完成的教师评测以 [2026-10-26 资料快照](reproducibility/evaluation_20261026/README.md) 为准；早期 reward 和旧 baseline 图表不代表最终教师成绩。旧故障和未通过的尝试仍保留在复盘文档。
 
 ![训练指标历史快照](reproducibility/snapshot_20261020/training_metrics.png)

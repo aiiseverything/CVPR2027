@@ -39,6 +39,9 @@ __pycache__/
 *.pid
 *.lock
 *.orig
+*.sqlite
+*.sqlite-*
+.pip-cache/
 
 /pre-lab/models/
 /pre-lab/data/
@@ -65,8 +68,21 @@ __pycache__/
 !/experiments/sharedexpert_c/runtime/batch30_first_step_validation.json
 !/experiments/sharedexpert_c/runtime/unused_topk_formal_validation.json
 /experiments/sharedexpert_c/evaluation/assets/
+/experiments/sharedexpert_c/evaluation/assets_blink_mmvp/
 /experiments/sharedexpert_c/evaluation/results/
+/experiments/sharedexpert_c/evaluation/results_blink_mmvp/
+/experiments/sharedexpert_c/evaluation/new_bench_raw/
 /experiments/sharedexpert_c/evaluation/core_results/
 /experiments/sharedexpert_c/evaluation/old_protocol/
 /experiments/sharedexpert_c/evaluation/restored_*.json
 /experiments/sharedexpert_c/evaluation/original_4b_startup_records.json
+
+# Live high-resolution evaluation data, caches and result directories.
+# Publish reviewed static manifests and summaries under reproducibility/ instead.
+/experiments/sharedexpert_c/models/
+/experiments/sharedexpert_c/evaluation/data/
+/experiments/sharedexpert_c/evaluation/assets_general/
+/experiments/sharedexpert_c/evaluation/general_sources/
+/experiments/sharedexpert_c/evaluation/results_general/
+/experiments/sharedexpert_c/evaluation/results_expanded/
+/experiments/sharedexpert_c/evaluation/results_highres*/

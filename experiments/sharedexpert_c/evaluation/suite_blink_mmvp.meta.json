@@ -1,0 +1,54 @@
+{
+  "protocol": {
+    "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+    "enable_thinking": true,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": 20261019,
+    "max_tokens": 8192,
+    "max_prompt_tokens": 2048,
+    "max_model_len": 10240,
+    "max_images": 8,
+    "image_size": {
+      "longest_edge": 786432,
+      "shortest_edge": 4096
+    },
+    "max_total_image_pixels": 1572864,
+    "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+    "force_answering": false,
+    "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+    "max_token_policy": "no extra answer pass; final answer must be present in original response"
+  },
+  "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+  "suite_sha256": "13f7810c339d7966e4268709a10b74ae1683c4078ff5924ae972bf881d1c226a",
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+  "processor": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/models/Qwen3.5-4B",
+  "processor_config_sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+  "source_sha256": {
+    "BLINK_val": "fa2190bcb4e80d25af9ff778caae60ee02ae37b9d0f40bdbc3483cfdf328107c",
+    "MMVP": "225204bbb168fc963c59dca4fdd916d63ebe22471ab803a84aa96fdd7e57162c"
+  },
+  "source_md5_expected": {
+    "BLINK_val": "d5e8af148b10ac69f535ff7b23f3f989",
+    "MMVP": "8cb732b141a0cba5b42159df2839e557"
+  },
+  "counts": {
+    "BLINK_val": 1901,
+    "MMVP": 300
+  },
+  "excluded": [],
+  "grounding_included": false,
+  "image_hash_format": "sha256(struct.pack('>II', width, height) + RGB pixel bytes)",
+  "limitations": [
+    "Strict local extraction scores, not official LLM-judge scores",
+    "BLINK val uses VLMEvalKit TSV rows; MMVP uses all 300 rows in its TSV",
+    "Hash exclusion catches exact pixels only, not all re-encoded derivatives"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Current reconstructed reasoning first 3000 rows vs saved evaluation metadata hashes; exact RGB image and exact normalized text only. Does not recompute image pixels or exclude crops/paraphrases/near-duplicates. Historical original parquet byte equivalence not established.",
+  "training_file": "experiments/sharedexpert_c/data_pipeline/prepared/reasoning.parquet",
+  "training_sha256": "91ccd1f385253c40bc595b42b1f2bbb05fefc3db0fdc32ab6bfefc2caf7e0f0c",
+  "training_rows": 3000,
+  "unique_image_hashes": 2840,
+  "suites": {
+    "suite.jsonl": {
+      "sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100",
+      "image_overlap_rows": [],
+      "question_image_overlap_rows": [],
+      "exact_text_overlap_rows": []
+    },
+    "suite_blink_mmvp.jsonl": {
+      "sha256": "13f7810c339d7966e4268709a10b74ae1683c4078ff5924ae972bf881d1c226a",
+      "image_overlap_rows": [],
+      "question_image_overlap_rows": [],
+      "exact_text_overlap_rows": []
+    },
+    "suite_general.jsonl": {
+      "sha256": "48493e6cf9e20d5fbe4f0870a5f43d8a8e64cffaf1c4783d5bd20d4eaff23aef",
+      "image_overlap_rows": [],
+      "question_image_overlap_rows": [],
+      "exact_text_overlap_rows": []
+    }
+  }
+}

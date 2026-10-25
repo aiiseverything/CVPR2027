@@ -1,0 +1,103 @@
+{
+  "protocol": {
+    "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+    "enable_thinking": true,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": 20261019,
+    "max_tokens": 8192,
+    "max_prompt_tokens": 2048,
+    "max_model_len": 10240,
+    "max_images": 8,
+    "image_size": {
+      "longest_edge": 786432,
+      "shortest_edge": 4096
+    },
+    "max_total_image_pixels": 1572864,
+    "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+    "force_answering": false,
+    "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+    "max_token_policy": "no extra answer pass; final answer must be present in original response"
+  },
+  "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+  "suite_sha256": "48493e6cf9e20d5fbe4f0870a5f43d8a8e64cffaf1c4783d5bd20d4eaff23aef",
+  "scoring_protocol": {
+    "version": "strict-local-v2-length-zero",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true
+  },
+  "scoring_protocol_sha256": "7ebc4bbf61e3d622b3cbf7e0e3360a0aa7b5fb904ebdc0e406f7182431259506",
+  "counts": {
+    "IFEval_strict": 541,
+    "OCRBench_heldout": 997
+  },
+  "ocr_categories": {
+    "Regular Text Recognition": 50,
+    "Artistic Text Recognition": 50,
+    "Handwriting Recognition": 50,
+    "Digit String Recognition": 50,
+    "Non-Semantic Text Recognition": 50,
+    "Scene Text-centric VQA": 200,
+    "Irregular Text Recognition": 50,
+    "Doc-oriented VQA": 197,
+    "Key Information Extraction": 200,
+    "Handwritten Mathematical Expression Recognition": 100
+  },
+  "training_sha256": {
+    "perception": "b2d77541e65d3ddeba20fe2c03e99be1d91023aa75b2fe576b3a3366eb8a4826",
+    "reasoning": "91ccd1f385253c40bc595b42b1f2bbb05fefc3db0fdc32ab6bfefc2caf7e0f0c",
+    "generalist": "73d6b7528f6d06fe9d7bdf2d49346878f24e7777b2f775e7a63adf12416a19b5",
+    "domain_opd_6400": "6b663fe95c380ba29c5f0ee6a2d2902c3581f524c0c1b049c34b1cace72087ef"
+  },
+  "excluded": [
+    {
+      "id": "OCRBench:519",
+      "reason": "existing_evaluation_image"
+    },
+    {
+      "id": "OCRBench:601",
+      "reason": "existing_evaluation_image"
+    },
+    {
+      "id": "OCRBench:606",
+      "reason": "existing_evaluation_image"
+    }
+  ],
+  "source_manifest": {
+    "repository": "https://github.com/google-research/google-research",
+    "commit": "e6890f85757dd84e27ca6df2dd30651dafad28e0",
+    "files": {
+      "instructions.py": "60e086f5342a03ce8e18b64bbcccf86308f523c08aa826707a562150a52f3edf",
+      "instructions_util.py": "a73797261eee5bf447e279d82a2b700b1bdd3cb1193412dbab1270a85832bc6b",
+      "instructions_registry.py": "ec92d72c264f6d906978613085db262356174300370a3fffe6fefd5969ce9cfc",
+      "evaluation_lib.py": "35decc06000718487f44d7deafa6d3f48a8ec0886281edf40162c0265b7d248c",
+      "data/input_data.jsonl": "67ffeee0fcb87c317c5b08a2de85557b4a7e96ada6178aa645b4954fe4b53d49"
+    },
+    "ocrbench": {
+      "repository": "echo840/OCRBench",
+      "revision": "92a54bd1384387c178d5a07140a2d85e0a3d12e1",
+      "files": [
+        "data/test-00000-of-00001.parquet"
+      ],
+      "sha256": {
+        "data/test-00000-of-00001.parquet": "d9cc9f488e5310143d8d89956c19d0bdfd71e7089025da5202643f73720df7f5"
+      }
+    },
+    "nltk_data": {
+      "url": "https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip",
+      "sha256": "e57f64187974277726a3417ca6f181ec5403676c717672eef6a748a7b20e0106"
+    }
+  },
+  "source_sha256": {
+    "ocr_parquet": "d9cc9f488e5310143d8d89956c19d0bdfd71e7089025da5202643f73720df7f5"
+  },
+  "limitations": [
+    "Post-teacher-training expansion; no retrospective preregistration claim",
+    "Exact RGB overlap removal cannot detect every crop or re-encoding",
+    "OCRBench filtered subset, not the official 1000-point total",
+    "IFEval tests text instruction following, not multimodal instruction following",
+    "Thinking enabled; final content scored; length termination counts zero"
+  ]
+}

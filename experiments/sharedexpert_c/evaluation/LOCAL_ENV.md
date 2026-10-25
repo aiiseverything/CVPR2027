@@ -98,3 +98,22 @@ cd /autodl-fs/data/CVPR2027
 | MMBench_DEV_EN_V11 | 88.40 | 87.20 | +1.20 (−1.60 ~ +4.00) |
 
 全 3423 行等权配对差值为 **+2.78（95% CI +1.21 ~ +4.35）**。与 specialist 身份一致：reasoning 维度提升最大，perception 维度保持不变；MMMU、MathVista 的配对差值区间不含 0。截断与抽取失败均少于 perception-step100（229 vs 302、225 vs 302），主要差异集中在 MathVision/MMMU 的长思考题。baseline 仍无本机缓存，以上只做两个 step100 中间检查点之间的同协议配对比较。
+
+## BLINK val 与 MMVP 增量评测（2026-10-22）
+
+新增两个感知基准，使用与主套件完全相同的 protocol、图像预算、prompt 上限和评分器；作为独立套件 `suite_blink_mmvp.jsonl` 运行，不改动原 3423 行清单。
+
+- 数据源：VLMEvalKit 发布 TSV，`BLINK.tsv`（538,366,044 字节，MD5 `d5e8af148b10ac69f535ff7b23f3f989`）与 `MMVP.tsv`（4,167,334 字节，MD5 `8cb732b141a0cba5b42159df2839e557`），均落在 `evaluation/new_bench_raw/`。
+- 构建脚本 `prepare_blink_mmvp.py`：BLINK val **1901** 行（14 个子任务）、MMVP **300** 行，共 **2201** 行，prompt 预算内 **0 条排除**；图像写入 `evaluation/assets_blink_mmvp/`。
+- 三个模型依次用 `run_checkpoint.py --suite suite_blink_mmvp.jsonl --output-root results_blink_mmvp --concurrency 16` 评测，全部 2201/2201、API 错误 0。
+- 最终汇总用 `merge_summary.py` 合并两个套件，直接写回 `evaluation/results/summary.{md,json}` 与 `per_sample.csv`（共 5624 行）。`summarize.py` 单独运行只覆盖主套件，不要用它覆盖最终合并报告。
+
+| 基准 | baseline | perception-step100 | reasoning-step100 |
+|---|---:|---:|---:|
+| BLINK_val | 59.18 | 66.86 | 67.54 |
+| MMVP | 79.00 | 81.33 | 80.33 |
+| perception 共同基准宏平均 | 69.09 | 74.10 | 73.94 |
+
+配对差值（聚类 bootstrap 95% CI）：BLINK 上 perception-step100 vs baseline `+7.68 (+5.79 ~ +9.68)`，reasoning-step100 vs baseline `+8.36 (+6.58 ~ +10.21)`；两个 step100 之间 `+0.68 (−1.21 ~ +2.47)`，无显著差异。MMVP 上两个 step100 对 baseline 的差值区间均含 0。
+
+注意：这是本地 strict-extraction + 8192 token 截断记零的分数，不是官方 BLINK/MMVP 分数。BLINK 的 `IQ_Test` 在 baseline 上 135/150 条截断（accuracy 5.3%），step100 仍有 85–124 条截断，低分主要是长思考未在预算内收尾；汇报时应同时给出截断率。原始 Qwen3.5-4B 只在本增量套件上运行，主套件旧基准没有本机 baseline，因此合并表中 baseline 的旧基准列为 `—`。

@@ -1,0 +1,190 @@
+High-resolution perception subsets v1
+Updated 2026-10-26 (Asia/Shanghai)
+
+This run evaluates exactly four 4B checkpoints, in this order:
+  baseline
+  reasoning-step100
+  perception-step100          (perception teacher v1)
+  perception-v2-step100       (perception teacher v2)
+
+Six perception subsets are selected from pinned upstream sources:
+  VStar:        category=direct_attributes                         115 questions
+  HRBench 4K:   category=single (FSP)                               400 rows
+  HRBench 8K:   category=single (FSP)                               400 rows
+  MME-RW EN:    Perception, excluding Attribute_Motion_*          19,129 questions
+  MME-RW CN:    Perception, excluding Attribute_Motion_*           3,610 questions
+  ZoomBench:    reviewed semantic source-ID inclusion list          807 questions
+Final frozen selection: 24,461 questions per model; 97,844 across four models.
+selection.json is authoritative for counts, predicates and included source IDs.
+HRBench has 100 base questions x 4 option permutations per resolution; these
+are 400 evaluation rows, not 400 independent questions. MME uses an exact,
+case-sensitive l2-category allowlist alongside the Perception/ category filter.
+Full source counts remain 191/845/800/800/23609/5917 and are checked separately
+from selected counts. Original full-source ordinals remain in question IDs.
+
+These are local perception-subset results, NOT official complete scores for
+the six benchmarks. The cancelled full-suite highres_v1 data/results are a
+separate historical run and must not be used as this run's prediction cache.
+
+Protocol: full original image, no privileged Zoom crop; processor area cap
+33554432 pixels (32 MP configuration), minimum 4096 pixels; prompt <=40960
+tokens, output <=8192, context 49152; thinking enabled, temperature 0,
+top_p 1, seed 20261019. Images above the area cap are resized by the frozen
+processor. All four models share CPU-validated prompts and token counts.
+
+Current throughput policy: profiled-kv-admission-v1, enabled by
+--concurrency 64 --throughput-mode. The earlier fixed 16/8/4/2 visual-token
+tiers are no longer used. Initial formal vLLM settings are:
+  --max-num-seqs 64
+  --max-num-batched-tokens 32768
+  --gpu-memory-utilization 0.95
+  --enable-chunked-prefill
+The batch-token limit applies per scheduling step; context remains 49152.
+
+Admission reads GPU KV cache capacity N from this server startup's log segment
+and reserves at most floor(0.9 * N) tokens across in-flight requests. Each
+request reserves its frozen prompt_tokens + 8192 output tokens + 4096 overhead
+tokens. Both this total token budget and the current profile's sequence limit
+must fit; 64 is a ceiling, not a guaranteed simultaneous request count. The
+queue remains FIFO and does not skip a blocked head request. If this startup
+does not report KV capacity, admission uses an explicit fallback of at most
+32 in-flight requests; it does not reuse an older startup's capacity report.
+
+Only confirmed CUDA OOM evidence from the currently owned server attempt can
+advance the execution profile, in this order (max sequences / batch tokens /
+GPU memory utilization):
+  64 / 32768 / 0.95
+  32 / 16384 / 0.95
+  32 / 16384 / 0.92
+An older PID's OOM, an unrelated log entry, or a network error cannot trigger
+these changes. Profile history and runtime admission budgets are recorded in
+run/status receipts. The integrated changes passed 49 CPU tests; this is not
+a claim of successful GPU execution.
+
+Scoring uses local deterministic option/numeric matching, including ZoomBench.
+It does NOT use the official ZoomBench LLM judge. Empty or truncated outputs
+score zero. HRBench reports cycle-average accuracy; MME reports question micro
+accuracy with category breakdowns. Summaries also report failures, truncation
+and output lengths. The exact selection SHA256 accompanies prepared data,
+the frozen suite, each model run and summaries.
+
+Eleven exact pinned upstream annotation issues are retained in the main score:
+one Zoom row, two MME EN rows and eight MME CN rows. Ten lack their gold label
+among the displayed options; the other EN row duplicates C but has a valid D
+gold. CN's original literal label "一" is preserved and is not rewritten as A.
+Question text, gold answers, option lines and all 24461 selected rows remain
+unchanged. Shared exact source/text matching authorizes only these known rows;
+unknown anomalies still fail preparation/scoring. Summaries separately report
+a sensitivity score excluding all eleven rows (24450 rows across the suite),
+along with their stable IDs and source IDs. The main denominator is unchanged.
+
+All paths below are relative to:
+  /autodl-fs/data/CVPR2027/experiments/sharedexpert_c
+
+Persistent data: evaluation/data/highres_perception_v1/
+  selection.json: authoritative frozen subset definitions; ready=true required
+  zoom_selection.json: original text annotations used for selection review
+  zoom_selection_audit.json: completed per-source-ID inclusion review and reasons
+  source_manifest.json: 87 pinned Parquet files, revisions, byte sizes and SHA256
+  annotation_issues_audit.json: eleven exact source issues and full text audit
+  download_state.json, download.log: transport/progress and verification receipts
+  prepare_state.json: streaming preparation progress and source/selected counts
+  images.sqlite: original encoded image BLOBs, deduplicated by SHA256
+  questions.jsonl, dataset_manifest.json: prepared selected-data commit
+  suite.jsonl, suite.meta.json, freeze_state.json: CPU-validated frozen prompts
+
+Source cache (temporary disk):
+  /root/autodl-tmp/sharedexpert/highres_perception_sources
+  evaluation/data/highres_perception_v1/sources is a symlink to this directory.
+All 87 sources completed SHA256 verification: 43,371,773,310 bytes (~40.39 GiB).
+The downloader uses direct hf-mirror.com requests with trust_env=False;
+it supports Range resume, retries, and a 2 GiB source-disk free-space floor.
+Completed downloads do not require the laptop or its port-10820 SSH proxy.
+
+Only selected images are packed on the persistent disk; no image-file expansion.
+Preparation checks a 15 GiB persistent-disk reserve before each shard, every
+100 source rows, before inserting a new image BLOB, and before final export.
+An interrupted/failed shard rolls back; completed shard transactions remain
+resumable. Source counts and selected counts are both checked before freezing.
+Selection or source-manifest changes are rejected rather than mixed into a DB.
+Parquet footer estimates put all-source decoded image payloads at ~31.25 GiB
+before subset filtering and global SHA deduplication; the final DB is measured
+in dataset_manifest.json. The original cancelled packed DB is not reused.
+
+Persistent results: evaluation/results_highres_perception_v1/
+  status.json, queue.log, launch.json: queue progress and initial startup receipt
+  scheduling_migration_20261026.json: historical fixed-to-adaptive queue audit
+  launch_adaptive_20261026.json: historical adaptive-queue startup receipt
+  throughput_migration_20261026.json: throughput configuration migration audit
+  source_annotation_repair_20261026.json: source-label repair and retry-reset audit
+  launch_throughput_20261026.json: current detached throughput-queue startup receipt
+  prepare.log, freeze.log: CPU prerequisite logs
+  full/<model>/predictions.jsonl: append-only resumable responses
+  full/<model>/{run,checkpoint,status}.json and vllm.log: identity and progress
+  summary.json, summary.csv: selected-suite scores, refreshed after each model
+
+Queue PID at this update: 54648; preparation child at restart: 54650.
+The queue is detached from SSH (new session, stdin disconnected), so closing
+the laptop does not stop it. Always read status.json for the current PID/stage;
+54648 is an observation, not a permanent PID. Preparation/inference children
+use local files in offline mode and remove proxy environment variables.
+
+The previous adaptive queue 43828 exited after the original source-label
+validation failure. No model job had started. The source repair preserved
+failure history and explicitly reset the preparation retry budget; see
+source_annotation_repair_20261026.json. New queue 54648 resumed all 62 committed
+shards and retried the uncommitted MME EN source train-00058-of-00070.parquet.
+The source issue no longer blocks preparation; at this documentation check,
+64 shards were complete. Read prepare_state.json for continuing progress.
+The earlier 50-shard scheduling migration remains in historical receipts.
+The selection SHA256 remains
+ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18.
+The migration/startup receipts above and status.json preserve configuration
+history; source data, selected questions, gold answers and image protocol are
+unchanged. Frozen source hashes include the shared annotation_issues.py matcher.
+
+The queue waits for downloads plus ready=true selection, then runs preparation,
+CPU freeze/checks, and authorized formal inference. There is no separate GPU
+smoke run. GPU 0 is used by one model at a time, with the throughput policy above.
+Other GPU workloads cause waiting; cleanup targets only the owned server group.
+
+Check progress without starting work:
+  cd /autodl-fs/data/CVPR2027/experiments/sharedexpert_c
+  cat evaluation/results_highres_perception_v1/status.json
+  cat evaluation/data/highres_perception_v1/download_state.json
+  cat evaluation/data/highres_perception_v1/prepare_state.json
+  cat evaluation/data/highres_perception_v1/freeze_state.json
+  tail -n 40 evaluation/results_highres_perception_v1/queue.log
+  tail -n 40 evaluation/results_highres_perception_v1/prepare.log
+  tail -n 40 evaluation/results_highres_perception_v1/freeze.log
+  tail -n 40 evaluation/results_highres_perception_v1/full/baseline/vllm.log
+  df -h /autodl-fs/data /root/autodl-tmp
+Some preparation/freeze logs appear only after the corresponding stage starts.
+For model progress, read full/<model>/status.json using a model name above.
+
+Start or resume the queue only after confirming its previous process has exited:
+  cd /autodl-fs/data/CVPR2027/experiments/sharedexpert_c
+  nohup setsid /root/.venv-eval/bin/python -u evaluation/highres/launch_queue.py \
+    --root evaluation/data/highres_perception_v1 \
+    --output-root evaluation/results_highres_perception_v1 \
+    --python /root/.venv-eval/bin/python --gpu 0 --concurrency 64 --throughput-mode \
+    >>evaluation/results_highres_perception_v1/queue.log 2>&1 </dev/null &
+The queue lock rejects a simultaneous second launcher. It runs prepare.py with
+--selection evaluation/data/highres_perception_v1/selection.json, then freeze.py.
+Compatible committed shards and successful predictions are reused. Exact
+model/selection/protocol mismatches fail explicitly. Preparation, freeze and
+model launches each have a persisted bounded retry budget (default 3).
+Investigate a saved failure before resetting retry counters or replacing data.
+
+If source downloads need recovery, run this separately; do not add --prepare:
+  cd /autodl-fs/data/CVPR2027/experiments/sharedexpert_c
+  nohup setsid /root/.venv-eval/bin/python -u evaluation/highres/download.py \
+    --root evaluation/data/highres_perception_v1 \
+    --source-root /root/autodl-tmp/sharedexpert/highres_perception_sources \
+    --endpoint https://hf-mirror.com --workers 4 --retries 12 \
+    >>evaluation/data/highres_perception_v1/download.log 2>&1 </dev/null &
+Already verified source files and existing .part offsets are reused. The queue
+owns selected preparation after downloads complete. The source disk is temporary;
+if it is lost before preparation completes, restore sources from the pinned
+manifest. Once packed data and the frozen suite are complete, inference reads
+the persistent SQLite images and does not need remote images or the laptop proxy.

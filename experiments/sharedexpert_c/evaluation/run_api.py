@@ -38,8 +38,9 @@ def infer(row, args):
         "model": args.model, "messages": [{"role": "user", "content": message_content(row["prompt"], images)}],
         "temperature": PROTOCOL["temperature"], "top_p": PROTOCOL["top_p"], "max_tokens": PROTOCOL["max_tokens"],
         "seed": PROTOCOL["seed"], "chat_template_kwargs": {"enable_thinking": PROTOCOL["enable_thinking"]},
-        "mm_processor_kwargs": {"size": image_size_for_count(len(images))},
     }
+    if images:
+        payload["mm_processor_kwargs"] = {"size": image_size_for_count(len(images))}
     t0 = time.monotonic()
     error = None
     # Stable row-to-endpoint assignment spreads work evenly; retries fail over
