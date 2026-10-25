@@ -357,7 +357,10 @@ def execute(args):
         return 0
     os.environ.update({key: value for key, value in offline_environment().items()
                        if key.startswith(("HF_", "TRANSFORMERS_"))})
-    update(metadata=validate_model_cpu(model, todo[0]), selection=selection)
+    if meta.get("preflight_policy", {}).get("skipped"):
+        update(metadata={"cpu_preflight": "skipped_at_user_request"}, selection=selection)
+    else:
+        update(metadata=validate_model_cpu(model, todo[0]), selection=selection)
     # Import the scorer before owning CUDA; dependency failures are CPU failures.
     from scoring import score_prediction  # noqa: F401
     with socket.socket() as sock:

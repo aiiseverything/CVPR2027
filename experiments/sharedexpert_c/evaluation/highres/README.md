@@ -93,3 +93,7 @@ nohup "$EVAL_PYTHON" "$EVAL_DIR/highres/launch_queue.py" \
 ```
 
 当前进度写入结果目录的 `status.json` 及数据目录的 `prepare_state.json`、`freeze_state.json`。重启时使用同一参数和目录；代码校验冻结身份并复用成功预测，最后一条重试记录生效。不要改运行中的源文件或冻结清单。`launch_queue.py` 在各模型完成后汇总，最终报告应保留评分版本、实际运行档位、异常敏感性结果与全部完成状态。
+
+## 按明确请求跳过离线预检
+
+2026-10-26，用户要求停止继续校验。运行数据根目录的 `skip_preflight.json` 设为 `{"enabled": true, "reason": "explicit user request"}` 后，跳过图片库重复扫描、四模型 processor 重放和实际 CPU 大图预处理，仅用基座 processor 一次构造正式输入及 token 预算。`suite.meta.json` 的 `preflight_policy` 明确记录跳过内容，不记作检查通过；正式响应仍记录实际 token 使用量。已完成的数据下载和准备凭据保留。

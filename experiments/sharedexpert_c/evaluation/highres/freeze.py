@@ -21,6 +21,9 @@ from protocol import (DATA, EXPECTED, MODEL_PATHS, PROTOCOL, HERE, atomic_json,
 def freeze(root=DATA):
     root = Path(root)
     state_file = root / 'freeze_state.json'
+    preference_path = root / 'skip_preflight.json'
+    preference = json.loads(preference_path.read_text()) if preference_path.exists() else {}
+    skip_preflight = preference.get('enabled') is True
     selection = load_selection(root)
     expected = selected_counts(root)
 
@@ -42,7 +45,7 @@ def freeze(root=DATA):
     dataset_manifest = json.loads((root / 'dataset_manifest.json').read_text())
     if dataset_manifest.get('selection_sha256') != file_sha(root / 'selection.json'):
         raise ValueError('Prepared data belongs to a different perception selection')
-    state('validating_questions')
+    state('building_inputs' if skip_preflight else 'validating_questions', preflight_skipped=skip_preflight)
     rows = read_jsonl(root / 'questions.jsonl')
     if dict(Counter(r['benchmark'] for r in rows)) != expected:
         raise ValueError('Prepared question counts differ from frozen perception selection')
@@ -51,7 +54,8 @@ def freeze(root=DATA):
     from scoring import validate_row, SCORING_PROTOCOL
     image_meta = {}
     for row in rows:
-        validate_row(row)
+        if not skip_preflight:
+            validate_row(row)
         im = row['image']
         if not row['question'] or not str(row['answer']).strip():
             raise ValueError(f'Missing question/answer: {row["id"]}')
@@ -61,10 +65,12 @@ def freeze(root=DATA):
             raise ValueError('Inconsistent image metadata')
         image_meta[im['sha256']] = im
         row['prompt'] = prompt_for(row)
-    db = sqlite3.connect(f'file:{root / "images.sqlite"}?mode=ro', uri=True)
-    stored = {sha: size for sha, size in db.execute('SELECT sha256,length(data) FROM images')}
-    if any(stored.get(sha) != im['size'] for sha, im in image_meta.items()):
-        raise ValueError('Missing or truncated packed images')
+    db = None
+    if not skip_preflight:
+        db = sqlite3.connect(f'file:{root / "images.sqlite"}?mode=ro', uri=True)
+        stored = {sha: size for sha, size in db.execute('SELECT sha256,length(data) FROM images')}
+        if any(stored.get(sha) != im['size'] for sha, im in image_meta.items()):
+            raise ValueError('Missing or truncated packed images')
     # Imports and all image checks below are CPU only. No model weights are loaded.
     from transformers import AutoConfig, AutoProcessor
     from PIL import Image
@@ -72,12 +78,14 @@ def freeze(root=DATA):
     models = {}
     baseline = None
     for name, model in MODEL_PATHS.items():
-        state('validating_processor', model=name)
+        state('building_prompt_metadata' if skip_preflight else 'validating_processor', model=name,
+              preflight_skipped=skip_preflight)
         config = AutoConfig.from_pretrained(model, local_files_only=True, trust_remote_code=False)
         context = getattr(getattr(config, 'text_config', config), 'max_position_embeddings')
         if context < PROTOCOL['max_model_len']:
             raise ValueError(f'{name} cannot support the frozen context length')
-        processor = AutoProcessor.from_pretrained(model, local_files_only=True, trust_remote_code=False)
+        processor = (baseline if skip_preflight and baseline is not None else
+                     AutoProcessor.from_pretrained(model, local_files_only=True, trust_remote_code=False))
         weights = sorted(model.glob('*.safetensors'))
         if not weights or any(p.stat().st_size < 1024 for p in weights):
             raise ValueError(f'Missing model weights: {name}')
@@ -86,7 +94,7 @@ def freeze(root=DATA):
             listed = set(json.loads(weight_index.read_text())['weight_map'].values())
             if not listed <= {p.name for p in weights}:
                 raise ValueError(f'Incomplete weight shards: {name}')
-        for row in rows:
+        for row in (rows if baseline is None or not skip_preflight else []):
             count, visual = prompt_tokens(processor, row)
             if count > PROTOCOL['max_prompt_tokens']:
                 raise ValueError(f'{name}: prompt {row["id"]} exceeds budget ({count})')
@@ -97,14 +105,15 @@ def freeze(root=DATA):
                     if p.suffix in {'.json', '.jinja'} and p.is_file()}
         models[name] = {'path': str(model), 'metadata_sha256': metadata,
                         'context_capacity': context, 'processor_class': type(processor).__name__,
+                        'processor_verification': 'skipped_at_user_request' if skip_preflight else 'checked',
                         'weight_files': [{'name': p.name, 'size': p.stat().st_size,
                                           'mtime_ns': p.stat().st_mtime_ns} for p in weights]}
         if baseline is None:
             baseline = processor
-    state('validating_actual_cpu_preprocessing')
+    state('writing_suite' if skip_preflight else 'validating_actual_cpu_preprocessing', preflight_skipped=skip_preflight)
     # Compare the count-only path against the installed real processor, including
     # one 8K row. These are CPU preparations, not separate GPU inference runs.
-    chosen = [min(rows, key=lambda r: r['visual_tokens']),
+    chosen = [] if skip_preflight else [min(rows, key=lambda r: r['visual_tokens']),
               max((r for r in rows if r['benchmark'] == 'hrbench_4k'), key=lambda r: r['visual_tokens']),
               max((r for r in rows if r['benchmark'] == 'hrbench_8k'), key=lambda r: r['visual_tokens'])]
     checked = []
@@ -126,7 +135,8 @@ def freeze(root=DATA):
                             'image_grid_thw': actual['image_grid_thw'].tolist()})
             del actual, image, raw
             gc.collect()
-    db.close()
+    if db is not None:
+        db.close()
     state('freezing_suite')
     tmp = root / 'suite.jsonl.tmp'
     with tmp.open('w') as f:
@@ -152,9 +162,14 @@ def freeze(root=DATA):
             'counts': expected, 'stats': stats, 'models': models,
             'scoring_protocol_at_freeze': SCORING_PROTOCOL,
             'cpu_actual_processor_checks': checked,
+            'preflight_policy': {'skipped': skip_preflight, 'user_request': preference if skip_preflight else None,
+                                 'prompt_construction': 'baseline processor once' if skip_preflight else 'all four processors',
+                                 'image_database_scan': 'skipped' if skip_preflight else 'completed',
+                                 'actual_cpu_image_preprocessing': 'skipped' if skip_preflight else 'completed'},
             'source_sha256': {n: file_sha(HERE / n) for n in ['protocol.py', 'freeze.py', 'prepare.py', 'sources.py', 'scoring.py', 'annotation_issues.py', 'run.py', 'throughput.py', 'launch_queue.py']},
             'created_at': datetime.now(timezone.utc).isoformat(),
-            'note': 'Four models share exact prompt token counts; selected perception questions only, full original images capped at 32 MP. Separate from prior full-benchmark and low-resolution scores.'}
+            'note': ('Offline preflight skipped at explicit user request; prompts constructed once using baseline processor. Formal server prompt-token usage is checked on actual evaluation responses. ' if skip_preflight else 'Four processors produced identical prompt token counts. ')
+                    + 'Selected perception questions only; original full images capped at 32 MP; separate from previous low-resolution results.'}
     atomic_json(root / 'suite.meta.json', meta)
     state('complete', rows=len(rows), suite_sha256=meta['suite_sha256'])
 
