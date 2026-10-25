@@ -20,6 +20,17 @@
         "MMVP": 300
       },
       "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6"
+    },
+    "highres": {
+      "suite_sha256": "28886d7f5496dbeb250147c36d715fff08d29da51f06bfa8820cc477331ca95c",
+      "counts": {
+        "hrbench_4k": 400,
+        "hrbench_8k": 400,
+        "vstar": 115,
+        "zoom": 807
+      },
+      "protocol_sha256": "527e14faddbd6ea810deea79145847f5c2da139eb7234c63167fae3f3de7f962",
+      "summary": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.json"
     }
   },
   "status": {
@@ -1443,6 +1454,177 @@
     }
   },
   "scoring_protocol_sha256": "223d18e9e2ca11128f0a76e7dd8a6d8dcc8b16c19c50d18b44234a4ec11ce388",
+  "highres": {
+    "summary_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.json",
+    "summary_sha256": "6e4e89c35f6cdeb0f47f5374dc954f7b8e97c7157908edcf580be0ed0523b2fc",
+    "suite_sha256": "28886d7f5496dbeb250147c36d715fff08d29da51f06bfa8820cc477331ca95c",
+    "protocol_sha256": "527e14faddbd6ea810deea79145847f5c2da139eb7234c63167fae3f3de7f962",
+    "inference_protocol": {
+      "version": "sharedexpert-highres-perception-subsets-v1",
+      "enable_thinking": true,
+      "temperature": 0,
+      "top_p": 1,
+      "seed": 20261019,
+      "max_tokens": 8192,
+      "max_prompt_tokens": 40960,
+      "max_model_len": 49152,
+      "max_images": 1,
+      "image_size": {
+        "shortest_edge": 4096,
+        "longest_edge": 33554432
+      },
+      "image_view": "full original image only; no privileged crops",
+      "answer_instruction": "Put only your final {kind} inside <answer>...</answer>."
+    },
+    "scoring_protocol": {
+      "version": "sharedexpert-highres-strict-local-v1",
+      "official_llm_judge": false,
+      "empty_or_api_error_score": 0,
+      "length_termination_score": 0,
+      "accepted_finish_reason": "stop",
+      "extraction": "final content after last </think>; last complete answer tag, else last balanced boxed, else whole short answer",
+      "mcq": "one option letter only; never scan prose or thought for letters; preserve duplicate source labels",
+      "numeric": "whole numeric expression only, exact rational equality; no substring, tolerance, or external judge",
+      "hrbench": "mean of per-cycle row accuracy; category breakdown averaged across its cycles",
+      "other_benchmarks": "row micro accuracy; original metadata groups retained",
+      "completeness": "full dataset accuracy only with all expected rows, zero API errors, compatible run, and no incomplete JSONL tail",
+      "duplicate_predictions": "last complete JSONL record for each ID wins, including a later error",
+      "known_invalid_annotation": "Eleven exactly identified upstream label anomalies (one Zoom, two MME EN, eight MME CN) retain original questions, option labels and gold in primary accuracy; a separately labelled sensitivity excludes them. No label correction or row removal."
+    },
+    "status": {
+      "baseline": {
+        "status": "complete",
+        "n_expected": 1722,
+        "n_predicted": 1722,
+        "missing": 0,
+        "api_errors": 0,
+        "parse_failures": 239,
+        "length_terminated": 238,
+        "mean_completion_tokens": 1786.5191637630662
+      },
+      "perception-step100": {
+        "status": "complete",
+        "n_expected": 1722,
+        "n_predicted": 1722,
+        "missing": 0,
+        "api_errors": 0,
+        "parse_failures": 46,
+        "length_terminated": 46,
+        "mean_completion_tokens": 343.48606271777004
+      },
+      "reasoning-step100": {
+        "status": "complete",
+        "n_expected": 1722,
+        "n_predicted": 1722,
+        "missing": 0,
+        "api_errors": 0,
+        "parse_failures": 48,
+        "length_terminated": 48,
+        "mean_completion_tokens": 837.1126596980256
+      },
+      "perception-v2-step100": {
+        "status": "complete",
+        "n_expected": 1722,
+        "n_predicted": 1722,
+        "missing": 0,
+        "api_errors": 0,
+        "parse_failures": 115,
+        "length_terminated": 115,
+        "mean_completion_tokens": 1209.1265969802555
+      }
+    },
+    "benchmarks": {
+      "hrbench_4k": {
+        "baseline": {
+          "score": 0.86,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "perception-step100": {
+          "score": 0.8925000000000001,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "reasoning-step100": {
+          "score": 0.9075,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "perception-v2-step100": {
+          "score": 0.905,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        }
+      },
+      "hrbench_8k": {
+        "baseline": {
+          "score": 0.8175,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "perception-step100": {
+          "score": 0.8474999999999999,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "reasoning-step100": {
+          "score": 0.86,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        },
+        "perception-v2-step100": {
+          "score": 0.8474999999999999,
+          "n_rows": 400,
+          "metric": "strict_local_cycle_macro_accuracy"
+        }
+      },
+      "vstar": {
+        "baseline": {
+          "score": 0.808695652173913,
+          "n_rows": 115,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "perception-step100": {
+          "score": 0.8173913043478261,
+          "n_rows": 115,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "reasoning-step100": {
+          "score": 0.8260869565217391,
+          "n_rows": 115,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "perception-v2-step100": {
+          "score": 0.808695652173913,
+          "n_rows": 115,
+          "metric": "strict_local_micro_accuracy"
+        }
+      },
+      "zoom": {
+        "baseline": {
+          "score": 0.4745972738537794,
+          "n_rows": 807,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "perception-step100": {
+          "score": 0.506815365551425,
+          "n_rows": 807,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "reasoning-step100": {
+          "score": 0.5278810408921933,
+          "n_rows": 807,
+          "metric": "strict_local_micro_accuracy"
+        },
+        "perception-v2-step100": {
+          "score": 0.5080545229244114,
+          "n_rows": 807,
+          "metric": "strict_local_micro_accuracy"
+        }
+      }
+    },
+    "note": "Independent high-resolution generation protocol; excluded from dimension macros and combined totals."
+  },
   "general_details": {},
   "general_scorer_source_sha256": "c9cfc5bf2aa3434b5609ae84e8d3ad9f396eb29552c3bb624d6530c86602f3e9"
 }

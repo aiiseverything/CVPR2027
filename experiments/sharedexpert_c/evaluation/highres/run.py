@@ -84,6 +84,34 @@ def selection_snapshot(root, require_ready=True):
             "n_requested": sum(counts.values()), "path": str(path.resolve())}
 
 
+def apply_subset(rows, selection, path):
+    """Narrow frozen rows to an explicit, hash-recorded subset manifest."""
+    path = Path(path)
+    payload = path.read_bytes()
+    manifest = json.loads(payload)
+    if (not isinstance(manifest, dict) or manifest.get("schema_version") != "highres-subset-v1"
+            or manifest.get("ready") is not True):
+        raise ValueError("Unsupported or unready high-resolution subset manifest")
+    ids = manifest.get("ids")
+    if (not isinstance(ids, list) or not ids
+            or any(not isinstance(value, str) or not value for value in ids)
+            or len(ids) != len(set(ids))):
+        raise ValueError("Subset manifest must list unique non-empty row IDs")
+    missing = sorted(set(ids) - {row["id"] for row in rows})
+    if missing:
+        raise ValueError(f"Subset IDs are absent from the frozen suite or benchmark filter: {missing[:5]}")
+    wanted = set(ids)
+    rows = [row for row in rows if row["id"] in wanted]
+    counts = dict(Counter(row["benchmark"] for row in rows))
+    subset = {"name": manifest.get("name"), "path": str(path.resolve()),
+              "sha256": hashlib.sha256(payload).hexdigest(), "n_ids": len(ids),
+              "counts": counts}
+    selection = {**selection,
+                 "source_expected_counts": selection.get("source_expected_counts", selection["expected_counts"]),
+                 "expected_counts": counts, "n_requested": len(rows), "subset": subset}
+    return rows, selection, subset
+
+
 def offline_environment():
     """Inference/preparation use only local files and never need a laptop proxy."""
     env = {key: value for key, value in os.environ.items()
@@ -296,6 +324,21 @@ def execute(args):
     if (meta.get("selection_sha256") != selection["sha256"]
             or dict(Counter(r["benchmark"] for r in rows)) != selection["expected_counts"]):
         raise ValueError("Frozen suite does not match the complete perception selection manifest")
+    benchmarks = getattr(args, "benchmarks", None)
+    if benchmarks is not None:
+        benchmarks = sorted(set(benchmarks))
+        if not benchmarks or not set(benchmarks) <= BENCHMARKS:
+            raise ValueError("Unknown or empty benchmark subset")
+        rows = [row for row in rows if row["benchmark"] in benchmarks]
+        selection = {**selection, "source_expected_counts": selection["expected_counts"],
+                     "expected_counts": dict(Counter(r["benchmark"] for r in rows)),
+                     "n_requested": len(rows), "benchmarks": benchmarks}
+    subset_info = None
+    subset_path = getattr(args, "ids", None)
+    if subset_path is not None:
+        rows, selection, subset_info = apply_subset(rows, selection, subset_path)
+        if benchmarks is not None:
+            selection["benchmarks"] = benchmarks
     if any(not isinstance(r.get("prompt_tokens"), int) or not 0 < r["prompt_tokens"] <= PROTOCOL["max_prompt_tokens"] for r in rows):
         raise ValueError("Suite must have frozen, CPU-validated prompt token counts")
     if adaptive:
@@ -330,6 +373,10 @@ def execute(args):
                 "n_requested": len(rows), "smoke": False,
                 "scheduling_policy": scheduling_policy,
                 "scheduling_policy_sha256": digest(scheduling_policy)}
+    if benchmarks is not None:
+        identity["benchmarks"] = benchmarks
+    if subset_info is not None:
+        identity["subset"] = subset_info
     lock = local_lock_path(out, "inference").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     for filename, value in (("checkpoint.json", provenance), ("run.json", identity)):
@@ -532,6 +579,10 @@ def main():
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--root", type=Path, default=DATA)
     parser.add_argument("--output-root", type=Path, default=RESULTS)
+    parser.add_argument("--benchmarks", nargs="+", choices=sorted(BENCHMARKS),
+                        help="Run only these benchmarks from the existing frozen suite")
+    parser.add_argument("--ids", type=Path,
+                        help="JSON highres-subset-v1 manifest selecting frozen suite row IDs")
     parser.add_argument("--concurrency", type=int, choices=(1, 2, 4, 8, 16, 32, 64), default=2)
     parser.add_argument("--adaptive-concurrency", action="store_true",
                         help="Use visual-token admission up to 16 requests; requires --concurrency 16")

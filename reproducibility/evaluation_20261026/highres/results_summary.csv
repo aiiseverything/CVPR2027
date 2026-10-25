@@ -1,0 +1,17 @@
+model,dataset,status,metric,n_expected,n_predicted,missing,api_errors,correct,accuracy,observed_accuracy,length_terminated,parse_failures,mean_completion_tokens
+baseline,hrbench_4k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,344,0.86,0.86,37,37,1179.6475
+baseline,hrbench_8k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,327,0.8175,0.8175,42,43,1314.715
+baseline,vstar,complete,strict_local_micro_accuracy,115,115,0,0,93,0.808695652173913,0.808695652173913,13,13,1302.5652173913043
+baseline,zoom,complete,strict_local_micro_accuracy,807,807,0,0,383,0.4745972738537794,0.4745972738537794,146,146,2390.1437422552663
+perception-step100,hrbench_4k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,357,0.8925000000000001,0.8925,5,5,165.495
+perception-step100,hrbench_8k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,339,0.8474999999999999,0.8475,7,7,219.4775
+perception-step100,vstar,complete,strict_local_micro_accuracy,115,115,0,0,94,0.8173913043478261,0.8173913043478261,3,3,372.8608695652174
+perception-step100,zoom,complete,strict_local_micro_accuracy,807,807,0,0,409,0.506815365551425,0.506815365551425,31,31,488.9900867410161
+reasoning-step100,hrbench_4k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,363,0.9075,0.9075,15,15,705.1825
+reasoning-step100,hrbench_8k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,344,0.86,0.86,13,13,719.3575
+reasoning-step100,vstar,complete,strict_local_micro_accuracy,115,115,0,0,95,0.8260869565217391,0.8260869565217391,3,3,701.7565217391304
+reasoning-step100,zoom,complete,strict_local_micro_accuracy,807,807,0,0,426,0.5278810408921933,0.5278810408921933,17,17,980.1610904584883
+perception-v2-step100,hrbench_4k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,362,0.905,0.905,15,15,750.99
+perception-v2-step100,hrbench_8k,complete,strict_local_cycle_macro_accuracy,400,400,0,0,339,0.8474999999999999,0.8475,25,25,966.2775
+perception-v2-step100,vstar,complete,strict_local_micro_accuracy,115,115,0,0,93,0.808695652173913,0.808695652173913,7,7,944.1304347826087
+perception-v2-step100,zoom,complete,strict_local_micro_accuracy,807,807,0,0,410,0.5080545229244114,0.5080545229244114,68,68,1594.3420074349442

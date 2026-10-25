@@ -1,73 +1,75 @@
 {
-  "snapshot_at_utc": "2026-10-25T19:20:36.621740+00:00",
+  "snapshot_at_utc": "2026-10-25T22:41:46.736979+00:00",
   "static_snapshot": true,
-  "queue_stage": "preparing",
-  "queue_error": null,
-  "models": [
-    "baseline",
-    "reasoning-step100",
-    "perception-step100",
-    "perception-v2-step100"
-  ],
-  "scheduling_policy": {
-    "version": "profiled-kv-admission-v1",
-    "max_inflight": 64,
-    "max_num_seqs": 64,
-    "max_num_batched_tokens": 32768,
-    "gpu_memory_utilization": 0.95,
-    "kv_fraction": 0.9,
-    "max_output_tokens": 8192,
-    "per_request_overhead_tokens": 4096,
-    "fallback_inflight": 32,
-    "max_prompt_tokens_per_row": 40960,
-    "max_visual_tokens_per_row": 32768,
-    "profiles": [
-      {
-        "max_num_seqs": 64,
-        "max_num_batched_tokens": 32768,
-        "gpu_memory_utilization": 0.95
-      },
-      {
-        "max_num_seqs": 32,
-        "max_num_batched_tokens": 16384,
-        "gpu_memory_utilization": 0.95
-      },
-      {
-        "max_num_seqs": 32,
-        "max_num_batched_tokens": 16384,
-        "gpu_memory_utilization": 0.92
-      }
+  "completed_run": {
+    "queue_stage": "complete",
+    "completed_at_utc": "2026-10-25T22:41:46.311390+00:00",
+    "models": [
+      "baseline",
+      "perception-step100",
+      "reasoning-step100",
+      "perception-v2-step100"
     ],
-    "profile_transition": "next profile only after confirmed owned-server OOM"
-  },
-  "selection_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
-  "preparation": {
-    "status": "preparing",
-    "completed_shards": 78,
-    "counts": {
-      "vstar": 115,
-      "zoom": 807,
-      "hrbench_4k": 400,
-      "hrbench_8k": 400,
-      "mme_rw_en": 19129,
-      "mme_rw_cn": 1615
+    "benchmarks": [
+      "hrbench_4k",
+      "hrbench_8k",
+      "vstar",
+      "zoom"
+    ],
+    "rows_per_model": 1722,
+    "total_inferences": 6888,
+    "missing": 0,
+    "api_errors": 0,
+    "results_summary": "highres/results_summary.json",
+    "results_csv": "highres/results_summary.csv",
+    "protocol": {
+      "version": "sharedexpert-highres-perception-subsets-v1",
+      "enable_thinking": true,
+      "temperature": 0,
+      "top_p": 1,
+      "seed": 20261019,
+      "max_tokens": 8192,
+      "max_prompt_tokens": 40960,
+      "max_model_len": 49152,
+      "max_images": 1,
+      "image_size": {
+        "shortest_edge": 4096,
+        "longest_edge": 33554432
+      },
+      "image_view": "full original image only; no privileged crops",
+      "answer_instruction": "Put only your final {kind} inside <answer>...</answer>."
     },
-    "source_counts": {
-      "vstar": 191,
-      "zoom": 845,
-      "hrbench_4k": 800,
-      "hrbench_8k": 800,
-      "mme_rw_en": 23609,
-      "mme_rw_cn": 1822
-    },
-    "updated_at": "2026-10-25T19:19:04.177394+00:00",
-    "error": null
+    "scoring_protocol": {
+      "version": "sharedexpert-highres-strict-local-v1",
+      "official_llm_judge": false,
+      "empty_or_api_error_score": 0,
+      "length_termination_score": 0,
+      "accepted_finish_reason": "stop",
+      "extraction": "final content after last </think>; last complete answer tag, else last balanced boxed, else whole short answer",
+      "mcq": "one option letter only; never scan prose or thought for letters; preserve duplicate source labels",
+      "numeric": "whole numeric expression only, exact rational equality; no substring, tolerance, or external judge",
+      "hrbench": "mean of per-cycle row accuracy; category breakdown averaged across its cycles",
+      "other_benchmarks": "row micro accuracy; original metadata groups retained",
+      "completeness": "full dataset accuracy only with all expected rows, zero API errors, compatible run, and no incomplete JSONL tail",
+      "duplicate_predictions": "last complete JSONL record for each ID wins, including a later error",
+      "known_invalid_annotation": "Eleven exactly identified upstream label anomalies (one Zoom, two MME EN, eight MME CN) retain original questions, option labels and gold in primary accuracy; a separately labelled sensitivity excludes them. No label correction or row removal."
+    }
   },
-  "freeze": null,
-  "model_jobs": {},
-  "score_status": "not_available",
-  "source_files": 87,
-  "source_bytes": 43371773310,
-  "runtime_data_directory": "experiments/sharedexpert_c/evaluation/data/highres_perception_v1",
-  "runtime_results_directory": "experiments/sharedexpert_c/evaluation/results_highres_perception_v1"
+  "mme_rw": {
+    "status": "excluded_by_user_request",
+    "recorded_at_utc": "2026-10-25T20:58:10.417029+00:00",
+    "excluded_benchmarks": [
+      "mme_rw_en",
+      "mme_rw_cn"
+    ],
+    "no_reportable_scores": true
+  },
+  "mme_rw_lite": {
+    "status": "paused_by_user_request",
+    "paused_at_utc": "2026-10-25T22:44:59.939428+00:00",
+    "rows_per_model": 969,
+    "no_reportable_scores": true,
+    "status_file": "highres/mme_rw_lite_status.json"
+  },
+  "score_status": "available_for_vstar_zoom_hrbench; not_available_for_mme_rw_or_mme_rw_lite"
 }

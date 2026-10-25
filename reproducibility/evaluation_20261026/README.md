@@ -1,8 +1,8 @@
 # 教师评测与诊断资料快照
 
-本目录保存已完成的五个 Qwen3.5-4B 模型评测、推理教师感知表现诊断，以及新高分辨率感知评测的冻结清单。目录日期按上海时间命名。
+本目录保存已完成的五个 Qwen3.5-4B 模型评测、推理教师感知表现诊断，以及高分辨率感知评测的冻结清单与四模型结果。目录日期按上海时间命名。
 
-**本说明的状态截点：2026-10-25 19:20:36 UTC / 2026-10-26 03:20:36 Asia/Shanghai。** 旧评测已经完成；高分辨率评测当时仍在 CPU 准备阶段，尚无 GPU 评测成绩。这是静态归档，不是运行状态接口。[status_snapshot.json](highres/status_snapshot.json) 记录其自身采集时间和精简状态。
+**本说明的状态截点：2026-10-25 22:45 UTC / 2026-10-26 06:45 Asia/Shanghai。** 旧评测和四模型高分辨率感知评测已完成；MME-RealWorld 未评测，MME-RealWorld-Lite 子集按用户要求暂停且尚无可报告成绩。这是静态归档，不是运行状态接口。[status_snapshot.json](highres/status_snapshot.json) 记录其自身采集时间和精简状态。
 
 ## 已完成的五模型结果
 
@@ -40,23 +40,29 @@ BLINK 的推理教师相对基座净多答对 **159 题**。按两模型截断�
 
 [training_audit.json](diagnostic/training_audit.json) 说明了训练数据构成与来源证明的边界：重建数据的类别和确定性构建记录可以审计，但迁移后的 parquet 字节哈希不同，不能声称已证明其与不可得的原始训练文件逐字节相同。[exact_overlap_audit.json](diagnostic/exact_overlap_audit.json) 记录精确匹配检查；这类检查不排除裁剪、重新编码、语义近重复或基座预训练暴露。现有结果支持讨论任务表现和输出稳定性，不能单独识别能力迁移的机制。
 
-## 新高分辨率评测：仅清单与准备状态
+## 高分辨率感知评测：已完成四模型结果
 
-新协议使用原图、最高 33,554,432 pixels 的处理器面积预算、40,960 输入 tokens 与 8,192 输出 tokens。计划评测基座、推理教师、感知 v1、感知 v2 四个模型；本轮不包含通用教师。
+新协议使用原图、最高 33,554,432 pixels 的处理器面积预算、40,960 输入 tokens 与 8,192 输出 tokens。评测基座、推理教师、感知 v1、感知 v2 四个模型；本轮不包含通用教师。
 
-| 固定子集 | 每模型题数 |
-|---|---:|
-| VStar 直接属性 | 115 |
-| ZoomBench 文本审阅选择 | 807 |
-| HR-Bench4K 单实例任务 | 400 |
-| HR-Bench8K 单实例任务 | 400 |
-| MME-RealWorld EN 感知、排除运动属性 | 19,129 |
-| MME-RealWorld CN 感知、排除运动属性 | 3,610 |
-| **合计** | **24,461** |
+冻结清单原有六个感知子集、每模型 24,461 题。按用户要求停止 MME-RealWorld 后，本轮实际完成 VStar／ZoomBench／HR-Bench4K／HR-Bench8K 四项，**每模型 1,722 题，四模型合计 6,888 次推理**；四个模型均为 0 缺失、0 API 错误。结果于 2026-10-25 22:41:46 UTC 冻结。
 
-四模型总计 **97,844 次计划推理**。状态截点时 87 个源文件已下载并完成 SHA 校验，CPU 准备进度为 78 个分片；尚未开始模型评测。95% 显存、最多 64 序列、32,768 batch tokens 和按实测 KV 容量准入是待正式执行的运行设置，不能作为已经验证的速度或成绩。
+| 评测项 | 行数 | 基座 | 感知 v1 | 推理教师 | 感知 v2 |
+|---|---:|---:|---:|---:|---:|
+| HR·HR-Bench4K | 400 | 86.00 | 89.25 | 90.75 | 90.50 |
+| HR·HR-Bench8K | 400 | 81.75 | 84.75 | 86.00 | 84.75 |
+| HR·VStar 直接属性 | 115 | 80.87 | 81.74 | 82.61 | 80.87 |
+| HR·ZoomBench 文本审阅选择 | 807 | 47.46 | 50.68 | 52.79 | 50.81 |
+| **合计 micro** | 1,722 | 66.61 | 69.63 | **71.31** | 69.92 |
 
-“仅感知”是项目的范围选择，不是官方统一划分。Zoom 依据题干和选项做 AI 文本审阅，没有逐图人工验证；MME 的官方 Perception 类别也不保证零推理负担。HR-Bench 的循环版本不是独立原题。11 条已确认上游标注异常保留原 gold 和主分母，另报排除这些行的敏感性结果。
+模型名依次对应 `baseline`、`perception-step100`、`reasoning-step100`、`perception-v2-step100`。数值为百分数。HR-Bench 使用循环版本平均准确率，不是全部循环版本都答对的准确率；本协议的独立评分器不提供 bootstrap 区间。高分辨率结果不参与上面五模型表的维度宏平均，也不与 786,432-pixel 旧协议直接比较。
+
+平均输出 tokens：基座 1,787、感知 v1 343、推理教师 837、感知 v2 1,209；长度截断行数分别为 238、46、48、115。截断按冻结严格协议计零。
+
+“仅感知”是项目的范围选择，不是官方统一划分。Zoom 依据题干和选项做 AI 文本审阅，没有逐图人工验证。HR-Bench 的循环版本不是独立原题。已确认的上游标注异常保留原 gold 和主分母，另报排除这些行的敏感性结果。
+
+### MME-RealWorld-Lite
+
+官方 Lite 规则为每个任务 50 题（不足 50 全取）。按该规则从冻结感知范围筛出 **969 题/模型**（909 张图；排除 200 条 `Attribute_Motion_*` 和 750 条 Reasoning），清单见 [mme_rw_lite_subset.json](highres/mme_rw_lite_subset.json)。该子集评测于 2026-10-26 06:44:59 Asia/Shanghai 按用户要求暂停，暂停前 baseline 完成 0 行，**没有可报告的 Lite 成绩**；状态见 [mme_rw_lite_status.json](highres/mme_rw_lite_status.json)。MME-RealWorld 全量（EN 19,129 + CN 3,610）未评测。
 
 复现命令、环境、评分和恢复说明见[高分辨率代码 README](../../experiments/sharedexpert_c/evaluation/highres/README.md)。CPU 配置和数据检查完成后直接执行正式评测，不另行安排 GPU smoke。
 
@@ -76,7 +82,12 @@ BLINK 的推理教师相对基座净多答对 **159 题**。按两模型截断�
 | [highres/selection.json](highres/selection.json) | 冻结的筛选规则和 Zoom ID 名单 |
 | [highres/zoom_review_summary.json](highres/zoom_review_summary.json) | 精简审阅记录与原审计 SHA |
 | [highres/annotation_issues_summary.json](highres/annotation_issues_summary.json) | 已确认标注异常的精简摘要与原审计 SHA |
-| [highres/status_snapshot.json](highres/status_snapshot.json) | 带采集时间的准备状态快照 |
+| [highres/results_summary.json](highres/results_summary.json) | 四模型高分辨率感知结果（1,722 题/模型） |
+| [highres/results_summary.csv](highres/results_summary.csv) | 便于查看的逐基准分数 |
+| [highres/mme_rw_lite_subset.json](highres/mme_rw_lite_subset.json) | 官方 50 题/任务规则筛出的 969 题清单 |
+| [highres/mme_rw_lite_status.json](highres/mme_rw_lite_status.json) | MME-RW-Lite 暂停状态 |
+| [highres/results_provenance.json](highres/results_provenance.json) | 发布文件的源路径与 SHA |
+| [highres/status_snapshot.json](highres/status_snapshot.json) | 已完成评测与暂停状态的静态快照 |
 
 两份 manifest／selection 按原文件逐字节归档；review／issues summary 是供审阅的派生文件，不能代替原始 audit 或伪装成其哈希。新服务器将 `source_manifest.json` 和 `selection.json` 复制到运行数据目录，再按固定来源下载数据即可复用已有选择；只有重做选择审阅时才需要 `finalize_selection.py` 的完整原始输入。
 

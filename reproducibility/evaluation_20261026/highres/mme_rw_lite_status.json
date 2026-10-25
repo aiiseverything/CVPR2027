@@ -1,0 +1,33 @@
+{
+  "snapshot_at_utc": "2026-10-25T22:44:59.939428+00:00",
+  "static_snapshot": true,
+  "status": "paused_by_user_request",
+  "queue_stage": "interrupted",
+  "started_at_utc": "2026-10-25T22:42:31.678362+00:00",
+  "paused_at_utc": "2026-10-25T22:44:59.939428+00:00",
+  "models": [
+    "baseline",
+    "reasoning-step100",
+    "perception-step100",
+    "perception-v2-step100"
+  ],
+  "rows_per_model": 969,
+  "completed_predictions": {
+    "baseline": 0,
+    "reasoning-step100": 0,
+    "perception-step100": 0,
+    "perception-v2-step100": 0
+  },
+  "jobs": {
+    "baseline": "running"
+  },
+  "no_reportable_scores": true,
+  "subset": "highres/mme_rw_lite_subset.json",
+  "official_rule": "50 samples per task, or all if fewer than 50",
+  "scope_exclusions": {
+    "attribute_motion_rows": 200,
+    "reasoning_rows": 750
+  },
+  "local_manifest_sha256_used_for_run": "be8b44811ec8bd25589807135674b4fbf4f2fffdbcbba41fd1d1a6fb6051561a",
+  "note": "Run stopped explicitly by the user before any baseline row completed; no MME-RealWorld-Lite score exists."
+}

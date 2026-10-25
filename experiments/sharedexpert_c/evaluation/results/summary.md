@@ -1,21 +1,24 @@
-# SharedExpert 统一评测（主套件 + BLINK/MMVP）
+# SharedExpert 统一评测（主套件 + BLINK/MMVP + 高分辨率感知·独立协议）
 
 2 个套件沿用冻结生成协议：thinking=True，temperature=0，response≤8192；多模态 prompt≤2048；finish_reason=length 一律记零。
 主套件 3423 行；BLINK/MMVP 2201 行；合计 5624 行。
 
-| 模型 | 主套件 3423 | BLINK/MMVP 2201 | 缺失 | API 错误 | 抽取失败 | 长度截断 |
-|---|---|---|---:|---:|---:|---:|
-| baseline | complete (3423/3423) | complete (2201/2201) | 0 | 0 | 985 | 985 |
-| baseline-9b | complete (3423/3423) | not_started | 2201 | 0 | 461 | 466 |
-| generalist | complete (3423/3423) | complete (2201/2201) | 0 | 0 | 418 | 420 |
-| perception | not_started | not_started | 5624 | 0 | 0 | 0 |
-| reasoning | not_started | not_started | 5624 | 0 | 0 | 0 |
-| perception-step100 | complete (3423/3423) | complete (2201/2201) | 0 | 0 | 489 | 489 |
-| reasoning-step100 | complete (3423/3423) | complete (2201/2201) | 0 | 0 | 330 | 334 |
-| perception-v2-step100 | complete (3423/3423) | complete (2201/2201) | 0 | 0 | 732 | 737 |
-| domain-opd | not_started | not_started | 5624 | 0 | 0 | 0 |
-| mix-rl | not_started | not_started | 5624 | 0 | 0 | 0 |
+高分辨率感知套件（1722 行/模型）使用独立协议：max_prompt_tokens=40960、原图 32MP 面积上限、独立严格评分器；单独列出，不参与维度宏平均，也不与上面的分数直接比较。
 
+| 模型 | 主套件 3423 | BLINK/MMVP 2201 | 高分辨率感知 1722 | 缺失 | API 错误 | 抽取失败 | 长度截断 |
+|---|---|---|---|---:|---:|---:|---:|
+| baseline | complete (3423/3423) | complete (2201/2201) | complete (1722/1722) | 0 | 0 | 985 | 985 |
+| baseline-9b | complete (3423/3423) | not_started | — | 2201 | 0 | 461 | 466 |
+| generalist | complete (3423/3423) | complete (2201/2201) | — | 0 | 0 | 418 | 420 |
+| perception | not_started | not_started | — | 5624 | 0 | 0 | 0 |
+| reasoning | not_started | not_started | — | 5624 | 0 | 0 | 0 |
+| perception-step100 | complete (3423/3423) | complete (2201/2201) | complete (1722/1722) | 0 | 0 | 489 | 489 |
+| reasoning-step100 | complete (3423/3423) | complete (2201/2201) | complete (1722/1722) | 0 | 0 | 330 | 334 |
+| perception-v2-step100 | complete (3423/3423) | complete (2201/2201) | complete (1722/1722) | 0 | 0 | 732 | 737 |
+| domain-opd | not_started | not_started | — | 5624 | 0 | 0 | 0 |
+| mix-rl | not_started | not_started | — | 5624 | 0 | 0 | 0 |
+
+缺失/API 错误统计只覆盖共用协议的套件；高分辨率感知状态单独列示。
 只报告该基准所有行都成功预测的模型；baseline 主套件结果为远端合并的完整 3423 行结果。
 
 | 评测集 | 行数 | baseline | baseline-9b | generalist | perception | reasoning | perception-step100 | reasoning-step100 | perception-v2-step100 | domain-opd | mix-rl |
@@ -29,8 +32,13 @@
 | MathVision_MINI | 304 | 35.86 (30.59–41.45) | 40.13 (34.54–45.72) | 45.07 (39.47–50.66) | — | — | 44.41 (38.82–50.00) | 48.68 (42.76–54.28) | 35.53 (30.26–40.79) | — | — |
 | MathVista_MINI | 500 | 71.60 (68.00–75.40) | 74.60 (70.80–78.40) | 79.60 (76.20–83.00) | — | — | 78.00 (74.40–81.40) | 81.20 (77.80–84.80) | 75.40 (71.60–79.00) | — | — |
 | RefCOCO_heldout | 500 | 91.80 (89.32–94.15) | 91.60 (89.09–93.99) | 91.20 (88.71–93.69) | — | — | 92.00 (89.56–94.47) | 92.00 (89.61–94.33) | 93.00 (90.82–95.15) | — | — |
+| **高分辨率感知（独立协议）** | |  |  |  |  |  |  |  |  |  |  |
+| HR·hrbench_4k | 400 | 86.00 | — | — | — | — | 89.25 | 90.75 | 90.50 | — | — |
+| HR·hrbench_8k | 400 | 81.75 | — | — | — | — | 84.75 | 86.00 | 84.75 | — | — |
+| HR·vstar | 115 | 80.87 | — | — | — | — | 81.74 | 82.61 | 80.87 | — | — |
+| HR·zoom | 807 | 47.46 | — | — | — | — | 50.68 | 52.79 | 50.81 | — | — |
 
-MMBench 使用循环选项组全对；BLINK/MMVP 为严格 MCQ；RefCOCO 为 IoU≥0.5。其他任务按各自冻结的本地评分规则计分。
+MMBench 使用循环选项组全对；BLINK/MMVP 为严格 MCQ；RefCOCO 为 IoU≥0.5。HR· 行使用独立严格评分器（HRBench 为 cycle-average，不是 all-cycles-correct），不提供 bootstrap 区间。其他任务按各自冻结的本地评分规则计分。
 
 | 维度宏平均 | 基准集 | baseline | baseline-9b | generalist | perception | reasoning | perception-step100 | reasoning-step100 | perception-v2-step100 | domain-opd | mix-rl |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -45,3 +53,4 @@ MMBench 使用循环选项组全对；BLINK/MMVP 为严格 MCQ；RefCOCO 为 IoU
 
 固定样本总数：5624；协议与评分器 sha256 见 summary.json。
 逐题结果详见 per_sample.csv；未完整覆盖的基准不产生准确率。
+高分辨率感知为独立协议，不参与上面的维度宏平均；其逐题结果见 results_highres_perception_no_mme_v1/per_sample.csv。

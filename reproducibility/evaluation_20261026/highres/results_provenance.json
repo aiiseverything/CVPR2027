@@ -1,0 +1,41 @@
+{
+  "snapshot_at_utc": "2026-10-25T22:49:24.463781+00:00",
+  "published_code": "experiments/sharedexpert_c/evaluation/highres and merge_summary.py",
+  "files": [
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.json",
+      "source_sha256": "6e4e89c35f6cdeb0f47f5374dc954f7b8e97c7157908edcf580be0ed0523b2fc",
+      "published": "reproducibility/evaluation_20261026/highres/results_summary.json",
+      "published_sha256": "6e4e89c35f6cdeb0f47f5374dc954f7b8e97c7157908edcf580be0ed0523b2fc",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.csv",
+      "source_sha256": "7c65ecc8f8bb683388761752d1ee4121cfad96ecd9762252dce28055112d2a8e",
+      "published": "reproducibility/evaluation_20261026/highres/results_summary.csv",
+      "published_sha256": "7c65ecc8f8bb683388761752d1ee4121cfad96ecd9762252dce28055112d2a8e",
+      "transformation": "copy"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/highres/subsets/mme_rw_lite_v1.json",
+      "source_sha256": "be8b44811ec8bd25589807135674b4fbf4f2fffdbcbba41fd1d1a6fb6051561a",
+      "published": "reproducibility/evaluation_20261026/highres/mme_rw_lite_subset.json",
+      "published_sha256": "20dd807db800e657b5fb02a278eb34c73da5bad710e83c4044cfe0d3567683bc",
+      "transformation": "json_paths"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_highres_perception_lite_v1/status.json",
+      "source_sha256": "8782b029b2480ec0da1f06534de2bc50a2d784c953fa4653d2ab69c675a017e4",
+      "published": "reproducibility/evaluation_20261026/highres/mme_rw_lite_status.json",
+      "published_sha256": "b54b531d9201676da5d950db16315f6c3edf060110b4bbcda9f5a37fa8c4cf5a",
+      "transformation": "trimmed_status"
+    },
+    {
+      "source": "experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/status.json",
+      "source_sha256": "8c850dbc7290acd8eabf3c23cefea6a8ffb29a7c6677a1d05154e681c7b4b066",
+      "published": "reproducibility/evaluation_20261026/highres/status_snapshot.json",
+      "published_sha256": "f5100d127cad4c275a803dc4be450eb4e0b8653fee3f3a042c8d364c958c2d7e",
+      "transformation": "trimmed_status"
+    }
+  ]
+}
