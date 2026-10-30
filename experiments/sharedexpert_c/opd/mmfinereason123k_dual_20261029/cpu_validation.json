@@ -1,0 +1,106 @@
+{
+  "status": "passed",
+  "gpu_smoke_performed": false,
+  "settings": {
+    "student": "Qwen/Qwen3.5-2B",
+    "teachers": [
+      "perception_v1",
+      "reasoning"
+    ],
+    "initial_student_weights": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-2B",
+    "independent_initialization": true,
+    "global_batch_size": 63,
+    "optimizer_steps": 100,
+    "rollouts_per_prompt": 1,
+    "rollouts_per_run": 6300,
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "loss": "mean_sequences(mean_valid_response_tokens(stopgrad(logp_student-logp_fixed_teacher)*logp_student))",
+    "loss_aggregation": "seq-mean-token-mean",
+    "full_logit_distillation": false,
+    "alpha": 1.0,
+    "is_clip": null,
+    "rollout_importance_weights": false,
+    "advantage_normalization": false,
+    "reward_loss": false,
+    "additional_kl_loss": false,
+    "entropy_coefficient": 0.0,
+    "teacher_update": false,
+    "teacher_input": "identical original image, question and student response prefix; no answer hints",
+    "learning_rate": 1e-06,
+    "warmup_steps": 10,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "seed": 20261029,
+    "max_prompt_tokens": 8192,
+    "max_response_tokens": 8192,
+    "thinking": true,
+    "save_every": 25,
+    "keep_checkpoints": 2,
+    "precision": "fp32 master weights with bfloat16 forward",
+    "image_size": {
+      "shortest_edge": 4096,
+      "longest_edge": 786432
+    },
+    "data_order": "same seeded permutation of full accepted set for both runs; first 6300 exposures, deterministic new permutations if cycling is needed",
+    "gpu_smoke": false,
+    "curation_completion_scope": "user_requested_early_stop_export",
+    "authorization": "On 2026-10-30 the user stopped further screening and requested immediate formal OPD on the completed dual-correct set: batchsize=63 x 100 steps once for perception V1 and once for reasoning; CPU checks then formal training, no GPU smoke."
+  },
+  "checked_rows": [
+    {
+      "id": "mmfinereason123k:000001",
+      "prompt_tokens": 169,
+      "pixel_values_identical": true,
+      "prompt_ids_identical": true,
+      "matches_recorded_vllm_prompt_ids": true,
+      "unchanged_original_image_size": [
+        556,
+        208
+      ]
+    },
+    {
+      "id": "mmfinereason123k:000005",
+      "prompt_tokens": 500,
+      "pixel_values_identical": true,
+      "prompt_ids_identical": true,
+      "matches_recorded_vllm_prompt_ids": true,
+      "unchanged_original_image_size": [
+        800,
+        557
+      ]
+    },
+    {
+      "id": "mmfinereason123k:000018",
+      "prompt_tokens": 169,
+      "pixel_values_identical": true,
+      "prompt_ids_identical": true,
+      "matches_recorded_vllm_prompt_ids": true,
+      "unchanged_original_image_size": [
+        221,
+        280
+      ]
+    }
+  ],
+  "sampled_token_gradient_matches_formula": true,
+  "teacher_no_gradient": true,
+  "reward_free_path": true,
+  "versions": {
+    "torch": "2.10.0",
+    "transformers": "5.5.0",
+    "vllm": "0.18.0",
+    "ray": "2.53.0",
+    "flash-attn": "2.8.3",
+    "flash-linear-attention": "0.4.2"
+  }
+}

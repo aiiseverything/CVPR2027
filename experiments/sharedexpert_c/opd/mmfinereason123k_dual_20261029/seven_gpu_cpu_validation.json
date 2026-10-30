@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "at": "2026-10-30T07:12:46.726897+00:00",
+  "gpu_smoke_performed": false,
+  "tests": 2,
+  "training_gpus": 7,
+  "rollout_workers": 7,
+  "samples_per_worker": 9,
+  "global_batch_size": 63,
+  "steps_per_teacher": 100,
+  "both_teacher_configs_passed": true
+}

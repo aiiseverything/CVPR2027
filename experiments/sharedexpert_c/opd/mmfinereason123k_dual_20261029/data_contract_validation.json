@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "gpu_smoke_performed": false,
+  "fixtures": [
+    {
+      "pool": 2,
+      "exposures": 6300,
+      "deterministic": true,
+      "schema_valid": true
+    },
+    {
+      "pool": 6303,
+      "exposures": 6300,
+      "deterministic": true,
+      "schema_valid": true
+    }
+  ],
+  "incomplete_curation_rejected": true,
+  "wrong_and_length_capped_answers_rejected": true
+}

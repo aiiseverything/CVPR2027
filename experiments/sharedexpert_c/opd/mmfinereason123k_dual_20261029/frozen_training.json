@@ -1,0 +1,294 @@
+{
+  "settings": {
+    "student": "Qwen/Qwen3.5-2B",
+    "teachers": [
+      "perception_v1",
+      "reasoning"
+    ],
+    "initial_student_weights": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-2B",
+    "independent_initialization": true,
+    "global_batch_size": 63,
+    "optimizer_steps": 100,
+    "rollouts_per_prompt": 1,
+    "rollouts_per_run": 6300,
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "loss": "mean_sequences(mean_valid_response_tokens(stopgrad(logp_student-logp_fixed_teacher)*logp_student))",
+    "loss_aggregation": "seq-mean-token-mean",
+    "full_logit_distillation": false,
+    "alpha": 1.0,
+    "is_clip": null,
+    "rollout_importance_weights": false,
+    "advantage_normalization": false,
+    "reward_loss": false,
+    "additional_kl_loss": false,
+    "entropy_coefficient": 0.0,
+    "teacher_update": false,
+    "teacher_input": "identical original image, question and student response prefix; no answer hints",
+    "learning_rate": 1e-06,
+    "warmup_steps": 10,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "seed": 20261029,
+    "max_prompt_tokens": 8192,
+    "max_response_tokens": 8192,
+    "thinking": true,
+    "save_every": 25,
+    "keep_checkpoints": 2,
+    "precision": "fp32 master weights with bfloat16 forward",
+    "image_size": {
+      "shortest_edge": 4096,
+      "longest_edge": 786432
+    },
+    "data_order": "same seeded permutation of full accepted set for both runs; first 6300 exposures, deterministic new permutations if cycling is needed",
+    "gpu_smoke": false,
+    "curation_completion_scope": "user_requested_early_stop_export",
+    "authorization": "On 2026-10-30 the user stopped further screening and requested immediate formal OPD on the completed dual-correct set: batchsize=63 x 100 steps once for perception V1 and once for reasoning; CPU checks then formal training, no GPU smoke."
+  },
+  "data": {
+    "status": "complete",
+    "at": "2026-10-30T06:32:27.995119+00:00",
+    "accepted_pool": 7854,
+    "exposures": 6300,
+    "global_batch_size": 63,
+    "steps": 100,
+    "unique_examples": 6300,
+    "permutation_cycles": 1,
+    "source_exposures": {
+      "MMR1": 3206,
+      "mmopenr1-8k": 12,
+      "WeMath2-Pro": 19,
+      "BMMR": 383,
+      "GameQA-140K": 1579,
+      "ViRL39K": 85,
+      "WaltonColdStart": 163,
+      "FineVision-visualwebinstruct(filtered)": 352,
+      "MMK12": 48,
+      "Euclid30K": 95,
+      "PuzzleQA": 8,
+      "FineVision-geo170k(qa)": 18,
+      "LLaVA-CoT": 217,
+      "WeMath2-Standard": 22,
+      "FineVision-raven": 63,
+      "FineVision-scienceqa": 8,
+      "FineVision-ai2d_merged": 10,
+      "WeMath2-SFT": 3,
+      "VisualSphinx": 8,
+      "Zebra-CoT-Physics": 1
+    },
+    "accepted_source_sha256": "8367c4c0e12acfd300c7d1058c6fd05dc8e8eece7b4e6584ebc082b5cd2dc75f",
+    "settings_sha256": "8f42707b5243fcf6c405a794e3c26699df77a8533d90dbedc77f059b248ad43f",
+    "parquet_sha256": "d389907940dc9b90423b92f15f541696a115bc669f3e1d9468101a80ba785694",
+    "exposure_manifest_sha256": "4adff090fe3dbbd39f22d6ce70eb3047c24f1d00768c816c88b28bc4504f32e9",
+    "same_file_for_both_runs": true,
+    "answer_or_teacher_rollout_in_prompt": false
+  },
+  "original_models": {
+    "student": [
+      {
+        "name": "chat_template.jinja",
+        "size": 7755,
+        "mtime_ns": 1793219659310152818,
+        "sha256": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80"
+      },
+      {
+        "name": "config.json",
+        "size": 2908,
+        "mtime_ns": 1793219659726633203,
+        "sha256": "ed1c1723241f23f7f4e23430759cbd7dcfb4103cbdfe052bfe7626b57c2615b4"
+      },
+      {
+        "name": "configuration.json",
+        "size": 51,
+        "mtime_ns": 1793219658773826237,
+        "sha256": "2d4464e2ead06bc9bc718c781309ad1e7baded626d66e8dcdc8b469ba185faf0"
+      },
+      {
+        "name": "merges.txt",
+        "size": 3353259,
+        "mtime_ns": 1793219660778368836,
+        "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d"
+      },
+      {
+        "name": "model.safetensors-00001-of-00001.safetensors",
+        "size": 4548221488,
+        "mtime_ns": 1793220006046543685,
+        "sha256": "aa33250c4fc64891ddfaba3a314fd9542ea371843c387178b425fbcc5ed680b1"
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "size": 64460,
+        "mtime_ns": 1793219660265550547,
+        "sha256": "aca8afed9da75b0f050b408d270766fd77627f1af401e240f61c3b47d0db02f9"
+      },
+      {
+        "name": "preprocessor_config.json",
+        "size": 390,
+        "mtime_ns": 1793219658810553394,
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+      },
+      {
+        "name": "tokenizer.json",
+        "size": 12807982,
+        "mtime_ns": 1793219662084893175,
+        "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "size": 16709,
+        "mtime_ns": 1793219659758086858,
+        "sha256": "49e2b6e395f959f077f1e992b338919c0d4a9732fc6e613995e06557f843500c"
+      },
+      {
+        "name": "video_preprocessor_config.json",
+        "size": 385,
+        "mtime_ns": 1793219658806241864,
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+      },
+      {
+        "name": "vocab.json",
+        "size": 6722759,
+        "mtime_ns": 1793219661340905003,
+        "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    ],
+    "perception_v1": [
+      {
+        "name": "chat_template.jinja",
+        "size": 7756,
+        "mtime_ns": 1792523527129823705,
+        "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+      },
+      {
+        "name": "config.json",
+        "size": 2896,
+        "mtime_ns": 1792523520204081000,
+        "sha256": "357a7aab66c5534d713577cf15e07ebc1ad415b38d8c62f98f6d33dc7b888606"
+      },
+      {
+        "name": "generation_config.json",
+        "size": 204,
+        "mtime_ns": 1792523520209012331,
+        "sha256": "5f02aa641d88dd1b466df7b5ef82e5829629d28931a9e6a6750ddfd2b796b812"
+      },
+      {
+        "name": "model.safetensors",
+        "size": 10350019328,
+        "mtime_ns": 1792523520168198203,
+        "sha256": "726fa4ff348aca820073437181963b906ea19573b0d22f42a51c72e0b7b0769b"
+      },
+      {
+        "name": "processor_config.json",
+        "size": 1191,
+        "mtime_ns": 1792523527122737080,
+        "sha256": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1"
+      },
+      {
+        "name": "sharedexpert_export_complete.json",
+        "size": 134,
+        "mtime_ns": 1792523533179803466,
+        "sha256": "5eb9e20630dbbf080e063fe6c889a1481b7cb83756e80a00da67b12edc497b31"
+      },
+      {
+        "name": "tokenizer.json",
+        "size": 19989343,
+        "mtime_ns": 1792523527702659772,
+        "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "size": 1139,
+        "mtime_ns": 1792523527133291185,
+        "sha256": "e98f1901ac6f0adff67b1d540bfa0c36ac1a0cf59eb72ed78146ef89aafa1182"
+      }
+    ],
+    "reasoning": [
+      {
+        "name": "chat_template.jinja",
+        "size": 7756,
+        "mtime_ns": 1792632414533601672,
+        "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715"
+      },
+      {
+        "name": "config.json",
+        "size": 2896,
+        "mtime_ns": 1792632408232449127,
+        "sha256": "357a7aab66c5534d713577cf15e07ebc1ad415b38d8c62f98f6d33dc7b888606"
+      },
+      {
+        "name": "generation_config.json",
+        "size": 204,
+        "mtime_ns": 1792632408235912827,
+        "sha256": "5f02aa641d88dd1b466df7b5ef82e5829629d28931a9e6a6750ddfd2b796b812"
+      },
+      {
+        "name": "model.safetensors",
+        "size": 10350019328,
+        "mtime_ns": 1792632408195373611,
+        "sha256": "e51d31fd9713dad349c6dd945531ac7d68582920b33876f15b40081ca17403fd"
+      },
+      {
+        "name": "processor_config.json",
+        "size": 1191,
+        "mtime_ns": 1792632414527001603,
+        "sha256": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1"
+      },
+      {
+        "name": "sharedexpert_export_complete.json",
+        "size": 133,
+        "mtime_ns": 1792632417655302457,
+        "sha256": "de1586858e8aa500f9e9a2b5651be0028ce4847ed9a28a9be26cc66912c40484"
+      },
+      {
+        "name": "tokenizer.json",
+        "size": 19989343,
+        "mtime_ns": 1792632415797531771,
+        "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "size": 1139,
+        "mtime_ns": 1792632414536345251,
+        "sha256": "e98f1901ac6f0adff67b1d540bfa0c36ac1a0cf59eb72ed78146ef89aafa1182"
+      }
+    ]
+  },
+  "repository_head": "06860e69b5ed9dc24e96ca5c855f3a4ef25976aa",
+  "repository_diff_sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585",
+  "queue_source_sha256": {
+    "check_cpu.py": "2da3647f034833a58c8fdf158e60bf191247a5f8f478f0ffd9e884e1dafdbd86",
+    "matched_inputs.py": "fabd769823c249d6707a954168d4ddf24149af9ea5c1078ee2d9f70456593627",
+    "memory_policy.py": "0d8339c0ae0cb9970a1dd5016e4cd4b64f28e595aeffdfd6ec5a132323012f8b",
+    "opd_config.py": "f2a0dcc1a52ebe27a9f586816a8d66aa63f92f9e63b9ad9b054d01c311d6e971",
+    "opd_entry.py": "59e9a9fdfbaeb3a0a76675bfc9bf7027d54f6351289beba128d0d1023c3ffe8d",
+    "opd_queue.py": "dceee6c1763dbb33cbf155ce4cab7a5311fc8349cd897ba7c3e992bee971eda8",
+    "prepare_training.py": "f8096686f572093efd12274836d85b3076b1204c665a0d3347a5eeb83a6eac42",
+    "seven_gpu_rollout.py": "422d6cd739c255d24b2156abbd6b8f42e44625722dfa85e55bb0ae7c29c08777",
+    "test_data_contract.py": "3d276a9d4769ad8a7dd518358e76aea53859c6ea5abd16bfbdbd264e12c46807",
+    "test_memory_policy.py": "efe11c6bcfe9cc5ae742921334b41ef75645bf8b4bf151f369eb15edde846791",
+    "test_seven_gpu_rollout.py": "53e22198c116982c41dacebc0ce79e292b0c35d78613026faeb1572681cab607"
+  },
+  "agent_config_sha256": "405e1b9c99fbf4224e2227f9aac5294b1383cc7755b44eb8f823dbfe10f570bc",
+  "processor_view_sha256": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/opd/mmfinereason123k_dual_20261029/model_inputs/student/preprocessor_config.json": "582fcb4879faa5f99f633f9cbfd8b69add53ff16c5fe72975054ef4d76717c2d",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/opd/mmfinereason123k_dual_20261029/model_inputs/perception_v1/processor_config.json": "b7cf9296dc8b2ccda7fd7fb61df2a9546080d18dba1dd1ab4ddbc048b8cb352c",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/opd/mmfinereason123k_dual_20261029/model_inputs/reasoning/processor_config.json": "b7cf9296dc8b2ccda7fd7fb61df2a9546080d18dba1dd1ab4ddbc048b8cb352c"
+  },
+  "shared_source_sha256": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/launch_100.py": "b947370756c2a64caeb1754493c81a1cd19e7858177d53eaca92ae1f14602b6f",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/agent_loop.py": "aa595b0828376ba5f4170fc7add351ab34f8fa2869050739223417c26715af4d",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/reward_manager.py": "4dec0479b1dafa31c3056dbdc4deb933d0c34757c16f62219a184f34abbe388b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/preflight.py": "a66ddcded209b57acdd0369248d5fadeb4e07584b6e5a0d3c5e6486ed55fd075",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/config/common.json": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa"
+  }
+}

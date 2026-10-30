@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "at": "2026-10-30T06:51:53.266871+00:00",
+  "tests": 2,
+  "gpu_smoke_performed": false,
+  "contracts": [
+    "unchanged weights, state dict, dtype policy and shard placement; offload disabled for non-actor models",
+    "restore worker functions on exceptions"
+  ]
+}

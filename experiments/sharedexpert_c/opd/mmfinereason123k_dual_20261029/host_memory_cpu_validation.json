@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "at": "2026-10-30T07:47:40.523543+00:00",
+  "gpu_smoke_performed": false,
+  "tests": 5,
+  "all_training_cpu_offload": false,
+  "vllm_cpu_offload_gb": 0,
+  "allocator_cleanup_preserves_live_tensors": true,
+  "vllm_cli_validation": "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/opd/mmfinereason123k_dual_20261029/vllm_cli_cpu_validation.json"
+}

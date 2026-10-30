@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "gpu_smoke_performed": false,
+  "cpu_mock_only": true,
+  "partial_reservations_released_on_busy": true,
+  "reservation_released_on_exit": true
+}

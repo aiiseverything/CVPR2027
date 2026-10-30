@@ -1,0 +1,81 @@
+{
+  "settings": {
+    "student": "Qwen/Qwen3.5-2B",
+    "teachers": [
+      "perception_v1",
+      "reasoning"
+    ],
+    "initial_student_weights": "/home/ml-user/workdir/CVPR2027/pre-lab/models/Qwen3.5-2B",
+    "independent_initialization": true,
+    "global_batch_size": 63,
+    "optimizer_steps": 100,
+    "rollouts_per_prompt": 1,
+    "rollouts_per_run": 6300,
+    "gpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "loss": "mean_sequences(mean_valid_response_tokens(stopgrad(logp_student-logp_fixed_teacher)*logp_student))",
+    "loss_aggregation": "seq-mean-token-mean",
+    "full_logit_distillation": false,
+    "alpha": 1.0,
+    "is_clip": null,
+    "rollout_importance_weights": false,
+    "advantage_normalization": false,
+    "reward_loss": false,
+    "additional_kl_loss": false,
+    "entropy_coefficient": 0.0,
+    "teacher_update": false,
+    "teacher_input": "identical original image, question and student response prefix; no answer hints",
+    "learning_rate": 1e-06,
+    "warmup_steps": 10,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "top_k": -1,
+    "seed": 20261029,
+    "max_prompt_tokens": 8192,
+    "max_response_tokens": 8192,
+    "thinking": true,
+    "save_every": 25,
+    "keep_checkpoints": 2,
+    "precision": "fp32 master weights with bfloat16 forward",
+    "image_size": {
+      "shortest_edge": 4096,
+      "longest_edge": 786432
+    },
+    "data_order": "same seeded permutation of full accepted set for both runs; first 6300 exposures, deterministic new permutations if cycling is needed",
+    "gpu_smoke": false,
+    "curation_completion_scope": "user_requested_early_stop_export",
+    "authorization": "On 2026-10-30 the user stopped further screening and requested immediate formal OPD on the completed dual-correct set: batchsize=63 x 100 steps once for perception V1 and once for reasoning; CPU checks then formal training, no GPU smoke."
+  },
+  "queue_source_sha256": {
+    "check_cpu.py": "2da3647f034833a58c8fdf158e60bf191247a5f8f478f0ffd9e884e1dafdbd86",
+    "matched_inputs.py": "fabd769823c249d6707a954168d4ddf24149af9ea5c1078ee2d9f70456593627",
+    "memory_policy.py": "0d8339c0ae0cb9970a1dd5016e4cd4b64f28e595aeffdfd6ec5a132323012f8b",
+    "opd_config.py": "f2a0dcc1a52ebe27a9f586816a8d66aa63f92f9e63b9ad9b054d01c311d6e971",
+    "opd_entry.py": "59e9a9fdfbaeb3a0a76675bfc9bf7027d54f6351289beba128d0d1023c3ffe8d",
+    "opd_queue.py": "dceee6c1763dbb33cbf155ce4cab7a5311fc8349cd897ba7c3e992bee971eda8",
+    "prepare_training.py": "f8096686f572093efd12274836d85b3076b1204c665a0d3347a5eeb83a6eac42",
+    "seven_gpu_rollout.py": "422d6cd739c255d24b2156abbd6b8f42e44625722dfa85e55bb0ae7c29c08777",
+    "test_data_contract.py": "3d276a9d4769ad8a7dd518358e76aea53859c6ea5abd16bfbdbd264e12c46807",
+    "test_memory_policy.py": "efe11c6bcfe9cc5ae742921334b41ef75645bf8b4bf151f369eb15edde846791",
+    "test_seven_gpu_rollout.py": "53e22198c116982c41dacebc0ce79e292b0c35d78613026faeb1572681cab607"
+  },
+  "agent_config_sha256": "405e1b9c99fbf4224e2227f9aac5294b1383cc7755b44eb8f823dbfe10f570bc",
+  "shared_source_sha256": {
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/launch_100.py": "b947370756c2a64caeb1754493c81a1cd19e7858177d53eaca92ae1f14602b6f",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/agent_loop.py": "aa595b0828376ba5f4170fc7add351ab34f8fa2869050739223417c26715af4d",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/reward_manager.py": "4dec0479b1dafa31c3056dbdc4deb933d0c34757c16f62219a184f34abbe388b",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/preflight.py": "a66ddcded209b57acdd0369248d5fadeb4e07584b6e5a0d3c5e6486ed55fd075",
+    "/home/ml-user/workdir/CVPR2027/experiments/sharedexpert_c/training/config/common.json": "e8b45b05c17a6184a932bc7bb7fdb997497f36ba163ab0aff023b46cee8899aa"
+  },
+  "repository_head": "06860e69b5ed9dc24e96ca5c855f3a4ef25976aa",
+  "repository_diff_sha256": "84391351147497840f81333b16dee99fae9323183985e703a521ca46a26e1585"
+}
