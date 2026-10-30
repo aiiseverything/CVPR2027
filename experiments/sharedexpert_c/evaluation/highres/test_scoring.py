@@ -198,6 +198,24 @@ class SummaryTests(unittest.TestCase):
         with (self.results / "summary.csv").open() as f:
             self.assertEqual(len(list(csv.DictReader(f))), 12)
 
+    def test_private_registered_model_is_summarized_with_matching_provenance(self):
+        name = "perception-v3-step100"
+        frozen = {"path": "test export", "processor_verification": "checked"}
+        self.meta.update(models={name: frozen}, registered_models={name: {"n_validated": len(self.rows)}})
+        (self.root / "suite.meta.json").write_text(json.dumps(self.meta))
+        target = self.results / "full" / name
+        target.mkdir(parents=True)
+        identity = {**self.run, "name": name, "frozen_model_sha256": protocol.digest(frozen)}
+        (target / "run.json").write_text(json.dumps(identity))
+        (target / "predictions.jsonl").write_text("".join(
+            json.dumps({**item, "model": name}) + "\n" for item in self.pred))
+        report = self.report()
+        self.assertEqual(report["models"][name]["status"], "complete")
+        self.assertEqual(report["models"][name]["datasets"]["vstar"]["accuracy"], 1)
+        (target / "run.json").write_text(json.dumps({**identity, "frozen_model_sha256": "stale"}))
+        with self.assertRaisesRegex(ValueError, "Registered model mismatch"):
+            self.report()
+
     def test_resume_duplicate_last_wins_even_if_latest_is_error(self):
         bad = {**self.pred[0], "error": "first timeout"}
         self.write([bad] + self.pred)

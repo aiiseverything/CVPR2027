@@ -22,7 +22,7 @@ import threading
 import urllib.error
 import urllib.request
 
-from protocol import (DATA, EVALUATION, HERE, MODEL_PATHS, PROTOCOL, RESULTS,
+from protocol import (DATA, EVALUATION, HERE, MODEL_PATHS, PROTOCOL, RESULTS, REGISTERED_MODEL_NAMES,
                       atomic_json, content_for, digest, file_sha, load_suite,
                       prompt_tokens)
 from scheduling import configuration as scheduling_configuration, can_admit, row_cost
@@ -82,6 +82,34 @@ def selection_snapshot(root, require_ready=True):
                 raise ValueError(f"{name}: {key} must contain unique original source ID strings")
     return {"sha256": hashlib.sha256(payload).hexdigest(), "expected_counts": counts,
             "n_requested": sum(counts.values()), "path": str(path.resolve())}
+
+
+def apply_subset(rows, selection, path):
+    """Narrow frozen rows to an explicit, hash-recorded subset manifest."""
+    path = Path(path)
+    payload = path.read_bytes()
+    manifest = json.loads(payload)
+    if (not isinstance(manifest, dict) or manifest.get("schema_version") != "highres-subset-v1"
+            or manifest.get("ready") is not True):
+        raise ValueError("Unsupported or unready high-resolution subset manifest")
+    ids = manifest.get("ids")
+    if (not isinstance(ids, list) or not ids
+            or any(not isinstance(value, str) or not value for value in ids)
+            or len(ids) != len(set(ids))):
+        raise ValueError("Subset manifest must list unique non-empty row IDs")
+    missing = sorted(set(ids) - {row["id"] for row in rows})
+    if missing:
+        raise ValueError(f"Subset IDs are absent from the frozen suite or benchmark filter: {missing[:5]}")
+    wanted = set(ids)
+    rows = [row for row in rows if row["id"] in wanted]
+    counts = dict(Counter(row["benchmark"] for row in rows))
+    subset = {"name": manifest.get("name"), "path": str(path.resolve()),
+              "sha256": hashlib.sha256(payload).hexdigest(), "n_ids": len(ids),
+              "counts": counts}
+    selection = {**selection,
+                 "source_expected_counts": selection.get("source_expected_counts", selection["expected_counts"]),
+                 "expected_counts": counts, "n_requested": len(rows), "subset": subset}
+    return rows, selection, subset
 
 
 def offline_environment():
@@ -159,6 +187,27 @@ def validate_model_cpu(model, row):
         raise ValueError(f"CPU checkpoint prompt tokens differ: {actual} != {row['prompt_tokens']}")
     return {"model_type": config.model_type, "processor_class": type(processor).__name__,
             "validated_row_id": row["id"], "prompt_tokens": actual, "visual_tokens": visual}
+
+
+def resolve_model(name, explicit_model, meta, rows):
+    """Require a scoped CPU registration for an explicitly requested new export."""
+    if name in AUTHORIZED_MODELS:
+        model = MODEL_PATHS[name].resolve()
+        if explicit_model is not None and Path(explicit_model).resolve() != model:
+            raise ValueError("Explicit model differs from the historical model path")
+        return model
+    if name not in REGISTERED_MODEL_NAMES or explicit_model is None:
+        raise ValueError("A new model requires an authorized name and explicit --model export")
+    registration = meta.get("registered_models", {}).get(name, {})
+    if (registration.get("schema_version") != "highres-model-registration-v1"
+            or registration.get("validated_ids_sha256") != digest(sorted(row["id"] for row in rows))
+            or registration.get("n_validated") != len(rows)
+            or registration.get("model_sha256") != digest(meta.get("models", {}).get(name))):
+        raise ValueError("New model lacks a matching CPU registration for this exact frozen subset")
+    model = Path(explicit_model).resolve()
+    if Path(meta["models"][name]["path"]).resolve() != model:
+        raise ValueError("Registered export path differs from --model")
+    return model
 
 
 def recover_predictions(path, rows, name):
@@ -273,8 +322,8 @@ def stop_server(server):
 
 
 def execute(args):
-    if args.name not in AUTHORIZED_MODELS:
-        raise ValueError("This perception evaluation is authorized for exactly four named models")
+    if args.name not in AUTHORIZED_MODELS + REGISTERED_MODEL_NAMES:
+        raise ValueError("Unknown high-resolution evaluation model")
     adaptive = getattr(args, "adaptive_concurrency", False)
     high_throughput = getattr(args, "throughput_mode", False)
     profile_index = getattr(args, "execution_profile", 0)
@@ -296,6 +345,21 @@ def execute(args):
     if (meta.get("selection_sha256") != selection["sha256"]
             or dict(Counter(r["benchmark"] for r in rows)) != selection["expected_counts"]):
         raise ValueError("Frozen suite does not match the complete perception selection manifest")
+    benchmarks = getattr(args, "benchmarks", None)
+    if benchmarks is not None:
+        benchmarks = sorted(set(benchmarks))
+        if not benchmarks or not set(benchmarks) <= BENCHMARKS:
+            raise ValueError("Unknown or empty benchmark subset")
+        rows = [row for row in rows if row["benchmark"] in benchmarks]
+        selection = {**selection, "source_expected_counts": selection["expected_counts"],
+                     "expected_counts": dict(Counter(r["benchmark"] for r in rows)),
+                     "n_requested": len(rows), "benchmarks": benchmarks}
+    subset_info = None
+    subset_path = getattr(args, "ids", None)
+    if subset_path is not None:
+        rows, selection, subset_info = apply_subset(rows, selection, subset_path)
+        if benchmarks is not None:
+            selection["benchmarks"] = benchmarks
     if any(not isinstance(r.get("prompt_tokens"), int) or not 0 < r["prompt_tokens"] <= PROTOCOL["max_prompt_tokens"] for r in rows):
         raise ValueError("Suite must have frozen, CPU-validated prompt token counts")
     if adaptive:
@@ -304,7 +368,7 @@ def execute(args):
     if high_throughput:
         for row in rows:
             throughput.validate_row(row)
-    model = MODEL_PATHS[args.name].resolve()
+    model = resolve_model(args.name, getattr(args, "model", None), meta, rows)
     provenance = model_provenance(model)
     frozen_model = meta["models"][args.name]
     if (Path(frozen_model["path"]).resolve() != model
@@ -330,6 +394,10 @@ def execute(args):
                 "n_requested": len(rows), "smoke": False,
                 "scheduling_policy": scheduling_policy,
                 "scheduling_policy_sha256": digest(scheduling_policy)}
+    if benchmarks is not None:
+        identity["benchmarks"] = benchmarks
+    if subset_info is not None:
+        identity["subset"] = subset_info
     lock = local_lock_path(out, "inference").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     for filename, value in (("checkpoint.json", provenance), ("run.json", identity)):
@@ -345,6 +413,7 @@ def execute(args):
              "config": {"gpu": args.gpu, "concurrency": args.concurrency, **server_profile,
                         "adaptive_concurrency": adaptive, "scheduling_policy": scheduling_policy,
                         "throughput_mode": high_throughput, "execution_profile": profile_index,
+                        "enforce_eager": getattr(args, "enforce_eager", False),
                         "root": str(args.root.resolve()), "output_root": str(args.output_root.resolve()),
                         "python": sys.executable, "timeout": args.timeout, "request_attempts": args.retries}}
     def update(**values):
@@ -357,7 +426,10 @@ def execute(args):
         return 0
     os.environ.update({key: value for key, value in offline_environment().items()
                        if key.startswith(("HF_", "TRANSFORMERS_"))})
-    if meta.get("preflight_policy", {}).get("skipped"):
+    if args.name in REGISTERED_MODEL_NAMES:
+        update(metadata={"cpu_preflight": "registered_subset_checked",
+                         "registration": meta["registered_models"][args.name]}, selection=selection)
+    elif meta.get("preflight_policy", {}).get("skipped"):
         update(metadata={"cpu_preflight": "skipped_at_user_request"}, selection=selection)
     else:
         update(metadata=validate_model_cpu(model, todo[0]), selection=selection)
@@ -376,6 +448,8 @@ def execute(args):
         "--max-num-batched-tokens", str(server_profile["max_num_batched_tokens"]), "--enable-chunked-prefill",
         "--dtype", "bfloat16", "--limit-mm-per-prompt", json.dumps({"image": PROTOCOL["max_images"], "video": 0}),
         "--mm-processor-kwargs", json.dumps({"size": PROTOCOL["image_size"]})]
+    if getattr(args, "enforce_eager", False):
+        command.append("--enforce-eager")
     update(server_command=command)
     if args.dry_run:
         update(stage="dry_run", note="CPU metadata and cache checks only; no GPU query or server")
@@ -528,16 +602,24 @@ def execute(args):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--name", choices=AUTHORIZED_MODELS, required=True)
+    parser.add_argument("--name", choices=AUTHORIZED_MODELS + REGISTERED_MODEL_NAMES, required=True)
+    parser.add_argument("--model", type=Path,
+                        help="Explicit export path; required for a privately registered new model")
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--root", type=Path, default=DATA)
     parser.add_argument("--output-root", type=Path, default=RESULTS)
+    parser.add_argument("--benchmarks", nargs="+", choices=sorted(BENCHMARKS),
+                        help="Run only these benchmarks from the existing frozen suite")
+    parser.add_argument("--ids", type=Path,
+                        help="JSON highres-subset-v1 manifest selecting frozen suite row IDs")
     parser.add_argument("--concurrency", type=int, choices=(1, 2, 4, 8, 16, 32, 64), default=2)
     parser.add_argument("--adaptive-concurrency", action="store_true",
                         help="Use visual-token admission up to 16 requests; requires --concurrency 16")
     parser.add_argument("--throughput-mode", action="store_true",
                         help="Use actual profiled KV capacity, 95 percent GPU budget and up to 64 requests")
     parser.add_argument("--execution-profile", type=int, choices=(0, 1, 2), default=0)
+    parser.add_argument("--enforce-eager", action="store_true",
+                        help="Disable CUDA graphs for this execution; inference protocol is unchanged")
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--retries", type=int, default=3)
     parser.add_argument("--dry-run", action="store_true", help="Validate CPU metadata/cache and print formal server command; never start CUDA")

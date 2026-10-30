@@ -92,6 +92,8 @@ def main():
                   "--max-num-seqs", str(server_config["max_num_seqs"]), "--dtype", str(server_config["dtype"]),
                   "--limit-mm-per-prompt", json.dumps({"image": PROTOCOL["max_images"]}),
                   "--mm-processor-kwargs", json.dumps({"size": PROTOCOL["image_size"]})]
+    if server_config.get("enforce_eager", False):
+        server_cmd.append("--enforce-eager")
     eval_cmd = [str(py), str(HERE / "run_api.py"), "--suite", str(args.suite), "--base-url", f"http://127.0.0.1:{port}/v1",
                 "--model", served_name, "--name", args.name, "--output-root", str(args.output_root), "--concurrency", str(args.concurrency)]
     if args.limit:

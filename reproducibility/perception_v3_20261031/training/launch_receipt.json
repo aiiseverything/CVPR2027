@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "mode": "fast_start_no_preflight",
+  "devices": [
+    "0"
+  ],
+  "config": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v3/resolved_config.fast.yaml",
+  "config_sha256": "efcb630fce99fd30082f589604690699b8cc2d5214f98e66b290ee848289d29e",
+  "preflight_skipped": true,
+  "preflight_skip_reason": "User requested no preflight; dataset was already independently validated and the resolved config was produced earlier.",
+  "dataset_manifest_sha256": "9e9e5e5b7abb0f142b5399eb5e676d9a7f161c4a0503e3278b27b259cd740db7",
+  "dataset_validation_sha256": "e03e85ae38a77007144a52c97d709af28f4c1bf1990ea502b04c9aeb07e9499c",
+  "offload_policy": false,
+  "param_offload": true,
+  "optimizer_offload": true,
+  "model_dtype": "bfloat16",
+  "gpu_memory_utilization": 0.82,
+  "enforce_eager": true,
+  "cpu_threads": 8,
+  "started_at": "2026-10-30T08:09:44Z",
+  "training_reward_changed": false
+}

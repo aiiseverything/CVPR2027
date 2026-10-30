@@ -29,6 +29,9 @@ MODEL_PATHS = {
     'reasoning-step100': EXPERIMENT / 'models' / 'Qwen3.5-4B-reasoning-step100',
     'perception-v2-step100': EXPERIMENT / 'runs' / 'perception_v2' / 'hf' / 'global_step_100',
 }
+# New exports are registered against a private copy of the frozen metadata.
+# Keep MODEL_PATHS unchanged: freeze.py and the historical queue own four models.
+REGISTERED_MODEL_NAMES = ('perception-v3-step100',)
 
 
 def digest(value):

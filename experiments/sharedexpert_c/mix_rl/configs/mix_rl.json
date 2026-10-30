@@ -1,0 +1,16 @@
+{
+  "algorithm": "grpo",
+  "student_path": "experiments/sharedexpert_c/models/Qwen3.5-4B",
+  "data_path": "experiments/sharedexpert_c/data_pipeline/prepared/domain_opd_6400.parquet",
+  "expected_data_sha256": "6b663fe95c380ba29c5f0ee6a2d2902c3581f524c0c1b049c34b1cace72087ef",
+  "opd_config_path": "experiments/sharedexpert_c/distillation/configs/domain_opd.json",
+  "steps": 200,
+  "batch_size": 32,
+  "rollout_n": 8,
+  "prompt_length": 2048,
+  "response_length": 8192,
+  "learning_rate": 0.000001,
+  "temperature": 1.0,
+  "top_p": 1.0,
+  "top_k": -1
+}

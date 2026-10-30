@@ -1,0 +1,23 @@
+{
+  "time": "2026-10-30T07:50:51.400072+00:00",
+  "scope": "CPU dataset and resource resume checks; no GPU kernels run",
+  "rows": 3000,
+  "category_counts": {
+    "spatial_detail": 450,
+    "object_attribute": 600,
+    "ocr_document": 600,
+    "grounding": 600,
+    "existence_confusion": 450,
+    "general_vqa_replay": 300
+  },
+  "verified_images": 2623,
+  "manifest_sha256": "9e9e5e5b7abb0f142b5399eb5e676d9a7f161c4a0503e3278b27b259cd740db7",
+  "config_sha256": "efcb630fce99fd30082f589604690699b8cc2d5214f98e66b290ee848289d29e",
+  "data_errors": [],
+  "disk_free_bytes": 123940773888,
+  "cgroup_memory_max": "98784247808",
+  "cpu_max": "2500000 100000",
+  "image_hash_basis": "SHA256(big-endian width,height + decoded RGB pixels); initial file-byte comparison was invalid",
+  "image_recovery_receipt": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runtime/perception_v3_selected_images_recovery_20261030.json",
+  "data_checked_at": "2026-10-30T07:57:11.128131+00:00"
+}

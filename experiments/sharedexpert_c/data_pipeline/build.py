@@ -10,6 +10,7 @@ from pathlib import Path
 import random
 import re
 import struct
+import threading
 import unicodedata
 import zipfile
 import zlib
@@ -18,6 +19,9 @@ import pyarrow.parquet as pq
 from PIL import Image
 
 ROOT=Path(__file__).resolve().parent
+# Python 3.12's ZipFile.read is not safe for concurrent calls on one archive
+# object; the ViRL extraction pool shares a single ZipFile.
+_VIRL_ARCHIVE_LOCK=threading.Lock()
 OLD=Path('/home/ml-user/workdir/project-2/data/raw/rlvr')
 SEED=20261019
 WEIGHTS={
@@ -53,7 +57,8 @@ def verified_virl_image(archive,relative_path,stats):
   stats['archive_images_verified_existing']+=1;return path
  # ZipFile.read validates the uncompressed CRC before returning. The archive
  # itself is independently checked against the pinned upstream LFS SHA256.
- data=archive.read(member);path.parent.mkdir(parents=True,exist_ok=True)
+ with _VIRL_ARCHIVE_LOCK:data=archive.read(member)
+ path.parent.mkdir(parents=True,exist_ok=True)
  tmp=path.with_name(path.name+'.extracting');tmp.write_bytes(data);tmp.replace(path)
  stats['archive_images_extracted']+=1
  return path

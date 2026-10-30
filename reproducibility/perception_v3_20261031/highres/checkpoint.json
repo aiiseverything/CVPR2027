@@ -1,0 +1,20 @@
+{
+  "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v3/hf/global_step_100",
+  "metadata_sha256": {
+    "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+    "config.json": "3be30d8421f5a55744453dc728531742548bb47dc1242b2246e14e106ee7fd79",
+    "generation_config.json": "5f02aa641d88dd1b466df7b5ef82e5829629d28931a9e6a6750ddfd2b796b812",
+    "processor_config.json": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1",
+    "sharedexpert_export_complete.json": "182d5b56507bf04907c32ef5117c8c43a6608d1348bff5ff4b973d2a32f177b5",
+    "tokenizer.json": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4",
+    "tokenizer_config.json": "e98f1901ac6f0adff67b1d540bfa0c36ac1a0cf59eb72ed78146ef89aafa1182"
+  },
+  "weight_files": [
+    {
+      "name": "model.safetensors",
+      "size": 10350019328,
+      "mtime_ns": 1793381433589014623
+    }
+  ],
+  "weight_identity_policy": "file names, byte sizes and modification nanoseconds; no claim of full weight-content hashing"
+}

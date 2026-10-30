@@ -1,0 +1,71 @@
+{
+  "source_summaries": [
+    "experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.json",
+    "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/summary.json"
+  ],
+  "score_unit": "percent",
+  "rows": [
+    {
+      "model": "Baseline",
+      "vstar": 80.8696,
+      "zoom": 47.4597,
+      "hrbench_4k": 86.0,
+      "hrbench_8k": 81.75,
+      "length_terminated": 238,
+      "n_expected": 1722,
+      "api_errors": 0
+    },
+    {
+      "model": "推理教师",
+      "vstar": 82.6087,
+      "zoom": 52.7881,
+      "hrbench_4k": 90.75,
+      "hrbench_8k": 86.0,
+      "length_terminated": 48,
+      "n_expected": 1722,
+      "api_errors": 0
+    },
+    {
+      "model": "感知 v1",
+      "vstar": 81.7391,
+      "zoom": 50.6815,
+      "hrbench_4k": 89.25,
+      "hrbench_8k": 84.75,
+      "length_terminated": 46,
+      "n_expected": 1722,
+      "api_errors": 0
+    },
+    {
+      "model": "感知 v2",
+      "vstar": 80.8696,
+      "zoom": 50.8055,
+      "hrbench_4k": 90.5,
+      "hrbench_8k": 84.75,
+      "length_terminated": 115,
+      "n_expected": 1722,
+      "api_errors": 0
+    },
+    {
+      "model": "感知 v3",
+      "vstar": 80.0,
+      "zoom": 46.8401,
+      "hrbench_4k": 87.5,
+      "hrbench_8k": 82.5,
+      "length_terminated": 232,
+      "n_expected": 1722,
+      "api_errors": 0
+    }
+  ],
+  "identities": {
+    "suite_sha256": "28886d7f5496dbeb250147c36d715fff08d29da51f06bfa8820cc477331ca95c",
+    "protocol_sha256": "527e14faddbd6ea810deea79145847f5c2da139eb7234c63167fae3f3de7f962",
+    "selection_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+    "scoring_protocol_sha256": "e48656cd5a2137575219461ae61bbb8ebe04190446c4d09de4b93d42eb9a4701",
+    "selected_counts": {
+      "hrbench_4k": 400,
+      "hrbench_8k": 400,
+      "vstar": 115,
+      "zoom": 807
+    }
+  }
+}

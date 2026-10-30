@@ -1,0 +1,185 @@
+{
+  "pid": 181138,
+  "started_at": "2026-10-30T17:31:33.982089+00:00",
+  "name": "perception-v3-step100",
+  "stage": "complete",
+  "n_requested": 1722,
+  "completed": 1722,
+  "server_pid": null,
+  "config": {
+    "gpu": 0,
+    "concurrency": 64,
+    "max_num_seqs": 64,
+    "max_num_batched_tokens": 32768,
+    "gpu_memory_utilization": 0.95,
+    "adaptive_concurrency": false,
+    "scheduling_policy": {
+      "version": "profiled-kv-admission-v1",
+      "max_inflight": 64,
+      "max_num_seqs": 64,
+      "max_num_batched_tokens": 32768,
+      "gpu_memory_utilization": 0.95,
+      "kv_fraction": 0.9,
+      "max_output_tokens": 8192,
+      "per_request_overhead_tokens": 4096,
+      "fallback_inflight": 32,
+      "max_prompt_tokens_per_row": 40960,
+      "max_visual_tokens_per_row": 32768,
+      "profiles": [
+        {
+          "max_num_seqs": 64,
+          "max_num_batched_tokens": 32768,
+          "gpu_memory_utilization": 0.95
+        },
+        {
+          "max_num_seqs": 32,
+          "max_num_batched_tokens": 16384,
+          "gpu_memory_utilization": 0.95
+        },
+        {
+          "max_num_seqs": 32,
+          "max_num_batched_tokens": 16384,
+          "gpu_memory_utilization": 0.92
+        }
+      ],
+      "profile_transition": "next profile only after confirmed owned-server OOM"
+    },
+    "throughput_mode": true,
+    "execution_profile": 0,
+    "enforce_eager": true,
+    "root": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/highres",
+    "output_root": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/results_perception_v3/highres",
+    "python": "/root/.venv-eval/bin/python",
+    "timeout": 1800,
+    "request_attempts": 3
+  },
+  "updated_at": "2026-10-30T18:45:41.463777+00:00",
+  "metadata": {
+    "cpu_preflight": "registered_subset_checked",
+    "registration": {
+      "schema_version": "highres-model-registration-v1",
+      "name": "perception-v3-step100",
+      "source_root": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/data/highres_perception_v1",
+      "source_meta_sha256": "d854a9296bf2fad7e2bb7c2600a3c95ae3bfe1bfde14784c85b24ce78a0aac9d",
+      "validated_ids_sha256": "25fa2f00c62982fbc71da600f218ed5ad4afe5a97f692a0b2e66ea7801e0c868",
+      "n_validated": 1722,
+      "counts": {
+        "vstar": 115,
+        "zoom": 807,
+        "hrbench_4k": 400,
+        "hrbench_8k": 400
+      },
+      "export_identity_sha256": "b156993e4aad5530394c5014c61c2b6a621e751c1d85ec77d88af1d360174fa3",
+      "environment": {
+        "python": "/root/.venv-eval/bin/python",
+        "transformers": "5.18.0",
+        "tokenizers": "0.23.3"
+      },
+      "gpu_used": false,
+      "model_sha256": "d44077c8e1976d4fd1796af6c7f4124d6467c352bd04741f76d6328284a1172a",
+      "created_at": "2026-10-30T17:31:30.274885+00:00"
+    }
+  },
+  "selection": {
+    "sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+    "expected_counts": {
+      "vstar": 115,
+      "zoom": 807,
+      "hrbench_4k": 400,
+      "hrbench_8k": 400
+    },
+    "n_requested": 1722,
+    "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/data/highres_perception_v1/selection.json",
+    "source_expected_counts": {
+      "vstar": 115,
+      "zoom": 807,
+      "hrbench_4k": 400,
+      "hrbench_8k": 400,
+      "mme_rw_en": 19129,
+      "mme_rw_cn": 3610
+    },
+    "benchmarks": [
+      "hrbench_4k",
+      "hrbench_8k",
+      "vstar",
+      "zoom"
+    ]
+  },
+  "server_command": [
+    "/root/.venv-eval/bin/python",
+    "-m",
+    "vllm.entrypoints.openai.api_server",
+    "--model",
+    "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v3/hf/global_step_100",
+    "--tokenizer",
+    "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v3/hf/global_step_100",
+    "--served-model-name",
+    "sharedexpert-highres-perception-v3-step100",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "35903",
+    "--max-model-len",
+    "49152",
+    "--max-num-seqs",
+    "64",
+    "--gpu-memory-utilization",
+    "0.95",
+    "--max-num-batched-tokens",
+    "32768",
+    "--enable-chunked-prefill",
+    "--dtype",
+    "bfloat16",
+    "--limit-mm-per-prompt",
+    "{\"image\": 1, \"video\": 0}",
+    "--mm-processor-kwargs",
+    "{\"size\": {\"shortest_edge\": 4096, \"longest_edge\": 33554432}}",
+    "--enforce-eager"
+  ],
+  "resources": {
+    "gpu": 0,
+    "uuid": "GPU-c7ae0078-c633-c1e2-0251-97904894ca00",
+    "memory_used_mib": 0,
+    "utilization_percent": "0",
+    "compute_pids": [],
+    "busy": false,
+    "warning": null,
+    "checked_at": "2026-10-30T17:31:34.713165+00:00"
+  },
+  "server_environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "HF_DATASETS_OFFLINE": "1",
+    "NO_PROXY": "127.0.0.1,localhost,::1",
+    "VLLM_NO_USAGE_STATS": "1",
+    "OMP_NUM_THREADS": "8"
+  },
+  "server_log_offset": 0,
+  "admission_budget": {
+    "version": "profiled-kv-admission-v1",
+    "profile_index": 0,
+    "profile": {
+      "max_num_seqs": 64,
+      "max_num_batched_tokens": 32768,
+      "gpu_memory_utilization": 0.95
+    },
+    "capacity_tokens": 2026045,
+    "max_inflight": 64,
+    "reserved_token_budget": 1823440,
+    "capacity_source": "current startup GPU KV cache log"
+  },
+  "first_formal_row": "vstar:000000",
+  "errors": 0,
+  "last_id": "hrbench_8k:000710",
+  "consecutive_api_errors": 0,
+  "first_formal_prompt_tokens_verified": 2978,
+  "inflight": 0,
+  "inflight_prompt_tokens": 0,
+  "inflight_visual_tokens": 0,
+  "inflight_reserved_tokens": 0,
+  "inflight_slots": 0,
+  "completed_at": "2026-10-30T18:45:39.696132+00:00",
+  "error": null,
+  "gpu_oom": false
+}

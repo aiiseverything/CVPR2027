@@ -1,0 +1,214 @@
+{
+  "schema": "perception-v3-publication-v1",
+  "snapshot_date": "2026-10-31",
+  "snapshot_timezone": "Asia/Shanghai",
+  "created_at": "2026-10-30T18:55:29.449855+00:00",
+  "source_workspace": "/autodl-fs/data/CVPR2027",
+  "files": [
+    {
+      "snapshot_path": "training/completion.json",
+      "source_path": "experiments/sharedexpert_c/runs/perception_v3/fast_start_complete.json",
+      "sha256": "a2caa7d153a1dc53e0ff8265256eb08b66d2450674a5be964d0c3d32eb8210c5",
+      "bytes": 277,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/launch_receipt.json",
+      "source_path": "experiments/sharedexpert_c/runs/perception_v3/fast_start.json",
+      "sha256": "f55df0efdc414577021b9ec63515a3f697d3231f6d3be9828f3dd7f1989893ee",
+      "bytes": 921,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/export_complete.json",
+      "source_path": "experiments/sharedexpert_c/runs/perception_v3/hf/global_step_100/sharedexpert_export_complete.json",
+      "sha256": "182d5b56507bf04907c32ef5117c8c43a6608d1348bff5ff4b973d2a32f177b5",
+      "bytes": 131,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/resolved_config.yaml",
+      "source_path": "experiments/sharedexpert_c/runs/perception_v3/resolved_config.fast.yaml",
+      "sha256": "efcb630fce99fd30082f589604690699b8cc2d5214f98e66b290ee848289d29e",
+      "bytes": 20625,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/dataset_manifest.json",
+      "source_path": "experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_filter/dataset/manifest.json",
+      "sha256": "9e9e5e5b7abb0f142b5399eb5e676d9a7f161c4a0503e3278b27b259cd740db7",
+      "bytes": 10191,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/dataset_validation.json",
+      "source_path": "experiments/sharedexpert_c/runtime/perception_v3_dataset_validation.json",
+      "sha256": "e03e85ae38a77007144a52c97d709af28f4c1bf1990ea502b04c9aeb07e9499c",
+      "bytes": 4544,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/resume_data_cpu_checks.json",
+      "source_path": "experiments/sharedexpert_c/runtime/perception_v3_resume_cpu_20261030.json",
+      "sha256": "6adc6fc677b3c409f95ea43c43d35602bd944f9daad7d4431f8a04f9be920e15",
+      "bytes": 980,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/resume_model_cpu_checks.json",
+      "source_path": "experiments/sharedexpert_c/runtime/perception_v3_resume_model_config_20261030.json",
+      "sha256": "e3e13ffc8ef4852c45579ccc7d96fdaaa5b87812db01faa861edd041e34aed88",
+      "bytes": 1836,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/import_checks.json",
+      "source_path": "experiments/sharedexpert_c/runtime/perception_v3_resume_imports_20261030.json",
+      "sha256": "020a37896c42ec68c031cecfb62ed62c706f9a1ae4536c149fa0c3167f4637c8",
+      "bytes": 663,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "training/flash_sm120_build.json",
+      "source_path": "experiments/sharedexpert_c/runtime/flash_sm120_build.json",
+      "sha256": "ce3c9b97c68c208089a706018c327698334b0eb5142bd0671dde1e3ca468501f",
+      "bytes": 1836,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/summary.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/summary.json",
+      "sha256": "fca2e42a97cd97ae4dc8cf6a7642a9c4d30ec313039a8ce39d2fe74415cab14e",
+      "bytes": 127878,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/summary.csv",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/summary.csv",
+      "sha256": "5d6633b02bcb0cddb93557eda3eceb018658b129e8b6510468fb55f75709bdc9",
+      "bytes": 2104,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/comparison.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/comparison.json",
+      "sha256": "7927b25fd35a4362b5bf5949579488f1d7f41e685e3915fc0c00704f69c99334",
+      "bytes": 1871,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/comparison.csv",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/comparison.csv",
+      "sha256": "55d81feacb4379b8a82a8730b525522f03c663a9562b7e6db014cfb9a1d15001",
+      "bytes": 322,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/historical_four_model_summary.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_highres_perception_no_mme_v1/summary.json",
+      "sha256": "6e4e89c35f6cdeb0f47f5374dc954f7b8e97c7157908edcf580be0ed0523b2fc",
+      "bytes": 119961,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/registered_suite.meta.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/highres/suite.meta.json",
+      "sha256": "3ff6ffd072afd710ed0115d2cc84a4ff86da5d7229ae5e858cc5bdc59d9e569f",
+      "bytes": 57015,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/run.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/full/perception-v3-step100/run.json",
+      "sha256": "01a10b2107407df004fa9b012d50e8ea2067627167c64ff91f1b2d7de446f193",
+      "bytes": 2310,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/checkpoint.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/full/perception-v3-step100/checkpoint.json",
+      "sha256": "ef851e202cedc58268c9a880d296db2ea95d4682d76132a211eb9f27d293aa83",
+      "bytes": 1067,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/status_snapshot.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/full/perception-v3-step100/status.json",
+      "sha256": "8caebcfbf9989bd6b3df8df550342cc75ea5e6c9f125f9bd3823180249d28149",
+      "bytes": 5687,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "checks/environment_highres_cpu_checks.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/environment_highres_cpu_checks.json",
+      "sha256": "214c6d07f1571053a72fa37698e2c0ac96c9c565c05135781008bd4ccfb6c871",
+      "bytes": 2293,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "checks/main_ocr_cpu_checks.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/main_ocr_cpu_checks.json",
+      "sha256": "059a87596e3426c004b4eddb3e5737e0c5472b259fa63faffff1c785fe96ef0f",
+      "bytes": 994,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "checks/ocr_suite.meta.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/suite_ocr.meta.json",
+      "sha256": "d6f4189184fd68501e8370dac45d8aead3f85073a74062e5816361122e2b4e4b",
+      "bytes": 4459,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "checks/ocr_main_server.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/server.json",
+      "sha256": "33cdf22bb2db33aba9ba2203446117bf676d4670ee2314298afe43f9025778e2",
+      "bytes": 251,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "execution/queue_snapshot.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3.json",
+      "sha256": "f3cfc92ac2f46c28f212f22f533206f29a3f42abad15c488d5095b38b09fe041",
+      "bytes": 12521,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "execution/stop.json",
+      "source_path": "experiments/sharedexpert_c/runtime/eval_perception_v3_stop.json",
+      "sha256": "dbc8b8f58267499ce794978208ea4342f163f5509398f46ad08442467bf436be",
+      "bytes": 544,
+      "copy_policy": "byte-for-byte"
+    },
+    {
+      "snapshot_path": "highres/scope.json",
+      "source_path": "experiments/sharedexpert_c/evaluation/results_perception_v3/highres/status.json",
+      "sha256": "239d808e457a8a41094ad9480f7e51b360ae3561792995d685cc2d038eb5dc04",
+      "bytes": 214,
+      "copy_policy": "byte-for-byte"
+    }
+  ],
+  "exclusions": [
+    "model weights and checkpoints",
+    "source images and packed SQLite image database",
+    "training and evaluation row JSONL files",
+    "raw prediction generations",
+    "service logs and process environment",
+    "credential and proxy configuration"
+  ],
+  "status": {
+    "training_step": 100,
+    "export": "complete",
+    "highres": "complete",
+    "highres_successful": 1722,
+    "ocr": "cancelled_by_user",
+    "ocr_successful": 0,
+    "main": "cancelled_by_user_before_start",
+    "main_successful": 0
+  },
+  "notes": [
+    "Absolute paths and process IDs inside copied receipts are historical audit fields, not portable runtime configuration.",
+    "Weight identity in checkpoint.json uses filenames, sizes and mtimes; no full weight-content hash is claimed.",
+    "The highres comparison combines this new v3 summary with the preserved historical four-model summary."
+  ]
+}

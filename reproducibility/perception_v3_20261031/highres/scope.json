@@ -1,0 +1,11 @@
+{
+  "config": {
+    "benchmarks": [
+      "hrbench_4k",
+      "hrbench_8k",
+      "vstar",
+      "zoom"
+    ]
+  },
+  "owner": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runtime/eval_perception_v3.json"
+}

@@ -1,0 +1,12 @@
+{
+  "teacher": "perception_v3",
+  "data_file": "experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_filter/dataset/perception_v3.parquet",
+  "category_weights": {
+    "object_attribute": 0.20,
+    "grounding": 0.20,
+    "ocr_document": 0.20,
+    "spatial_detail": 0.15,
+    "existence_confusion": 0.15,
+    "general_vqa_replay": 0.10
+  }
+}

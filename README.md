@@ -1,11 +1,14 @@
 # SharedExpert / CVPR2027
 
-围绕 SharedExpert 与多教师 on-policy distillation（MOPD）的论文设计和多模态训练实验。截至 2026-10-26，基座、感知 v1、推理、通用及感知 v2 五个 4B 模型均已完成三套评测，每模型 7,162 题。新的六项高分辨率感知子集评测单独运行，使用不同的图像预算，成绩不与旧套件混合。
+围绕 SharedExpert 与多教师 on-policy distillation（MOPD）的论文设计和多模态训练实验。截至 2026-10-26，基座、感知 v1、推理、通用及感知 v2 五个 4B 模型均已完成三套评测，每模型 7,162 题。后续高分辨率感知评测采用不同的图像预算，与旧套件分开报告。
+
+2026-10-31 更新：**感知 v3 已完成 100 步训练、最终模型导出和四项高精度感知评测（1,722 题）**。VStar / Zoom / HRBench 4K / HRBench 8K 分别为 **80.00 / 46.84 / 87.50 / 82.50%**，四项均低于感知 v2。用户随后停止后续评测：OCR 成功预测 0/997，主套件未启动，因此没有这两套的 v3 成绩。完整对比与复现凭据见 [感知 v3 快照](reproducibility/perception_v3_20261031/README.md)。
 
 ## 最新评测资料
 
+- [感知 v3 训练与高精度感知结果](reproducibility/perception_v3_20261031/README.md)：五模型同协议对比、训练/导出凭据，以及 OCR 和主套件停止状态；不包含此前取消的 MME-RealWorld。
 - [五模型结果与诊断快照](reproducibility/evaluation_20261026/README.md)：完整成绩、IFEval 敏感性分析，以及推理教师感知能力诊断。
-- [高分辨率感知评测](experiments/sharedexpert_c/evaluation/highres/README.md)：四模型、六项感知子集、每模型 24,461 题；原图上限 33,554,432 像素。
+- [高分辨率感知评测](experiments/sharedexpert_c/evaluation/highres/README.md)：历史六项方案、冻结协议和原图 33,554,432 像素预算；本次完成范围为上方 v3 快照中的四项子集。
 - [高分辨率运行状态快照](reproducibility/evaluation_20261026/highres/status_snapshot.json)：带时间戳的静态进度，不是实时监控或已完成成绩。
 - [项目执行约定](AGENTS.md)：新训练先做 CPU 配置、数据、依赖和资源检查，然后直接启动已授权的正式训练；不默认安排独立 GPU smoke。
 
@@ -47,7 +50,7 @@ experiments/sharedexpert_c/
   docs/                        训练、搭建和评测文档
   tests/                       奖励测试
   logs/                        小型配置、环境版本、审计记录和辅助脚本
-  runtime/                     仅跟踪明确列出的历史验收凭据
+  runtime/                     明确发布的编排源码；实时状态与大体积产物留在本机
   monitor_training.py          OOM 监控和训练曲线
   run_experiment.py            三教师训练与评测编排
 pre-lab/                       前期模型、评测与感知探针脚本
@@ -88,6 +91,6 @@ python3 reproducibility/restore_dependencies.py --check
 
 数据和模型请通过项目脚本从原始来源获取，并遵循各自使用条款。第三方源码遵循对应子模块中的许可；本仓库未额外指定项目许可证。
 
-[2026-10-20 历史快照](reproducibility/snapshot_20261020/snapshot.json) 保留当时的训练步数、指标哈希、曲线和 baseline 汇总。已完成的教师评测以 [2026-10-26 资料快照](reproducibility/evaluation_20261026/README.md) 为准；早期 reward 和旧 baseline 图表不代表最终教师成绩。旧故障和未通过的尝试仍保留在复盘文档。
+[2026-10-20 历史快照](reproducibility/snapshot_20261020/snapshot.json) 保留当时的训练步数、指标哈希、曲线和 baseline 汇总。此前五模型的三套评测见 [2026-10-26 资料快照](reproducibility/evaluation_20261026/README.md)，感知 v3 见 [2026-10-31 资料快照](reproducibility/perception_v3_20261031/README.md)；早期 reward 和旧 baseline 图表不代表最终教师成绩。旧故障和未通过的尝试仍保留在复盘文档。
 
 ![训练指标历史快照](reproducibility/snapshot_20261020/training_metrics.png)

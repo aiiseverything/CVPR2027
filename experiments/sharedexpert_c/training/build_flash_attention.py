@@ -58,7 +58,12 @@ def main():
     parser.add_argument("--guard-pid", type=int, help="Guard an already-running isolated FA pip process without restarting it")
     parser.add_argument("--qwen-restricted", action="store_true", help="Compile with upstream feature-disable switches for this Qwen model; needs --source")
     parser.add_argument("--qwen-heads-only", action="store_true", help="Explicitly support only BF16 head64/head256; retains forward/backward/split and both causal modes")
+    parser.add_argument("--cuda-archs", default=os.getenv("FLASH_ATTN_CUDA_ARCHS", "80"),
+                        help="Target CUDA architectures for this machine (default: 80)")
+    parser.add_argument("--max-jobs", type=int, default=2, help="Parallel nvcc jobs (default: 2)")
     args = parser.parse_args()
+    if args.max_jobs < 1:
+        parser.error("--max-jobs must be positive")
     limit_path = Path("/sys/fs/cgroup/memory.max")
     used_path = limit_path.with_name("memory.current")
     limit = int(limit_path.read_text()) if limit_path.is_file() and limit_path.read_text().strip().isdigit() else 0
@@ -146,7 +151,7 @@ def main():
             raise RuntimeError("Could not apply upstream feature switches")
         setup.write_text(modified)
         report = {**archive_report, "source": str(source.resolve()), "version": "2.8.3", "feature_disable_macros": flags,
-                  "backward_enabled": True, "cuda_archs": "80", "max_jobs": 2,
+                  "backward_enabled": True, "cuda_archs": args.cuda_archs, "max_jobs": args.max_jobs,
                   "qwen_heads_only": args.qwen_heads_only,
                   "setup_original_sha256": hashlib.sha256(original.encode()).hexdigest(),
                   "setup_build_sha256": hashlib.sha256(modified.encode()).hexdigest(),
@@ -159,15 +164,15 @@ def main():
         report["patch_sha256"] = hashlib.sha256(patch.encode()).hexdigest()
         (logs / "flash-attention-build.json").write_text(json.dumps(report, indent=2))
     env = dict(os.environ, PATH=str(Path(sys.executable).parent) + ":" + os.environ.get("PATH", ""),
-               MAX_JOBS="2", NVCC_THREADS="2", FLASH_ATTN_CUDA_ARCHS="80",
+               MAX_JOBS=str(args.max_jobs), NVCC_THREADS="2", FLASH_ATTN_CUDA_ARCHS=args.cuda_archs,
                FLASH_ATTENTION_FORCE_BUILD="TRUE", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
     wheels = Path(__file__).resolve().parent.parent / "build_sources/wheels"
     wheels.mkdir(parents=True, exist_ok=True)
     command = [sys.executable, "-m", "pip", "wheel", "--no-deps", "--no-build-isolation",
                "--wheel-dir", str(wheels), args.source or "flash-attn==2.8.3"]
     if threshold and int(used_path.read_text()) > threshold - (12 << 30):
-        raise RuntimeError("Insufficient cgroup RAM headroom for two FA compiler jobs")
-    print({"command": command, "max_jobs": 2, "nvcc_threads": 2, "cuda_archs": "80",
+        raise RuntimeError("Insufficient cgroup RAM headroom for the FA compiler jobs")
+    print({"command": command, "max_jobs": args.max_jobs, "nvcc_threads": 2, "cuda_archs": args.cuda_archs,
            "cgroup_limit": limit, "abort_above": threshold}, flush=True)
     process = subprocess.Popen(command, env=env, start_new_session=True)
     def terminate(signum, frame):
@@ -181,7 +186,7 @@ def main():
         if process.returncode:
             raise SystemExit(process.returncode)
         wheel = max(wheels.glob("flash_attn-2.8.3-*.whl"), key=lambda path: path.stat().st_mtime)
-        subprocess.run([sys.executable, "-m", "pip", "install", "--no-deps", str(wheel)], check=True, env=env)
+        subprocess.run([sys.executable, "-m", "pip", "install", "--no-deps", "--force-reinstall", str(wheel)], check=True, env=env)
         report_path = Path(__file__).resolve().parent.parent / "logs/flash-attention-build.json"
         report = json.loads(report_path.read_text()) if report_path.exists() else {}
         report.update(wheel=str(wheel), wheel_sha256=hashlib.sha256(wheel.read_bytes()).hexdigest())

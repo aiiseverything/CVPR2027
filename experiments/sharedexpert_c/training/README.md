@@ -1,5 +1,25 @@
 # Three-teacher RL execution
 
+## Current workflow and perception v3
+
+New training jobs follow the user's 2026-10-24 decision: run CPU configuration,
+dataset, dependency and resource checks, then start the authorized formal run
+directly. Do not add a separate GPU smoke run, one-step preliminary training,
+smoke checkpoint or smoke HF export. Before reusing a legacy launcher for a new
+job, remove any smoke prerequisite from that new execution path before freezing
+its inputs; never fabricate a passing receipt. The perception_v2 queue that was
+already running at the time retained its frozen inputs and original workflow.
+Normal formal-training monitoring, checkpoints and final exports remain enabled.
+
+Perception v3 has now completed step 100 and final HF export. Its 3,000-row
+filtered dataset uses the six-category 20:20:20:15:15:10 mixture, rather than the
+original perception-v1 source mixture below. The final resume used one RTX 6000D
+from checkpoint 50; its exact resolved config, independent CPU checks and results
+are in the [2026-10-31 snapshot](../../../reproducibility/perception_v3_20261031/README.md).
+The following sections retain the original three-teacher setup and historical
+handoff records; they do not override that run-specific config or the no-smoke
+workflow for future jobs.
+
 This directory prepares the first stage of SharedExpert option C: three independent
 Qwen3.5-4B teachers, followed by common evaluation. It does not perform distillation.
 Every production teacher starts from `pre-lab/models/Qwen3.5-4B` and uses 100 optimizer

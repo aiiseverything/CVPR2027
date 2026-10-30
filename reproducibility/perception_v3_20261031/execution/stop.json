@@ -1,0 +1,17 @@
+{
+  "requested_at": "2026-10-30T18:48:33.032133+00:00",
+  "reason": "User requested stopping subsequent evaluations",
+  "supervisor_pid": 176886,
+  "supervisor_start_ticks": 143377177,
+  "previous_stage": "evaluating",
+  "current_suite": "ocr",
+  "child_pid": 201022,
+  "signal": "SIGTERM",
+  "signal_sent": true,
+  "supervisor_exited": true,
+  "checked_at": "2026-10-30T18:49:03.078810+00:00",
+  "owned_launcher_exited": true,
+  "owned_server_exited": true,
+  "gpu_compute_processes": [],
+  "verified_at": "2026-10-30T18:49:45.943060+00:00"
+}

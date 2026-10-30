@@ -260,9 +260,15 @@ class Monitor:
         if ticks is None and expected.get("pid") == pid:
             ticks = expected.get("start_ticks")
         # A matching PID alone is insufficient: reject zombies and PID reuse.
+        # The local 2-GPU driver is accepted in addition to the three-teacher
+        # orchestrator; both are launched with the literal argument "run".
+        # Compare basenames because the driver may be started with a relative
+        # repository-relative path while this monitor knows the absolute path.
+        driver_names = {"run_experiment.py", "run_generalist_local.py"}
+        observed_argv = observed.get("argv", []) if observed else []
+        driver_ok = any(Path(arg).name in driver_names for arg in observed_argv) and "run" in observed_argv
         alive = bool(observed and observed.get("state") not in {"Z", "X"}
-                     and str(HERE / "run_experiment.py") in observed.get("argv", [])
-                     and "run" in observed.get("argv", [])
+                     and driver_ok
                      and (ticks is None or observed.get("start_ticks") == ticks))
         if alive:
             self.state["driver_identity"] = {"pid": pid, "start_ticks": observed["start_ticks"]}
@@ -403,7 +409,9 @@ class Monitor:
         self.save()
         return sample
 
-    def metrics(self):
+    def metrics(self, *, resume_step=None, resumed_at=None):
+        if (resume_step is None) != (resumed_at is None):
+            raise ValueError("resume_step and resumed_at must be provided together")
         from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
         rows = []
         inventories = {}
@@ -422,6 +430,11 @@ class Monitor:
                     # actual event for that (role,tag,step), never average runs.
                     events = {}
                     for event in accumulator.Scalars(tag):
+                        # An interrupted attempt can have metrics beyond its last
+                        # saved checkpoint. Those points are not part of the
+                        # resumed trajectory, even until new steps overwrite them.
+                        if resumed_at is not None and event.wall_time < resumed_at and event.step > resume_step:
+                            continue
                         if event.step not in events or event.wall_time >= events[event.step].wall_time:
                             events[event.step] = event
                     for step, event in sorted(events.items()):
@@ -448,12 +461,13 @@ class Monitor:
         atomic_json(self.output / "scalar_inventory.json", inventories)
         return rows, inventories
 
-    def render(self, reason="periodic"):
+    def render(self, reason="periodic", *, resume_step=None, resumed_at=None):
         try:
             import matplotlib
             matplotlib.use("Agg")
             import matplotlib.pyplot as plt
-            rows, inventories = self.metrics()
+            rows, inventories = (self.metrics() if resumed_at is None and resume_step is None else
+                                 self.metrics(resume_step=resume_step, resumed_at=resumed_at))
             series = {}
             for row in rows:
                 if math.isfinite(row["value"]):
@@ -470,6 +484,9 @@ class Monitor:
                     points = sorted(values)
                     ax.plot([p[0] for p in points], [p[1] for p in points], marker="o", markersize=3,
                             linewidth=1.3, color=colors.get(run), linestyle=("-", "--", ":", "-.")[number % 4], label=f"{run}: {tag}")
+                if resume_step is not None and matching:
+                    ax.axvline(resume_step, color="#d84315", linewidth=1, linestyle=":",
+                               label=f"Resumed from step {resume_step}")
                 ax.set_title(title, fontsize=11)
                 ax.set_xlabel("Optimizer step")
                 ax.grid(True, alpha=0.2)

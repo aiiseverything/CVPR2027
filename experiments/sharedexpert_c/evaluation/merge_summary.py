@@ -25,6 +25,17 @@ SUITES = [
     ("main", HERE / "suite.jsonl", HERE / "results"),
     ("blink_mmvp", HERE / "suite_blink_mmvp.jsonl", HERE / "results_blink_mmvp"),
 ]
+HIGHRES_SUMMARY = HERE / "results_highres_perception_no_mme_v1" / "summary.json"
+
+
+def load_highres(path=HIGHRES_SUMMARY):
+    """Read the independently scored high-resolution perception summary."""
+    if not path.is_file():
+        return None
+    data = json.loads(path.read_text())
+    if not isinstance(data.get("models"), dict) or not isinstance(data.get("benchmarks"), list):
+        raise SystemExit(f"Unreadable high-resolution summary: {path}")
+    return data
 
 
 def write_scored(directory, pred):
@@ -74,21 +85,34 @@ def suite_status(rows, pred):
     }
 
 
-def render_markdown(suites, status, results, dimensions, bench_rows, model_names):
+def render_markdown(suites, status, results, dimensions, bench_rows, model_names,
+                    highres=None, highres_results=None):
     """Render selected suites and compare only complete, identical benchmark sets."""
     suite_labels = {"main": "主套件", "blink_mmvp": "BLINK/MMVP", "general": "OCR/IF"}
     names = list(suites)
     labels = {name: suite_labels.get(name, name) for name in names}
     total = sum(len(suite["rows"]) for suite in suites.values())
     counts = "；".join(f"{labels[name]} {len(suites[name]['rows'])} 行" for name in names)
+    title = " + ".join(labels[name] for name in names)
+    highres_rows = None
+    if highres:
+        title += " + 高分辨率感知·独立协议"
+        highres_rows = max(entry["n_expected"] for entry in highres["models"].values())
     lines = [
-        "# SharedExpert 统一评测（" + " + ".join(labels[name] for name in names) + "）", "",
+        "# SharedExpert 统一评测（" + title + "）", "",
         f"{len(names)} 个套件沿用冻结生成协议：thinking=True，temperature=0，response≤8192；"
         "多模态 prompt≤2048；finish_reason=length 一律记零。",
         f"{counts}；合计 {total} 行。", "",
+    ]
+    if highres:
+        lines += [f"高分辨率感知套件（{highres_rows} 行/模型）使用独立协议："
+                  f"max_prompt_tokens={highres['inference_protocol']['max_prompt_tokens']}、"
+                  "原图 32MP 面积上限、独立严格评分器；单独列出，不参与维度宏平均，也不与上面的分数直接比较。", ""]
+    lines += [
         "| 模型 | " + " | ".join(f"{labels[name]} {len(suites[name]['rows'])}" for name in names)
+        + (f" | 高分辨率感知 {highres_rows}" if highres else "")
         + " | 缺失 | API 错误 | 抽取失败 | 长度截断 |",
-        "|---|" + "---|" * len(names) + "---:|---:|---:|---:|",
+        "|---|" + "---|" * len(names) + ("---|" if highres else "") + "---:|---:|---:|---:|",
     ]
     for model in model_names:
         selected = status[model]
@@ -97,11 +121,17 @@ def render_markdown(suites, status, results, dimensions, bench_rows, model_names
             part = selected[name]
             cells.append(part["status"] if part["status"] != "complete" else
                          f"complete ({part['n_predicted']}/{part['n_expected']})")
+        if highres:
+            entry = highres["models"].get(model)
+            cells.append("—" if entry is None else
+                         entry["status"] if entry["status"] != "complete" else
+                         f"complete ({entry['n_predicted']}/{entry['n_expected']})")
         combined = selected["combined"]
         lines.append(f"| {model} | " + " | ".join(cells) +
                      f" | {combined['missing']} | {combined['api_errors']} | "
                      f"{combined['extraction_failures']} | {combined['length_terminated']} |")
-    lines += ["", "只报告该基准所有行都成功预测的模型；baseline 主套件结果为远端合并的完整 3423 行结果。", "",
+    lines += ["", "缺失/API 错误统计只覆盖共用协议的套件；高分辨率感知状态单独列示。",
+              "只报告该基准所有行都成功预测的模型；baseline 主套件结果为远端合并的完整 3423 行结果。", "",
               "| 评测集 | 行数 | " + " | ".join(model_names) + " |",
               "|---|---:|" + "---:|" * len(model_names)]
     for benchmark, rows in sorted(bench_rows.items()):
@@ -111,9 +141,24 @@ def render_markdown(suites, status, results, dimensions, bench_rows, model_names
             cells.append(f"{100*result['score']:.2f} ({100*result['ci95'][0]:.2f}–{100*result['ci95'][1]:.2f})"
                          if result else "—")
         lines.append(f"| {benchmark} | {len(rows)} | " + " | ".join(cells) + " |")
+    if highres_results:
+        lines.append("| **高分辨率感知（独立协议）** | | " + " | ".join("" for _ in model_names) + " |")
+        for benchmark in sorted(highres_results):
+            cells = []
+            n_rows = None
+            for model in model_names:
+                result = highres_results[benchmark].get(model)
+                if result:
+                    n_rows = result["n_rows"]
+                    cells.append(f"{100*result['score']:.2f}")
+                else:
+                    cells.append("—")
+            lines.append(f"| HR·{benchmark} | {n_rows or '—'} | " + " | ".join(cells) + " |")
     metric_note = "MMBench 使用循环选项组全对；BLINK/MMVP 为严格 MCQ；RefCOCO 为 IoU≥0.5。"
     if "general" in suites:
         metric_note += "OCRBench 使用归一化答案包含匹配；IFEval 使用官方 checker 的 strict prompt-level accuracy。"
+    if highres_results:
+        metric_note += "HR· 行使用独立严格评分器（HRBench 为 cycle-average，不是 all-cycles-correct），不提供 bootstrap 区间。"
     metric_note += "其他任务按各自冻结的本地评分规则计分。"
     lines += ["", metric_note, "",
               "| 维度宏平均 | 基准集 | " + " | ".join(model_names) + " |",
@@ -139,6 +184,9 @@ def render_markdown(suites, status, results, dimensions, bench_rows, model_names
               "对 baseline 的配对差值与 step100 之间的配对差值见 summary.json。", "",
               f"固定样本总数：{total}；协议与评分器 sha256 见 summary.json。",
               "逐题结果详见 per_sample.csv；未完整覆盖的基准不产生准确率。"]
+    if highres_results:
+        lines += ["高分辨率感知为独立协议，不参与上面的维度宏平均；其逐题结果见 "
+                  "results_highres_perception_no_mme_v1/per_sample.csv。"]
     if "general" in suites:
         lines += ["", "IFEval 评分可重复性修订：按冻结题目逐题固定 Python 随机种子，strict/loose 使用相同种子。",
                   "官方检查器对 IFEval:1122 的 # 和 IFEval:1129 的 ! 会随机替换为英文字母；本修订固定其回退，未修正这两题的标点语义。",
@@ -235,6 +283,18 @@ def main():
             if common and all(model in results[b] for b in common):
                 dimensions[dimension]["common_models"][model] = float(np.mean([results[b][model]["score"] for b in common]))
 
+    highres = load_highres()
+    highres_results = {}
+    if highres:
+        for benchmark in highres["benchmarks"]:
+            highres_results[benchmark] = {}
+            for model in MODEL_NAMES:
+                dataset = (highres["models"].get(model) or {}).get("datasets", {}).get(benchmark)
+                if dataset and dataset.get("status") == "complete":
+                    highres_results[benchmark][model] = {
+                        "score": dataset["accuracy"], "n_rows": dataset["n_expected"],
+                        "metric": dataset["metric"]}
+
     report = {
         "suites": {name: {"suite_sha256": suite["meta"]["suite_sha256"], "counts": suite["meta"]["counts"],
                           "protocol_sha256": suite["meta"]["protocol_sha256"]} for name, suite in suites.items()},
@@ -242,6 +302,24 @@ def main():
         "paired_delta_vs_baseline": deltas, "scoring_protocol": SCORING_PROTOCOL,
         "scoring_protocol_sha256": digest(SCORING_PROTOCOL),
     }
+    if highres:
+        report["suites"]["highres"] = {
+            "suite_sha256": highres.get("suite_sha256"), "counts": highres.get("selected_counts"),
+            "protocol_sha256": highres.get("protocol_sha256"), "summary": str(HIGHRES_SUMMARY)}
+        report["highres"] = {
+            "summary_path": str(HIGHRES_SUMMARY),
+            "summary_sha256": file_sha(HIGHRES_SUMMARY),
+            "suite_sha256": highres.get("suite_sha256"),
+            "protocol_sha256": highres.get("protocol_sha256"),
+            "inference_protocol": highres.get("inference_protocol"),
+            "scoring_protocol": highres.get("scoring_protocol"),
+            "status": {model: {key: entry.get(key) for key in (
+                "status", "n_expected", "n_predicted", "missing", "api_errors",
+                "parse_failures", "length_terminated", "mean_completion_tokens")}
+                for model, entry in highres["models"].items()},
+            "benchmarks": highres_results,
+            "note": ("Independent high-resolution generation protocol; excluded from "
+                     "dimension macros and combined totals.")}
     from general_metrics import aggregate_general
     report['general_details'] = aggregate_general([r for s in suites.values() for r in s['rows']], predictions)
     report['general_scorer_source_sha256'] = file_sha(HERE / "general_metrics.py")
@@ -249,7 +327,8 @@ def main():
     (args.output_root / "summary.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
 
     (args.output_root / "summary.md").write_text(
-        render_markdown(suites, status, results, dimensions, bench_rows, MODEL_NAMES))
+        render_markdown(suites, status, results, dimensions, bench_rows, MODEL_NAMES,
+                        highres=highres, highres_results=highres_results))
 
     with (args.output_root / "per_sample.csv").open("w") as handle:
         writer = csv.DictWriter(handle, fieldnames=["id", "suite", "benchmark", "dimension", "category", "group"] + MODEL_NAMES)

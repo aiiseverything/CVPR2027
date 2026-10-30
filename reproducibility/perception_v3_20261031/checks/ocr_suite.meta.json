@@ -1,0 +1,119 @@
+{
+  "protocol": {
+    "version": "sharedexpert-teacher-eval-v3-total-image-budget",
+    "enable_thinking": true,
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "seed": 20261019,
+    "max_tokens": 8192,
+    "max_prompt_tokens": 2048,
+    "max_model_len": 10240,
+    "max_images": 8,
+    "image_size": {
+      "longest_edge": 786432,
+      "shortest_edge": 4096
+    },
+    "max_total_image_pixels": 1572864,
+    "multi_image_policy": "per-image max_pixels=min(786432,1572864//image_count)",
+    "force_answering": false,
+    "judge": "local-strict-extraction-and-exact-or-numeric-match-v1",
+    "max_token_policy": "no extra answer pass; final answer must be present in original response"
+  },
+  "protocol_sha256": "2b6ab3b5a74a4f1710a3b0b368a020d0fd8def10c55bb6c07cb7f6c6c2d41ce6",
+  "ocr_categories": {
+    "Regular Text Recognition": 50,
+    "Artistic Text Recognition": 50,
+    "Handwriting Recognition": 50,
+    "Digit String Recognition": 50,
+    "Non-Semantic Text Recognition": 50,
+    "Scene Text-centric VQA": 200,
+    "Irregular Text Recognition": 50,
+    "Doc-oriented VQA": 197,
+    "Key Information Extraction": 200,
+    "Handwritten Mathematical Expression Recognition": 100
+  },
+  "training_sha256": {
+    "perception": "b2d77541e65d3ddeba20fe2c03e99be1d91023aa75b2fe576b3a3366eb8a4826",
+    "reasoning": "91ccd1f385253c40bc595b42b1f2bbb05fefc3db0fdc32ab6bfefc2caf7e0f0c",
+    "generalist": "73d6b7528f6d06fe9d7bdf2d49346878f24e7777b2f775e7a63adf12416a19b5",
+    "domain_opd_6400": "6b663fe95c380ba29c5f0ee6a2d2902c3581f524c0c1b049c34b1cace72087ef"
+  },
+  "excluded": [
+    {
+      "id": "OCRBench:519",
+      "reason": "existing_evaluation_image"
+    },
+    {
+      "id": "OCRBench:601",
+      "reason": "existing_evaluation_image"
+    },
+    {
+      "id": "OCRBench:606",
+      "reason": "existing_evaluation_image"
+    }
+  ],
+  "suite_sha256": "2db9a42893defd17934410faaf4db499ea1a75c3fb2b95a1ffba80c6255e8c0e",
+  "counts": {
+    "OCRBench_heldout": 997
+  },
+  "scoring_protocol": {
+    "version": "strict-local-v3-length-zero-ifeval-deterministic",
+    "zero_on_length_termination": true,
+    "length_finish_reason": "length",
+    "preserve_extraction_and_pre_penalty_score_for_audit": true,
+    "recompute_from_raw_response": true,
+    "ifeval_randomness": {
+      "base_seed": 20261019,
+      "identity": "frozen row['ifeval']; independent of model, response and evaluation order",
+      "seed_derivation": "int.from_bytes(SHA256(canonical_json({'base_seed': base_seed, 'ifeval': row['ifeval']})), 'big')",
+      "canonical_json": {
+        "ensure_ascii": false,
+        "sort_keys": true,
+        "separators": [
+          ",",
+          ":"
+        ],
+        "encoding": "utf-8"
+      },
+      "strict_loose_share_seed": true,
+      "restore_python_random_state": true,
+      "synchronization": "threading.RLock around state save, both checks and state restore",
+      "known_upstream_fallback_ids": [
+        "IFEval:1122",
+        "IFEval:1129"
+      ],
+      "upstream_fallback_limitation": "Pinned checker replaces nonalphabetic '#' / '!' with an ASCII letter; deterministic seeding preserves this fallback, not the prompt's symbol-count semantics."
+    }
+  },
+  "scoring_protocol_sha256": "223d18e9e2ca11128f0a76e7dd8a6d8dcc8b16c19c50d18b44234a4ec11ce388",
+  "derived_from": {
+    "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/suite_general.jsonl",
+    "suite_sha256": "48493e6cf9e20d5fbe4f0870a5f43d8a8e64cffaf1c4783d5bd20d4eaff23aef",
+    "meta_sha256": "b18b4c25da2056c4d7e8bea9dd548cdfb49b5729b64507773cdca95904b84c20",
+    "predicate": {
+      "task": "ocrbench"
+    },
+    "row_bytes_preserved": true
+  },
+  "source_sha256": {
+    "ocr_parquet": "d9cc9f488e5310143d8d89956c19d0bdfd71e7089025da5202643f73720df7f5"
+  },
+  "source_manifest": {
+    "ocrbench": {
+      "repository": "echo840/OCRBench",
+      "revision": "92a54bd1384387c178d5a07140a2d85e0a3d12e1",
+      "files": [
+        "data/test-00000-of-00001.parquet"
+      ],
+      "sha256": {
+        "data/test-00000-of-00001.parquet": "d9cc9f488e5310143d8d89956c19d0bdfd71e7089025da5202643f73720df7f5"
+      }
+    }
+  },
+  "limitations": [
+    "Post-teacher-training expansion; no retrospective preregistration claim",
+    "Exact RGB overlap removal cannot detect every crop or re-encoding",
+    "OCRBench filtered subset, not the official 1000-point total",
+    "Thinking enabled; final content scored; length termination counts zero"
+  ]
+}

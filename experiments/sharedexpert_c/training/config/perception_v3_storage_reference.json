@@ -1,0 +1,42 @@
+{
+  "version": "perception-v3-storage-reference-v1",
+  "created_at": "2026-10-28T23:09:35.059392+00:00",
+  "checkpoint_bytes": 54493602998,
+  "hf_export_bytes": 10350019328,
+  "measurement_sources": {
+    "queue_path": "runtime/perception_v2_queue.json",
+    "queue_sha256": "629de55f8fac68c2654d5c50115d730cd86aa5c94f3693cb16fca9534e3538f9",
+    "queue_measurement_key": "storage_capacity_before_formal.measured",
+    "baseline_protocol_sha256": "dac1b0ffc973defae611726a384e6dcf3c24d17d61a63e6e58d98420c1de0d96",
+    "baseline_resolved_config_sha256": "880e76ca1dd612aa760f1a21861b6576cb0b1ee549f43af5c804f95c06cf14db",
+    "baseline_resource_usage_sha256": "a4fbe030c713caa8b30e75427d1974df162a6c2025b1329f4ec68b0c594c2098"
+  },
+  "historical_export": {
+    "directory": "runs/perception_v2/hf/global_step_100",
+    "shards": [
+      {
+        "name": "model.safetensors",
+        "size_bytes": 10350019328
+      }
+    ],
+    "completion_marker_text": "{\"step\": 100, \"source\": \"/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v2/checkpoints/global_step_100/actor\"}",
+    "completion_marker_sha256": "aebe47f50b11fe3bd79249a0cdcd9084381e1afc122e83d630c2b7816c3cecfd",
+    "measurement": "File names and stat sizes captured before authorized historical export deletion; no model-content hash is needed for capacity sizing."
+  },
+  "checkpoint_measurement": {
+    "source_checkpoint": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/generalist/checkpoints/global_step_100",
+    "checkpoint_bytes": 54493602998,
+    "hf_export_bytes": 9319828096,
+    "shards": {
+      "model_world_size_2_rank_0.pt": 9078927159,
+      "model_world_size_2_rank_1.pt": 9078927159,
+      "optim_world_size_2_rank_0.pt": 18157857105,
+      "optim_world_size_2_rank_1.pt": 18157857105
+    },
+    "spill_tmp_bytes": 27236784264,
+    "spill_overlay_bytes": 9078927159,
+    "resident_checkpoint_bytes": 18177891575
+  },
+  "capacity_policy": "max(2 * checkpoint_bytes, checkpoint_bytes + hf_export_bytes) plus 3 GiB reserve; completed runs need only checkpoint plus export.",
+  "payload_sha256": "a0095937e19a51d44384761adb2a51ecab7522d9663bdaed487308419f8033f3"
+}

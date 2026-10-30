@@ -14,8 +14,8 @@ import subprocess
 import sys
 import time
 
-from protocol import DATA, HERE, RESULTS, atomic_json, digest, PROTOCOL
-from run import (AUTHORIZED_MODELS, gpu_status, local_lock_path,
+from protocol import DATA, HERE, RESULTS, atomic_json, digest, file_sha, PROTOCOL
+from run import (AUTHORIZED_MODELS, BENCHMARKS, gpu_status, local_lock_path,
                  offline_environment, selection_snapshot)
 from scheduling import configuration as scheduling_configuration
 import throughput
@@ -79,6 +79,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=DATA)
     parser.add_argument("--output-root", type=Path, default=RESULTS)
+    parser.add_argument("--benchmarks", nargs="+", choices=sorted(BENCHMARKS))
+    parser.add_argument("--ids", type=Path,
+                        help="JSON highres-subset-v1 manifest selecting frozen suite row IDs")
+    parser.add_argument("--frozen-suite", action="store_true",
+                        help="Reuse the existing frozen suite without preparation or preflight replay")
     parser.add_argument("--python", default=sys.executable)
     parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--concurrency", type=int, choices=(1, 2, 4, 8, 16, 32, 64), default=2)
@@ -93,6 +98,11 @@ def main():
         parser.error("adaptive concurrency requires --concurrency 16")
     if args.throughput_mode and (args.concurrency != 64 or args.adaptive_concurrency):
         parser.error("throughput mode requires --concurrency 64 and cannot combine with adaptive-concurrency")
+    if args.ids is not None:
+        if not args.ids.is_file():
+            parser.error(f"subset manifest not found: {args.ids}")
+        if not args.frozen_suite:
+            parser.error("--ids requires --frozen-suite")
     args.output_root.mkdir(parents=True, exist_ok=True)
     lock = local_lock_path(args.output_root, "highres-queue").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -107,6 +117,12 @@ def main():
                                     {"version": "fixed-concurrency-v1", "max_inflight": args.concurrency}),
               "selection": str((args.root / "selection.json").resolve()),
               "protocol_sha256": digest(PROTOCOL), "max_attempts": args.max_attempts}
+    if args.benchmarks is not None:
+        config["benchmarks"] = sorted(set(args.benchmarks))
+    if args.frozen_suite:
+        config["frozen_suite"] = True
+    if args.ids is not None:
+        config["subset"] = {"path": str(args.ids.resolve()), "sha256": file_sha(args.ids)}
     configuration_history = config_history(previous, config, args.output_root)
     attempt_counts = {key: previous.get(key, 0) for key in ("prepare_attempts", "freeze_attempts")}
     # A user-requested scheduling handover is not a failed preparation attempt.
@@ -184,6 +200,10 @@ def main():
         stages = [("prepare", [args.python, str(HERE / "prepare.py"), "--root", str(args.root),
                                "--selection", str(args.root / "selection.json")]),
                   ("freeze", [args.python, str(HERE / "freeze.py"), "--root", str(args.root)])]
+        if args.frozen_suite:
+            if not (args.root / "suite.meta.json").is_file() or not (args.root / "suite.jsonl").is_file():
+                raise ValueError("--frozen-suite requires an existing frozen suite")
+            stages = []
         for stage, command in stages:
             attempt_key = stage + "_attempts"
             while True:
@@ -231,6 +251,10 @@ def main():
                     command.append("--adaptive-concurrency")
                 if args.throughput_mode:
                     command.extend(["--throughput-mode", "--execution-profile", str(job.get("execution_profile", 0))])
+                if args.benchmarks is not None:
+                    command.extend(["--benchmarks", *config["benchmarks"]])
+                if args.ids is not None:
+                    command.extend(["--ids", str(args.ids)])
                 code = launch(command, args.output_root / f"{name}.log", "evaluating")
                 job["returncodes"].append({"returncode": code, "time": now()})
                 if code == 75:

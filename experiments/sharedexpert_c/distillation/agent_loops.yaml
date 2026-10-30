@@ -1,0 +1,2 @@
+- name: domain_opd_single_turn
+  _target_: experiments.sharedexpert_c.distillation.agent_loop.DomainOPDSingleTurn

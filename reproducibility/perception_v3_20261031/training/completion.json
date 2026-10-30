@@ -1,0 +1,7 @@
+{
+  "status": "complete",
+  "step": 100,
+  "hf_model": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runs/perception_v3/hf/global_step_100",
+  "config_sha256": "efcb630fce99fd30082f589604690699b8cc2d5214f98e66b290ee848289d29e",
+  "finished_at": "2026-10-30T17:31:09Z"
+}

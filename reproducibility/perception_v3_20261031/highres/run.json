@@ -1,0 +1,72 @@
+{
+  "name": "perception-v3-step100",
+  "protocol": {
+    "version": "sharedexpert-highres-perception-subsets-v1",
+    "enable_thinking": true,
+    "temperature": 0,
+    "top_p": 1,
+    "seed": 20261019,
+    "max_tokens": 8192,
+    "max_prompt_tokens": 40960,
+    "max_model_len": 49152,
+    "max_images": 1,
+    "image_size": {
+      "shortest_edge": 4096,
+      "longest_edge": 33554432
+    },
+    "image_view": "full original image only; no privileged crops",
+    "answer_instruction": "Put only your final {kind} inside <answer>...</answer>."
+  },
+  "protocol_sha256": "527e14faddbd6ea810deea79145847f5c2da139eb7234c63167fae3f3de7f962",
+  "suite_sha256": "28886d7f5496dbeb250147c36d715fff08d29da51f06bfa8820cc477331ca95c",
+  "source_manifest_sha256": "f9ef729d32b03d3aaf6ddd08d7a41eaae8fa16f19f25ac468433634bf67fb94a",
+  "dataset_manifest_sha256": "e9cf371d9f4e72d289b331a7e69474057249d8fad44bc806d9c0968580ce12e8",
+  "selection_sha256": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+  "expected_counts": {
+    "vstar": 115,
+    "zoom": 807,
+    "hrbench_4k": 400,
+    "hrbench_8k": 400
+  },
+  "frozen_model_sha256": "d44077c8e1976d4fd1796af6c7f4124d6467c352bd04741f76d6328284a1172a",
+  "n_requested": 1722,
+  "smoke": false,
+  "scheduling_policy": {
+    "version": "profiled-kv-admission-v1",
+    "max_inflight": 64,
+    "max_num_seqs": 64,
+    "max_num_batched_tokens": 32768,
+    "gpu_memory_utilization": 0.95,
+    "kv_fraction": 0.9,
+    "max_output_tokens": 8192,
+    "per_request_overhead_tokens": 4096,
+    "fallback_inflight": 32,
+    "max_prompt_tokens_per_row": 40960,
+    "max_visual_tokens_per_row": 32768,
+    "profiles": [
+      {
+        "max_num_seqs": 64,
+        "max_num_batched_tokens": 32768,
+        "gpu_memory_utilization": 0.95
+      },
+      {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 16384,
+        "gpu_memory_utilization": 0.95
+      },
+      {
+        "max_num_seqs": 32,
+        "max_num_batched_tokens": 16384,
+        "gpu_memory_utilization": 0.92
+      }
+    ],
+    "profile_transition": "next profile only after confirmed owned-server OOM"
+  },
+  "scheduling_policy_sha256": "735c35bfadd3d107b73400aa643f9035a939a6f02eff71e9d7a2fc8ba8e29835",
+  "benchmarks": [
+    "hrbench_4k",
+    "hrbench_8k",
+    "vstar",
+    "zoom"
+  ]
+}

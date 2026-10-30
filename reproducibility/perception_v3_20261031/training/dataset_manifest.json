@@ -1,0 +1,203 @@
+{
+  "status": "complete",
+  "records": 3000,
+  "category_counts": {
+    "object_attribute": 600,
+    "grounding": 600,
+    "ocr_document": 600,
+    "spatial_detail": 450,
+    "existence_confusion": 450,
+    "general_vqa_replay": 300
+  },
+  "screening": "Exactly one committed group of eight; 2 <= correct <= 6 for every row",
+  "run_sha256": "d62cf278badcc8a4eb9863df4c491a10db99693afe8c646db99ae5e2a5da3924",
+  "parquet_sha256": "dd0e8f00c09d075a61f1fbe49b011ef1d370f7b345cb62a6e003a8be11f2d32a",
+  "records_sha256": "d83fb7a2738a0b20512a87b9376fdfe48abc8c139b0a961178885c97d98b1797",
+  "groups_sha256": "7266e97aee0bf5d8268faf6c6e6885f45af6dd508f1a2c981ff8555cc7415bd8",
+  "all_accepted_counts": {
+    "existence_confusion": 450,
+    "existence_no": 225,
+    "spatial_detail": 450,
+    "grounding": 600,
+    "existence_yes": 225,
+    "ocr_document": 600,
+    "general_vqa_replay": 300,
+    "object_attribute": 600
+  },
+  "pool_evidence": [
+    {
+      "directory": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool",
+      "manifest_sha256": "80edabf5353eeac9ff013814cc07cc24c9278c449426fcb4545ca7ef27f72c67",
+      "records_sha256": "ef5c445327276a13c0d66d2cb52c81441cdbf469831f1c50616aeb6a3541fa6e",
+      "manifest": {
+        "version": "perception-v3-original-candidate-pool-v1",
+        "artifact_kind": "candidate_pool",
+        "difficulty_filtered": false,
+        "training_ready": false,
+        "n": 12423,
+        "category_counts": {
+          "object_attribute": 893,
+          "grounding": 8954,
+          "ocr_document": 1138,
+          "spatial_detail": 464,
+          "existence_confusion": 625,
+          "general_vqa_replay": 349
+        },
+        "target_category_weights": {
+          "object_attribute": 0.2,
+          "grounding": 0.2,
+          "ocr_document": 0.2,
+          "spatial_detail": 0.15,
+          "existence_confusion": 0.15,
+          "general_vqa_replay": 0.1
+        },
+        "required_downstream_filter": {
+          "completions_per_candidate": 8,
+          "min_correct": 2,
+          "max_correct": 6
+        },
+        "data_file": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool/candidates.parquet",
+        "data_sha256": "1c71ade2935a189e96f8e5ef12b2c3a6bc08aaaad7771d5e7f3b50aa3a325657",
+        "records_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool/candidates.records.jsonl",
+        "records_sha256": "ef5c445327276a13c0d66d2cb52c81441cdbf469831f1c50616aeb6a3541fa6e",
+        "audit_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool/audit.json",
+        "audit_sha256": "bb9d1a362504d237878a9a24daaddc591bf41ab86cdfa812a14dafa56d5bfd1c",
+        "protocol_sha256": "249dd0b8b2271a245ce3e9cf545800824b398209c7c27d9eca355fe5807b0a2a",
+        "builder_sha256": "ff062c5595390f841d90c1dc19002a15b6183b53ee806a88452f838c278c5e46",
+        "original_rules_sha256": "870f2264117fc0dc50e97b0fed4c8eb551010cee8fa91f7e65e7485ee884c4f4",
+        "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2"
+      }
+    },
+    {
+      "directory": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round2",
+      "manifest_sha256": "b2494c095ef5084fbf37fce924d215d236c562a63e321228299993664e6fd126",
+      "records_sha256": "d594d06e322ef6bed750c8244d47962eeef943879a27a5e51275073c7bad8a76",
+      "manifest": {
+        "version": "perception-v3-original-candidate-pool-v1",
+        "artifact_kind": "candidate_pool",
+        "difficulty_filtered": false,
+        "training_ready": false,
+        "n": 24399,
+        "category_counts": {
+          "object_attribute": 4475,
+          "grounding": 8954,
+          "ocr_document": 3977,
+          "spatial_detail": 2124,
+          "existence_confusion": 3201,
+          "general_vqa_replay": 1668
+        },
+        "target_category_weights": {
+          "object_attribute": 0.2,
+          "grounding": 0.2,
+          "ocr_document": 0.2,
+          "spatial_detail": 0.15,
+          "existence_confusion": 0.15,
+          "general_vqa_replay": 0.1
+        },
+        "required_downstream_filter": {
+          "completions_per_candidate": 8,
+          "min_correct": 2,
+          "max_correct": 6
+        },
+        "data_file": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round2/candidates.parquet",
+        "data_sha256": "c123e2e196ffbfdb34fb4d16b92c50094cf909288f559ca42ff0278b2f759bf4",
+        "records_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round2/candidates.records.jsonl",
+        "records_sha256": "d594d06e322ef6bed750c8244d47962eeef943879a27a5e51275073c7bad8a76",
+        "audit_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round2/audit.json",
+        "audit_sha256": "c51c84d7cf60add50d29c7c867fda3f85b5a549c73643fc17ffdc65b3cae9b8a",
+        "protocol_sha256": "249dd0b8b2271a245ce3e9cf545800824b398209c7c27d9eca355fe5807b0a2a",
+        "builder_sha256": "ff062c5595390f841d90c1dc19002a15b6183b53ee806a88452f838c278c5e46",
+        "original_rules_sha256": "870f2264117fc0dc50e97b0fed4c8eb551010cee8fa91f7e65e7485ee884c4f4",
+        "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2"
+      }
+    },
+    {
+      "directory": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round3",
+      "manifest_sha256": "dd7f2154dac4dfc2ec45a68b26ae1bfce7cb7dc2afd57e712aa55683e54166ae",
+      "records_sha256": "1a124f84076ebaa801bd7be83775e72ed34f734b710b51418b65237aa9b86049",
+      "manifest": {
+        "version": "perception-v3-original-candidate-pool-v1",
+        "artifact_kind": "candidate_pool",
+        "difficulty_filtered": false,
+        "training_ready": false,
+        "n": 36379,
+        "category_counts": {
+          "object_attribute": 7975,
+          "grounding": 8954,
+          "ocr_document": 6835,
+          "spatial_detail": 3932,
+          "existence_confusion": 5711,
+          "general_vqa_replay": 2972
+        },
+        "target_category_weights": {
+          "object_attribute": 0.2,
+          "grounding": 0.2,
+          "ocr_document": 0.2,
+          "spatial_detail": 0.15,
+          "existence_confusion": 0.15,
+          "general_vqa_replay": 0.1
+        },
+        "required_downstream_filter": {
+          "completions_per_candidate": 8,
+          "min_correct": 2,
+          "max_correct": 6
+        },
+        "data_file": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round3/candidates.parquet",
+        "data_sha256": "6fecea8d94cf8e6e861f8903c67ecdefa2e81baae119522e0501f2548de5867b",
+        "records_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round3/candidates.records.jsonl",
+        "records_sha256": "1a124f84076ebaa801bd7be83775e72ed34f734b710b51418b65237aa9b86049",
+        "audit_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round3/audit.json",
+        "audit_sha256": "6dea1bc2c640c3d89b1efa77060b3c608555adaa7f58ee0c697d5aa0843fc7d2",
+        "protocol_sha256": "249dd0b8b2271a245ce3e9cf545800824b398209c7c27d9eca355fe5807b0a2a",
+        "builder_sha256": "ff062c5595390f841d90c1dc19002a15b6183b53ee806a88452f838c278c5e46",
+        "original_rules_sha256": "870f2264117fc0dc50e97b0fed4c8eb551010cee8fa91f7e65e7485ee884c4f4",
+        "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2"
+      }
+    },
+    {
+      "directory": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round4",
+      "manifest_sha256": "46370ad35c26802cf194b21ea3a9a54e01657ae3a24ccb565785b6dc0f8a982a",
+      "records_sha256": "926abef2b300222286e6fb796aaef668a71b48abaed9bec1132afc70a55df455",
+      "manifest": {
+        "version": "perception-v3-original-candidate-pool-v1",
+        "artifact_kind": "candidate_pool",
+        "difficulty_filtered": false,
+        "training_ready": false,
+        "n": 49848,
+        "category_counts": {
+          "object_attribute": 13133,
+          "grounding": 8954,
+          "ocr_document": 6835,
+          "spatial_detail": 6546,
+          "existence_confusion": 9473,
+          "general_vqa_replay": 4907
+        },
+        "target_category_weights": {
+          "object_attribute": 0.2,
+          "grounding": 0.2,
+          "ocr_document": 0.2,
+          "spatial_detail": 0.15,
+          "existence_confusion": 0.15,
+          "general_vqa_replay": 0.1
+        },
+        "required_downstream_filter": {
+          "completions_per_candidate": 8,
+          "min_correct": 2,
+          "max_correct": 6
+        },
+        "data_file": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round4/candidates.parquet",
+        "data_sha256": "f3b01391dbbf521708972a7927fd4898fe833adbbeb2bed7860c6ca6b5fc6f75",
+        "records_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round4/candidates.records.jsonl",
+        "records_sha256": "926abef2b300222286e6fb796aaef668a71b48abaed9bec1132afc70a55df455",
+        "audit_path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/data_pipeline/prepared/perception_v3_pool_round4/audit.json",
+        "audit_sha256": "453e4e12d1e756fb618e97854e6cbd860a02104e8094416b22312741f232f8c5",
+        "protocol_sha256": "249dd0b8b2271a245ce3e9cf545800824b398209c7c27d9eca355fe5807b0a2a",
+        "builder_sha256": "ff062c5595390f841d90c1dc19002a15b6183b53ee806a88452f838c278c5e46",
+        "original_rules_sha256": "870f2264117fc0dc50e97b0fed4c8eb551010cee8fa91f7e65e7485ee884c4f4",
+        "reward_sha256": "049236623c27a9b1584ec74a6c8fd81f95914fb949936d8b326804d7f96679b2"
+      }
+    }
+  ],
+  "training_reward_changed": false,
+  "limitation": "Screening is measured at fixed base weights; future training groups can differ."
+}

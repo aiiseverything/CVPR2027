@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-30T17:02:18.839651+00:00",
+  "gpu_used": false,
+  "ocr_subset_row_bytes_preserved": true,
+  "model_name": "perception-v3-step100",
+  "launcher_dry_runs": {
+    "default_no_enforce_eager": true,
+    "enforce_eager_true": true
+  },
+  "cpu_test_evaluation": {
+    "tests": 9,
+    "failures": 0
+  },
+  "suites": {
+    "main": {
+      "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/suite.jsonl",
+      "rows": 3423,
+      "unique_images": 2567,
+      "missing_images": 0,
+      "image_sha256_mismatches": 0,
+      "suite_sha256": "1494d14bab22fa73ed92f6fffd9df6a48bfc1268db8c56fe29a5f3e7f74f9100"
+    },
+    "ocr": {
+      "path": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runtime/eval_perception_v3_inputs/suite_ocr.jsonl",
+      "rows": 997,
+      "unique_images": 927,
+      "missing_images": 0,
+      "image_sha256_mismatches": 0,
+      "suite_sha256": "2db9a42893defd17934410faaf4db499ea1a75c3fb2b95a1ffba80c6255e8c0e"
+    }
+  }
+}

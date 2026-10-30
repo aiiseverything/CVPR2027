@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "versions": {
+    "torch": "2.10.0",
+    "vllm": "0.18.0",
+    "transformers": "5.5.0",
+    "ray": "2.53.0",
+    "triton": "3.6.0",
+    "pyarrow": "22.0.0",
+    "omegaconf": "2.3.0",
+    "torchdata": "0.11.0",
+    "flash-attn": "2.8.3"
+  },
+  "imports": {
+    "torch": "passed",
+    "vllm": "passed",
+    "transformers": "passed",
+    "ray": "passed",
+    "pyarrow": "passed",
+    "omegaconf": "passed",
+    "torchdata.stateful_dataloader": "passed",
+    "verl.trainer.main_ppo": "passed",
+    "experiments.sharedexpert_c.rewards": "passed"
+  },
+  "time": "2026-10-30T08:03:15Z",
+  "CUDA_VISIBLE_DEVICES": "",
+  "gpu_smoke_run": false
+}

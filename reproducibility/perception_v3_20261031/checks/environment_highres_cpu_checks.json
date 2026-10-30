@@ -1,0 +1,64 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-30T17:04:45.439092+00:00",
+  "python": "/root/.venv-eval/bin/python",
+  "CUDA_VISIBLE_DEVICES": "",
+  "gpu_smoke_performed": false,
+  "gpu_kernel_validation": "not performed; CPU imports, metadata, prompt-count, and packed-image presence/size checks only",
+  "versions": {
+    "torch": "2.13.0+cu130",
+    "vllm": "0.30.0",
+    "transformers": "5.18.0",
+    "flashinfer": "0.6.18.post1"
+  },
+  "torch_compiled_architectures": [
+    "sm_75",
+    "sm_80",
+    "sm_86",
+    "sm_90",
+    "sm_100",
+    "sm_120"
+  ],
+  "imports": {
+    "torch": "passed",
+    "vllm": "passed",
+    "transformers": "passed",
+    "vllm._custom_ops": "passed",
+    "vllm.entrypoints.openai.api_server": "passed",
+    "flashinfer": "passed",
+    "vllm._C_stable_libtorch": "passed",
+    "vllm._moe_C_stable_libtorch": "passed",
+    "vllm.vllm_flash_attn._vllm_fa2_C": "passed",
+    "vllm.platforms.cuda": "passed"
+  },
+  "extension_note": "vLLM 0.30 uses _C_stable_libtorch; legacy vllm._C module name is absent.",
+  "cpu_processor": {
+    "model": "experiments/sharedexpert_c/models/Qwen3.5-4B",
+    "model_type": "qwen3_5",
+    "processor_class": "Qwen3VLProcessor",
+    "selected_rows": 1722,
+    "frozen_prompt_and_visual_token_count_mismatches": 0,
+    "v3_export_cpu_registration": "will run after formal export"
+  },
+  "highres_images": {
+    "database": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/evaluation/data/highres_perception_v1/images.sqlite",
+    "database_bytes": 14945112064,
+    "selected_benchmarks": [
+      "vstar",
+      "zoom",
+      "hrbench_4k",
+      "hrbench_8k"
+    ],
+    "selected_rows": 1722,
+    "unique_images": 1057,
+    "missing_or_truncated": 0,
+    "verification": "SELECT sha256,length(data) FROM images in read-only SQLite; all selected lengths matched frozen suite image.size",
+    "full_blob_content_sha256_checked": false
+  },
+  "input_sha256": {
+    "suite.jsonl": "28886d7f5496dbeb250147c36d715fff08d29da51f06bfa8820cc477331ca95c",
+    "suite.meta.json": "d854a9296bf2fad7e2bb7c2600a3c95ae3bfe1bfde14784c85b24ce78a0aac9d",
+    "selection.json": "ad2d075d517f9dec50d78f8775d47b2a2993919300fb67b1f0545740b052ed18",
+    "dataset_manifest.json": "e9cf371d9f4e72d289b331a7e69474057249d8fad44bc806d9c0968580ce12e8"
+  }
+}

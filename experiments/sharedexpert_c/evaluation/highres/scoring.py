@@ -251,6 +251,16 @@ def summarize(root=DATA, results=RESULTS):
     """Write independent highres summary.json/summary.csv; return the report."""
     root, results = Path(root), Path(results)
     rows, meta = load_suite(root)
+    queue_status = results / "status.json"
+    benchmarks = (json.loads(queue_status.read_text()).get("config", {}).get("benchmarks")
+                  if queue_status.exists() else None)
+    if benchmarks is not None:
+        if (not isinstance(benchmarks, list) or not benchmarks
+                or any(not isinstance(name, str) for name in benchmarks)
+                or len(benchmarks) != len(set(benchmarks))
+                or not set(benchmarks) <= set(meta["counts"])):
+            raise ValueError("Invalid benchmark subset in queue status")
+        rows = [row for row in rows if row["benchmark"] in benchmarks]
     by_bench = defaultdict(list)
     for row in rows:
         validate_row(row)
@@ -259,7 +269,10 @@ def summarize(root=DATA, results=RESULTS):
     report = {"created_at": datetime.now(timezone.utc).isoformat(),
               "suite_sha256": meta["suite_sha256"], "protocol_sha256": digest(PROTOCOL),
               "selection_sha256": meta["selection_sha256"],
-              "selection": meta.get("selection"), "selected_counts": meta["counts"],
+              "selection": meta.get("selection"),
+              "selected_counts": {name: len(items) for name, items in sorted(by_bench.items())},
+              "benchmarks": sorted(by_bench),
+              "excluded_benchmarks": sorted(set(meta["counts"]) - set(by_bench)),
               "inference_protocol": PROTOCOL, "scoring_protocol": SCORING_PROTOCOL,
               "scoring_protocol_sha256": SCORING_PROTOCOL_SHA256,
               "scorer_source_sha256": file_sha(Path(__file__)),
@@ -267,11 +280,11 @@ def summarize(root=DATA, results=RESULTS):
               "limitations": ["Strict local deterministic scores, not official LLM-judge scores.",
                   "Perception subsets only: all selected rows retained, including repeated MME-RealWorld question IDs and duplicate option labels. These are not full-benchmark scores.",
                   "HRBench cycle-average accuracy, not all-cycles-correct accuracy.",
-                  "Exactly identified upstream label anomalies remain unchanged in primary scores; the separately named sensitivity excludes these eleven source rows.",
+                  "Exactly identified upstream label anomalies remain unchanged in primary scores; the separately named sensitivity excludes affected rows within the evaluated subset.",
                   "A partial observed_accuracy describes available predictions only and is not full-dataset accuracy.",
                   "Full image only, including ZoomBench; no privileged crop-view result or zooming gap."]}
     csvrows = []
-    for model in MODEL_PATHS:
+    for model in dict.fromkeys([*MODEL_PATHS, *meta.get("registered_models", {})]):
         directory = results / "full" / model
         runpath = directory / "run.json"
         run_ok = runpath.exists()
@@ -283,8 +296,12 @@ def summarize(root=DATA, results=RESULTS):
                         "n_requested": len(rows), "smoke": False}
             if any(run.get(k) != v for k, v in expected.items()):
                 raise ValueError(f"Incompatible highres run metadata: {runpath}")
+            if benchmarks is not None and sorted(run.get("benchmarks", [])) != sorted(benchmarks):
+                raise ValueError(f"Benchmark subset mismatch: {runpath}")
             if run.get("source_manifest_sha256") != meta.get("source_manifest_sha256"):
                 raise ValueError(f"Source manifest mismatch: {runpath}")
+            if model in meta.get("registered_models", {}) and run.get("frozen_model_sha256") != digest(meta["models"][model]):
+                raise ValueError(f"Registered model mismatch: {runpath}")
         pred, snapshot = _read_predictions(directory / "predictions.jsonl", identities, model)
         scored = {r["id"]: score_prediction(r, pred[r["id"]]) for r in rows if r["id"] in pred}
         input_ok = run_ok and not snapshot["incomplete_tail"]

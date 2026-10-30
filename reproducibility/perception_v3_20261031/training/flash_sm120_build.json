@@ -1,0 +1,44 @@
+{
+  "status": "complete",
+  "pid": 6367,
+  "start_ticks": 140031170,
+  "command": [
+    "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/.venv-train/bin/python",
+    "-u",
+    "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/training/build_flash_attention.py",
+    "--source",
+    "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/build_sources/flash_attn-2.8.3",
+    "--cuda-archs",
+    "120",
+    "--max-jobs",
+    "8"
+  ],
+  "log": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/runtime/flash_sm120_build_20261030T074927Z.log",
+  "backup": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/build_sources/sm90_backup_20261030T074927Z",
+  "cuda_archs": "120",
+  "cuda_visible_devices": "",
+  "no_gpu_smoke": true,
+  "started_at": "20261030T074927Z",
+  "finished_at": "2026-10-30T08:08:56.199830+00:00",
+  "version": "2.8.3",
+  "torch_version": "2.10.0+cu128",
+  "cuda_toolkit": "12.8",
+  "wheel": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/build_sources/wheels/flash_attn-2.8.3-cp312-cp312-linux_x86_64.whl",
+  "wheel_sha256": "66d82dff61d0bfd9bbc14f318ff3d2c1b07d32ec45450df20957bd027149bc8a",
+  "installed_extension": "/autodl-fs/data/CVPR2027/experiments/sharedexpert_c/.venv-train/lib/python3.12/site-packages/flash_attn_2_cuda.cpython-312-x86_64-linux-gnu.so",
+  "installed_extension_sha256": "68f9f6c3de22aa4be5959d4aa2bc099bd749c9c69db31f45379c80c0579d9452",
+  "architectures": [
+    "sm_120"
+  ],
+  "cubin_count": 72,
+  "undefined_flash_symbols": 0,
+  "cpu_imports": {
+    "torch": "passed",
+    "flash_attn": "passed",
+    "flash_attn_2_cuda": "passed"
+  },
+  "gpu_smoke_performed": false,
+  "gpu_kernel_validation": "not performed; user requested no separate GPU smoke",
+  "setup_sha256": "36e71b996f989cf87f99efbde217fe14e5837c2b97a2887203fa77e7e6d75afd",
+  "setup_unchanged_from_sm90": true
+}

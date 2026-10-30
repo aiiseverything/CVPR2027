@@ -74,6 +74,31 @@ class RunnerTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 run.recover_predictions(path, [row], "baseline")
 
+    def test_subset_manifest_filters_frozen_rows_and_records_hash(self):
+        rows = [{"id": "a", "benchmark": "mme_rw_en"},
+                {"id": "b", "benchmark": "mme_rw_en"},
+                {"id": "c", "benchmark": "mme_rw_en"}]
+        selection = {"sha256": "parent", "expected_counts": {"mme_rw_en": 3}, "n_requested": 3}
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "subset.json"
+            manifest = {"schema_version": "highres-subset-v1", "ready": True,
+                        "name": "lite", "ids": ["a", "c"]}
+            path.write_text(json.dumps(manifest))
+            kept, narrowed, subset = run.apply_subset(rows, selection, path)
+            self.assertEqual([row["id"] for row in kept], ["a", "c"])
+            self.assertEqual(narrowed["expected_counts"], {"mme_rw_en": 2})
+            self.assertEqual(narrowed["source_expected_counts"], {"mme_rw_en": 3})
+            self.assertEqual(narrowed["n_requested"], 2)
+            self.assertEqual(subset["sha256"], run.hashlib.sha256(path.read_bytes()).hexdigest())
+            self.assertEqual(selection["n_requested"], 3)
+            for broken in ({"schema_version": "highres-subset-v1", "ready": True, "ids": ["a", "z"]},
+                           {"schema_version": "highres-subset-v1", "ready": True, "ids": ["a", "a"]},
+                           {"schema_version": "highres-subset-v1", "ready": False, "ids": ["a"]},
+                           {"schema_version": "other", "ready": True, "ids": ["a"]}):
+                path.write_text(json.dumps(broken))
+                with self.assertRaises(ValueError):
+                    run.apply_subset(rows, selection, path)
+
     def test_queue_owns_prepare_freeze_then_exact_four_models(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary) / "data"
